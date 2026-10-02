@@ -3,7 +3,7 @@ plugins {
 }
 
 // Wraps web/app.html (the single source of the app UI) into a full HTML document
-// and copies the bundled fonts, so the APK works fully offline.
+// and copies the bundled fonts and word photos, so the APK works fully offline.
 abstract class BundleWebTask : DefaultTask() {
     @get:InputDirectory
     abstract val webDir: DirectoryProperty
@@ -27,6 +27,9 @@ abstract class BundleWebTask : DefaultTask() {
         )
         File(src, "fonts").listFiles { f -> f.extension == "woff2" }?.forEach {
             it.copyTo(File(out, "fonts/${it.name}"), overwrite = true)
+        }
+        File(src, "img").listFiles { f -> f.extension == "webp" }?.forEach {
+            it.copyTo(File(out, "img/${it.name}"), overwrite = true)
         }
     }
 }

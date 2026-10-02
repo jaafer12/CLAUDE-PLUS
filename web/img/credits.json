@@ -49,11 +49,11 @@
   "url": "https://commons.wikimedia.org/wiki/File:Magnolia_grandiflora_-_flower_1.jpg"
  },
  "bed": {
-  "src": "w:Bed frame",
-  "file": "2_Linak_hospital_bed_frames.JPG",
-  "author": "BrokenSphere",
-  "license": "CC BY-SA 3.0",
-  "url": "https://commons.wikimedia.org/wiki/File:2_Linak_hospital_bed_frames.JPG"
+  "src": "w:Bedroom",
+  "file": "Berlin_Villa_Borsig_Tegel_asv2019-08_img09.jpg",
+  "author": "A.Savin",
+  "license": "FAL",
+  "url": "https://commons.wikimedia.org/wiki/File:Berlin_Villa_Borsig_Tegel_asv2019-08_img09.jpg"
  },
  "bird": {
   "src": "w:Bird",
@@ -166,13 +166,6 @@
   "author": "Top left: PremeditatedTop right: Tom PageBottom left and right: Maurizio Pesce",
   "license": "CC BY 2.0",
   "url": "https://commons.wikimedia.org/wiki/File:Laptop_collage.jpg"
- },
- "cook": {
-  "src": "w:Chef",
-  "file": "Ribot_Theodule_The_Cook_And_The_Cat-1.jpg",
-  "author": "Augustin Théodule Ribot",
-  "license": "Public domain",
-  "url": "https://commons.wikimedia.org/wiki/File:Ribot_Theodule_The_Cook_And_The_Cat-1.jpg"
  },
  "cow": {
   "src": "w:Cattle",
@@ -299,13 +292,6 @@
   "author": "Georgios Jakobides",
   "license": "Public domain",
   "url": "https://commons.wikimedia.org/wiki/File:The_Favorite_by_Georgios_Iakovidis.jpg"
- },
- "hair": {
-  "src": "w:Long hair",
-  "file": "Pierre_Auguste_Renoir_-_Portrait_de_Julie_Manet.jpg",
-  "author": "Pierre-Auguste Renoir",
-  "license": "Public domain",
-  "url": "https://commons.wikimedia.org/wiki/File:Pierre_Auguste_Renoir_-_Portrait_de_Julie_Manet.jpg"
  },
  "hand": {
   "src": "w:Hand",
@@ -503,13 +489,6 @@
   "license": "CC BY 3.0",
   "url": "https://commons.wikimedia.org/wiki/File:20201102.Hengnan.Hybrid_rice_Sanyou-1.6.jpg"
  },
- "room": {
-  "src": "w:Bedroom",
-  "file": "Berlin_Villa_Borsig_Tegel_asv2019-08_img09.jpg",
-  "author": "A.Savin",
-  "license": "FAL",
-  "url": "https://commons.wikimedia.org/wiki/File:Berlin_Villa_Borsig_Tegel_asv2019-08_img09.jpg"
- },
  "run": {
   "src": "w:Running",
   "file": "Speedsuit.jpg",
@@ -614,13 +593,6 @@
   "author": "See his respective owners",
   "license": "CC BY-SA 4.0",
   "url": "https://commons.wikimedia.org/wiki/File:Turtle_diversity.jpg"
- },
- "university": {
-  "src": "w:Campus",
-  "file": "Joseph_Ramée_Union_College_USA.jpg",
-  "author": "Joseph-Jacques Ramée",
-  "license": "Public domain",
-  "url": "https://commons.wikimedia.org/wiki/File:Joseph_Ram%C3%A9e_Union_College_USA.jpg"
  },
  "vegetable": {
   "src": "w:Vegetable",

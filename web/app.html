@@ -134,6 +134,17 @@ p{margin:0}
 .pic-num{font-family:var(--f-en);font-weight:700;color:var(--accent);line-height:1}
 .swatch{display:inline-block;width:1em;height:1em;border-radius:50%;border:2px solid var(--line);vertical-align:middle}
 .pic-xl{font-size:4.6rem;text-align:center;line-height:1.1}
+.photo{display:block;flex:none;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:18px;background:var(--sunk);border:1px solid var(--line)}
+.photo.xl{width:min(100%,340px);max-height:34vh}
+.photo.lg{width:min(100%,280px);max-height:28vh}
+.photo.opt{border-radius:14px;border:0}
+.photo.thumb{width:3.2rem;height:3.2rem;aspect-ratio:1;border-radius:12px;flex:none}
+.opt-pic:has(.photo){display:block;padding:.35rem;min-height:0}
+.opt-pic:has(.photo) .reveal{display:block;margin-top:.2rem}
+.credits{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem;width:100%;text-align:start}
+.credits li{display:flex;gap:.7rem;align-items:center}
+.credits li div{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;font-size:.82rem;overflow-wrap:anywhere;text-align:left}
+.credits a{color:var(--accent)}
 .pic-lg{font-size:3.4rem;text-align:center;line-height:1.1}
 
 /* Home */
@@ -500,6 +511,10 @@ photograph|pho·to·graph|صورة|فو·تَ·گراف|📷|A family photograph
 supermarket|su·per·mar·ket|سوبرماركت|سو·پَر·مار·كِت|🛒|I go to the supermarket.|أذهب إلى السوبرماركت.`]
 ];
 
+/* Real photos (free licences, Wikimedia Commons): id -> [author, licence, source page].
+   Generated from web/img/credits.json by tools/embed_photos.py. */
+const PHOTOS = /*PHOTOS*/{"apple":["Abhijit Tembhekar from Mumbai, India","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Red_Apple.jpg"],"arm":["Genusfotografen (Tomas Gunnarsson) / Wikimedia Sverige","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Extended_arm.jpg"],"baby":["Kimberly Vardeman","CC BY 2.0","https://commons.wikimedia.org/wiki/File:The_newborn_baby_in_men.jpg"],"bag":["de:Benutzer:sjr","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Rucksack1.jpg"],"banana":["TimothyPilgrim","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Bananavarieties.jpg"],"bathroom":["Yannick Trottier (ytrottier)","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Clawfoot_bathtub.jpg"],"beautiful":["Ianaré Sévi","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Magnolia_grandiflora_-_flower_1.jpg"],"bed":["A.Savin","FAL","https://commons.wikimedia.org/wiki/File:Berlin_Villa_Borsig_Tegel_asv2019-08_img09.jpg"],"bird":["C. Robiller / naturlichter.de (Hyla meridionalis)","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Kleiber_Flug.jpg"],"book":["NYC Wanderer (Kevin Eng)","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Gutenberg_Bible,_Lenox_Copy,_New_York_Public_Library,_2009._Pic_01.jpg"],"bread":["3268zauber","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Korb_mit_Br%C3%B6tchen.JPG"],"breakfast":["Kiddo27","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Breakfast_at_the_Black_Bear_Diner.jpg"],"butterfly":["fesoj","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Fesoj_-_Papilio_machaon_(by).jpg"],"camel":["Florian Prischl","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Camelus_dromedarius_in_Nuweiba.jpg"],"car":["© M 93","CC BY-SA 3.0 de","https://commons.wikimedia.org/wiki/File:Toyota_Camry_2.5_Hybrid_Ascent_Sport_(IX)_%E2%80%93_f_02012026.jpg"],"cat":["Karin Langner-Bahmann, upload von Martin Bahmann","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Siam_lilacpoint.jpg"],"chair":["Thomas Chippendale","CC0","https://commons.wikimedia.org/wiki/File:Set_of_fourteen_side_chairs_MET_DP110780.jpg"],"cheese":["Unknown","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Cheese_platter.jpg"],"chicken":["Evan-Amos","CC0","https://commons.wikimedia.org/wiki/File:Fried-Chicken-Set.jpg"],"chocolate":["Lynnereal","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Three_Bars_(1).jpg"],"clean":["Lionel Allorge","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:%C3%89ponge_type_3_(1).jpg"],"cold":["Sharon Mollerus","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Ice_Block,_Canal_Park,_Duluth_(32752478892).jpg"],"comfortable":["Ildar Sagdejev (Specious)","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:2009-05-16_Main_office_lobby_at_Hampton_Forest_Apartments.jpg"],"computer":["Top left: PremeditatedTop right: Tom PageBottom left and right: Maurizio Pesce","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Laptop_collage.jpg"],"cow":["Kim Hansen","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Cow_(Fleckvieh_breed)_Oeschinensee_Slaunger_2009-07-07.jpg"],"dictionary":["Langenscheidt","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Woerterbuchstapel_Langenscheidt.jpg"],"dog":["M. Rehemtulla","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Huskiesatrest.jpg"],"drink":["Agricultural Research Service","Public domain","https://commons.wikimedia.org/wiki/File:Orange_juice_1.jpg"],"duck":["This picture was realized by Richard Bartz by using a Canon EF 70-300mm f/4-5.6 IS USM Lens","CC BY-SA 2.5","https://commons.wikimedia.org/wiki/File:Anas_platyrhynchos_male_female_quadrat.jpg"],"ear":["Genusfotografen (Tomas Gunnarsson) / Wikimedia Sverige","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Human_right_ear_(cropped).jpg"],"egg":["Horacio Cambeiro","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Huevo_frito.jpg"],"elephant":["Yathin S Krishnappa","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Elephas_maximus_(Bandipur).jpg"],"evening":["Augustus Binu/ www.dreamsparrow.net/ facebook","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Evening_in_Parambikkulam,_Kerala,_India.jpg"],"everything":["EUMETSAT","Attribution","https://commons.wikimedia.org/wiki/File:Meteosat-12-fci-march-equinox-2025-noon.jpg"],"eye":["ROTFLOLEB","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Human_eye_with_blood_vessels.jpg"],"fast":["The Car Spy","CC BY 2.0","https://commons.wikimedia.org/wiki/File:1996_Porsche_911_993_GT2_-_Flickr_-_The_Car_Spy_(4).jpg"],"father":["Hripsime Poghosyan","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Father%27s_love_(cropped).jpg"],"fish":["User:Mattes","Public domain","https://commons.wikimedia.org/wiki/File:Fish_stuffed_with_Thai_herbs.jpg"],"foot":["Genusfotografen (Tomas Gunnarsson) / Wikimedia","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Foot_on_white_background.jpg"],"garden":["King of Hearts","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Brooklyn_Botanic_Garden_New_York_May_2015_010.jpg"],"good morning":["Nick Harris","CC BY 2.5","https://commons.wikimedia.org/wiki/File:Spring_Lake,_New_Jersey_Beach_at_Sunrise.jpg"],"grandmother":["Georgios Jakobides","Public domain","https://commons.wikimedia.org/wiki/File:The_Favorite_by_Georgios_Iakovidis.jpg"],"hand":["Genusfotografen (Tomas Gunnarsson) / Wikimedia","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Hand,_fingers_-_back.jpg"],"hello":["Kurt Bauschardt from Edmonton, Canada","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Waving_RCMP_(7612733982)_(cropped).jpg"],"horse":["Nokota_Horses.jpg: François Marchal derivative work: Dana boomer (talk)","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Nokota_Horses_cropped.jpg"],"hospital":["H501zalc","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Hospital-de-Bellvitge.jpg"],"hot":["Fir0002","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Large_bonfire.jpg"],"hour":["Sun Ladder","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:2010-07-20_Black_windup_alarm_clock_face.jpg"],"house":["No machine-readable author provided. Boereck assumed (based on copyright claims).","Public domain","https://commons.wikimedia.org/wiki/File:Nordisches_Einfamilienhaus.jpg"],"key":["Trougnouf","CC BY 4.0","https://commons.wikimedia.org/wiki/File:Solex_99_30_padlock_with_keys_(DSCF2659).jpg"],"kitchen":["Jean-Pierre Dalbéra from Paris, France","CC BY 2.0","https://commons.wikimedia.org/wiki/File:La_cuisine_(mus%C3%A9e_dart_nouveau,_Riga)_(7563655820).jpg"],"lamp":["Ragesoss","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Wide_array_of_lamps.jpg"],"lion":["Giles Laurent","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"],"listen":["http://muzyczny.pl","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:S%C5%82uchawki_referencyjne_K-701_firmy_AKG.jpg"],"milk":["NIAID","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Glass_of_Milk_(33657535532).jpg"],"minute":["https://commons.wikimedia.org/wiki/User:Lesselich","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Stoppuhr_digital_noBG.jpg"],"money":["Nic McPhee from Morris, Minnesota, USA","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Flickr_-_Nic%27s_events_-_London_-_14-15_Dec_2007_-_034.jpg"],"monkey":["Deerpeter","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Ubud_Monkey_Family.jpg"],"morning":["Olga Ernst","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Morning,_just_after_sunrise,_Namibia.jpg"],"name":["Nick Gray from New York City, USA","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Caitlin%27s_name_badge_(2722635443).jpg"],"night":["Benh LIEU SONG","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Savault_Chapel_Under_Milky_Way_BLS.jpg"],"nose":["Franco Folini","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Fort_Ross_Elena_wearing_Traditional_Russian_Costume_(cropped).jpg"],"pen":["Trounce","CC BY 3.0","https://commons.wikimedia.org/wiki/File:03-BICcristal2008-03-26.jpg"],"phone":["Sage Ross","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Wikipedia_homepage_on_a_large_Android_phone,_2015-04-16.jpg"],"photograph":["Kameraprojekt Graz 2015","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:LEI0440_Leica_IIIf_chrom_-_Sn._580566_1951-52-M39_Blitzsynchron_front_view-6531_hf-.jpg"],"play":["NikosLikomitros","CC0","https://commons.wikimedia.org/wiki/File:Argos_playground.jpg"],"potato":["Scott Bauer, USDA ARS","Public domain","https://commons.wikimedia.org/wiki/File:Patates.jpg"],"rabbit":["JM Ligero Loarte","CC BY 3.0","https://commons.wikimedia.org/wiki/File:Oryctolagus_cuniculus_Rcdo.jpg"],"restaurant":["Mcg2132","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Barbieri_-_ViaSophia25668.jpg"],"rice":["China News Service","CC BY 3.0","https://commons.wikimedia.org/wiki/File:20201102.Hengnan.Hybrid_rice_Sanyou-1.6.jpg"],"run":["Chris Hunkeler","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Speedsuit.jpg"],"sad":["Vassil","CC BY 3.0","https://commons.wikimedia.org/wiki/File:S%C3%A9pulcre_Arc-en-Barrois_111008_12.jpg"],"school":["Omoeko Media","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:First_primary_school_building_in_Nigeria_in_Badagry,_Nigeria.jpg"],"sheep":["Keith Weller","Public domain","https://commons.wikimedia.org/wiki/File:Flock_of_sheep.jpg"],"sleep":["Domenico Fetti","Public domain","https://commons.wikimedia.org/wiki/File:Domenico_Fetti_-_Sleeping_Girl_-_WGA7863.jpg"],"slow":["Geierunited","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Snail.jpg"],"student":["Mettevanderheide","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:High_school_students,_SAS_Pudong.jpg"],"supermarket":["NYC Guru","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Stop%26Shop.jpg"],"tea":["Difference engine","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Longjing_tea_steeping_in_gaiwan.jpg"],"teacher":["Harrison Keely","CC BY 4.0","https://commons.wikimedia.org/wiki/File:A_public_high_school_teacher_in_a_classroom_in_the_United_States_08.jpg"],"teeth":["dozenist","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:06-10-06smile.jpg"],"television":["Klaus Nahr from Germany","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Museum_f%C3%BCr_Kommunikation_-_Depot_Heusenstamm_-_Technik_12_-_Flickr_-_KlausNahr.jpg"],"time":["Unknown","CC0","https://commons.wikimedia.org/wiki/File:Half-hour_sand_glass_MET_ES268.jpg"],"tomato":["Softeis","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Tomato_je.jpg"],"turtle":["See his respective owners","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Turtle_diversity.jpg"],"vegetable":["Jasper Greek Golangco","Copyrighted free use","https://commons.wikimedia.org/wiki/File:Marketvegetables.jpg"],"walk":["IgorZed","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Women_walking_in_Hyderabad_street.jpg"],"water":["Josh Estey/AusAID","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Clean_water_for_a_village_in_West_Lombok_(10686572086).jpg"],"window":["Unknown","Public domain","https://commons.wikimedia.org/wiki/File:DETAIL_OF_(SINGLE_SASH)_WINDOW,_WEST-FRONT_FACADE_-_Moncure_Building,_1415_North_Court_House_Road,_Arlington,_Arlington_County,_VA_HABS_VA,7-ARL,7-7.tif"],"wonderful":["Eric Rolph at English Wikipedia","CC BY-SA 2.5","https://commons.wikimedia.org/wiki/File:Double-alaskan-rainbow.jpg"]}/*END*/;
+
 const CATS = [], WORDS = [], BY = new Map();
 RAW.forEach(([id, ar, en, pic, body]) => {
   const cat = { id, ar, en, pic, words: [] };
@@ -535,9 +550,20 @@ function picHTML(p, cls = '') {
   return `<span class="pic ${cls}" aria-hidden="true">${p}</span>`;
 }
 
+const slug = id => id.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+function picBlock(pic, kind) {
+  const cls = { xl: 'pic-xl', lg: 'pic-lg' }[kind];
+  return cls ? `<div class="${cls}">${picHTML(pic)}</div>` : picHTML(pic);
+}
+/* A word's picture: its real photo when there is one (and photos are on), otherwise its emoji. */
+function visual(w, kind) {
+  if (S.settings.photos && PHOTOS[w.id]) return `<img class="photo ${kind}" src="img/${slug(w.id)}.webp" alt="" data-pic="${esc(w.pic)}" data-kind="${kind}" decoding="async">`;
+  return picBlock(w.pic, kind);
+}
+
 /* ================= Storage ================= */
 const KEY = 'kalima-kalima.v1';
-const DEFAULT = { settings: { font: 'lexend', size: 1, track: 1, bg: 'auto', syl: true, hint: true, rate: 0.85, sound: true }, words: {}, days: {}, stars: 0, tip: true, readerText: null };
+const DEFAULT = { settings: { font: 'lexend', size: 1, track: 1, bg: 'auto', syl: true, hint: true, rate: 0.85, sound: true, photos: true }, words: {}, days: {}, stars: 0, tip: true, readerText: null };
 let S = load();
 function load() {
   const base = JSON.parse(JSON.stringify(DEFAULT));
@@ -841,7 +867,7 @@ function viewHome() {
     <div data-say="${esc(w.en)}">${chunks(w.sy, 'xl')}</div>
     ${beats(w.n)}
     <p class="hint">${esc(w.say)}</p>
-    <p class="mean">${picHTML(w.pic)} ${esc(w.ar)}</p>
+    <p class="mean">${visual(w, 'thumb')} ${esc(w.ar)}</p>
     <div class="row center">
       <button class="btn btn-soft small" data-act="say" data-text="${esc(w.en)}">🔊 استمع</button>
       <button class="btn btn-ghost small" data-act="say" data-text="${esc(w.en)}" data-slow="1">🐢 ببطء</button>
@@ -922,7 +948,7 @@ function stepHTML(st) {
   if (st.t === 'intro') {
     touch(w.id); save();
     return `<p class="label">كلمة جديدة · ${esc(CAT[w.cat].ar)}</p>
-    <div class="pic-xl">${picHTML(w.pic)}</div>
+    ${visual(w, 'xl')}
     <div data-say="${esc(w.en)}">${chunks(w.sy, 'xl')}</div>
     ${beats(w.n)}
     <p class="hint">${esc(w.say)}</p>
@@ -935,12 +961,12 @@ function stepHTML(st) {
     return `<p class="q">اسمع، ثم اختر الصورة الصحيحة</p>
     <button class="big-play" data-act="say" data-text="${esc(w.en)}" aria-label="استمع مرة أخرى">🔊</button>
     <button class="link-btn" data-act="say" data-text="${esc(w.en)}" data-slow="1">🐢 أبطأ</button>
-    <div class="opts-pic">${st.opts.map(o => `<button class="opt-pic" data-act="pick" data-id="${esc(o.id)}" aria-label="${esc(o.ar)}">${picHTML(o.pic)}<span class="reveal" hidden>${chunks(o.sy, 'sm')}</span></button>`).join('')}</div>`;
+    <div class="opts-pic">${st.opts.map(o => `<button class="opt-pic" data-act="pick" data-id="${esc(o.id)}" aria-label="${esc(o.ar)}">${visual(o, 'opt')}<span class="reveal" hidden>${chunks(o.sy, 'sm')}</span></button>`).join('')}</div>`;
   }
   if (st.t === 'picture') {
     st.opts = st.opts || options(w, 3);
     return `<p class="q">أي كلمة تعني هذا؟</p>
-    <div class="pic-lg">${picHTML(w.pic)}</div><p class="mean">${esc(w.ar)}</p>
+    ${visual(w, 'lg')}<p class="mean">${esc(w.ar)}</p>
     <div class="opts-word">${st.opts.map(o => `<button class="opt-word" data-act="pick" data-id="${esc(o.id)}">${chunks(o.sy, 'md')}</button>`).join('')}</div>
     <button class="link-btn" data-act="readOpts">🔊 اقرأ لي الخيارات</button>`;
   }
@@ -953,14 +979,14 @@ function stepHTML(st) {
       st.order = order; st.placed = [];
     }
     return `<p class="q">رتّب القطع لتكوين الكلمة</p>
-    <div class="pic-lg">${picHTML(w.pic)}</div><p class="mean">${esc(w.ar)}</p>
+    ${visual(w, 'lg')}<p class="mean">${esc(w.ar)}</p>
     <button class="btn btn-soft small" data-act="say" data-text="${esc(w.en)}">🔊 استمع للكلمة</button>
     <div id="buildArea" class="stack" style="width:100%">${buildHTML(st)}</div>`;
   }
   if (st.t === 'speak') {
     const can = Speech.canListen();
     return `<p class="q">قل الكلمة بصوت عالٍ</p>
-    <div class="pic-lg">${picHTML(w.pic)}</div>
+    ${visual(w, 'lg')}
     <div data-say="${esc(w.en)}">${chunks(w.sy, 'xl')}</div>
     <p class="hint">${esc(w.say)}</p><p class="mean">${esc(w.ar)}</p>
     <div class="row center"><button class="btn btn-ghost small" data-act="say" data-text="${esc(w.en)}">🔊 اسمعها أولاً</button><button class="btn btn-ghost small" data-act="clap" data-text="${esc(w.en)}">👏 صفّق</button></div>
@@ -1046,7 +1072,7 @@ function viewResult() {
 }
 function wordRow(w) {
   const r = S.words[w.id], b = r ? Math.max(1, r.b) : 0;
-  return `<li><button class="wrow" data-act="word" data-w="${esc(w.en)}">${picHTML(w.pic)}<span class="wrow-main">${chunks(w.sy, 'md')}<span class="muted">${esc(w.ar)}</span></span>
+  return `<li><button class="wrow" data-act="word" data-w="${esc(w.en)}">${visual(w, 'thumb')}<span class="wrow-main">${chunks(w.sy, 'md')}<span class="muted">${esc(w.ar)}</span></span>
   <span class="lvl" aria-label="المستوى ${b} من 5">${[1, 2, 3, 4, 5].map(i => `<i class="${i <= b ? 'on' : ''}"></i>`).join('')}</span></button></li>`;
 }
 
@@ -1141,6 +1167,7 @@ function viewSettings() {
     <button class="btn btn-ghost small" data-act="say" data-text="Hello, how are you today?">🔊 جرّب السرعة</button>
     ${toggle('syl', 'تلوين المقاطع (قطعة زرقاء، قطعة برتقالية)')}
     ${toggle('hint', 'كتابة النطق بالحروف العربية')}
+    ${toggle('photos', 'صور حقيقية للكلمات (بدل الرموز)')}
     ${toggle('sound', 'أصوات النجاح والتنبيه')}
   </section>
   <section class="card about">
@@ -1154,6 +1181,7 @@ function viewSettings() {
       <li>صورة ومعنى عربي لكل كلمة، وتمارين تعتمد على السمع قبل القراءة.<span>مبدأ الترميز المزدوج: صورة + صوت + كلمة (Paivio, Dual Coding Theory).</span></li>
     </ol>
   </section>
+  <section class="card"><h2 class="h2">الصور</h2><p class="muted">${Object.keys(PHOTOS).length} صورة حقيقية من ويكيميديا كومنز، برخص حرة تسمح باستخدامها مع ذكر أصحابها.</p><button class="btn btn-ghost btn-block" data-act="credits">مصادر الصور وأصحابها</button></section>
   <section class="card"><h2 class="h2">التقدّم</h2><p class="muted">تقدّمك محفوظ على هذا الجهاز فقط.</p><button class="btn btn-ghost btn-block" data-act="resetAsk">مسح التقدّم والبدء من جديد</button></section>`;
 }
 
@@ -1168,7 +1196,7 @@ function wordSheet(raw) {
   const exact = w && w.id === id;
   const sy = exact ? w.sy : syllabify(raw).join('·');
   const n = sy.split(/[·\s]+/).length;
-  openSheet(`${w ? `<div class="pic-lg">${picHTML(w.pic)}</div>` : ''}
+  openSheet(`${w ? visual(w, 'lg') : ''}
     <div data-say="${esc(raw)}">${chunks(sy, 'xl')}</div>${beats(n)}<p class="label">${P.syl(n)}</p>
     ${exact ? `<p class="hint">${esc(w.say)}</p>` : ''}
     ${w ? `<p class="mean">${exact ? '' : `من كلمة <span class="en">${esc(w.en)}</span>: `}${esc(w.ar)}</p>` : `<p class="muted">هذه الكلمة ليست في الدروس بعد. التقسيم تلقائي وقد يختلف قليلاً عن القاموس.</p>`}
@@ -1293,6 +1321,11 @@ D.addEventListener('click', e => {
       break;
     }
     case 'toggle': S.settings[el.dataset.key] = !S.settings[el.dataset.key]; save(); applySettings(); el.setAttribute('aria-checked', S.settings[el.dataset.key]); break;
+    case 'credits':
+      openSheet(`<h2 class="h2">مصادر الصور</h2><p class="muted sm">كل الصور من ويكيميديا كومنز (Wikimedia Commons) برخص حرة. شكراً لأصحابها.</p>
+        <ul class="credits">${Object.entries(PHOTOS).map(([id, [a, l, u]]) => `<li><img class="photo thumb" src="img/${slug(id)}.webp" alt="" loading="lazy" data-pic="${esc(BY.get(id).pic)}" data-kind="thumb"><div dir="ltr"><b class="en">${esc(BY.get(id).en)}</b><span>${esc(a)} · ${esc(l)}</span>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">صفحة الصورة</a>` : ''}</div></li>`).join('')}</ul>
+        <button class="btn btn-ghost btn-block" data-act="closeSheet">إغلاق</button>`);
+      break;
     case 'resetAsk':
       openSheet(`<h2 class="h2">مسح كل التقدّم؟</h2><p class="muted">ستُحذف الكلمات والنجوم والأيام المتتالية. الإعدادات تبقى كما هي.</p>
         <button class="btn btn-primary btn-block" data-act="closeSheet">إلغاء</button><button class="btn btn-ghost btn-block" data-act="reset">نعم، امسح التقدّم</button>`);
@@ -1303,6 +1336,13 @@ D.addEventListener('click', e => {
 D.addEventListener('input', e => {
   if (e.target.id === 'rate') { S.settings.rate = Number(e.target.value); D.getElementById('rateVal').textContent = Math.round(S.settings.rate * 100) + '%'; save(); }
 });
+D.addEventListener('error', e => {
+  const t = e.target;
+  if (t.tagName === 'IMG' && t.classList.contains('photo') && t.dataset.pic) {
+    const box = D.createElement('div'); box.innerHTML = picBlock(t.dataset.pic, t.dataset.kind);
+    t.replaceWith(box.firstElementChild || box);
+  }
+}, true);
 D.addEventListener('visibilitychange', () => { if (D.hidden) { Speech.stop(); READER.playing = false; } });
 
 /* Android back button: returns true when the app handled it. */
