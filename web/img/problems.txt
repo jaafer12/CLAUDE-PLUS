@@ -1,7 +1,1 @@
-apple: licence not allowed (GFDL 1.2) for Pink_lady_and_cross_section.jpg
-elephant: licence not allowed (GFDL 1.2) for African_Bush_Elephant.jpg
-bathroom: licence not allowed (No restrictions) for Modern_bath_rooms_and_appliances_-_a_few_suggestions_about_plumbing_valuable_to_home_builders_or_those_about_to_remodel_their_present_dwellings._(1903)_(14778178805).jpg
-room: licence not allowed (FAL) for Berlin_Villa_Borsig_Tegel_asv2019-08_img09.jpg
-drink: licence not allowed () for Nordkirchen-100415-12272-Trinkender.jpg
-vegetable: licence not allowed (Copyrighted free use) for Marketvegetables.jpg
-everything: licence not allowed (Attribution) for Meteosat-12-fci-march-equinox-2025-noon.jpg
+
