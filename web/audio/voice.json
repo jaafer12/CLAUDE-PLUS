@@ -1,0 +1,3596 @@
+{
+ "It was two days after Christmas.": {
+  "clip": "s/carbuncle-1-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.99
+ },
+ "\"Someone stole it from a rich lady five days ago.\"": {
+  "clip": "s/carbuncle-1-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.0
+ },
+ "\"The police think a poor plumber stole it. But I am not sure.\"": {
+  "clip": "s/carbuncle-1-11",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.53
+ },
+ "Watson visited Holmes. Holmes was looking at an old hat.": {
+  "clip": "s/carbuncle-1-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.89
+ },
+ "\"A man dropped this hat in the street,\" said Holmes.": {
+  "clip": "s/carbuncle-1-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.02
+ },
+ "\"He also dropped a Christmas goose.\"": {
+  "clip": "s/carbuncle-1-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.11
+ },
+ "\"A policeman found them and brought them to me.\"": {
+  "clip": "s/carbuncle-1-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.66
+ },
+ "Suddenly, the policeman ran in. His eyes were wide.": {
+  "clip": "s/carbuncle-1-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.43
+ },
+ "\"Mr. Holmes! Look at what my wife found inside the goose!\"": {
+  "clip": "s/carbuncle-1-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.6
+ },
+ "In his hand was a beautiful blue stone. It was shining.": {
+  "clip": "s/carbuncle-1-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.53
+ },
+ "\"This is the Blue Carbuncle!\" said Holmes.": {
+  "clip": "s/carbuncle-1-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.69
+ },
+ "Holmes put a message in the newspaper.": {
+  "clip": "s/carbuncle-2-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.16
+ },
+ "Just then, a small, nervous man ran to the seller.": {
+  "clip": "s/carbuncle-2-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.24
+ },
+ "\"Please, tell me about the geese!\" he said.": {
+  "clip": "s/carbuncle-2-11",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.45
+ },
+ "The owner of the hat came. His name was Henry Baker.": {
+  "clip": "s/carbuncle-2-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.43
+ },
+ "He was a kind old man. He knew nothing about the stone.": {
+  "clip": "s/carbuncle-2-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.5
+ },
+ "\"I bought the goose from a small club,\" he said.": {
+  "clip": "s/carbuncle-2-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.66
+ },
+ "Holmes and Watson went to the club in the cold night.": {
+  "clip": "s/carbuncle-2-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.1
+ },
+ "The club bought its geese from a market.": {
+  "clip": "s/carbuncle-2-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.09
+ },
+ "At the market, a seller was very angry.": {
+  "clip": "s/carbuncle-2-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.59
+ },
+ "\"Everyone is asking me about those geese!\" he shouted.": {
+  "clip": "s/carbuncle-2-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.19
+ },
+ "\"They came from a woman named Mrs. Oakshott.\"": {
+  "clip": "s/carbuncle-2-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.54
+ },
+ "Holmes took the nervous man to his home.": {
+  "clip": "s/carbuncle-3-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.28
+ },
+ "Ryder ran away into the night.": {
+  "clip": "s/carbuncle-3-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.9
+ },
+ "\"The poor plumber will be free now,\" said Holmes.": {
+  "clip": "s/carbuncle-3-11",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.74
+ },
+ "\"It is Christmas. It is a time to forgive.\"": {
+  "clip": "s/carbuncle-3-12",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.71
+ },
+ "\"Your name is James Ryder,\" said Holmes.": {
+  "clip": "s/carbuncle-3-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.57
+ },
+ "\"You work at the hotel where the lady stayed.\"": {
+  "clip": "s/carbuncle-3-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.45
+ },
+ "Ryder's face became white. He started to shake.": {
+  "clip": "s/carbuncle-3-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.1
+ },
+ "\"Yes, I stole it!\" he cried. \"I am sorry!\"": {
+  "clip": "s/carbuncle-3-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.12
+ },
+ "\"I hid the stone inside a goose at my sister's house.\"": {
+  "clip": "s/carbuncle-3-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.12
+ },
+ "\"But then I took the wrong goose!\"": {
+  "clip": "s/carbuncle-3-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.92
+ },
+ "Holmes was quiet for a long time.": {
+  "clip": "s/carbuncle-3-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.06
+ },
+ "Then he opened the door. \"Go!\" he said.": {
+  "clip": "s/carbuncle-3-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.64
+ },
+ "Inspector Layla Hassan was at her cousin's wedding in Baghdad.": {
+  "clip": "s/necklace-1-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 4.18
+ },
+ "The bride's uncle said, \"I was dancing. Everyone saw me.\"": {
+  "clip": "s/necklace-1-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.7
+ },
+ "Layla looked at the three faces. One of them was lying.": {
+  "clip": "s/necklace-1-11",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.41
+ },
+ "The music was loud, and everyone was dancing.": {
+  "clip": "s/necklace-1-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.95
+ },
+ "Suddenly, the bride's mother screamed.": {
+  "clip": "s/necklace-1-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.18
+ },
+ "\"My gold necklace is gone! It was in my bag!\"": {
+  "clip": "s/necklace-1-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.88
+ },
+ "The necklace was very old. It was from her grandmother.": {
+  "clip": "s/necklace-1-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.26
+ },
+ "Layla stopped the music. \"Nobody leaves the hall,\" she said.": {
+  "clip": "s/necklace-1-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.77
+ },
+ "She asked three people about the bag.": {
+  "clip": "s/necklace-1-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.14
+ },
+ "The waiter said, \"I was in the kitchen all the time.\"": {
+  "clip": "s/necklace-1-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.05
+ },
+ "The photographer said, \"I was taking photos of the bride.\"": {
+  "clip": "s/necklace-1-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.55
+ },
+ "Layla asked the photographer for his camera.": {
+  "clip": "s/necklace-2-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.69
+ },
+ "\"I only brought a glass of water!\" he said.": {
+  "clip": "s/necklace-2-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.62
+ },
+ "She looked at the photos one by one.": {
+  "clip": "s/necklace-2-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.14
+ },
+ "In one photo, she saw the bag on a chair.": {
+  "clip": "s/necklace-2-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.66
+ },
+ "In the next photo, the bag was still there.": {
+  "clip": "s/necklace-2-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.52
+ },
+ "But behind the chair, she saw a white sleeve.": {
+  "clip": "s/necklace-2-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.62
+ },
+ "Only the waiters wore white shirts.": {
+  "clip": "s/necklace-2-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.09
+ },
+ "\"You said you were in the kitchen,\" Layla said to the waiter.": {
+  "clip": "s/necklace-2-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.26
+ },
+ "\"But this photo shows you near the bag at ten o'clock.\"": {
+  "clip": "s/necklace-2-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.98
+ },
+ "The waiter's hands began to shake.": {
+  "clip": "s/necklace-2-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.97
+ },
+ "Layla was not sure. She looked again.": {
+  "clip": "s/necklace-3-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.47
+ },
+ "He hid it in the fountain, and he planned to take it later.": {
+  "clip": "s/necklace-3-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.26
+ },
+ "The waiter was telling the truth. He only brought water.": {
+  "clip": "s/necklace-3-11",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.24
+ },
+ "The bride's mother hugged Layla, and the music started again.": {
+  "clip": "s/necklace-3-12",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.55
+ },
+ "The waiter's tray was empty and clean.": {
+  "clip": "s/necklace-3-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.21
+ },
+ "Then she looked at the uncle's shoes. They were wet.": {
+  "clip": "s/necklace-3-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.81
+ },
+ "\"Why are your shoes wet?\" she asked. \"It is not raining.\"": {
+  "clip": "s/necklace-3-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.31
+ },
+ "\"I... I went to the garden,\" said the uncle.": {
+  "clip": "s/necklace-3-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.59
+ },
+ "Layla walked to the garden. There was a small fountain.": {
+  "clip": "s/necklace-3-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.14
+ },
+ "At the bottom of the water, something was shining.": {
+  "clip": "s/necklace-3-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.62
+ },
+ "It was the gold necklace!": {
+  "clip": "s/necklace-3-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.66
+ },
+ "The uncle had money problems. He wanted to sell it.": {
+  "clip": "s/necklace-3-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.07
+ },
+ "One day, a man with bright red hair visited Holmes.": {
+  "clip": "s/redheaded-1-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.29
+ },
+ "Holmes laughed, but then he became serious.": {
+  "clip": "s/redheaded-1-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.5
+ },
+ "\"This is a very interesting problem,\" he said.": {
+  "clip": "s/redheaded-1-11",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.78
+ },
+ "His name was Mr. Wilson, and he had a small shop.": {
+  "clip": "s/redheaded-1-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.19
+ },
+ "\"My assistant showed me a newspaper,\" he said.": {
+  "clip": "s/redheaded-1-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.74
+ },
+ "\"It said: men with red hair, come and get a good job!\"": {
+  "clip": "s/redheaded-1-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.17
+ },
+ "\"So I went, and they gave me the job.\"": {
+  "clip": "s/redheaded-1-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.26
+ },
+ "\"Every day, from ten to two, I copied a big book by hand.\"": {
+  "clip": "s/redheaded-1-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.7
+ },
+ "\"They paid me four pounds every week. It was easy money.\"": {
+  "clip": "s/redheaded-1-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.48
+ },
+ "\"But today, the office was closed.\"": {
+  "clip": "s/redheaded-1-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.14
+ },
+ "\"There was a note on the door: the League is finished.\"": {
+  "clip": "s/redheaded-1-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.76
+ },
+ "\"Tell me about your assistant,\" said Holmes.": {
+  "clip": "s/redheaded-2-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.52
+ },
+ "\"Now I understand,\" said Holmes.": {
+  "clip": "s/redheaded-2-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.23
+ },
+ "\"He is not taking photos. He is digging a tunnel!\"": {
+  "clip": "s/redheaded-2-11",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.19
+ },
+ "\"His name is Vincent. He works for half the usual money.\"": {
+  "clip": "s/redheaded-2-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.58
+ },
+ "\"He loves photography. He spends hours in my basement.\"": {
+  "clip": "s/redheaded-2-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.5
+ },
+ "Holmes and Watson walked to Mr. Wilson's shop.": {
+  "clip": "s/redheaded-2-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.66
+ },
+ "Holmes hit the street with his stick, again and again.": {
+  "clip": "s/redheaded-2-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.05
+ },
+ "Then he knocked on the door. A young man opened it.": {
+  "clip": "s/redheaded-2-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.02
+ },
+ "Holmes did not look at his face. He looked at his knees.": {
+  "clip": "s/redheaded-2-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.31
+ },
+ "The young man's trousers were dirty at the knees.": {
+  "clip": "s/redheaded-2-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.66
+ },
+ "Next to the shop, there was a big bank.": {
+  "clip": "s/redheaded-2-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.38
+ },
+ "That night, Holmes, Watson and two policemen went to the bank.": {
+  "clip": "s/redheaded-3-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.91
+ },
+ "\"Then they could dig the tunnel to the bank.\"": {
+  "clip": "s/redheaded-3-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.16
+ },
+ "Watson smiled. \"Holmes, you are wonderful!\"": {
+  "clip": "s/redheaded-3-11",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.98
+ },
+ "They waited in the dark, under the ground, near the gold.": {
+  "clip": "s/redheaded-3-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.29
+ },
+ "After one hour, they heard a sound.": {
+  "clip": "s/redheaded-3-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.18
+ },
+ "A stone in the floor moved.": {
+  "clip": "s/redheaded-3-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.61
+ },
+ "A hand came up, and then a face. It was Vincent!": {
+  "clip": "s/redheaded-3-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.12
+ },
+ "His real name was John Clay. He was a famous thief.": {
+  "clip": "s/redheaded-3-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.31
+ },
+ "The police caught him and his friend.": {
+  "clip": "s/redheaded-3-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.92
+ },
+ "\"The Red-Headed League was a trick,\" Holmes explained.": {
+  "clip": "s/redheaded-3-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.17
+ },
+ "\"They wanted Mr. Wilson out of his shop every day.\"": {
+  "clip": "s/redheaded-3-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.02
+ },
+ "It was early in the morning in London.": {
+  "clip": "s/speckled-1-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.04
+ },
+ "Holmes listened carefully. His eyes were bright.": {
+  "clip": "s/speckled-1-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.98
+ },
+ "\"Tell me everything,\" he said.": {
+  "clip": "s/speckled-1-11",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.87
+ },
+ "Sherlock Holmes woke up his friend, Doctor Watson.": {
+  "clip": "s/speckled-1-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.17
+ },
+ "\"A young woman is here,\" he said. \"She is very afraid.\"": {
+  "clip": "s/speckled-1-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.55
+ },
+ "The woman wore black clothes, and her face was pale.": {
+  "clip": "s/speckled-1-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.19
+ },
+ "\"My name is Helen Stoner,\" she said quietly.": {
+  "clip": "s/speckled-1-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.83
+ },
+ "\"I live with my stepfather in an old house.\"": {
+  "clip": "s/speckled-1-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.54
+ },
+ "\"His name is Doctor Roylott. He is a strong and angry man.\"": {
+  "clip": "s/speckled-1-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.91
+ },
+ "\"Two years ago, my sister Julia died in that house.\"": {
+  "clip": "s/speckled-1-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.22
+ },
+ "\"Before she died, she said strange words: the speckled band!\"": {
+  "clip": "s/speckled-1-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.82
+ },
+ "\"Every night, my sister heard a low whistle,\" said Helen.": {
+  "clip": "s/speckled-2-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.31
+ },
+ "It was Doctor Roylott. \"Stay away from my family!\" he shouted.": {
+  "clip": "s/speckled-2-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 4.1
+ },
+ "Holmes smiled calmly. He was not afraid.": {
+  "clip": "s/speckled-2-11",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.71
+ },
+ "\"It came in the middle of the night, at about three o'clock.\"": {
+  "clip": "s/speckled-2-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.17
+ },
+ "\"Our stepfather keeps wild animals from India in the garden.\"": {
+  "clip": "s/speckled-2-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.67
+ },
+ "\"Now workers are fixing the walls of my room.\"": {
+  "clip": "s/speckled-2-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.54
+ },
+ "\"So I must sleep in my sister's old room.\"": {
+  "clip": "s/speckled-2-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.3
+ },
+ "\"Last night, I heard the same whistle!\"": {
+  "clip": "s/speckled-2-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.26
+ },
+ "Helen began to cry.": {
+  "clip": "s/speckled-2-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.54
+ },
+ "\"We will come to your house today,\" said Holmes.": {
+  "clip": "s/speckled-2-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.54
+ },
+ "After she left, a big man broke into the room.": {
+  "clip": "s/speckled-2-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.93
+ },
+ "Holmes and Watson went to the old house by train.": {
+  "clip": "s/speckled-3-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.0
+ },
+ "\"That is the important question,\" said Holmes.": {
+  "clip": "s/speckled-3-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.81
+ },
+ "\"Tonight, we will wait in the dark.\"": {
+  "clip": "s/speckled-3-11",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.97
+ },
+ "Holmes looked at Julia's room very carefully.": {
+  "clip": "s/speckled-3-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.62
+ },
+ "The bed was fixed to the floor. It could not move.": {
+  "clip": "s/speckled-3-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.9
+ },
+ "Above the bed, there was a small hole in the wall.": {
+  "clip": "s/speckled-3-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.74
+ },
+ "The hole went into Doctor Roylott's room.": {
+  "clip": "s/speckled-3-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.42
+ },
+ "A long rope hung next to the bed, but it did not ring a bell.": {
+  "clip": "s/speckled-3-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.5
+ },
+ "In Roylott's room, Holmes found a metal safe.": {
+  "clip": "s/speckled-3-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.93
+ },
+ "On top of the safe, there was a small plate of milk.": {
+  "clip": "s/speckled-3-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.93
+ },
+ "\"Why does a man keep milk on a safe?\" asked Watson.": {
+  "clip": "s/speckled-3-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.17
+ },
+ "That night, Holmes and Watson sat in Julia's room.": {
+  "clip": "s/speckled-4-1",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.07
+ },
+ "\"The speckled band!\" said Holmes. \"It is a snake!\"": {
+  "clip": "s/speckled-4-10",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.34
+ },
+ "Roylott used the snake to kill Julia, because he wanted her money.": {
+  "clip": "s/speckled-4-11",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.89
+ },
+ "But tonight, the snake went back and bit him.": {
+  "clip": "s/speckled-4-12",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.52
+ },
+ "Helen was safe at last.": {
+  "clip": "s/speckled-4-13",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.66
+ },
+ "They did not speak. They did not sleep.": {
+  "clip": "s/speckled-4-2",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.38
+ },
+ "At three o'clock, they heard a soft whistle.": {
+  "clip": "s/speckled-4-3",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.57
+ },
+ "Something came through the hole and down the rope.": {
+  "clip": "s/speckled-4-4",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.54
+ },
+ "Holmes jumped up and hit the rope with his stick.": {
+  "clip": "s/speckled-4-5",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.54
+ },
+ "Then they heard a terrible scream from the next room.": {
+  "clip": "s/speckled-4-6",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.71
+ },
+ "They ran into Roylott's room.": {
+  "clip": "s/speckled-4-7",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.7
+ },
+ "Roylott sat in his chair. He was dead.": {
+  "clip": "s/speckled-4-8",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.38
+ },
+ "Around his head was a yellow band with brown spots.": {
+  "clip": "s/speckled-4-9",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 3.43
+ },
+ "afraid": {
+  "clip": "v/afraid",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "assistant": {
+  "clip": "v/assistant",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "at last": {
+  "clip": "v/at-last",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.01
+ },
+ "basement": {
+  "clip": "v/basement",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.98
+ },
+ "behind": {
+  "clip": "v/behind",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.98
+ },
+ "bite": {
+  "clip": "v/bite",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "bottom": {
+  "clip": "v/bottom",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "bride": {
+  "clip": "v/bride",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "calmly": {
+  "clip": "v/calmly",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "camera": {
+  "clip": "v/camera",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "carefully": {
+  "clip": "v/carefully",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.94
+ },
+ "club": {
+  "clip": "v/club",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "copy": {
+  "clip": "v/copy",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "dark": {
+  "clip": "v/dark",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "dirty": {
+  "clip": "v/dirty",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "drop": {
+  "clip": "v/drop",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "explain": {
+  "clip": "v/explain",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "fix": {
+  "clip": "v/fix",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "forgive": {
+  "clip": "v/forgive",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.94
+ },
+ "fountain": {
+  "clip": "v/fountain",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.94
+ },
+ "gold": {
+  "clip": "v/gold",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "goose": {
+  "clip": "v/goose",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "hide": {
+  "clip": "v/hide",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "hole": {
+  "clip": "v/hole",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "hotel": {
+  "clip": "v/hotel",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "hug": {
+  "clip": "v/hug",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "inspector": {
+  "clip": "v/inspector",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.1
+ },
+ "kind": {
+  "clip": "v/kind",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "knee": {
+  "clip": "v/knee",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "knock": {
+  "clip": "v/knock",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "lie": {
+  "clip": "v/lie",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "necklace": {
+  "clip": "v/necklace",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.01
+ },
+ "nervous": {
+  "clip": "v/nervous",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.94
+ },
+ "newspaper": {
+  "clip": "v/newspaper",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.13
+ },
+ "note": {
+  "clip": "v/note",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "one by one": {
+  "clip": "v/one-by-one",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "owner": {
+  "clip": "v/owner",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "pale": {
+  "clip": "v/pale",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "plate": {
+  "clip": "v/plate",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "plumber": {
+  "clip": "v/plumber",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "rope": {
+  "clip": "v/rope",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "safe": {
+  "clip": "v/safe",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "scream": {
+  "clip": "v/scream",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "seller": {
+  "clip": "v/seller",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "serious": {
+  "clip": "v/serious",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "shake": {
+  "clip": "v/shake",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "shine": {
+  "clip": "v/shine",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "shirt": {
+  "clip": "v/shirt",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "shout": {
+  "clip": "v/shout",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "sleeve": {
+  "clip": "v/sleeve",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "snake": {
+  "clip": "v/snake",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "stepfather": {
+  "clip": "v/stepfather",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "stone": {
+  "clip": "v/stone",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "strange": {
+  "clip": "v/strange",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "suddenly": {
+  "clip": "v/suddenly",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.94
+ },
+ "terrible": {
+  "clip": "v/terrible",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "thief": {
+  "clip": "v/thief",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "tray": {
+  "clip": "v/tray",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "trick": {
+  "clip": "v/trick",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "truth": {
+  "clip": "v/truth",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "tunnel": {
+  "clip": "v/tunnel",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "waiter": {
+  "clip": "v/waiter",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "wedding": {
+  "clip": "v/wedding",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "wet": {
+  "clip": "v/wet",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "whistle": {
+  "clip": "v/whistle",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "wild": {
+  "clip": "v/wild",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "wrong": {
+  "clip": "v/wrong",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "answer": {
+  "clip": "w/answer",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "apple": {
+  "clip": "w/apple",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "arm": {
+  "clip": "w/arm",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "aunt": {
+  "clip": "w/aunt",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "baby": {
+  "clip": "w/baby",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "bad": {
+  "clip": "w/bad",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "bag": {
+  "clip": "w/bag",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "banana": {
+  "clip": "w/banana",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "bathroom": {
+  "clip": "w/bathroom",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.98
+ },
+ "beautiful": {
+  "clip": "w/beautiful",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.98
+ },
+ "bed": {
+  "clip": "w/bed",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.58
+ },
+ "big": {
+  "clip": "w/big",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "bird": {
+  "clip": "w/bird",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "black": {
+  "clip": "w/black",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "blue": {
+  "clip": "w/blue",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "book": {
+  "clip": "w/book",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "bread": {
+  "clip": "w/bread",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.7
+ },
+ "breakfast": {
+  "clip": "w/breakfast",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "brother": {
+  "clip": "w/brother",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "brown": {
+  "clip": "w/brown",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "butterfly": {
+  "clip": "w/butterfly",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "camel": {
+  "clip": "w/camel",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "car": {
+  "clip": "w/car",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "cat": {
+  "clip": "w/cat",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "chair": {
+  "clip": "w/chair",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.72
+ },
+ "cheese": {
+  "clip": "w/cheese",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "chicken": {
+  "clip": "w/chicken",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "chocolate": {
+  "clip": "w/chocolate",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.98
+ },
+ "clean": {
+  "clip": "w/clean",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "close": {
+  "clip": "w/close",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "cold": {
+  "clip": "w/cold",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "color": {
+  "clip": "w/color",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "come": {
+  "clip": "w/come",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "comfortable": {
+  "clip": "w/comfortable",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.03
+ },
+ "computer": {
+  "clip": "w/computer",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.03
+ },
+ "cook": {
+  "clip": "w/cook",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "cow": {
+  "clip": "w/cow",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.7
+ },
+ "daughter": {
+  "clip": "w/daughter",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "dictionary": {
+  "clip": "w/dictionary",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "different": {
+  "clip": "w/different",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "difficult": {
+  "clip": "w/difficult",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.03
+ },
+ "dog": {
+  "clip": "w/dog",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "door": {
+  "clip": "w/door",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "drink": {
+  "clip": "w/drink",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "duck": {
+  "clip": "w/duck",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "ear": {
+  "clip": "w/ear",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "easy": {
+  "clip": "w/easy",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "eat": {
+  "clip": "w/eat",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "egg": {
+  "clip": "w/egg",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.72
+ },
+ "eight": {
+  "clip": "w/eight",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "elephant": {
+  "clip": "w/elephant",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.98
+ },
+ "English": {
+  "clip": "w/english",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.94
+ },
+ "evening": {
+  "clip": "w/evening",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "everything": {
+  "clip": "w/everything",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "eye": {
+  "clip": "w/eye",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.55
+ },
+ "family": {
+  "clip": "w/family",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "fast": {
+  "clip": "w/fast",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "father": {
+  "clip": "w/father",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "favorite": {
+  "clip": "w/favorite",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "finger": {
+  "clip": "w/finger",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "fish": {
+  "clip": "w/fish",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "five": {
+  "clip": "w/five",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "foot": {
+  "clip": "w/foot",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "four": {
+  "clip": "w/four",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "Friday": {
+  "clip": "w/friday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "friend": {
+  "clip": "w/friend",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "garden": {
+  "clip": "w/garden",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "go": {
+  "clip": "w/go",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.7
+ },
+ "good": {
+  "clip": "w/good",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "good morning": {
+  "clip": "w/good-morning",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "good night": {
+  "clip": "w/good-night",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.01
+ },
+ "goodbye": {
+  "clip": "w/goodbye",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "grandfather": {
+  "clip": "w/grandfather",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "grandmother": {
+  "clip": "w/grandmother",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "gray": {
+  "clip": "w/gray",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "green": {
+  "clip": "w/green",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "hair": {
+  "clip": "w/hair",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.72
+ },
+ "hand": {
+  "clip": "w/hand",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "happy": {
+  "clip": "w/happy",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "head": {
+  "clip": "w/head",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.72
+ },
+ "heart": {
+  "clip": "w/heart",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "hello": {
+  "clip": "w/hello",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "help": {
+  "clip": "w/help",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "horse": {
+  "clip": "w/horse",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "hospital": {
+  "clip": "w/hospital",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "hot": {
+  "clip": "w/hot",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "hour": {
+  "clip": "w/hour",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "house": {
+  "clip": "w/house",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "how are you": {
+  "clip": "w/how-are-you",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.98
+ },
+ "hundred": {
+  "clip": "w/hundred",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "husband": {
+  "clip": "w/husband",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "I am fine": {
+  "clip": "w/i-am-fine",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "important": {
+  "clip": "w/important",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "information": {
+  "clip": "w/information",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.15
+ },
+ "interesting": {
+  "clip": "w/interesting",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.1
+ },
+ "key": {
+  "clip": "w/key",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "kitchen": {
+  "clip": "w/kitchen",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "lamp": {
+  "clip": "w/lamp",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "learn": {
+  "clip": "w/learn",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "leg": {
+  "clip": "w/leg",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "lion": {
+  "clip": "w/lion",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "listen": {
+  "clip": "w/listen",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "milk": {
+  "clip": "w/milk",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "minute": {
+  "clip": "w/minute",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "Monday": {
+  "clip": "w/monday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "money": {
+  "clip": "w/money",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "monkey": {
+  "clip": "w/monkey",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.01
+ },
+ "morning": {
+  "clip": "w/morning",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "mother": {
+  "clip": "w/mother",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "mouth": {
+  "clip": "w/mouth",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "name": {
+  "clip": "w/name",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "new": {
+  "clip": "w/new",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "night": {
+  "clip": "w/night",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "nine": {
+  "clip": "w/nine",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "no": {
+  "clip": "w/no",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.7
+ },
+ "nose": {
+  "clip": "w/nose",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "number": {
+  "clip": "w/number",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "old": {
+  "clip": "w/old",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "one": {
+  "clip": "w/one",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "open": {
+  "clip": "w/open",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "orange": {
+  "clip": "w/orange",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "paper": {
+  "clip": "w/paper",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "pen": {
+  "clip": "w/pen",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "phone": {
+  "clip": "w/phone",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "photograph": {
+  "clip": "w/photograph",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "pink": {
+  "clip": "w/pink",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "play": {
+  "clip": "w/play",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "please": {
+  "clip": "w/please",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "potato": {
+  "clip": "w/potato",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.98
+ },
+ "purple": {
+  "clip": "w/purple",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "question": {
+  "clip": "w/question",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "rabbit": {
+  "clip": "w/rabbit",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "read": {
+  "clip": "w/read",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "red": {
+  "clip": "w/red",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.72
+ },
+ "remember": {
+  "clip": "w/remember",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "restaurant": {
+  "clip": "w/restaurant",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "rice": {
+  "clip": "w/rice",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "room": {
+  "clip": "w/room",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "run": {
+  "clip": "w/run",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "sad": {
+  "clip": "w/sad",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "Saturday": {
+  "clip": "w/saturday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "school": {
+  "clip": "w/school",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "seven": {
+  "clip": "w/seven",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "sheep": {
+  "clip": "w/sheep",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "sister": {
+  "clip": "w/sister",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.94
+ },
+ "six": {
+  "clip": "w/six",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "sleep": {
+  "clip": "w/sleep",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "slow": {
+  "clip": "w/slow",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "small": {
+  "clip": "w/small",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "son": {
+  "clip": "w/son",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "sorry": {
+  "clip": "w/sorry",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "speak": {
+  "clip": "w/speak",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.89
+ },
+ "student": {
+  "clip": "w/student",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.94
+ },
+ "Sunday": {
+  "clip": "w/sunday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.94
+ },
+ "supermarket": {
+  "clip": "w/supermarket",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.25
+ },
+ "table": {
+  "clip": "w/table",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "tea": {
+  "clip": "w/tea",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "teacher": {
+  "clip": "w/teacher",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "teeth": {
+  "clip": "w/teeth",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "television": {
+  "clip": "w/television",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.03
+ },
+ "ten": {
+  "clip": "w/ten",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "thank you": {
+  "clip": "w/thank-you",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "thousand": {
+  "clip": "w/thousand",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.01
+ },
+ "three": {
+  "clip": "w/three",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "Thursday": {
+  "clip": "w/thursday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "time": {
+  "clip": "w/time",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "today": {
+  "clip": "w/today",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "together": {
+  "clip": "w/together",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "tomato": {
+  "clip": "w/tomato",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "tomorrow": {
+  "clip": "w/tomorrow",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "Tuesday": {
+  "clip": "w/tuesday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.94
+ },
+ "turtle": {
+  "clip": "w/turtle",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "twenty": {
+  "clip": "w/twenty",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "two": {
+  "clip": "w/two",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.74
+ },
+ "uncle": {
+  "clip": "w/uncle",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "understand": {
+  "clip": "w/understand",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.13
+ },
+ "university": {
+  "clip": "w/university",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.2
+ },
+ "vegetable": {
+  "clip": "w/vegetable",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.98
+ },
+ "walk": {
+  "clip": "w/walk",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "water": {
+  "clip": "w/water",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.86
+ },
+ "Wednesday": {
+  "clip": "w/wednesday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.01
+ },
+ "week": {
+  "clip": "w/week",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "welcome": {
+  "clip": "w/welcome",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "white": {
+  "clip": "w/white",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "wife": {
+  "clip": "w/wife",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.84
+ },
+ "window": {
+  "clip": "w/window",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.91
+ },
+ "wonderful": {
+  "clip": "w/wonderful",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.01
+ },
+ "word": {
+  "clip": "w/word",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "work": {
+  "clip": "w/work",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "write": {
+  "clip": "w/write",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.79
+ },
+ "year": {
+  "clip": "w/year",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.77
+ },
+ "yellow": {
+  "clip": "w/yellow",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "yes": {
+  "clip": "w/yes",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.82
+ },
+ "yesterday": {
+  "clip": "w/yesterday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.03
+ },
+ "What is the answer?": {
+  "clip": "x/answer",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "A red apple.": {
+  "clip": "x/apple",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.1
+ },
+ "Raise your arm.": {
+  "clip": "x/arm",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.13
+ },
+ "My aunt lives here.": {
+  "clip": "x/aunt",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.3
+ },
+ "The baby is sleeping.": {
+  "clip": "x/baby",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.44
+ },
+ "Bad weather.": {
+  "clip": "x/bad",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.98
+ },
+ "My bag is heavy.": {
+  "clip": "x/bag",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.32
+ },
+ "I like bananas.": {
+  "clip": "x/banana",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.34
+ },
+ "The bathroom is here.": {
+  "clip": "x/bathroom",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.44
+ },
+ "The flower is beautiful.": {
+  "clip": "x/beautiful",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.58
+ },
+ "I go to bed.": {
+  "clip": "x/bed",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.1
+ },
+ "A big house.": {
+  "clip": "x/big",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.1
+ },
+ "The bird sings.": {
+  "clip": "x/bird",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "The cat is black.": {
+  "clip": "x/black",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.25
+ },
+ "The sky is blue.": {
+  "clip": "x/blue",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "Read the book.": {
+  "clip": "x/book",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "Fresh bread.": {
+  "clip": "x/bread",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "Breakfast is ready.": {
+  "clip": "x/breakfast",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.44
+ },
+ "My brother is tall.": {
+  "clip": "x/brother",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.39
+ },
+ "The chair is brown.": {
+  "clip": "x/brown",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "A pretty butterfly.": {
+  "clip": "x/butterfly",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.39
+ },
+ "The camel is tall.": {
+  "clip": "x/camel",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.32
+ },
+ "My car is white.": {
+  "clip": "x/car",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.32
+ },
+ "The cat is small.": {
+  "clip": "x/cat",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.25
+ },
+ "Sit on the chair.": {
+  "clip": "x/chair",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.15
+ },
+ "Bread and cheese.": {
+  "clip": "x/cheese",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.25
+ },
+ "Chicken and rice.": {
+  "clip": "x/chicken",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.22
+ },
+ "I love chocolate.": {
+  "clip": "x/chocolate",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.34
+ },
+ "A clean room.": {
+  "clip": "x/clean",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.13
+ },
+ "Close the door.": {
+  "clip": "x/close",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "Cold water.": {
+  "clip": "x/cold",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "What color is it?": {
+  "clip": "x/color",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.3
+ },
+ "Come here, please.": {
+  "clip": "x/come",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.3
+ },
+ "This chair is comfortable.": {
+  "clip": "x/comfortable",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.61
+ },
+ "I use a computer.": {
+  "clip": "x/computer",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.49
+ },
+ "I cook rice.": {
+  "clip": "x/cook",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.15
+ },
+ "The cow gives milk.": {
+  "clip": "x/cow",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.37
+ },
+ "She is my daughter.": {
+  "clip": "x/daughter",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.25
+ },
+ "Use a dictionary.": {
+  "clip": "x/dictionary",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.34
+ },
+ "We are different.": {
+  "clip": "x/different",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.22
+ },
+ "It is not difficult.": {
+  "clip": "x/difficult",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.46
+ },
+ "The dog runs.": {
+  "clip": "x/dog",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "Open the door.": {
+  "clip": "x/door",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.1
+ },
+ "I drink water.": {
+  "clip": "x/drink",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.22
+ },
+ "A yellow duck.": {
+  "clip": "x/duck",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.13
+ },
+ "Listen with your ears.": {
+  "clip": "x/ear",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.54
+ },
+ "English is easy!": {
+  "clip": "x/easy",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.32
+ },
+ "I eat bread.": {
+  "clip": "x/eat",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.1
+ },
+ "One egg, please.": {
+  "clip": "x/egg",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.34
+ },
+ "It is eight o'clock.": {
+  "clip": "x/eight",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.3
+ },
+ "The elephant is big.": {
+  "clip": "x/elephant",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.46
+ },
+ "Good evening!": {
+  "clip": "x/evening",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "Everything is good.": {
+  "clip": "x/everything",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.37
+ },
+ "Close your eyes.": {
+  "clip": "x/eye",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.15
+ },
+ "I love my family.": {
+  "clip": "x/family",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.39
+ },
+ "A fast car.": {
+  "clip": "x/fast",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "My father works.": {
+  "clip": "x/father",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.3
+ },
+ "Blue is my favorite color.": {
+  "clip": "x/favorite",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.8
+ },
+ "One finger.": {
+  "clip": "x/finger",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "Fish is good.": {
+  "clip": "x/fish",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.15
+ },
+ "Five fingers.": {
+  "clip": "x/five",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "My foot is big.": {
+  "clip": "x/foot",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "Four chairs.": {
+  "clip": "x/four",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.1
+ },
+ "Friday is a holiday.": {
+  "clip": "x/friday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.54
+ },
+ "He is my friend.": {
+  "clip": "x/friend",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "A green garden.": {
+  "clip": "x/garden",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.15
+ },
+ "I go to school.": {
+  "clip": "x/go",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.22
+ },
+ "Very good!": {
+  "clip": "x/good",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.03
+ },
+ "Good morning, mom!": {
+  "clip": "x/good-morning",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.25
+ },
+ "Good night, see you tomorrow.": {
+  "clip": "x/good-night",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.73
+ },
+ "Goodbye, see you soon.": {
+  "clip": "x/goodbye",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.44
+ },
+ "My grandfather reads.": {
+  "clip": "x/grandfather",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.58
+ },
+ "My grandmother cooks.": {
+  "clip": "x/grandmother",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.51
+ },
+ "A gray cloud.": {
+  "clip": "x/gray",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.13
+ },
+ "The tree is green.": {
+  "clip": "x/green",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "Her hair is long.": {
+  "clip": "x/hair",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.25
+ },
+ "Wash your hands.": {
+  "clip": "x/hand",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.2
+ },
+ "I am happy.": {
+  "clip": "x/happy",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "My head hurts.": {
+  "clip": "x/head",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "My heart is happy.": {
+  "clip": "x/heart",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.37
+ },
+ "Hello, my friend!": {
+  "clip": "x/hello",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.2
+ },
+ "Can you help me?": {
+  "clip": "x/help",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "A fast horse.": {
+  "clip": "x/horse",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.22
+ },
+ "The hospital is near.": {
+  "clip": "x/hospital",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.49
+ },
+ "The tea is hot.": {
+  "clip": "x/hot",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.22
+ },
+ "One hour.": {
+  "clip": "x/hour",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.98
+ },
+ "This is my house.": {
+  "clip": "x/house",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.3
+ },
+ "How are you today?": {
+  "clip": "x/how-are-you",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "One hundred dinars.": {
+  "clip": "x/hundred",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.54
+ },
+ "Her husband is a doctor.": {
+  "clip": "x/husband",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.63
+ },
+ "I am fine, thank you.": {
+  "clip": "x/i-am-fine",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.56
+ },
+ "This is important.": {
+  "clip": "x/important",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.39
+ },
+ "I need information.": {
+  "clip": "x/information",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.42
+ },
+ "This book is interesting.": {
+  "clip": "x/interesting",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.58
+ },
+ "Where is the key?": {
+  "clip": "x/key",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.2
+ },
+ "Mom is in the kitchen.": {
+  "clip": "x/kitchen",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.46
+ },
+ "Turn on the lamp.": {
+  "clip": "x/lamp",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "I learn every day.": {
+  "clip": "x/learn",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.42
+ },
+ "My leg is strong.": {
+  "clip": "x/leg",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.34
+ },
+ "The lion is strong.": {
+  "clip": "x/lion",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.42
+ },
+ "Listen to me.": {
+  "clip": "x/listen",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.15
+ },
+ "Cold milk.": {
+  "clip": "x/milk",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "Wait a minute.": {
+  "clip": "x/minute",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "See you on Monday.": {
+  "clip": "x/monday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.34
+ },
+ "I have money.": {
+  "clip": "x/money",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.1
+ },
+ "The monkey eats a banana.": {
+  "clip": "x/monkey",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.68
+ },
+ "I drink tea in the morning.": {
+  "clip": "x/morning",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.51
+ },
+ "My mother is kind.": {
+  "clip": "x/mother",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.42
+ },
+ "Open your mouth.": {
+  "clip": "x/mouth",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.15
+ },
+ "My name is Ali.": {
+  "clip": "x/name",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.22
+ },
+ "A new phone.": {
+  "clip": "x/new",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "The night is quiet.": {
+  "clip": "x/night",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.39
+ },
+ "Nine books.": {
+  "clip": "x/nine",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "No, thank you.": {
+  "clip": "x/no",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "My nose is cold.": {
+  "clip": "x/nose",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.44
+ },
+ "What is your number?": {
+  "clip": "x/number",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.2
+ },
+ "An old house.": {
+  "clip": "x/old",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.15
+ },
+ "I have one cat.": {
+  "clip": "x/one",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.37
+ },
+ "Open the book.": {
+  "clip": "x/open",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.13
+ },
+ "I like orange.": {
+  "clip": "x/orange",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.22
+ },
+ "White paper.": {
+  "clip": "x/paper",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "I need a pen.": {
+  "clip": "x/pen",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.1
+ },
+ "My phone is new.": {
+  "clip": "x/phone",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "A family photograph.": {
+  "clip": "x/photograph",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.56
+ },
+ "A pink dress.": {
+  "clip": "x/pink",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "We play football.": {
+  "clip": "x/play",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.25
+ },
+ "Water, please.": {
+  "clip": "x/please",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.22
+ },
+ "I cook potatoes.": {
+  "clip": "x/potato",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.34
+ },
+ "A purple flower.": {
+  "clip": "x/purple",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "I have a question.": {
+  "clip": "x/question",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "The rabbit jumps.": {
+  "clip": "x/rabbit",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.25
+ },
+ "I read a book.": {
+  "clip": "x/read",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.1
+ },
+ "The apple is red.": {
+  "clip": "x/red",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.32
+ },
+ "I remember you.": {
+  "clip": "x/remember",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.2
+ },
+ "Let's go to a restaurant.": {
+  "clip": "x/restaurant",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.63
+ },
+ "I eat rice.": {
+  "clip": "x/rice",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.13
+ },
+ "My room is big.": {
+  "clip": "x/room",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.3
+ },
+ "I run fast.": {
+  "clip": "x/run",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.25
+ },
+ "Why are you sad?": {
+  "clip": "x/sad",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.15
+ },
+ "Saturday is a work day.": {
+  "clip": "x/saturday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.61
+ },
+ "Seven days in a week.": {
+  "clip": "x/seven",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.58
+ },
+ "White sheep.": {
+  "clip": "x/sheep",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.96
+ },
+ "My sister is happy.": {
+  "clip": "x/sister",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.54
+ },
+ "Six eggs.": {
+  "clip": "x/six",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "I sleep at night.": {
+  "clip": "x/sleep",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "The snail is slow.": {
+  "clip": "x/slow",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.39
+ },
+ "A small cat.": {
+  "clip": "x/small",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "This is my son.": {
+  "clip": "x/son",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "I am sorry.": {
+  "clip": "x/sorry",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "I speak English.": {
+  "clip": "x/speak",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.3
+ },
+ "I am a student.": {
+  "clip": "x/student",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.22
+ },
+ "Sunday is sunny.": {
+  "clip": "x/sunday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.32
+ },
+ "I go to the supermarket.": {
+  "clip": "x/supermarket",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.73
+ },
+ "The table is clean.": {
+  "clip": "x/table",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.39
+ },
+ "Tea with sugar.": {
+  "clip": "x/tea",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.13
+ },
+ "My teacher is kind.": {
+  "clip": "x/teacher",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.46
+ },
+ "Brush your teeth.": {
+  "clip": "x/teeth",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.22
+ },
+ "We watch television.": {
+  "clip": "x/television",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.49
+ },
+ "Ten minutes.": {
+  "clip": "x/ten",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.03
+ },
+ "Thank you for the tea.": {
+  "clip": "x/thank-you",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.44
+ },
+ "A thousand thanks!": {
+  "clip": "x/thousand",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.32
+ },
+ "Three apples.": {
+  "clip": "x/three",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.13
+ },
+ "Thursday is the last work day.": {
+  "clip": "x/thursday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 2.02
+ },
+ "I have time.": {
+  "clip": "x/time",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.1
+ },
+ "Today is Friday.": {
+  "clip": "x/today",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "We study together.": {
+  "clip": "x/together",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.44
+ },
+ "A big tomato.": {
+  "clip": "x/tomato",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "See you tomorrow.": {
+  "clip": "x/tomorrow",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "Tuesday is busy.": {
+  "clip": "x/tuesday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.32
+ },
+ "The turtle is slow.": {
+  "clip": "x/turtle",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.39
+ },
+ "I am twenty.": {
+  "clip": "x/twenty",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.15
+ },
+ "Two cups of tea.": {
+  "clip": "x/two",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.3
+ },
+ "My uncle is funny.": {
+  "clip": "x/uncle",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.44
+ },
+ "I understand you.": {
+  "clip": "x/understand",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.2
+ },
+ "My brother is at university.": {
+  "clip": "x/university",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.99
+ },
+ "Eat your vegetables.": {
+  "clip": "x/vegetable",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.39
+ },
+ "I walk to work.": {
+  "clip": "x/walk",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.25
+ },
+ "Drink water.": {
+  "clip": "x/water",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.06
+ },
+ "I study on Wednesday.": {
+  "clip": "x/wednesday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.56
+ },
+ "One week.": {
+  "clip": "x/week",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 0.98
+ },
+ "Welcome to my house.": {
+  "clip": "x/welcome",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.49
+ },
+ "White milk.": {
+  "clip": "x/white",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.03
+ },
+ "His wife is a teacher.": {
+  "clip": "x/wife",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.56
+ },
+ "Close the window.": {
+  "clip": "x/window",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "You are wonderful!": {
+  "clip": "x/wonderful",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "A new word.": {
+  "clip": "x/word",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.08
+ },
+ "I go to work.": {
+  "clip": "x/work",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.15
+ },
+ "I write my name.": {
+  "clip": "x/write",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.22
+ },
+ "Happy new year!": {
+  "clip": "x/year",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.18
+ },
+ "The sun is yellow.": {
+  "clip": "x/yellow",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.27
+ },
+ "Yes, I can.": {
+  "clip": "x/yes",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.2
+ },
+ "Yesterday was hot.": {
+  "clip": "x/yesterday",
+  "voice": "af_heart",
+  "model": "kokoro-82m",
+  "dur": 1.42
+ }
+}
