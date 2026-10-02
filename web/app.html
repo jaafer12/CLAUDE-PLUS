@@ -75,8 +75,8 @@ button{font:inherit;color:inherit}
 #app.in-session .top,#app.in-session .tabs{display:none}
 #app.in-session #view{padding-top:.8rem}
 
-.tabs{display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-.tab{background:none;border:0;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:.78rem;color:var(--muted);cursor:pointer}
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tab{background:none;border:0;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:.74rem;color:var(--muted);cursor:pointer;padding:0 2px}
 .tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .tab[aria-current="page"]{color:var(--accent);font-weight:600}
 
@@ -270,6 +270,29 @@ input[type=range]{width:100%;accent-color:var(--accent);height:36px}
 .toast{position:fixed;bottom:calc(84px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:.6rem 1.1rem;border-radius:14px;z-index:60;max-width:calc(100% - 32px);text-align:center;font-size:.95rem}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:70;width:100%;height:100%}
 
+.story-head{display:flex;align-items:center;gap:.8rem}
+.story-pic{font-size:2rem;width:3.2rem;height:3.2rem;display:grid;place-items:center;background:var(--sunk);border-radius:14px;flex:none;line-height:1}
+.story-pic.sm{font-size:1.3rem;width:2.6rem;height:2.6rem}
+.story-titles{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.45}
+.parts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.45rem}
+.part{width:100%;display:flex;align-items:center;gap:.75rem;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:.55rem .75rem;min-height:58px;cursor:pointer;text-align:start}
+.part-n{width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:1.5px solid var(--line);font-family:var(--f-en);font-weight:600;flex:none}
+.part.done .part-n{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.part-t{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.45}
+.part-s{flex:none;color:var(--muted);font-size:1.1rem}
+.story-teaser{flex-direction:row;align-items:center;gap:.8rem;cursor:pointer;text-align:start;width:100%;font:inherit;color:inherit}
+.st-meta{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.45}
+.vchips{display:flex;flex-wrap:wrap;gap:.45rem}
+.vchip{display:flex;flex-direction:column;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:.3rem .75rem;cursor:pointer;min-height:48px;line-height:1.45}
+.vchip-ar{font-size:.85rem;color:var(--muted)}
+.reading.story{font-size:1.3rem;line-height:2;padding:.6rem .9rem}
+.sline{display:flex;gap:.55rem;align-items:flex-start;padding-block:.45rem;border-bottom:1px dashed var(--line)}
+.sline:last-child{border-bottom:0}
+.line-play{flex:none;width:2.3rem;height:2.3rem;border-radius:50%;border:1.5px solid var(--line);background:var(--bg);color:var(--accent);cursor:pointer;font-size:.8rem;margin-top:.4rem;font-family:var(--f-ar);letter-spacing:0}
+.sline-body{flex:1;min-width:0}
+.tr{font-family:var(--f-ar);letter-spacing:0;word-spacing:normal;font-size:1rem;line-height:1.75;color:var(--muted);margin:.1rem 0 0;text-align:right;font-weight:400}
+.no-tr .tr{display:none}
+.ar-opt{font-size:1.05rem;text-align:center;font-weight:600}
 @media (min-width:560px){.cats{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
@@ -282,6 +305,7 @@ input[type=range]{width:100%;accent-color:var(--accent);height:36px}
   <main id="view" tabindex="-1"></main>
   <nav class="tabs" aria-label="الأقسام">
     <button class="tab" data-act="tab" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>الرئيسية</button>
+    <button class="tab" data-act="tab" data-tab="stories"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L20 20"/><path d="M8 10h4"/></svg>القصص</button>
     <button class="tab" data-act="tab" data-tab="review"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg>المراجعة</button>
     <button class="tab" data-act="tab" data-tab="reader"><svg viewBox="0 0 24 24"><path d="M3 5c3-1 6-1 9 1v14c-3-2-6-2-9-1z"/><path d="M21 5c-3-1-6-1-9 1v14c3-2 6-2 9-1z"/></svg>القارئ</button>
     <button class="tab" data-act="tab" data-tab="settings"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>الإعدادات</button>
@@ -513,6 +537,9 @@ supermarket|su·per·mar·ket|سوبرماركت|سو·پَر·مار·كِت|�
 
 /* Real photos (free licences, Wikimedia Commons): id -> [author, licence, source page].
    Generated from web/img/credits.json by tools/embed_photos.py. */
+/* Natural voice clips (Gemini TTS), text -> [clip path under audio/, seconds].
+   Generated by tools/gen_voice.py and embedded by tools/embed_voice.py. Missing clips fall back to the device voice. */
+const VOICE = /*VOICE*/{}/*END*/;
 const PHOTOS = /*PHOTOS*/{"apple":["Abhijit Tembhekar from Mumbai, India","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Red_Apple.jpg"],"arm":["Genusfotografen (Tomas Gunnarsson) / Wikimedia Sverige","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Extended_arm.jpg"],"baby":["Kimberly Vardeman","CC BY 2.0","https://commons.wikimedia.org/wiki/File:The_newborn_baby_in_men.jpg"],"bag":["de:Benutzer:sjr","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Rucksack1.jpg"],"banana":["TimothyPilgrim","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Bananavarieties.jpg"],"bathroom":["Yannick Trottier (ytrottier)","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Clawfoot_bathtub.jpg"],"beautiful":["Ianaré Sévi","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Magnolia_grandiflora_-_flower_1.jpg"],"bed":["A.Savin","FAL","https://commons.wikimedia.org/wiki/File:Berlin_Villa_Borsig_Tegel_asv2019-08_img09.jpg"],"bird":["C. Robiller / naturlichter.de (Hyla meridionalis)","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Kleiber_Flug.jpg"],"book":["NYC Wanderer (Kevin Eng)","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Gutenberg_Bible,_Lenox_Copy,_New_York_Public_Library,_2009._Pic_01.jpg"],"bread":["3268zauber","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Korb_mit_Br%C3%B6tchen.JPG"],"breakfast":["Kiddo27","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Breakfast_at_the_Black_Bear_Diner.jpg"],"butterfly":["fesoj","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Fesoj_-_Papilio_machaon_(by).jpg"],"camel":["Florian Prischl","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Camelus_dromedarius_in_Nuweiba.jpg"],"car":["© M 93","CC BY-SA 3.0 de","https://commons.wikimedia.org/wiki/File:Toyota_Camry_2.5_Hybrid_Ascent_Sport_(IX)_%E2%80%93_f_02012026.jpg"],"cat":["Karin Langner-Bahmann, upload von Martin Bahmann","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Siam_lilacpoint.jpg"],"chair":["Thomas Chippendale","CC0","https://commons.wikimedia.org/wiki/File:Set_of_fourteen_side_chairs_MET_DP110780.jpg"],"cheese":["Unknown","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Cheese_platter.jpg"],"chicken":["Evan-Amos","CC0","https://commons.wikimedia.org/wiki/File:Fried-Chicken-Set.jpg"],"chocolate":["Lynnereal","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Three_Bars_(1).jpg"],"clean":["Lionel Allorge","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:%C3%89ponge_type_3_(1).jpg"],"cold":["Sharon Mollerus","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Ice_Block,_Canal_Park,_Duluth_(32752478892).jpg"],"comfortable":["Ildar Sagdejev (Specious)","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:2009-05-16_Main_office_lobby_at_Hampton_Forest_Apartments.jpg"],"computer":["Top left: PremeditatedTop right: Tom PageBottom left and right: Maurizio Pesce","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Laptop_collage.jpg"],"cow":["Kim Hansen","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Cow_(Fleckvieh_breed)_Oeschinensee_Slaunger_2009-07-07.jpg"],"dictionary":["Langenscheidt","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Woerterbuchstapel_Langenscheidt.jpg"],"dog":["M. Rehemtulla","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Huskiesatrest.jpg"],"drink":["Agricultural Research Service","Public domain","https://commons.wikimedia.org/wiki/File:Orange_juice_1.jpg"],"duck":["This picture was realized by Richard Bartz by using a Canon EF 70-300mm f/4-5.6 IS USM Lens","CC BY-SA 2.5","https://commons.wikimedia.org/wiki/File:Anas_platyrhynchos_male_female_quadrat.jpg"],"ear":["Genusfotografen (Tomas Gunnarsson) / Wikimedia Sverige","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Human_right_ear_(cropped).jpg"],"egg":["Horacio Cambeiro","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Huevo_frito.jpg"],"elephant":["Yathin S Krishnappa","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Elephas_maximus_(Bandipur).jpg"],"evening":["Augustus Binu/ www.dreamsparrow.net/ facebook","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Evening_in_Parambikkulam,_Kerala,_India.jpg"],"everything":["EUMETSAT","Attribution","https://commons.wikimedia.org/wiki/File:Meteosat-12-fci-march-equinox-2025-noon.jpg"],"eye":["ROTFLOLEB","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Human_eye_with_blood_vessels.jpg"],"fast":["The Car Spy","CC BY 2.0","https://commons.wikimedia.org/wiki/File:1996_Porsche_911_993_GT2_-_Flickr_-_The_Car_Spy_(4).jpg"],"father":["Hripsime Poghosyan","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Father%27s_love_(cropped).jpg"],"fish":["User:Mattes","Public domain","https://commons.wikimedia.org/wiki/File:Fish_stuffed_with_Thai_herbs.jpg"],"foot":["Genusfotografen (Tomas Gunnarsson) / Wikimedia","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Foot_on_white_background.jpg"],"garden":["King of Hearts","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Brooklyn_Botanic_Garden_New_York_May_2015_010.jpg"],"good morning":["Nick Harris","CC BY 2.5","https://commons.wikimedia.org/wiki/File:Spring_Lake,_New_Jersey_Beach_at_Sunrise.jpg"],"grandmother":["Georgios Jakobides","Public domain","https://commons.wikimedia.org/wiki/File:The_Favorite_by_Georgios_Iakovidis.jpg"],"hand":["Genusfotografen (Tomas Gunnarsson) / Wikimedia","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Hand,_fingers_-_back.jpg"],"hello":["Kurt Bauschardt from Edmonton, Canada","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Waving_RCMP_(7612733982)_(cropped).jpg"],"horse":["Nokota_Horses.jpg: François Marchal derivative work: Dana boomer (talk)","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Nokota_Horses_cropped.jpg"],"hospital":["H501zalc","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Hospital-de-Bellvitge.jpg"],"hot":["Fir0002","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Large_bonfire.jpg"],"hour":["Sun Ladder","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:2010-07-20_Black_windup_alarm_clock_face.jpg"],"house":["No machine-readable author provided. Boereck assumed (based on copyright claims).","Public domain","https://commons.wikimedia.org/wiki/File:Nordisches_Einfamilienhaus.jpg"],"key":["Trougnouf","CC BY 4.0","https://commons.wikimedia.org/wiki/File:Solex_99_30_padlock_with_keys_(DSCF2659).jpg"],"kitchen":["Jean-Pierre Dalbéra from Paris, France","CC BY 2.0","https://commons.wikimedia.org/wiki/File:La_cuisine_(mus%C3%A9e_dart_nouveau,_Riga)_(7563655820).jpg"],"lamp":["Ragesoss","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Wide_array_of_lamps.jpg"],"lion":["Giles Laurent","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"],"listen":["http://muzyczny.pl","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:S%C5%82uchawki_referencyjne_K-701_firmy_AKG.jpg"],"milk":["NIAID","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Glass_of_Milk_(33657535532).jpg"],"minute":["https://commons.wikimedia.org/wiki/User:Lesselich","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Stoppuhr_digital_noBG.jpg"],"money":["Nic McPhee from Morris, Minnesota, USA","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Flickr_-_Nic%27s_events_-_London_-_14-15_Dec_2007_-_034.jpg"],"monkey":["Deerpeter","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Ubud_Monkey_Family.jpg"],"morning":["Olga Ernst","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Morning,_just_after_sunrise,_Namibia.jpg"],"name":["Nick Gray from New York City, USA","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Caitlin%27s_name_badge_(2722635443).jpg"],"night":["Benh LIEU SONG","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Savault_Chapel_Under_Milky_Way_BLS.jpg"],"nose":["Franco Folini","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Fort_Ross_Elena_wearing_Traditional_Russian_Costume_(cropped).jpg"],"pen":["Trounce","CC BY 3.0","https://commons.wikimedia.org/wiki/File:03-BICcristal2008-03-26.jpg"],"phone":["Sage Ross","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Wikipedia_homepage_on_a_large_Android_phone,_2015-04-16.jpg"],"photograph":["Kameraprojekt Graz 2015","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:LEI0440_Leica_IIIf_chrom_-_Sn._580566_1951-52-M39_Blitzsynchron_front_view-6531_hf-.jpg"],"play":["NikosLikomitros","CC0","https://commons.wikimedia.org/wiki/File:Argos_playground.jpg"],"potato":["Scott Bauer, USDA ARS","Public domain","https://commons.wikimedia.org/wiki/File:Patates.jpg"],"rabbit":["JM Ligero Loarte","CC BY 3.0","https://commons.wikimedia.org/wiki/File:Oryctolagus_cuniculus_Rcdo.jpg"],"restaurant":["Mcg2132","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Barbieri_-_ViaSophia25668.jpg"],"rice":["China News Service","CC BY 3.0","https://commons.wikimedia.org/wiki/File:20201102.Hengnan.Hybrid_rice_Sanyou-1.6.jpg"],"run":["Chris Hunkeler","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Speedsuit.jpg"],"sad":["Vassil","CC BY 3.0","https://commons.wikimedia.org/wiki/File:S%C3%A9pulcre_Arc-en-Barrois_111008_12.jpg"],"school":["Omoeko Media","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:First_primary_school_building_in_Nigeria_in_Badagry,_Nigeria.jpg"],"sheep":["Keith Weller","Public domain","https://commons.wikimedia.org/wiki/File:Flock_of_sheep.jpg"],"sleep":["Domenico Fetti","Public domain","https://commons.wikimedia.org/wiki/File:Domenico_Fetti_-_Sleeping_Girl_-_WGA7863.jpg"],"slow":["Geierunited","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Snail.jpg"],"student":["Mettevanderheide","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:High_school_students,_SAS_Pudong.jpg"],"supermarket":["NYC Guru","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Stop%26Shop.jpg"],"tea":["Difference engine","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Longjing_tea_steeping_in_gaiwan.jpg"],"teacher":["Harrison Keely","CC BY 4.0","https://commons.wikimedia.org/wiki/File:A_public_high_school_teacher_in_a_classroom_in_the_United_States_08.jpg"],"teeth":["dozenist","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:06-10-06smile.jpg"],"television":["Klaus Nahr from Germany","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Museum_f%C3%BCr_Kommunikation_-_Depot_Heusenstamm_-_Technik_12_-_Flickr_-_KlausNahr.jpg"],"time":["Unknown","CC0","https://commons.wikimedia.org/wiki/File:Half-hour_sand_glass_MET_ES268.jpg"],"tomato":["Softeis","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Tomato_je.jpg"],"turtle":["See his respective owners","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Turtle_diversity.jpg"],"vegetable":["Jasper Greek Golangco","Copyrighted free use","https://commons.wikimedia.org/wiki/File:Marketvegetables.jpg"],"walk":["IgorZed","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Women_walking_in_Hyderabad_street.jpg"],"water":["Josh Estey/AusAID","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Clean_water_for_a_village_in_West_Lombok_(10686572086).jpg"],"window":["Unknown","Public domain","https://commons.wikimedia.org/wiki/File:DETAIL_OF_(SINGLE_SASH)_WINDOW,_WEST-FRONT_FACADE_-_Moncure_Building,_1415_North_Court_House_Road,_Arlington,_Arlington_County,_VA_HABS_VA,7-ARL,7-7.tif"],"wonderful":["Eric Rolph at English Wikipedia","CC BY-SA 2.5","https://commons.wikimedia.org/wiki/File:Double-alaskan-rainbow.jpg"]}/*END*/;
 
 const CATS = [], WORDS = [], BY = new Map();
@@ -526,6 +553,288 @@ RAW.forEach(([id, ar, en, pic, body]) => {
   CATS.push(cat);
 });
 const CAT = Object.fromEntries(CATS.map(c => [c.id, c]));
+
+/* ================= Stories =================
+   Sherlock Holmes stories are simplified retellings of Arthur Conan Doyle's public-domain originals.
+   Each part: "English | Arabic" lines; "= word | meaning" new words; "? question | right answer | wrong | wrong". */
+const STORY_RAW = [
+['speckled', 'holmes', 'The Speckled Band', 'الشريط المرقّط', '🐍', [
+['A Visitor at Dawn', 'زائرة عند الفجر', `
+It was early in the morning in London. | كان الوقت صباحاً باكراً في لندن.
+Sherlock Holmes woke up his friend, Doctor Watson. | أيقظ شيرلوك هولمز صديقه الدكتور واطسون.
+"A young woman is here," he said. "She is very afraid." | قال: «هناك امرأة شابة هنا. إنها خائفة جداً.»
+The woman wore black clothes, and her face was pale. | كانت المرأة ترتدي ملابس سوداء، وكان وجهها شاحباً.
+"My name is Helen Stoner," she said quietly. | قالت بهدوء: «اسمي هيلين ستونر.»
+"I live with my stepfather in an old house." | «أعيش مع زوج أمي في بيت قديم.»
+"His name is Doctor Roylott. He is a strong and angry man." | «اسمه الدكتور رويلوت. إنه رجل قوي وغاضب.»
+"Two years ago, my sister Julia died in that house." | «قبل سنتين، ماتت أختي جوليا في ذلك البيت.»
+"Before she died, she said strange words: the speckled band!" | «قبل أن تموت، قالت كلمات غريبة: الشريط المرقّط!»
+Holmes listened carefully. His eyes were bright. | استمع هولمز بانتباه. كانت عيناه تلمعان.
+"Tell me everything," he said. | قال: «أخبريني بكل شيء.»
+= afraid | خائف
+= pale | شاحب
+= stepfather | زوج الأم
+= strange | غريب
+= carefully | بانتباه
+? من زار هولمز في الصباح؟ | امرأة شابة خائفة | رجل عجوز | شرطي
+? ماذا قالت جوليا قبل أن تموت؟ | «الشريط المرقّط» | «ساعدوني» | «أين أبي؟»`],
+['The Whistle in the Night', 'الصفير في الليل', `
+"Every night, my sister heard a low whistle," said Helen. | قالت هيلين: «كل ليلة، كانت أختي تسمع صفيراً خافتاً.»
+"It came in the middle of the night, at about three o'clock." | «كان يأتي في منتصف الليل، نحو الساعة الثالثة.»
+"Our stepfather keeps wild animals from India in the garden." | «زوج أمنا يربّي حيوانات برّية من الهند في الحديقة.»
+"Now workers are fixing the walls of my room." | «والآن يصلح العمّال جدران غرفتي.»
+"So I must sleep in my sister's old room." | «لذلك يجب أن أنام في غرفة أختي القديمة.»
+"Last night, I heard the same whistle!" | «الليلة الماضية، سمعت الصفير نفسه!»
+Helen began to cry. | بدأت هيلين تبكي.
+"We will come to your house today," said Holmes. | قال هولمز: «سنأتي إلى بيتك اليوم.»
+After she left, a big man broke into the room. | بعد أن غادرت، اقتحم رجل ضخم الغرفة.
+It was Doctor Roylott. "Stay away from my family!" he shouted. | كان الدكتور رويلوت. صرخ: «ابتعد عن عائلتي!»
+Holmes smiled calmly. He was not afraid. | ابتسم هولمز بهدوء. لم يكن خائفاً.
+= whistle | صفير
+= wild | برّي
+= fix | يُصلح
+= shout | يصرخ
+= calmly | بهدوء
+? متى كانت جوليا تسمع الصفير؟ | نحو الساعة الثالثة ليلاً | عند الظهر | في الصباح الباكر
+? ماذا فعل الدكتور رويلوت عندما دخل؟ | صرخ وهدّد هولمز | اعتذر وجلس | أحضر هدية`],
+['The Strange Room', 'الغرفة الغريبة', `
+Holmes and Watson went to the old house by train. | ذهب هولمز وواطسون إلى البيت القديم بالقطار.
+Holmes looked at Julia's room very carefully. | فحص هولمز غرفة جوليا بعناية كبيرة.
+The bed was fixed to the floor. It could not move. | كان السرير مثبّتاً بالأرض. لم يكن يتحرك.
+Above the bed, there was a small hole in the wall. | فوق السرير، كانت هناك فتحة صغيرة في الجدار.
+The hole went into Doctor Roylott's room. | كانت الفتحة تؤدي إلى غرفة الدكتور رويلوت.
+A long rope hung next to the bed, but it did not ring a bell. | كان حبل طويل معلّقاً بجانب السرير، لكنه لا يقرع أي جرس.
+In Roylott's room, Holmes found a metal safe. | في غرفة رويلوت، وجد هولمز خزنة معدنية.
+On top of the safe, there was a small plate of milk. | فوق الخزنة، كان هناك صحن صغير فيه حليب.
+"Why does a man keep milk on a safe?" asked Watson. | سأل واطسون: «لماذا يضع رجل حليباً فوق خزنة؟»
+"That is the important question," said Holmes. | قال هولمز: «هذا هو السؤال المهم.»
+"Tonight, we will wait in the dark." | «الليلة، سننتظر في الظلام.»
+= hole | فتحة
+= rope | حبل
+= safe | خزنة
+= plate | صحن
+= dark | ظلام
+? ماذا كان فوق السرير؟ | فتحة صغيرة في الجدار | صورة كبيرة | نافذة
+? ماذا وجد هولمز فوق الخزنة؟ | صحن حليب | مفتاح | رسالة`],
+['The Speckled Band', 'الشريط المرقّط', `
+That night, Holmes and Watson sat in Julia's room. | في تلك الليلة، جلس هولمز وواطسون في غرفة جوليا.
+They did not speak. They did not sleep. | لم يتكلما. لم يناما.
+At three o'clock, they heard a soft whistle. | في الساعة الثالثة، سمعا صفيراً ناعماً.
+Something came through the hole and down the rope. | شيء ما دخل من الفتحة ونزل على الحبل.
+Holmes jumped up and hit the rope with his stick. | قفز هولمز وضرب الحبل بعصاه.
+Then they heard a terrible scream from the next room. | ثم سمعا صرخة مرعبة من الغرفة المجاورة.
+They ran into Roylott's room. | ركضا إلى غرفة رويلوت.
+Roylott sat in his chair. He was dead. | كان رويلوت جالساً على كرسيه. كان ميتاً.
+Around his head was a yellow band with brown spots. | حول رأسه كان هناك شريط أصفر عليه بقع بنية.
+"The speckled band!" said Holmes. "It is a snake!" | قال هولمز: «الشريط المرقّط! إنه ثعبان!»
+Roylott used the snake to kill Julia, because he wanted her money. | استخدم رويلوت الثعبان ليقتل جوليا، لأنه أراد مالها.
+But tonight, the snake went back and bit him. | لكن الليلة، عاد الثعبان ولدغه.
+Helen was safe at last. | أصبحت هيلين في أمان أخيراً.
+= terrible | مرعب
+= scream | صرخة
+= snake | ثعبان
+= bite | يلدغ
+= at last | أخيراً
+? ما هو «الشريط المرقّط»؟ | ثعبان | شريط من القماش | حبل
+? لماذا قتل رويلوت جوليا؟ | أراد مالها | كان مريضاً | كان خائفاً منها`]
+]],
+['redheaded', 'holmes', 'The Red-Headed League', 'عصبة ذوي الشعر الأحمر', '🦊', [
+['A Strange Job', 'عمل غريب', `
+One day, a man with bright red hair visited Holmes. | في أحد الأيام، زار هولمزَ رجلٌ شعره أحمر لامع.
+His name was Mr. Wilson, and he had a small shop. | كان اسمه السيد ويلسون، وكان عنده دكان صغير.
+"My assistant showed me a newspaper," he said. | قال: «أراني مساعدي جريدة.»
+"It said: men with red hair, come and get a good job!" | «كان مكتوباً فيها: يا أصحاب الشعر الأحمر، تعالوا واحصلوا على عمل جيد!»
+"So I went, and they gave me the job." | «فذهبت، وأعطوني العمل.»
+"Every day, from ten to two, I copied a big book by hand." | «كل يوم، من العاشرة حتى الثانية، كنت أنسخ كتاباً كبيراً بيدي.»
+"They paid me four pounds every week. It was easy money." | «كانوا يدفعون لي أربعة جنيهات كل أسبوع. كان مالاً سهلاً.»
+"But today, the office was closed." | «لكن اليوم، كان المكتب مغلقاً.»
+"There was a note on the door: the League is finished." | «كانت هناك ورقة على الباب: العصبة انتهت.»
+Holmes laughed, but then he became serious. | ضحك هولمز، ثم أصبح جادّاً.
+"This is a very interesting problem," he said. | قال: «هذه مشكلة ممتعة جداً.»
+= assistant | مساعد
+= newspaper | جريدة
+= copy | ينسخ
+= note | ورقة مكتوبة
+= serious | جادّ
+? ماذا كان يفعل ويلسون كل يوم في العمل؟ | ينسخ كتاباً بيده | يبيع الخبز | يقود سيارة
+? ماذا كان على باب المكتب؟ | ورقة تقول إن العصبة انتهت | صورة كبيرة | لا شيء`],
+['The Assistant', 'المساعد', `
+"Tell me about your assistant," said Holmes. | قال هولمز: «حدّثني عن مساعدك.»
+"His name is Vincent. He works for half the usual money." | «اسمه فنسنت. يعمل بنصف الأجر المعتاد.»
+"He loves photography. He spends hours in my basement." | «يحب التصوير. يقضي ساعات في القبو عندي.»
+Holmes and Watson walked to Mr. Wilson's shop. | مشى هولمز وواطسون إلى دكان السيد ويلسون.
+Holmes hit the street with his stick, again and again. | ضرب هولمز الشارع بعصاه مرة بعد مرة.
+Then he knocked on the door. A young man opened it. | ثم طرق الباب. ففتحه شاب.
+Holmes did not look at his face. He looked at his knees. | لم ينظر هولمز إلى وجهه. نظر إلى ركبتيه.
+The young man's trousers were dirty at the knees. | كان بنطال الشاب متّسخاً عند الركبتين.
+Next to the shop, there was a big bank. | بجانب الدكان، كان هناك بنك كبير.
+"Now I understand," said Holmes. | قال هولمز: «الآن فهمت.»
+"He is not taking photos. He is digging a tunnel!" | «إنه لا يلتقط صوراً. إنه يحفر نفقاً!»
+= basement | قبو
+= knock | يطرق
+= knee | ركبة
+= dirty | متّسخ
+= tunnel | نفق
+? لماذا كان بنطال فنسنت متّسخاً؟ | لأنه يحفر نفقاً | لأنه يلعب كرة القدم | لأنه سقط في الشارع
+? ماذا كان بجانب الدكان؟ | بنك كبير | مدرسة | مطعم`],
+['Waiting in the Bank', 'الانتظار في البنك', `
+That night, Holmes, Watson and two policemen went to the bank. | في تلك الليلة، ذهب هولمز وواطسون وشرطيان إلى البنك.
+They waited in the dark, under the ground, near the gold. | انتظروا في الظلام، تحت الأرض، قرب الذهب.
+After one hour, they heard a sound. | بعد ساعة، سمعوا صوتاً.
+A stone in the floor moved. | تحرّك حجر في الأرضية.
+A hand came up, and then a face. It was Vincent! | ظهرت يد، ثم وجه. كان فنسنت!
+His real name was John Clay. He was a famous thief. | اسمه الحقيقي جون كلاي. كان لصّاً مشهوراً.
+The police caught him and his friend. | أمسكت الشرطة به وبصديقه.
+"The Red-Headed League was a trick," Holmes explained. | شرح هولمز: «عصبة ذوي الشعر الأحمر كانت خدعة.»
+"They wanted Mr. Wilson out of his shop every day." | «أرادوا أن يبقى السيد ويلسون خارج دكانه كل يوم.»
+"Then they could dig the tunnel to the bank." | «حتى يتمكنوا من حفر النفق إلى البنك.»
+Watson smiled. "Holmes, you are wonderful!" | ابتسم واطسون: «هولمز، أنت رائع!»
+= gold | ذهب
+= stone | حجر
+= thief | لصّ
+= trick | خدعة
+= explain | يشرح
+? من كان فنسنت في الحقيقة؟ | لصّاً مشهوراً اسمه جون كلاي | شرطياً | أخا السيد ويلسون
+? لماذا صنعوا «عصبة ذوي الشعر الأحمر»؟ | ليُبعدوا ويلسون عن دكانه | ليساعدوا ويلسون | ليبيعوا الكتب`]
+]],
+['carbuncle', 'holmes', 'The Blue Carbuncle', 'الجوهرة الزرقاء', '💎', [
+['A Goose and a Hat', 'إوزة وقبعة', `
+It was two days after Christmas. | كان ذلك بعد عيد الميلاد بيومين.
+Watson visited Holmes. Holmes was looking at an old hat. | زار واطسون هولمز. كان هولمز ينظر إلى قبعة قديمة.
+"A man dropped this hat in the street," said Holmes. | قال هولمز: «رجل أوقع هذه القبعة في الشارع.»
+"He also dropped a Christmas goose." | «وأوقع أيضاً إوزة عيد الميلاد.»
+"A policeman found them and brought them to me." | «وجدهما شرطي وأحضرهما إليّ.»
+Suddenly, the policeman ran in. His eyes were wide. | فجأة، دخل الشرطي راكضاً. كانت عيناه مفتوحتين على وسعهما.
+"Mr. Holmes! Look at what my wife found inside the goose!" | «سيد هولمز! انظر ماذا وجدت زوجتي داخل الإوزة!»
+In his hand was a beautiful blue stone. It was shining. | في يده كان حجر أزرق جميل. كان يلمع.
+"This is the Blue Carbuncle!" said Holmes. | قال هولمز: «هذه هي الجوهرة الزرقاء!»
+"Someone stole it from a rich lady five days ago." | «سرقها أحدهم من سيدة غنية قبل خمسة أيام.»
+"The police think a poor plumber stole it. But I am not sure." | «الشرطة تظن أن سبّاكاً فقيراً سرقها. لكني لست متأكداً.»
+= goose | إوزة
+= drop | يُوقِع
+= suddenly | فجأة
+= shine | يلمع
+= plumber | سبّاك
+? أين وجدوا الحجر الأزرق؟ | داخل إوزة | داخل القبعة | في الشارع
+? من تظن الشرطة أنه اللص؟ | سبّاك فقير | الشرطي | السيدة الغنية`],
+['Following the Goose', 'تتبُّع الإوزة', `
+Holmes put a message in the newspaper. | وضع هولمز إعلاناً في الجريدة.
+The owner of the hat came. His name was Henry Baker. | جاء صاحب القبعة. اسمه هنري بيكر.
+He was a kind old man. He knew nothing about the stone. | كان رجلاً عجوزاً طيباً. لم يكن يعرف شيئاً عن الحجر.
+"I bought the goose from a small club," he said. | قال: «اشتريت الإوزة من نادٍ صغير.»
+Holmes and Watson went to the club in the cold night. | ذهب هولمز وواطسون إلى النادي في الليلة الباردة.
+The club bought its geese from a market. | النادي اشترى إوزّاته من سوق.
+At the market, a seller was very angry. | في السوق، كان أحد الباعة غاضباً جداً.
+"Everyone is asking me about those geese!" he shouted. | صرخ: «الكل يسألني عن تلك الإوزّات!»
+"They came from a woman named Mrs. Oakshott." | «جاءت من امرأة اسمها السيدة أوكشوت.»
+Just then, a small, nervous man ran to the seller. | في تلك اللحظة، ركض رجل صغير متوتّر إلى البائع.
+"Please, tell me about the geese!" he said. | قال: «أرجوك، أخبرني عن الإوزّات!»
+= owner | صاحب
+= kind | طيّب
+= club | نادٍ
+= seller | بائع
+= nervous | متوتّر
+? هل سرق هنري بيكر الجوهرة؟ | لا، لم يكن يعرف شيئاً عنها | نعم | لا نعرف بعد
+? من ركض إلى البائع في النهاية؟ | رجل صغير متوتّر | شرطي | هنري بيكر`],
+['The Thief Tells the Truth', 'اللص يعترف', `
+Holmes took the nervous man to his home. | أخذ هولمز الرجل المتوتّر إلى بيته.
+"Your name is James Ryder," said Holmes. | قال هولمز: «اسمك جيمس رايدر.»
+"You work at the hotel where the lady stayed." | «تعمل في الفندق الذي أقامت فيه السيدة.»
+Ryder's face became white. He started to shake. | أصبح وجه رايدر أبيض. بدأ يرتجف.
+"Yes, I stole it!" he cried. "I am sorry!" | صرخ باكياً: «نعم، أنا سرقتها! أنا آسف!»
+"I hid the stone inside a goose at my sister's house." | «خبّأت الحجر داخل إوزة في بيت أختي.»
+"But then I took the wrong goose!" | «لكني بعدها أخذت الإوزة الخطأ!»
+Holmes was quiet for a long time. | بقي هولمز صامتاً وقتاً طويلاً.
+Then he opened the door. "Go!" he said. | ثم فتح الباب. قال: «اذهب!»
+Ryder ran away into the night. | هرب رايدر في الليل.
+"The poor plumber will be free now," said Holmes. | قال هولمز: «السبّاك المسكين سيكون حرّاً الآن.»
+"It is Christmas. It is a time to forgive." | «إنه عيد الميلاد. إنه وقت للمسامحة.»
+= hotel | فندق
+= shake | يرتجف
+= hide | يُخبّئ
+= wrong | خطأ
+= forgive | يسامح
+? أين خبّأ رايدر الجوهرة؟ | داخل إوزة | في جيبه | تحت السرير
+? ماذا فعل هولمز مع رايدر؟ | تركه يذهب | سلّمه إلى الشرطة | أعطاه مالاً`]
+]],
+['necklace', 'crime', 'The Missing Necklace', 'القلادة المفقودة', '📿', [
+['The Wedding Party', 'حفلة العرس', `
+Inspector Layla Hassan was at her cousin's wedding in Baghdad. | كانت المحقّقة ليلى حسن في عرس ابنة عمّها في بغداد.
+The music was loud, and everyone was dancing. | كانت الموسيقى عالية، والجميع يرقصون.
+Suddenly, the bride's mother screamed. | فجأة، صرخت أم العروس.
+"My gold necklace is gone! It was in my bag!" | «قلادتي الذهبية اختفت! كانت في حقيبتي!»
+The necklace was very old. It was from her grandmother. | كانت القلادة قديمة جداً. كانت من جدّتها.
+Layla stopped the music. "Nobody leaves the hall," she said. | أوقفت ليلى الموسيقى. قالت: «لا أحد يغادر القاعة.»
+She asked three people about the bag. | سألت ثلاثة أشخاص عن الحقيبة.
+The waiter said, "I was in the kitchen all the time." | قال النادل: «كنت في المطبخ طوال الوقت.»
+The photographer said, "I was taking photos of the bride." | قال المصوّر: «كنت ألتقط صوراً للعروس.»
+The bride's uncle said, "I was dancing. Everyone saw me." | قال عمّ العروس: «كنت أرقص. الجميع رأوني.»
+Layla looked at the three faces. One of them was lying. | نظرت ليلى إلى الوجوه الثلاثة. واحد منهم كان يكذب.
+= inspector | محقّق
+= wedding | عرس
+= bride | عروس
+= necklace | قلادة
+= waiter | نادل
+= lie | يكذب
+? ماذا سُرق في العرس؟ | قلادة ذهبية | هاتف | نقود
+? كم شخصاً سألت ليلى؟ | ثلاثة | اثنين | خمسة`],
+['The Photos', 'الصور', `
+Layla asked the photographer for his camera. | طلبت ليلى من المصوّر كاميرته.
+She looked at the photos one by one. | نظرت إلى الصور واحدة بعد واحدة.
+In one photo, she saw the bag on a chair. | في إحدى الصور، رأت الحقيبة على كرسي.
+In the next photo, the bag was still there. | في الصورة التالية، كانت الحقيبة لا تزال هناك.
+But behind the chair, she saw a white sleeve. | لكن خلف الكرسي، رأت كُمّاً أبيض.
+Only the waiters wore white shirts. | النادلون فقط كانوا يرتدون قمصاناً بيضاء.
+"You said you were in the kitchen," Layla said to the waiter. | قالت ليلى للنادل: «قلتَ إنك كنت في المطبخ.»
+"But this photo shows you near the bag at ten o'clock." | «لكن هذه الصورة تُظهرك قرب الحقيبة في الساعة العاشرة.»
+The waiter's hands began to shake. | بدأت يدا النادل ترتجفان.
+"I only brought a glass of water!" he said. | قال: «أنا فقط أحضرت كأس ماء!»
+= camera | كاميرا
+= one by one | واحداً بعد واحد
+= behind | خلف
+= sleeve | كُمّ
+= shirt | قميص
+? ماذا رأت ليلى خلف الكرسي؟ | كُمّاً أبيض | قطة | حقيبة أخرى
+? من كان يرتدي قمصاناً بيضاء؟ | النادلون | المصوّر | عمّ العروس`],
+['The Truth', 'الحقيقة', `
+Layla was not sure. She looked again. | لم تكن ليلى متأكدة. نظرت مرة أخرى.
+The waiter's tray was empty and clean. | كانت صينية النادل فارغة ونظيفة.
+Then she looked at the uncle's shoes. They were wet. | ثم نظرت إلى حذاء العمّ. كان مبلّلاً.
+"Why are your shoes wet?" she asked. "It is not raining." | سألت: «لماذا حذاؤك مبلّل؟ إنها لا تمطر.»
+"I... I went to the garden," said the uncle. | قال العمّ: «أنا... ذهبت إلى الحديقة.»
+Layla walked to the garden. There was a small fountain. | مشت ليلى إلى الحديقة. كانت هناك نافورة صغيرة.
+At the bottom of the water, something was shining. | في قاع الماء، كان شيء ما يلمع.
+It was the gold necklace! | كانت القلادة الذهبية!
+The uncle had money problems. He wanted to sell it. | كان العمّ يعاني من مشاكل مالية. أراد أن يبيعها.
+He hid it in the fountain, and he planned to take it later. | خبّأها في النافورة، وخطّط أن يأخذها لاحقاً.
+The waiter was telling the truth. He only brought water. | كان النادل يقول الحقيقة. هو فقط أحضر الماء.
+The bride's mother hugged Layla, and the music started again. | عانقت أم العروس ليلى، وبدأت الموسيقى من جديد.
+= tray | صينية
+= wet | مبلّل
+= fountain | نافورة
+= bottom | قاع
+= truth | الحقيقة
+= hug | يعانق
+? أين كانت القلادة؟ | في النافورة | في جيب النادل | داخل الكاميرا
+? من سرق القلادة؟ | عمّ العروس | النادل | المصوّر`]
+]]
+];
+const STORIES = STORY_RAW.map(([id, kind, en, ar, pic, parts]) => ({
+  id, kind, en, ar, pic,
+  parts: parts.map(([pen, par, body], pi) => {
+    const part = { key: `${id}-${pi + 1}`, en: pen, ar: par, lines: [], words: [], quiz: [] };
+    body.trim().split('\n').forEach(l => {
+      const t = l.trim(); if (!t) return;
+      const cells = t.replace(/^[=?]\s*/, '').split('|').map(c => c.trim());
+      if (t[0] === '=') part.words.push(cells);
+      else if (t[0] === '?') part.quiz.push({ q: cells[0], right: cells[1], opts: cells.slice(1) });
+      else part.lines.push(cells);
+    });
+    return part;
+  }),
+}));
+const STORY = Object.fromEntries(STORIES.map(s => [s.id, s]));
+
 
 const SAMPLE = `My name is Sara. I have a big family. Every morning, I drink tea with my mother. Then I go to school.
 
@@ -563,7 +872,7 @@ function visual(w, kind) {
 
 /* ================= Storage ================= */
 const KEY = 'kalima-kalima.v1';
-const DEFAULT = { settings: { font: 'lexend', size: 1, track: 1, bg: 'auto', syl: true, hint: true, rate: 0.85, sound: true, photos: true }, words: {}, days: {}, stars: 0, tip: true, readerText: null };
+const DEFAULT = { settings: { font: 'lexend', size: 1, track: 1, bg: 'auto', syl: true, hint: true, rate: 0.85, sound: true, photos: true, storyTr: false }, words: {}, days: {}, stories: {}, stars: 0, tip: true, readerText: null };
 let S = load();
 function load() {
   const base = JSON.parse(JSON.stringify(DEFAULT));
@@ -606,10 +915,13 @@ function syllabify(word) {
     return parts.map(p => { const s = word.slice(i, i + p.length); i += p.length; return s; });
   }
   if (!/^[a-z]+$/.test(lower) || lower.length <= 3) return [word];
-  for (const suf of ['ing', 'ful', 'ness', 'ment', 'less']) {
+  for (const suf of ['ing', 'ful', 'ness', 'ment', 'less', 'ly']) {
     const stem = lower.slice(0, -suf.length);
-    if (lower.endsWith(suf) && stem.length >= 3 && /[aeiouy]/.test(stem)) {
-      return [...syllabify(word.slice(0, -suf.length)), word.slice(-suf.length)];
+    if (lower.endsWith(suf) && stem.length >= (suf === 'ly' ? 4 : 3) && /[aeiouy]/.test(stem)) {
+      const cut = word.length - suf.length;
+      // running -> run·ning: a doubled consonant goes with the suffix
+      if (suf === 'ing' && /([b-df-hj-np-tv-z])\1$/.test(stem)) return [...syllabify(word.slice(0, cut - 1)), word.slice(cut - 1)];
+      return [...syllabify(word.slice(0, cut)), word.slice(cut)];
     }
   }
   return coreSyl(word);
@@ -626,7 +938,7 @@ function coreSyl(word) {
   const consLe = n >= 4 && s.endsWith('le') && !vowelAt(n - 3);
   if (s.endsWith('e') && n > 3 && !consLe && v[n - 1]) v[n - 1] = false;           // silent final e
   if (/[^td]ed$/.test(s)) v[n - 2] = false;                                       // played, called
-  if (/[^sxzhgc]es$/.test(s) && !consLe) v[n - 2] = false;                        // makes, names
+  if ((/[^sxzhgc]es$/.test(s) || s.endsWith('thes')) && !consLe) v[n - 2] = false; // makes, clothes
   const consLes = n >= 5 && s.endsWith('les') && !vowelAt(n - 4);
   if (consLes) v[n - 2] = true;                                                   // tables
   const groups = [];
@@ -690,29 +1002,52 @@ const Speech = (() => {
     voice = vs.find(v => /en[-_]US/i.test(v.lang) && v.localService) || vs.find(v => /en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
   }
   if (synth) { pickVoice(); try { synth.addEventListener('voiceschanged', pickVoice); } catch (e) { /* old engines */ } }
+  let audio = null;
+  function playClip(id, clip, text, rate) {
+    const a = new Audio(`audio/${clip}.mp3`);
+    audio = a;
+    try { a.preservesPitch = true; } catch (e) { /* older engines */ }
+    a.playbackRate = Math.min(1.1, Math.max(0.6, rate + 0.15));
+    let last = -1;
+    a.ontimeupdate = () => {
+      if (!a.duration || audio !== a) return;
+      const c = Math.floor(a.currentTime / a.duration * text.length);
+      if (c !== last) { last = c; range(id, c); }
+    };
+    a.onended = () => { if (audio === a) audio = null; if (cbs[id]) done(id); };
+    const fail = () => { if (audio === a) audio = null; if (cbs[id]) speakDevice(id, text, rate); };
+    a.onerror = fail;
+    const p = a.play(); if (p && p.catch) p.catch(fail);
+  }
   function done(id, cancelled) { const c = cbs[id]; delete cbs[id]; if (c && c.onEnd) c.onEnd(!!cancelled); }
   function range(id, start) { const c = cbs[id]; if (c && c.onWord) c.onWord(start); }
   function stop() {
     Object.keys(cbs).forEach(id => done(id, true));
+    if (audio) { const a = audio; audio = null; try { a.pause(); } catch (e) { /* ignore */ } }
     if (NA) { try { NA.stop(); } catch (e) { /* ignore */ } } else if (synth) synth.cancel();
   }
   function speak(text, { rate = S.settings.rate, onEnd, onWord } = {}) {
     stop();
     const id = 'u' + (++seq);
     cbs[id] = { onEnd, onWord };
+    const clip = VOICE[text] || VOICE[text.trim()];
+    if (clip) { playClip(id, clip[0], text, rate); return id; }
+    speakDevice(id, text, rate);
+    return id;
+  }
+  function speakDevice(id, text, rate) {
     if (NA) {
       let ready = true; try { ready = NA.isTtsReady(); } catch (e) { /* older bridge */ }
       if (!ready && !warned) { warned = true; toast('لا يوجد صوت إنكليزي. ثبّت «خدمات Google للنطق» من متجر Play.'); }
-      NA.speak(text, rate, id); return id;
+      NA.speak(text, rate, id); return;
     }
-    if (!synth) { toast('النطق غير متوفر في هذا المتصفح'); setTimeout(() => done(id), 300); return id; }
+    if (!synth) { toast('النطق غير متوفر في هذا المتصفح'); setTimeout(() => done(id), 300); return; }
     const u = new SpeechSynthesisUtterance(text);
     u.lang = 'en-US'; if (voice) u.voice = voice; u.rate = rate;
     u.onboundary = e => { if (!e.name || e.name === 'word') range(id, e.charIndex); };
     u.onend = () => { if (cbs[id]) done(id); };
     u.onerror = () => { if (cbs[id]) done(id); };
     synth.speak(u);
-    return id;
   }
   window.__tts = { done: id => { if (cbs[id]) done(id); }, range: (id, s) => range(id, s) };
 
@@ -835,20 +1170,21 @@ try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', sync
 
 /* ================= UI state ================= */
 const view = D.getElementById('view'), app = D.getElementById('app');
-let TAB = 'home', SES = null;
-const READER = { editing: false, ruler: false, playing: false, cur: -1 };
+let TAB = 'home', SES = null, STORYV = null;
+const READER = { editing: false, ruler: false, playing: false, single: false, cur: -1 };
 
 function render() {
   Speech.stop();
-  app.classList.toggle('in-session', !!SES);
+  app.classList.toggle('in-session', !!(SES || STORYV));
   D.querySelectorAll('.tab').forEach(t => { if (t.dataset.tab === TAB) t.setAttribute('aria-current', 'page'); else t.removeAttribute('aria-current'); });
   D.getElementById('topR').innerHTML = `<span class="chip" title="أيام متتالية">🔥 <span class="en">${streakDays()}</span></span><span class="chip" title="النجوم">⭐ <span class="en">${S.stars}</span></span>`;
   if (SES) view.innerHTML = SES.finished ? viewResult() : viewSession();
-  else view.innerHTML = ({ home: viewHome, review: viewReview, reader: viewReader, settings: viewSettings })[TAB]();
+  else if (STORYV) view.innerHTML = viewStoryPart();
+  else view.innerHTML = ({ home: viewHome, stories: viewStories, review: viewReview, reader: viewReader, settings: viewSettings })[TAB]();
   view.scrollTop = 0;
   if (SES && !SES.finished) afterStep();
 }
-function go(tab) { TAB = tab; SES = null; READER.playing = false; render(); }
+function go(tab) { TAB = tab; SES = null; STORYV = null; READER.playing = false; READER.cur = -1; render(); }
 
 /* ---------- Home ---------- */
 function wordOfDay() {
@@ -881,6 +1217,12 @@ function viewHome() {
     ${nextCat ? `<button class="btn btn-primary btn-block" data-act="lesson" data-cat="${nextCat.id}">ابدأ درس: ${esc(nextCat.ar)}</button>` : `<p>أكملت كل الدروس. واصل المراجعة لتثبيت الكلمات.</p>`}
     ${due ? `<button class="btn btn-soft btn-block" data-act="review">راجع ${P.word(due)}</button>` : ''}
   </section>
+  ${(() => {
+    for (const st of STORIES) for (let i = 0; i < st.parts.length; i++) if (!S.stories[st.parts[i].key]) {
+      return `<button class="card story-teaser" data-act="story" data-s="${st.id}" data-p="${i}"><span class="story-pic">${st.pic}</span><span class="part-t"><span class="label">${i ? 'تابع القصة' : 'قصة جديدة'} · الجزء ${i + 1} من ${st.parts.length}</span><b>${esc(st.ar)}: ${esc(st.parts[i].ar)}</b></span><span class="part-s">‹</span></button>`;
+    }
+    return '';
+  })()}
   ${S.tip ? `<div class="tip"><p>اضغط على أي كلمة إنكليزية لتسمعها. زر «صفّق المقاطع» يقسم الكلمة الطويلة إلى قطع صغيرة، قطعة بعد قطعة.</p><button class="icon-btn" data-act="tipClose" aria-label="إخفاء النصيحة">✕</button></div>` : ''}
   <section class="stack"><h2 class="h2">الدروس</h2><div class="cats">${CATS.map(catCard).join('')}</div></section>`;
 }
@@ -1108,21 +1450,11 @@ function viewReader() {
   let si = 0;
   const paras = text.split(/\n\s*\n|\n/).filter(p => p.trim()).map(p => {
     const sents = p.match(/[^.!?]+[.!?]*["')\]]*\s*/g) || [p];
-    return '<p>' + sents.map(s => {
-      let html = '', off = 0;
-      s.split(/([A-Za-z']+)/).forEach((tok, i) => {
-        if (i % 2 === 1) {
-          const parts = tok.includes("'") ? [tok] : syllabify(tok);
-          html += `<span class="w" data-act="rword" data-w="${esc(tok)}" data-o="${off}">${parts.map((pp, j) => `<span class="sy s${j % 2}">${esc(pp)}</span>`).join('<span class="dot" aria-hidden="true">·</span>')}</span>`;
-        } else html += esc(tok);
-        off += tok.length;
-      });
-      return `<span class="sent" data-s="${si++}" data-text="${esc(s.trim())}">${html}</span>`;
-    }).join('') + '</p>';
+    return '<p>' + sents.map(s => sentSpan(s, si++)).join('') + '</p>';
   }).join('');
   return `<h1 class="h1">القارئ</h1>
   <div class="rtools">
-    <button class="btn btn-primary small" data-act="readerPlay">${READER.playing ? '⏸ إيقاف' : '▶ اقرأ لي'}</button>
+    <button class="btn btn-primary small" data-act="readerPlay" data-idle="▶ اقرأ لي">${READER.playing ? '⏸ إيقاف' : '▶ اقرأ لي'}</button>
     <button class="chipbtn" data-act="readerRuler" aria-pressed="${READER.ruler}">مسطرة القراءة</button>
     <button class="chipbtn" data-act="readerEdit">✏️ نص آخر</button>
   </div>
@@ -1130,18 +1462,78 @@ function viewReader() {
   <div class="reading chunks-host${READER.ruler ? ' ruler' : ''}" dir="ltr" lang="en"><div class="chunks" style="display:block;font-weight:400">${paras}</div></div>
   <p class="muted sm">اضغط على أي كلمة لتسمعها وترى معناها. التقسيم إلى مقاطع تلقائي للكلمات غير الموجودة في الدروس.</p>`;
 }
+function sentSpan(s, si) {
+  let html = '', off = 0;
+  s.split(/([A-Za-z']+)/).forEach((tok, i) => {
+    if (i % 2 === 1) {
+      const parts = tok.includes("'") ? [tok] : syllabify(tok);
+      html += `<span class="w" data-act="rword" data-w="${esc(tok)}" data-o="${off}">${parts.map((pp, j) => `<span class="sy s${j % 2}">${esc(pp)}</span>`).join('<span class="dot" aria-hidden="true">·</span>')}</span>`;
+    } else html += esc(tok);
+    off += tok.length;
+  });
+  return `<span class="sent" data-s="${si}" data-text="${esc(s.trim())}">${html}</span>`;
+}
+const syString = en => en.split(' ').map(w => syllabify(w).join('·')).join(' ');
 function readerPlayFrom(i) {
   const sents = [...view.querySelectorAll('.reading .sent')];
   view.querySelectorAll('.reading .on').forEach(e => e.classList.remove('on'));
-  if (!READER.playing || i >= sents.length) { READER.playing = false; READER.cur = -1; const b = view.querySelector('[data-act="readerPlay"]'); if (b) b.textContent = '▶ اقرأ لي'; return; }
+  if (!READER.playing || i >= sents.length) { READER.playing = false; READER.single = false; READER.cur = -1; const b = view.querySelector('[data-act="readerPlay"]'); if (b) b.textContent = b.dataset.idle; return; }
   const el = sents[i]; READER.cur = i; el.classList.add('on');
   el.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   const raw = el.dataset.text, lead = (el.textContent.length - el.textContent.trimStart().length);
   const words = [...el.querySelectorAll('.w')];
   Speech.speak(raw, {
     onWord: c => { words.forEach(x => x.classList.remove('on')); const hit = words.filter(x => +x.dataset.o - lead <= c).pop(); if (hit) hit.classList.add('on'); },
-    onEnd: cancelled => { if (!cancelled && READER.playing) setTimeout(() => readerPlayFrom(i + 1), 250); },
+    onEnd: cancelled => {
+      if (cancelled || !READER.playing) return;
+      if (READER.single) { READER.playing = false; readerPlayFrom(Infinity); } else setTimeout(() => readerPlayFrom(i + 1), 250);
+    },
   });
+}
+
+/* ---------- Stories ---------- */
+function viewStories() {
+  const groups = [['holmes', 'شيرلوك هولمز', 'قصص مبسّطة عن قصص آرثر كونان دويل الأصلية.'], ['crime', 'قصص جريمة', 'ألغاز قصيرة تحلّها المحقّقة ليلى حسن في بغداد.']];
+  return `<h1 class="h1">القصص</h1>
+  <p class="lead">كل قصة مقسّمة إلى أجزاء قصيرة. اقرأ جزءاً واحداً في كل مرة، واستمع إليه، ثم أجب عن سؤالين.</p>
+  ${groups.map(([k, t, d]) => `<section class="stack"><div><h2 class="h2">${t}</h2><p class="muted sm">${d}</p></div>${STORIES.filter(s => s.kind === k).map(storyCard).join('')}</section>`).join('')}`;
+}
+function storyCard(s) {
+  const done = s.parts.filter(p => S.stories[p.key]).length;
+  return `<article class="card story"><div class="story-head"><span class="story-pic">${s.pic}</span><div class="story-titles"><h3 class="h3">${esc(s.ar)}</h3><span class="en muted sm">${esc(s.en)}</span></div><span class="cat-n">${done}/${s.parts.length}</span></div>
+  <ol class="parts">${s.parts.map((p, i) => {
+    const r = S.stories[p.key];
+    return `<li><button class="part${r ? ' done' : ''}" data-act="story" data-s="${s.id}" data-p="${i}"><span class="part-n">${i + 1}</span><span class="part-t"><b>${esc(p.ar)}</b><span class="en muted sm">${esc(p.en)}</span></span><span class="part-s">${r ? '⭐'.repeat(Math.max(1, r.stars)) : '‹'}</span></button></li>`;
+  }).join('')}</ol></article>`;
+}
+function openStory(sid, p) { STORYV = { s: STORY[sid], p: +p, mode: 'read', qi: 0, right: 0 }; READER.playing = false; READER.single = false; READER.cur = -1; render(); }
+function viewStoryPart() {
+  const { s, p, mode } = STORYV, part = s.parts[p];
+  const head = `<div class="s-head"><button class="icon-btn" data-act="storyClose" aria-label="رجوع إلى القصص">✕</button><div class="st-meta"><span class="label">${esc(s.ar)} · الجزء ${p + 1} من ${s.parts.length}</span><b>${esc(part.ar)}</b></div><span class="story-pic sm">${s.pic}</span></div>`;
+  if (mode === 'quiz') {
+    const q = part.quiz[STORYV.qi];
+    q.shuf = q.shuf || shuffle(q.opts);
+    return head + `<div class="s-body"><p class="label">سؤال ${STORYV.qi + 1} من ${part.quiz.length}</p><h2 class="q">${esc(q.q)}</h2>
+      <div class="opts-word">${q.shuf.map(o => `<button class="opt-word ar-opt" data-act="qpick" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div></div><div class="s-foot" id="foot"></div>`;
+  }
+  if (mode === 'done') {
+    const next = s.parts[p + 1];
+    return head + `<div class="s-body result"><div class="pic-xl" aria-hidden="true">🔍</div><h1 class="h1">أنهيت الجزء ${p + 1}!</h1>
+      <p class="lead">أجبت عن <span class="en">${STORYV.right}</span> من <span class="en">${part.quiz.length}</span> أسئلة بشكل صحيح.</p>
+      ${next ? '' : '<p class="mean">انتهت القصة كاملة. أحسنت!</p>'}</div>
+      <div class="s-foot">${next ? `<button class="btn btn-primary btn-block" data-act="story" data-s="${s.id}" data-p="${p + 1}">الجزء التالي: ${esc(next.ar)}</button>` : ''}
+      <button class="btn ${next ? 'btn-ghost' : 'btn-primary'} btn-block" data-act="storyClose">كل القصص</button></div>`;
+  }
+  return head + `
+  <div class="rtools">
+    <button class="btn btn-primary small" data-act="readerPlay" data-idle="▶ استمع للجزء">${READER.playing && !READER.single ? '⏸ إيقاف' : '▶ استمع للجزء'}</button>
+    <button class="chipbtn" data-act="storyTr" aria-pressed="${!!S.settings.storyTr}">الترجمة</button>
+    <button class="chipbtn" data-act="readerRuler" aria-pressed="${READER.ruler}">مسطرة القراءة</button>
+  </div>
+  <section class="card"><h2 class="label">كلمات جديدة في هذا الجزء</h2><div class="vchips">${part.words.map(([en, ar]) => `<button class="vchip" data-act="say" data-text="${esc(en)}">${chunks(syString(en), 'sm')}<span class="vchip-ar">${esc(ar)}</span></button>`).join('')}</div></section>
+  <div class="reading story${READER.ruler ? ' ruler' : ''}${S.settings.storyTr ? '' : ' no-tr'}" dir="ltr" lang="en"><div class="chunks" style="display:block;font-weight:400">${part.lines.map(([en, ar], i) => `<div class="sline"><button class="line-play" data-act="playLine" data-i="${i}" aria-label="استمع للجملة">▶</button><div class="sline-body">${sentSpan(en, i)}<p class="tr" dir="rtl" lang="ar">${esc(ar)}</p></div></div>`).join('')}</div></div>
+  <p class="muted sm">اضغط ▶ بجانب أي جملة لتسمعها وحدها، أو اضغط على أي كلمة لترى معناها.</p>
+  <button class="btn btn-primary btn-block" data-act="storyQuiz">انتهيت من القراءة، إلى الأسئلة</button>`;
 }
 
 /* ---------- Settings ---------- */
@@ -1305,7 +1697,8 @@ D.addEventListener('click', e => {
     case 'addWord': grade(el.dataset.id, true); save(); closeSheet(); toast('أُضيفت إلى مراجعتك'); if (TAB === 'review') render(); break;
     case 'readerPlay':
       READER.playing = !READER.playing;
-      el.textContent = READER.playing ? '⏸ إيقاف' : '▶ اقرأ لي';
+      READER.single = false;
+      el.textContent = READER.playing ? '⏸ إيقاف' : el.dataset.idle;
       if (READER.playing) readerPlayFrom(Math.max(0, READER.cur)); else { Speech.stop(); view.querySelectorAll('.reading .w.on').forEach(x => x.classList.remove('on')); }
       break;
     case 'readerRuler': READER.ruler = !READER.ruler; el.setAttribute('aria-pressed', READER.ruler); view.querySelector('.reading').classList.toggle('ruler', READER.ruler); if (READER.ruler && !view.querySelector('.reading .sent.on')) { const f = view.querySelector('.reading .sent'); if (f) f.classList.add('on'); } break;
@@ -1326,6 +1719,32 @@ D.addEventListener('click', e => {
         <ul class="credits">${Object.entries(PHOTOS).map(([id, [a, l, u]]) => `<li><img class="photo thumb" src="img/${slug(id)}.webp" alt="" loading="lazy" data-pic="${esc(BY.get(id).pic)}" data-kind="thumb"><div dir="ltr"><b class="en">${esc(BY.get(id).en)}</b><span>${esc(a)} · ${esc(l)}</span>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">صفحة الصورة</a>` : ''}</div></li>`).join('')}</ul>
         <button class="btn btn-ghost btn-block" data-act="closeSheet">إغلاق</button>`);
       break;
+    case 'story': closeSheet(); openStory(el.dataset.s, el.dataset.p); break;
+    case 'storyClose': STORYV = null; TAB = 'stories'; READER.playing = false; render(); break;
+    case 'storyTr': S.settings.storyTr = !S.settings.storyTr; save(); el.setAttribute('aria-pressed', S.settings.storyTr); view.querySelector('.reading').classList.toggle('no-tr', !S.settings.storyTr); break;
+    case 'playLine': Speech.stop(); READER.playing = true; READER.single = true; readerPlayFrom(+el.dataset.i); break;
+    case 'storyQuiz': READER.playing = false; STORYV.mode = 'quiz'; STORYV.qi = 0; STORYV.right = 0; render(); break;
+    case 'qpick': {
+      const part = STORYV.s.parts[STORYV.p], q = part.quiz[STORYV.qi];
+      if (view.querySelector('.opt-word[disabled]')) break;
+      const ok = el.dataset.o === q.right;
+      view.querySelectorAll('[data-act="qpick"]').forEach(b => { b.disabled = true; if (b.dataset.o === q.right) b.classList.add('is-right'); else if (b === el) b.classList.add('is-wrong'); });
+      countAnswer();
+      if (ok) { STORYV.right++; S.stars++; SND.ok(); buzz(30); } else { SND.soft(); buzz(70); }
+      save();
+      D.getElementById('foot').innerHTML = `<div class="fb ${ok ? 'good' : 'warn'}" role="status"><div class="fb-msg">${ok ? PRAISE[Math.floor(Math.random() * PRAISE.length)] : 'الجواب الصحيح: ' + esc(q.right)}</div><button class="btn btn-primary btn-block" data-act="qnext">التالي</button></div>`;
+      break;
+    }
+    case 'qnext': {
+      const part = STORYV.s.parts[STORYV.p];
+      STORYV.qi++;
+      if (STORYV.qi >= part.quiz.length) {
+        const prev = S.stories[part.key];
+        S.stories[part.key] = { stars: Math.max(STORYV.right, prev ? prev.stars : 0) };
+        save(); STORYV.mode = 'done'; render(); SND.win(); confetti();
+      } else render();
+      break;
+    }
     case 'resetAsk':
       openSheet(`<h2 class="h2">مسح كل التقدّم؟</h2><p class="muted">ستُحذف الكلمات والنجوم والأيام المتتالية. الإعدادات تبقى كما هي.</p>
         <button class="btn btn-primary btn-block" data-act="closeSheet">إلغاء</button><button class="btn btn-ghost btn-block" data-act="reset">نعم، امسح التقدّم</button>`);
@@ -1349,6 +1768,7 @@ D.addEventListener('visibilitychange', () => { if (D.hidden) { Speech.stop(); RE
 window.__onBack = () => {
   if (!sheet.hidden) { closeSheet(); return true; }
   if (SES && !SES.finished) { D.querySelector('[data-act="exit"]').click(); return true; }
+  if (STORYV) { STORYV = null; TAB = 'stories'; render(); return true; }
   if (SES || TAB !== 'home') { go('home'); return true; }
   return false;
 };
