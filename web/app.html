@@ -1,0 +1,1319 @@
+<title>كلمة كلمة</title>
+<meta name="theme-color" content="#F8EEE2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@300..700&family=Readex+Pro:wght@300..700&display=swap">
+<style>
+/* Layout: a one-column phone app. A calm top bar, a scrolling stage, a bottom tab bar.
+   English words always appear as coloured syllable chunks (beau·ti·ful) so long words never arrive as one block. */
+@font-face{font-family:"KK Lexend";src:url("fonts/lexend.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"KK Readex";src:url("fonts/readex-pro-arabic.woff2") format("woff2");font-weight:160 700;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF,U+200C-200F}
+@font-face{font-family:"KK Readex";src:url("fonts/readex-pro-latin.woff2") format("woff2");font-weight:160 700;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:"KK OpenDyslexic";src:url("fonts/opendyslexic.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"KK OpenDyslexic";src:url("fonts/opendyslexic-bold.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"KK Atkinson";src:url("fonts/atkinson.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"KK Atkinson";src:url("fonts/atkinson-bold.woff2") format("woff2");font-weight:700;font-display:swap}
+
+:root{
+  /* Warm peach paper: Rello & Bigham (2017) found warm backgrounds help readers with dyslexia. Ink is navy, never pure black. */
+  --bg:#F8EEE2; --surface:#FFF8EF; --sunk:#F0E2D1; --line:#E4D2BE;
+  --ink:#22263A; --muted:#5F596B;
+  --accent:#17696A; --accent-ink:#FFFFFF; --accent-soft:#D3E9E4;
+  --syl1:#2452B5; --syl2:#B5400E; --hi:#FFE08A;
+  --good:#24724A; --good-soft:#DCF0E2; --warn:#8F5300; --warn-soft:#FBE6C2;
+  --scrim:rgba(24,20,14,.45);
+  --shadow:0 1px 0 rgba(70,45,20,.05),0 8px 20px -12px rgba(70,45,20,.35);
+  --f-ar:"KK Readex","Readex Pro","Noto Sans Arabic",system-ui,sans-serif;
+  --f-en:"KK Lexend","Lexend","Atkinson Hyperlegible",system-ui,sans-serif;
+  --scale:1; --track:.1em; --wspace:.45em;
+  color-scheme:light;
+}
+:root[data-font="od"]{--f-en:"KK OpenDyslexic","KK Lexend","Lexend",system-ui,sans-serif}
+:root[data-font="ah"]{--f-en:"KK Atkinson","Atkinson Hyperlegible","KK Lexend",system-ui,sans-serif}
+:root[data-bg="cream"]{--bg:#FAF4E3;--surface:#FFFCF2;--sunk:#F0E7CF;--line:#E4D8BA}
+:root[data-bg="blue"]{--bg:#E5EEF6;--surface:#F6FAFD;--sunk:#D6E3EF;--line:#C5D6E6}
+:root[data-bg="mint"]{--bg:#E4F1E8;--surface:#F5FBF7;--sunk:#D3E8DA;--line:#C2DCCB}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#161A24; --surface:#1F2534; --sunk:#283043; --line:#323A50;
+    --ink:#EEE7DC; --muted:#ABA5B6;
+    --accent:#5CC8BF; --accent-ink:#0B1D1C; --accent-soft:#1D3A3A;
+    --syl1:#93B4FF; --syl2:#FFA670; --hi:#53491C;
+    --good:#7ED6A0; --good-soft:#1C3527; --warn:#F2C26B; --warn-soft:#3B2E14;
+    --scrim:rgba(0,0,0,.6); --shadow:0 8px 20px -12px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#161A24; --surface:#1F2534; --sunk:#283043; --line:#323A50;
+  --ink:#EEE7DC; --muted:#ABA5B6;
+  --accent:#5CC8BF; --accent-ink:#0B1D1C; --accent-soft:#1D3A3A;
+  --syl1:#93B4FF; --syl2:#FFA670; --hi:#53491C;
+  --good:#7ED6A0; --good-soft:#1C3527; --warn:#F2C26B; --warn-soft:#3B2E14;
+  --scrim:rgba(0,0,0,.6); --shadow:0 8px 20px -12px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{height:100%;font-size:calc(17px * var(--scale));-webkit-text-size-adjust:100%}
+body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ar);line-height:1.7;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:10px}
+
+#app{display:flex;flex-direction:column;height:100%;max-width:640px;margin:0 auto}
+.top{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.7rem 16px .5rem}
+.brand{display:flex;align-items:center;gap:.55rem;font-weight:700;font-size:1.05rem}
+.brand b{color:var(--syl2);font-weight:700}
+.brand-mark{display:inline-flex;gap:3px;align-items:center}
+.brand-mark i{display:block;width:12px;height:18px;border-radius:5px;background:var(--syl1)}
+.brand-mark i+i{background:var(--syl2)}
+.top-r{display:flex;gap:.4rem}
+.chip{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .65rem;border-radius:99px;background:var(--surface);border:1px solid var(--line);font-size:.85rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+#view{flex:1;overflow-y:auto;overflow-x:hidden;padding:.5rem 16px 1.5rem;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:1.1rem}
+#app.in-session .top,#app.in-session .tabs{display:none}
+#app.in-session #view{padding-top:.8rem}
+
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tab{background:none;border:0;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:.78rem;color:var(--muted);cursor:pointer}
+.tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tab[aria-current="page"]{color:var(--accent);font-weight:600}
+
+h1,h2,h3{margin:0;text-wrap:balance;line-height:1.35}
+.h1{font-size:1.55rem;font-weight:700}
+.h2{font-size:1.15rem;font-weight:700}
+.h3{font-size:1rem;font-weight:600}
+p{margin:0}
+.lead{color:var(--muted)}
+.muted{color:var(--muted)}
+.sm{font-size:.85rem}
+.label{font-size:.8rem;font-weight:600;color:var(--muted);letter-spacing:.02em}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:1.1rem;display:flex;flex-direction:column;gap:.85rem}
+.row{display:flex;flex-wrap:wrap;gap:.5rem}
+.row.center{justify-content:center}
+.stack{display:flex;flex-direction:column;gap:.6rem}
+
+.btn{border:0;border-radius:14px;min-height:52px;padding:.7rem 1.1rem;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:.45rem;cursor:pointer;transition:transform .12s ease,background-color .2s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-soft{background:var(--accent-soft);color:var(--accent)}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.btn-block{width:100%}
+.btn.small{min-height:44px;padding:.45rem .9rem;font-size:.92rem}
+.btn[disabled]{opacity:.5;pointer-events:none}
+.icon-btn{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;font-size:1.1rem;flex:none}
+
+/* English words, syllable chunks */
+.en{font-family:var(--f-en);direction:ltr;unicode-bidi:isolate;letter-spacing:var(--track);word-spacing:var(--wspace)}
+.chunks{font-family:var(--f-en);direction:ltr;unicode-bidi:isolate;letter-spacing:var(--track);word-spacing:var(--wspace);display:inline-block;max-width:100%;overflow-wrap:anywhere}
+.chunks .sy{color:var(--syl1);border-radius:.22em;padding:0 .04em;transition:background-color .15s,transform .15s;display:inline-block}
+.chunks .sy.s1{color:var(--syl2)}
+.chunks .dot{color:var(--muted);opacity:.6;margin:0 .05em;font-weight:400}
+.no-syl .chunks .sy{color:inherit;padding:0}
+.no-syl .chunks .dot{display:none}
+.chunks .sy.beat{background:var(--hi);transform:translateY(-3px)}
+.chunks.speaking .sy{background:var(--hi)}
+.chunks.xl{font-size:2.6rem;font-weight:500;line-height:1.3}
+.chunks.xl.long{font-size:2.15rem}
+.chunks.xl.xlong{font-size:1.8rem}
+.chunks.lg{font-size:1.75rem;font-weight:500;line-height:1.35}
+.chunks.md{font-size:1.3rem;font-weight:500;line-height:1.4}
+.chunks.sm{font-size:1.05rem}
+[data-say]{cursor:pointer}
+
+.beats{display:flex;gap:.45rem;justify-content:center}
+.beats i{width:.6rem;height:.6rem;border-radius:50%;background:var(--syl1)}
+.beats i:nth-child(even){background:var(--syl2)}
+.hint{color:var(--muted);font-size:1rem}
+.no-hint .hint{display:none}
+.mean{font-size:1.25rem;font-weight:600}
+
+.pic{font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",var(--f-en);line-height:1}
+.pic-num{font-family:var(--f-en);font-weight:700;color:var(--accent);line-height:1}
+.swatch{display:inline-block;width:1em;height:1em;border-radius:50%;border:2px solid var(--line);vertical-align:middle}
+.pic-xl{font-size:4.6rem;text-align:center;line-height:1.1}
+.pic-lg{font-size:3.4rem;text-align:center;line-height:1.1}
+
+/* Home */
+.hello h1{font-size:1.5rem}
+.wotd{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:1.1rem 1.1rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;text-align:center;box-shadow:var(--shadow)}
+.wotd-head{display:flex;justify-content:space-between;width:100%}
+.wotd .mean{display:flex;gap:.5rem;align-items:center}
+.today .top-line{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
+.big-num{font-size:1.9rem;font-weight:700;font-variant-numeric:tabular-nums;font-family:var(--f-en)}
+.bar{height:10px;background:var(--sunk);border-radius:99px;overflow:hidden;flex:1}
+.bar>i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .4s ease}
+.bar.thin{height:6px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;text-align:center}
+.stats b{display:block;font-size:1.35rem;font-family:var(--f-en);font-variant-numeric:tabular-nums}
+.stats span{font-size:.8rem;color:var(--muted)}
+.tip{background:var(--accent-soft);border-radius:18px;padding:.9rem 1rem;display:flex;gap:.75rem;align-items:flex-start}
+.tip p{flex:1;min-width:0}
+.tip .icon-btn{width:38px;height:38px;font-size:.9rem;background:transparent;border-color:transparent}
+.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+.cat{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:.9rem .85rem;display:flex;flex-direction:column;align-items:flex-start;gap:.25rem;text-align:start;cursor:pointer;min-width:0}
+.cat:active{transform:scale(.98)}
+.cat .pic{font-size:2rem}
+.cat-ar{font-weight:700;font-size:1.02rem}
+.cat-en{font-size:.85rem;color:var(--muted)}
+.cat-foot{display:flex;align-items:center;gap:.5rem;width:100%;margin-top:.3rem}
+.cat-n{font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums;font-family:var(--f-en)}
+.cat.done{border-color:var(--accent)}
+
+/* Session */
+.s-head{display:flex;align-items:center;gap:.75rem}
+.s-stars{font-family:var(--f-en);font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.s-body{flex:1;display:flex;flex-direction:column;align-items:center;gap:.8rem;text-align:center}
+.s-foot{position:sticky;bottom:0;background:var(--bg);padding-top:.6rem;display:flex;flex-direction:column;gap:.6rem}
+.q{font-size:1.15rem;font-weight:600}
+.example{width:100%;text-align:start;gap:.35rem}
+.example .ex{font-size:1.15rem;line-height:1.6}
+.example .ex b{font-weight:700}
+.big-play{width:96px;height:96px;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);font-size:2.4rem;cursor:pointer;box-shadow:var(--shadow)}
+.big-play:active{transform:scale(.95)}
+.link-btn{background:none;border:0;color:var(--accent);font-weight:600;cursor:pointer;padding:.4rem .8rem;min-height:44px}
+.opts-pic{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;width:100%}
+.opt-pic{background:var(--surface);border:2px solid var(--line);border-radius:20px;min-height:7.2rem;font-size:3.4rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;padding:.5rem}
+.opt-pic .reveal{font-size:1rem}
+.opts-word{display:flex;flex-direction:column;gap:.6rem;width:100%}
+.opt-word{background:var(--surface);border:2px solid var(--line);border-radius:16px;min-height:64px;padding:.5rem 1rem;cursor:pointer}
+.opt-word.reading,.opt-pic.reading{border-color:var(--syl1)}
+.is-right{border-color:var(--good)!important;background:var(--good-soft)!important}
+.is-wrong{border-color:var(--warn)!important;background:var(--warn-soft)!important}
+.slots{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;direction:ltr;min-height:3.8rem;align-items:center;width:100%}
+.slot{min-width:3.4rem;height:3.6rem;border:2px dashed var(--line);border-radius:14px}
+.slot-gap{width:.9rem}
+.tiles{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;direction:ltr;width:100%}
+.tile{font-family:var(--f-en);font-size:1.6rem;font-weight:500;letter-spacing:var(--track);min-width:3.4rem;height:3.6rem;padding:0 .9rem;border-radius:14px;background:var(--surface);border:2px solid var(--line);box-shadow:var(--shadow);cursor:pointer;color:var(--ink)}
+.tile.placed{background:var(--sunk);color:var(--syl1);border-color:transparent;box-shadow:none}
+.tile.placed.s1{color:var(--syl2)}
+.no-syl .tile.placed,.no-syl .tile.placed.s1{color:var(--ink)}
+.tile.used{visibility:hidden}
+.mic{width:110px;height:110px;border-radius:50%;border:0;background:var(--syl2);color:#fff;font-size:2.8rem;cursor:pointer;box-shadow:var(--shadow)}
+.mic.listening{animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.fb{border-radius:20px;padding:1rem;display:flex;flex-direction:column;gap:.7rem}
+.fb.good{background:var(--good-soft)}
+.fb.warn{background:var(--warn-soft)}
+.fb-msg{font-weight:700;font-size:1.15rem}
+.fb.good .fb-msg{color:var(--good)}
+.fb.warn .fb-msg{color:var(--warn)}
+.fb-word{display:flex;flex-wrap:wrap;gap:.6rem;align-items:baseline;justify-content:center}
+.result{align-items:center;text-align:center}
+.result .pic-xl{font-size:4rem}
+.wlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.5rem;width:100%}
+.wrow{width:100%;display:flex;align-items:center;gap:.75rem;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:.6rem .8rem;cursor:pointer;text-align:start;min-height:64px}
+.wrow .pic{font-size:1.8rem;width:2.2rem;text-align:center;flex:none}
+.wrow-main{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start}
+.lvl{display:flex;gap:3px;flex:none}
+.lvl i{width:7px;height:16px;border-radius:3px;background:var(--sunk)}
+.lvl i.on{background:var(--accent)}
+
+/* Review boxes */
+.boxes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.4rem;align-items:end;text-align:center}
+.box-col{height:80px;display:flex;align-items:flex-end;justify-content:center}
+.box-col i{display:block;width:70%;min-height:4px;height:var(--h);background:var(--accent);border-radius:8px 8px 3px 3px;opacity:calc(.35 + var(--o))}
+.box b{display:block;font-family:var(--f-en);font-variant-numeric:tabular-nums}
+.box span{font-size:.72rem;color:var(--muted);display:block;line-height:1.3}
+
+/* Reader */
+.rtools{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;position:sticky;top:0;background:var(--bg);padding-block:.4rem;z-index:2}
+.chipbtn{border:1.5px solid var(--line);background:var(--surface);border-radius:99px;min-height:44px;padding:.3rem .9rem;cursor:pointer;font-size:.92rem}
+.chipbtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
+.reading{font-size:1.4rem;line-height:2.15;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:1rem 1.1rem;max-width:100%}
+.reading p{margin:0 0 .9em}
+.reading p:last-child{margin:0}
+.reading .w{border-radius:.25em;cursor:pointer;white-space:nowrap}
+.reading .w.on{background:var(--hi)}
+.reading .sent{transition:opacity .25s}
+.reading.ruler .sent{opacity:.3}
+.reading.ruler .sent.on{opacity:1}
+.sent.on{background:linear-gradient(transparent 82%,var(--hi) 82%)}
+.ta{width:100%;min-height:12rem;border-radius:16px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:.9rem;font-size:1.2rem;line-height:1.8;resize:vertical}
+.ta:focus{outline:3px solid var(--accent);outline-offset:1px}
+.sample-note{font-size:.85rem;color:var(--muted)}
+
+/* Settings */
+.set h3{font-size:.95rem;font-weight:600;color:var(--muted)}
+.seg{display:flex;flex-wrap:wrap;gap:.45rem}
+.seg button{flex:1 1 30%;min-height:50px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;padding:.35rem .5rem}
+.seg button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
+.sw{display:inline-block;width:1.1rem;height:1.1rem;border-radius:50%;vertical-align:middle;border:1px solid rgba(128,128,128,.4);margin-inline-end:.35rem}
+.preview{text-align:center;padding:.6rem;background:var(--bg);border-radius:16px}
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%;background:none;border:0;min-height:52px;cursor:pointer;text-align:start;padding:0}
+.toggle i{flex:none;width:52px;height:30px;border-radius:99px;background:var(--sunk);position:relative;transition:background-color .2s}
+.toggle i::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:24px;height:24px;border-radius:50%;background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.25);transition:inset-inline-start .2s}
+.toggle[aria-checked="true"] i{background:var(--accent)}
+.toggle[aria-checked="true"] i::after{inset-inline-start:25px}
+input[type=range]{width:100%;accent-color:var(--accent);height:36px}
+.about ol{margin:0;padding-inline-start:1.2rem;display:flex;flex-direction:column;gap:.6rem}
+.about li span{display:block;font-size:.82rem;color:var(--muted)}
+
+/* Sheet + toast + confetti */
+.sheet-wrap{position:fixed;inset:0;background:var(--scrim);display:flex;align-items:flex-end;justify-content:center;z-index:40}
+.sheet{background:var(--surface);width:100%;max-width:640px;max-height:88%;overflow:auto;border-radius:26px 26px 0 0;padding:1.2rem 16px calc(1.2rem + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:.7rem;text-align:center;animation:up .22s ease}
+@keyframes up{from{transform:translateY(30px);opacity:.4}}
+.sheet .grab{width:44px;height:5px;border-radius:9px;background:var(--line)}
+.toast{position:fixed;bottom:calc(84px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:.6rem 1.1rem;border-radius:14px;z-index:60;max-width:calc(100% - 32px);text-align:center;font-size:.95rem}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:70;width:100%;height:100%}
+
+@media (min-width:560px){.cats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+<div id="app">
+  <header class="top">
+    <div class="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i></span><span>كلمة <b>كلمة</b></span></div>
+    <div class="top-r" id="topR"></div>
+  </header>
+  <main id="view" tabindex="-1"></main>
+  <nav class="tabs" aria-label="الأقسام">
+    <button class="tab" data-act="tab" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>الرئيسية</button>
+    <button class="tab" data-act="tab" data-tab="review"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg>المراجعة</button>
+    <button class="tab" data-act="tab" data-tab="reader"><svg viewBox="0 0 24 24"><path d="M3 5c3-1 6-1 9 1v14c-3-2-6-2-9-1z"/><path d="M21 5c-3-1-6-1-9 1v14c3-2 6-2 9-1z"/></svg>القارئ</button>
+    <button class="tab" data-act="tab" data-tab="settings"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>الإعدادات</button>
+  </nav>
+</div>
+<div id="sheet" class="sheet-wrap" hidden></div>
+<div id="toast" class="toast" role="status" hidden></div>
+<canvas id="confetti" hidden></canvas>
+
+<script>
+(() => {
+'use strict';
+const D = document, root = D.documentElement;
+root.lang = 'ar'; root.dir = 'rtl';
+
+/* ================= Content =================
+   word | syllables | Arabic meaning | Arabic pronunciation guide | picture | example | example in Arabic
+   Pictures: emoji, digits, or c:#hex for a colour swatch. */
+const RAW = [
+['greet','التحيات','Greetings','👋',`
+hello|hel·lo|مرحباً|هَ·لو|👋|Hello, my friend!|مرحباً يا صديقي!
+good morning|good mor·ning|صباح الخير|گود مور·نِنگ|🌅|Good morning, mom!|صباح الخير يا أمي!
+good night|good night|تصبح على خير|گود نايت|🌙|Good night, see you tomorrow.|تصبح على خير، أراك غداً.
+thank you|thank you|شكراً لك|ثانك يو|🙏|Thank you for the tea.|شكراً لك على الشاي.
+please|please|من فضلك|پليز|🤲|Water, please.|ماء من فضلك.
+sorry|sor·ry|آسف|سو·ري|😔|I am sorry.|أنا آسف.
+yes|yes|نعم|يَس|✅|Yes, I can.|نعم، أستطيع.
+no|no|لا|نو|❌|No, thank you.|لا، شكراً.
+goodbye|good·bye|مع السلامة|گود·باي|🚶|Goodbye, see you soon.|مع السلامة، أراك قريباً.
+how are you|how are you|كيف حالك؟|هاو آر يو|🙂|How are you today?|كيف حالك اليوم؟
+I am fine|I am fine|أنا بخير|آي آم فاين|😊|I am fine, thank you.|أنا بخير، شكراً.
+welcome|wel·come|أهلاً وسهلاً|وِل·كَم|🤗|Welcome to my house.|أهلاً بك في بيتي.
+friend|friend|صديق|فرِند|🤝|He is my friend.|هو صديقي.
+name|name|اسم|نيم|🏷️|My name is Ali.|اسمي علي.`],
+['numbers','الأرقام','Numbers','🔢',`
+one|one|واحد|وَن|1|I have one cat.|عندي قطة واحدة.
+two|two|اثنان|تو|2|Two cups of tea.|كوبان من الشاي.
+three|three|ثلاثة|ثري|3|Three apples.|ثلاث تفاحات.
+four|four|أربعة|فور|4|Four chairs.|أربعة كراسي.
+five|five|خمسة|فايف|5|Five fingers.|خمسة أصابع.
+six|six|ستة|سِكس|6|Six eggs.|ست بيضات.
+seven|sev·en|سبعة|سِ·ڤِن|7|Seven days in a week.|سبعة أيام في الأسبوع.
+eight|eight|ثمانية|إيت|8|It is eight o'clock.|الساعة الثامنة.
+nine|nine|تسعة|ناين|9|Nine books.|تسعة كتب.
+ten|ten|عشرة|تِن|10|Ten minutes.|عشر دقائق.
+twenty|twen·ty|عشرون|توِن·تي|20|I am twenty.|عمري عشرون سنة.
+hundred|hun·dred|مئة|هَن·درِد|100|One hundred dinars.|مئة دينار.
+thousand|thou·sand|ألف|ثاو·زَند|1000|A thousand thanks!|ألف شكر!
+number|num·ber|رقم|نَم·بَر|#️⃣|What is your number?|ما هو رقمك؟`],
+['colors','الألوان','Colors','🎨',`
+red|red|أحمر|رِد|c:#E5484D|The apple is red.|التفاحة حمراء.
+blue|blue|أزرق|بلو|c:#3E63DD|The sky is blue.|السماء زرقاء.
+green|green|أخضر|گرين|c:#30A46C|The tree is green.|الشجرة خضراء.
+yellow|yel·low|أصفر|يِ·لو|c:#F5D90A|The sun is yellow.|الشمس صفراء.
+orange|or·ange|برتقالي|أو·رِنج|c:#F76B15|I like orange.|أحب اللون البرتقالي.
+purple|pur·ple|بنفسجي|پير·پِل|c:#8E4EC6|A purple flower.|وردة بنفسجية.
+black|black|أسود|بلاك|c:#1C1C1C|The cat is black.|القطة سوداء.
+white|white|أبيض|وايت|c:#FFFFFF|White milk.|حليب أبيض.
+brown|brown|بني|براون|c:#8B5A2B|The chair is brown.|الكرسي بني.
+pink|pink|وردي|پِنك|c:#F4A6C8|A pink dress.|فستان وردي.
+gray|gray|رمادي|گري|c:#9A9A9A|A gray cloud.|غيمة رمادية.
+color|col·or|لون|كَ·لَر|🎨|What color is it?|ما لونه؟`],
+['family','العائلة','Family','👨‍👩‍👧',`
+mother|moth·er|أم|مَ·ذَر|👩|My mother is kind.|أمي طيبة.
+father|fa·ther|أب|فا·ذَر|👨|My father works.|أبي يعمل.
+brother|broth·er|أخ|بْرَ·ذَر|👦|My brother is tall.|أخي طويل.
+sister|sis·ter|أخت|سِس·تَر|👧|My sister is happy.|أختي سعيدة.
+grandmother|grand·moth·er|جدة|گراند·مَ·ذَر|👵|My grandmother cooks.|جدتي تطبخ.
+grandfather|grand·fa·ther|جد|گراند·فا·ذَر|👴|My grandfather reads.|جدي يقرأ.
+baby|ba·by|طفل رضيع|بي·بي|👶|The baby is sleeping.|الطفل نائم.
+son|son|ابن|سَن|🧒|This is my son.|هذا ابني.
+daughter|daugh·ter|ابنة|دو·تَر|👩‍👧|She is my daughter.|هي ابنتي.
+family|fam·i·ly|عائلة|فا·مِ·لي|👨‍👩‍👧‍👦|I love my family.|أحب عائلتي.
+uncle|un·cle|عم / خال|أَن·كِل|🧔|My uncle is funny.|عمي مضحك.
+aunt|aunt|عمة / خالة|آنت|👩‍🦱|My aunt lives here.|عمتي تسكن هنا.
+husband|hus·band|زوج|هَز·بَند|🤵|Her husband is a doctor.|زوجها طبيب.
+wife|wife|زوجة|وايف|👰|His wife is a teacher.|زوجته معلمة.`],
+['body','الجسم','Body','✋',`
+head|head|رأس|هِد|🙆|My head hurts.|رأسي يؤلمني.
+eye|eye|عين|آي|👁️|Close your eyes.|أغمض عينيك.
+ear|ear|أذن|إير|👂|Listen with your ears.|استمع بأذنيك.
+nose|nose|أنف|نوز|👃|My nose is cold.|أنفي بارد.
+mouth|mouth|فم|ماوث|👄|Open your mouth.|افتح فمك.
+hand|hand|يد|هاند|✋|Wash your hands.|اغسل يديك.
+foot|foot|قدم|فوت|🦶|My foot is big.|قدمي كبيرة.
+leg|leg|ساق|لِگ|🦵|My leg is strong.|ساقي قوية.
+arm|arm|ذراع|آرم|💪|Raise your arm.|ارفع ذراعك.
+hair|hair|شعر|هير|💇|Her hair is long.|شعرها طويل.
+teeth|teeth|أسنان|تيث|🦷|Brush your teeth.|نظّف أسنانك.
+heart|heart|قلب|هارت|❤️|My heart is happy.|قلبي سعيد.
+finger|fin·ger|إصبع|فِن·گَر|☝️|One finger.|إصبع واحد.`],
+['food','الطعام','Food','🍞',`
+bread|bread|خبز|برِد|🍞|Fresh bread.|خبز طازج.
+rice|rice|رز|رايس|🍚|I eat rice.|آكل الرز.
+water|wa·ter|ماء|وو·تَر|💧|Drink water.|اشرب الماء.
+milk|milk|حليب|مِلك|🥛|Cold milk.|حليب بارد.
+apple|ap·ple|تفاحة|آ·پِل|🍎|A red apple.|تفاحة حمراء.
+banana|ba·na·na|موزة|بَ·نا·نا|🍌|I like bananas.|أحب الموز.
+chicken|chick·en|دجاج|چِ·كِن|🍗|Chicken and rice.|دجاج ورز.
+egg|egg|بيضة|إگ|🥚|One egg, please.|بيضة واحدة من فضلك.
+tea|tea|شاي|تي|🍵|Tea with sugar.|شاي مع سكر.
+fish|fish|سمك|فِش|🐟|Fish is good.|السمك مفيد.
+tomato|to·ma·to|طماطة|تَ·مي·تو|🍅|A big tomato.|طماطة كبيرة.
+potato|po·ta·to|بطاطا|پَ·تي·تو|🥔|I cook potatoes.|أطبخ البطاطا.
+cheese|cheese|جبن|چيز|🧀|Bread and cheese.|خبز وجبن.
+breakfast|break·fast|فطور|برِك·فَست|🍳|Breakfast is ready.|الفطور جاهز.`],
+['animals','الحيوانات','Animals','🐱',`
+cat|cat|قطة|كات|🐱|The cat is small.|القطة صغيرة.
+dog|dog|كلب|دوگ|🐶|The dog runs.|الكلب يركض.
+bird|bird|طائر|بيرد|🐦|The bird sings.|الطائر يغني.
+horse|horse|حصان|هورس|🐴|A fast horse.|حصان سريع.
+cow|cow|بقرة|كاو|🐄|The cow gives milk.|البقرة تعطي حليباً.
+sheep|sheep|خروف|شيپ|🐑|White sheep.|خروف أبيض.
+camel|cam·el|جمل|كا·مِل|🐫|The camel is tall.|الجمل طويل.
+lion|li·on|أسد|لاي·ون|🦁|The lion is strong.|الأسد قوي.
+elephant|el·e·phant|فيل|إ·لِ·فَنت|🐘|The elephant is big.|الفيل كبير.
+rabbit|rab·bit|أرنب|را·بِت|🐰|The rabbit jumps.|الأرنب يقفز.
+duck|duck|بطة|دَك|🦆|A yellow duck.|بطة صفراء.
+butterfly|but·ter·fly|فراشة|بَ·تَر·فلاي|🦋|A pretty butterfly.|فراشة جميلة.
+monkey|mon·key|قرد|مَن·كي|🐒|The monkey eats a banana.|القرد يأكل موزة.
+turtle|tur·tle|سلحفاة|تير·تِل|🐢|The turtle is slow.|السلحفاة بطيئة.`],
+['home','البيت','Home','🏠',`
+house|house|بيت|هاوس|🏠|This is my house.|هذا بيتي.
+door|door|باب|دور|🚪|Open the door.|افتح الباب.
+window|win·dow|شباك|وِن·دو|🪟|Close the window.|أغلق الشباك.
+bed|bed|سرير|بِد|🛏️|I go to bed.|أذهب إلى السرير.
+chair|chair|كرسي|چير|🪑|Sit on the chair.|اجلس على الكرسي.
+table|ta·ble|طاولة|تي·بِل|🍽️|The table is clean.|الطاولة نظيفة.
+kitchen|kitch·en|مطبخ|كِ·چِن|👩‍🍳|Mom is in the kitchen.|أمي في المطبخ.
+bathroom|bath·room|حمام|باث·روم|🛁|The bathroom is here.|الحمام هنا.
+key|key|مفتاح|كي|🔑|Where is the key?|أين المفتاح؟
+lamp|lamp|مصباح|لامپ|💡|Turn on the lamp.|شغّل المصباح.
+phone|phone|هاتف|فون|📱|My phone is new.|هاتفي جديد.
+television|tel·e·vi·sion|تلفزيون|تِ·لِ·ڤِ·جَن|📺|We watch television.|نشاهد التلفزيون.
+garden|gar·den|حديقة|گار·دِن|🌳|A green garden.|حديقة خضراء.
+room|room|غرفة|روم|🧸|My room is big.|غرفتي كبيرة.`],
+['verbs','أفعال يومية','Daily verbs','🏃',`
+eat|eat|يأكل|إيت|😋|I eat bread.|آكل الخبز.
+drink|drink|يشرب|درِنك|🥤|I drink water.|أشرب الماء.
+sleep|sleep|ينام|سليپ|😴|I sleep at night.|أنام في الليل.
+go|go|يذهب|گو|➡️|I go to school.|أذهب إلى المدرسة.
+come|come|يأتي|كَم|👈|Come here, please.|تعال هنا من فضلك.
+read|read|يقرأ|ريد|📖|I read a book.|أقرأ كتاباً.
+write|write|يكتب|رايت|✍️|I write my name.|أكتب اسمي.
+open|o·pen|يفتح|أو·پِن|📂|Open the book.|افتح الكتاب.
+close|close|يغلق|كلوز|🔒|Close the door.|أغلق الباب.
+play|play|يلعب|پلي|⚽|We play football.|نلعب كرة القدم.
+walk|walk|يمشي|ووك|🚶|I walk to work.|أمشي إلى العمل.
+run|run|يركض|رَن|🏃|I run fast.|أركض بسرعة.
+listen|lis·ten|يستمع|لِ·سِن|🎧|Listen to me.|استمع إليّ.
+speak|speak|يتكلم|سپيك|🗣️|I speak English.|أتكلم الإنكليزية.
+learn|learn|يتعلم|ليرن|🧠|I learn every day.|أتعلم كل يوم.
+cook|cook|يطبخ|كُك|🍲|I cook rice.|أطبخ الرز.
+help|help|يساعد|هِلپ|🆘|Can you help me?|هل تستطيع مساعدتي؟`],
+['time','الوقت','Time','⏰',`
+today|to·day|اليوم|تَ·دي|📅|Today is Friday.|اليوم الجمعة.
+tomorrow|to·mor·row|غداً|تَ·مو·رو|⏭️|See you tomorrow.|أراك غداً.
+yesterday|yes·ter·day|أمس|يِس·تَر·دي|⏮️|Yesterday was hot.|كان الجو حاراً أمس.
+morning|mor·ning|صباح|مور·نِنگ|🌄|I drink tea in the morning.|أشرب الشاي في الصباح.
+evening|eve·ning|مساء|إيڤ·نِنگ|🌆|Good evening!|مساء الخير!
+night|night|ليل|نايت|🌃|The night is quiet.|الليل هادئ.
+hour|hour|ساعة (وقت)|آور|⏰|One hour.|ساعة واحدة.
+minute|min·ute|دقيقة|مِ·نِت|⏱️|Wait a minute.|انتظر دقيقة.
+week|week|أسبوع|ويك|🗓️|One week.|أسبوع واحد.
+year|year|سنة|يير|🎆|Happy new year!|سنة جديدة سعيدة!
+time|time|وقت|تايم|⌛|I have time.|عندي وقت.`],
+['days','أيام الأسبوع','Days','🗓️',`
+Saturday|Sat·ur·day|السبت|سا·تَر·دي|🪐|Saturday is a work day.|السبت يوم عمل. (Saturn = زُحل 🪐)
+Sunday|Sun·day|الأحد|سَن·دي|☀️|Sunday is sunny.|الأحد مشمس. (Sun = شمس ☀️)
+Monday|Mon·day|الاثنين|مَن·دي|🌙|See you on Monday.|أراك يوم الاثنين. (Moon = قمر 🌙)
+Tuesday|Tues·day|الثلاثاء|تيوز·دي|🛡️|Tuesday is busy.|الثلاثاء مزدحم.
+Wednesday|Wed·nes·day|الأربعاء|وِنز·دي|🐪|I study on Wednesday.|أدرس يوم الأربعاء. (تُكتب Wed·nes·day وتُلفظ وِنزدي)
+Thursday|Thurs·day|الخميس|ثيرز·دي|⚡|Thursday is the last work day.|الخميس آخر يوم عمل.
+Friday|Fri·day|الجمعة|فراي·دي|🕌|Friday is a holiday.|الجمعة عطلة.`],
+['adj','الصفات','Describing words','✨',`
+big|big|كبير|بِگ|🏔️|A big house.|بيت كبير.
+small|small|صغير|سمول|🐜|A small cat.|قطة صغيرة.
+hot|hot|حار|هوت|🔥|The tea is hot.|الشاي حار.
+cold|cold|بارد|كولد|🧊|Cold water.|ماء بارد.
+happy|hap·py|سعيد|ها·پي|😄|I am happy.|أنا سعيد.
+sad|sad|حزين|ساد|😢|Why are you sad?|لماذا أنت حزين؟
+good|good|جيد|گود|👍|Very good!|جيد جداً!
+bad|bad|سيء|باد|👎|Bad weather.|طقس سيء.
+beautiful|beau·ti·ful|جميل|بيو·تي·فُل|🌸|The flower is beautiful.|الوردة جميلة.
+easy|ea·sy|سهل|إي·زي|🙌|English is easy!|الإنكليزية سهلة!
+difficult|dif·fi·cult|صعب|دِ·في·كَلت|🧗|It is not difficult.|إنها ليست صعبة.
+new|new|جديد|نيو|✨|A new phone.|هاتف جديد.
+old|old|قديم|أولد|🏚️|An old house.|بيت قديم.
+fast|fast|سريع|فاست|🚀|A fast car.|سيارة سريعة.
+slow|slow|بطيء|سلو|🐌|The snail is slow.|الحلزون بطيء.
+clean|clean|نظيف|كلين|🧽|A clean room.|غرفة نظيفة.`],
+['school','المدرسة والعمل','School & work','🎒',`
+school|school|مدرسة|سكول|🏫|I go to school.|أذهب إلى المدرسة.
+teacher|teach·er|معلم|تي·چَر|👩‍🏫|My teacher is kind.|معلمي لطيف.
+student|stu·dent|طالب|ستيو·دِنت|👨‍🎓|I am a student.|أنا طالب.
+book|book|كتاب|بوك|📚|Read the book.|اقرأ الكتاب.
+pen|pen|قلم|پِن|🖊️|I need a pen.|أحتاج قلماً.
+paper|pa·per|ورقة|پي·پَر|📄|White paper.|ورقة بيضاء.
+question|ques·tion|سؤال|كوِس·چَن|❓|I have a question.|عندي سؤال.
+answer|an·swer|جواب|آن·سَر|💬|What is the answer?|ما هو الجواب؟
+word|word|كلمة|وورد|🔤|A new word.|كلمة جديدة.
+work|work|عمل|وورك|💼|I go to work.|أذهب إلى العمل.
+money|mon·ey|نقود|مَ·ني|💵|I have money.|عندي نقود.
+car|car|سيارة|كار|🚗|My car is white.|سيارتي بيضاء.
+bag|bag|حقيبة|باگ|🎒|My bag is heavy.|حقيبتي ثقيلة.
+English|Eng·lish|الإنكليزية|إنگ·لِش|🇬🇧|I speak English.|أتكلم الإنكليزية.`],
+['long','كلمات طويلة','Long words','🧩',`
+important|im·por·tant|مهم|إم·پور·تَنت|⭐|This is important.|هذا مهم.
+comfortable|com·fort·a·ble|مريح|كَم·فَر·تَ·بِل|🛋️|This chair is comfortable.|هذا الكرسي مريح.
+information|in·for·ma·tion|معلومات|إن·فَر·مي·شَن|ℹ️|I need information.|أحتاج معلومات.
+vegetable|veg·e·ta·ble|خضروات|ڤِ·جِ·تَ·بِل|🥦|Eat your vegetables.|كُل خضرواتك.
+understand|un·der·stand|يفهم|أَن·دَر·ستاند|🧩|I understand you.|أنا أفهمك.
+everything|ev·ery·thing|كل شيء|إڤ·ري·ثِنگ|🌍|Everything is good.|كل شيء جيد.
+computer|com·pu·ter|حاسوب|كَم·پيو·تَر|💻|I use a computer.|أستخدم الحاسوب.
+hospital|hos·pi·tal|مستشفى|هوس·پِ·تَل|🏥|The hospital is near.|المستشفى قريب.
+restaurant|res·tau·rant|مطعم|رِس·تَ·رونت|🍴|Let's go to a restaurant.|لنذهب إلى مطعم.
+interesting|in·ter·est·ing|ممتع|إن·تَ·رِس·تِنگ|🤩|This book is interesting.|هذا الكتاب ممتع.
+different|dif·fer·ent|مختلف|دِ·فِ·رِنت|🔀|We are different.|نحن مختلفون.
+together|to·geth·er|معاً|تَ·گِ·ذَر|👫|We study together.|ندرس معاً.
+remember|re·mem·ber|يتذكر|رِ·مِم·بَر|💭|I remember you.|أتذكرك.
+university|u·ni·ver·si·ty|جامعة|يو·ني·ڤير·سِ·تي|🎓|My brother is at university.|أخي في الجامعة.
+dictionary|dic·tion·ar·y|قاموس|دِك·شَ·نَ·ري|📘|Use a dictionary.|استخدم القاموس.
+favorite|fa·vor·ite|المفضّل|في·ڤَ·رِت|💖|Blue is my favorite color.|الأزرق لوني المفضّل.
+wonderful|won·der·ful|رائع|وَن·دَر·فُل|🌈|You are wonderful!|أنت رائع!
+chocolate|choc·o·late|شوكولاتة|چوك·لِت|🍫|I love chocolate.|أحب الشوكولاتة.
+photograph|pho·to·graph|صورة|فو·تَ·گراف|📷|A family photograph.|صورة عائلية.
+supermarket|su·per·mar·ket|سوبرماركت|سو·پَر·مار·كِت|🛒|I go to the supermarket.|أذهب إلى السوبرماركت.`]
+];
+
+const CATS = [], WORDS = [], BY = new Map();
+RAW.forEach(([id, ar, en, pic, body]) => {
+  const cat = { id, ar, en, pic, words: [] };
+  body.trim().split('\n').forEach(line => {
+    const [w, sy, mean, say, p, ex, exAr] = line.split('|').map(s => s.trim());
+    const word = { id: w.toLowerCase(), en: w, sy, ar: mean, say, pic: p, ex, exAr, cat: id, n: sy.split(/[·\s]+/).length };
+    cat.words.push(word); WORDS.push(word); BY.set(word.id, word);
+  });
+  CATS.push(cat);
+});
+const CAT = Object.fromEntries(CATS.map(c => [c.id, c]));
+
+const SAMPLE = `My name is Sara. I have a big family. Every morning, I drink tea with my mother. Then I go to school.
+
+My teacher is kind, and the lessons are interesting. English is not difficult. I learn a new word every day. Tomorrow, I will read a beautiful book.`;
+
+/* ================= Helpers ================= */
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const shuffle = a => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const DAY = 864e5;
+const dayKey = (t = Date.now()) => { const d = new Date(t); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+const startOfDay = (t = Date.now()) => { const d = new Date(t); d.setHours(0, 0, 0, 0); return d.getTime(); };
+const plural = (n, one, two, few, many) => n === 1 ? one : n === 2 ? two : (n >= 3 && n <= 10 ? `${n} ${few}` : `${n} ${many}`);
+const P = {
+  word: n => plural(n, 'كلمة واحدة', 'كلمتان', 'كلمات', 'كلمة'),
+  day: n => plural(n, 'يوم واحد', 'يومان', 'أيام', 'يوماً'),
+  syl: n => plural(n, 'مقطع واحد', 'مقطعان', 'مقاطع', 'مقطعاً'),
+};
+
+function picHTML(p, cls = '') {
+  if (p.startsWith('c:')) return `<span class="swatch ${cls}" style="background:${esc(p.slice(2))}" aria-hidden="true"></span>`;
+  if (/^[0-9]+$/.test(p)) return `<span class="pic-num ${cls}" aria-hidden="true">${esc(p)}</span>`;
+  return `<span class="pic ${cls}" aria-hidden="true">${p}</span>`;
+}
+
+/* ================= Storage ================= */
+const KEY = 'kalima-kalima.v1';
+const DEFAULT = { settings: { font: 'lexend', size: 1, track: 1, bg: 'auto', syl: true, hint: true, rate: 0.85, sound: true }, words: {}, days: {}, stars: 0, tip: true, readerText: null };
+let S = load();
+function load() {
+  const base = JSON.parse(JSON.stringify(DEFAULT));
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) { const d = JSON.parse(raw); return { ...base, ...d, settings: { ...base.settings, ...(d.settings || {}) } }; }
+  } catch (e) { /* storage unavailable: start fresh */ }
+  return base;
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* ignore */ } }
+
+/* ================= Spaced repetition (Leitner boxes) ================= */
+const INT = [0, 1, 2, 4, 8, 16];
+function touch(id) { if (!S.words[id]) S.words[id] = { b: 0, d: Date.now(), c: 0, x: 0 }; return S.words[id]; }
+function grade(id, ok) {
+  const now = Date.now(), r = touch(id);
+  if (ok) {
+    r.c++;
+    if (r.b === 0 || r.d <= now) { r.b = Math.min(5, r.b + 1); r.d = startOfDay(now) + INT[r.b] * DAY; }
+  } else { r.x++; r.b = 1; r.d = now; }
+}
+const dueWords = () => WORDS.filter(w => S.words[w.id] && S.words[w.id].d <= Date.now());
+const seenWords = () => WORDS.filter(w => S.words[w.id]);
+function countAnswer() { const k = dayKey(); S.days[k] = (S.days[k] || 0) + 1; }
+function streakDays() {
+  let n = 0, t = Date.now();
+  if (!(S.days[dayKey(t)] > 0)) t -= DAY;
+  while (S.days[dayKey(t)] > 0) { n++; t -= DAY; }
+  return n;
+}
+
+/* ================= Syllables ================= */
+const ONSETS = new Set(['bl','br','cl','cr','dr','fl','fr','gl','gr','pl','pr','sc','sk','sl','sm','sn','sp','st','sw','tr','tw','wr','ch','sh','th','ph','wh','qu']);
+const DIGRAPH_BEFORE = new Set(['ch','sh','th','ph','wh','gh','qu']);
+function syllabify(word) {
+  const lower = word.toLowerCase();
+  const known = BY.get(lower);
+  if (known && !/\s/.test(known.sy)) {
+    const parts = known.sy.split('·'); let i = 0;
+    return parts.map(p => { const s = word.slice(i, i + p.length); i += p.length; return s; });
+  }
+  if (!/^[a-z]+$/.test(lower) || lower.length <= 3) return [word];
+  for (const suf of ['ing', 'ful', 'ness', 'ment', 'less']) {
+    const stem = lower.slice(0, -suf.length);
+    if (lower.endsWith(suf) && stem.length >= 3 && /[aeiouy]/.test(stem)) {
+      return [...syllabify(word.slice(0, -suf.length)), word.slice(-suf.length)];
+    }
+  }
+  return coreSyl(word);
+}
+function coreSyl(word) {
+  const s = word.toLowerCase(), n = s.length;
+  const vowelAt = i => {
+    const c = s[i];
+    if ('aeiou'.includes(c)) return true;
+    if (c === 'y') return i > 0 && !'aeiou'.includes(s[i - 1]);
+    return false;
+  };
+  const v = [...s].map((_, i) => vowelAt(i));
+  const consLe = n >= 4 && s.endsWith('le') && !vowelAt(n - 3);
+  if (s.endsWith('e') && n > 3 && !consLe && v[n - 1]) v[n - 1] = false;           // silent final e
+  if (/[^td]ed$/.test(s)) v[n - 2] = false;                                       // played, called
+  if (/[^sxzhgc]es$/.test(s) && !consLe) v[n - 2] = false;                        // makes, names
+  const consLes = n >= 5 && s.endsWith('les') && !vowelAt(n - 4);
+  if (consLes) v[n - 2] = true;                                                   // tables
+  const groups = [];
+  for (let i = 0; i < n; i++) {
+    if (v[i]) { if (groups.length && groups[groups.length - 1].e === i - 1) groups[groups.length - 1].e = i; else groups.push({ s: i, e: i }); }
+  }
+  if (groups.length <= 1) return [word];
+  const cuts = [];
+  for (let g = 0; g < groups.length - 1; g++) {
+    const a = groups[g].e + 1, b = groups[g + 1].s, cl = s.slice(a, b), k = cl.length;
+    const lastGroup = g + 1 === groups.length - 1;
+    const leEnd = consLe ? n : (consLes ? n - 1 : 0);
+    if (lastGroup && leEnd && b === leEnd - 1) { cuts.push(leEnd - 3); continue; }
+    if (k === 0) continue;
+    if (k === 1) { cuts.push(cl === 'x' ? b : a); continue; }
+    if (k === 2) {
+      if (DIGRAPH_BEFORE.has(cl)) cuts.push(a);
+      else if (cl === 'ck') cuts.push(b);
+      else cuts.push(a + 1);
+      continue;
+    }
+    const tail = cl.slice(-2);
+    if (ONSETS.has(tail) && !DIGRAPH_BEFORE.has(cl.slice(0, 2))) cuts.push(b - 2);
+    else cuts.push(b - 1);
+  }
+  const out = []; let prev = 0;
+  [...new Set(cuts)].sort((x, y) => x - y).forEach(c => { if (c > prev && c < n) { out.push(word.slice(prev, c)); prev = c; } });
+  out.push(word.slice(prev));
+  return out;
+}
+
+/* ================= Rendering helpers ================= */
+function chunks(sy, size = 'md') {
+  const letters = sy.replace(/[·\s]/g, '').length;
+  const extra = size === 'xl' ? (letters >= 13 ? ' xlong' : letters >= 10 ? ' long' : '') : '';
+  const inner = sy.split(' ').map(w => w.split('·').map((p, i) => `<span class="sy s${i % 2}">${esc(p)}</span>`).join('<span class="dot" aria-hidden="true">·</span><wbr>')).join(' ');
+  return `<span class="chunks ${size}${extra}" dir="ltr" lang="en">${inner}</span>`;
+}
+const beats = n => `<div class="beats" aria-hidden="true">${'<i></i>'.repeat(n)}</div>`;
+function sentenceHTML(text, focus) {
+  return text.split(/(\s+)/).map(tok => {
+    if (/^\s+$/.test(tok)) return ' ';
+    const m = tok.match(/^([^A-Za-z']*)([A-Za-z']+)([^A-Za-z']*)$/);
+    if (!m) return esc(tok);
+    const parts = m[2].includes("'") ? [m[2]] : syllabify(m[2]);
+    const inner = parts.map((p, i) => `<span class="sy s${i % 2}">${esc(p)}</span>`).join('<span class="dot" aria-hidden="true">·</span>');
+    const isFocus = focus && focus.split(' ').includes(m[2].toLowerCase());
+    return esc(m[1]) + (isFocus ? `<b>${inner}</b>` : inner) + esc(m[3]);
+  }).join('');
+}
+
+/* ================= Speech (native bridge in the Android app, Web Speech elsewhere) ================= */
+const NA = (window.Android && typeof window.Android.speak === 'function') ? window.Android : null;
+const Speech = (() => {
+  let seq = 0; const cbs = {};
+  const synth = window.speechSynthesis || null;
+  let voice = null, warned = false;
+  function pickVoice() {
+    if (!synth) return;
+    const vs = synth.getVoices();
+    voice = vs.find(v => /en[-_]US/i.test(v.lang) && v.localService) || vs.find(v => /en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+  }
+  if (synth) { pickVoice(); try { synth.addEventListener('voiceschanged', pickVoice); } catch (e) { /* old engines */ } }
+  function done(id, cancelled) { const c = cbs[id]; delete cbs[id]; if (c && c.onEnd) c.onEnd(!!cancelled); }
+  function range(id, start) { const c = cbs[id]; if (c && c.onWord) c.onWord(start); }
+  function stop() {
+    Object.keys(cbs).forEach(id => done(id, true));
+    if (NA) { try { NA.stop(); } catch (e) { /* ignore */ } } else if (synth) synth.cancel();
+  }
+  function speak(text, { rate = S.settings.rate, onEnd, onWord } = {}) {
+    stop();
+    const id = 'u' + (++seq);
+    cbs[id] = { onEnd, onWord };
+    if (NA) {
+      let ready = true; try { ready = NA.isTtsReady(); } catch (e) { /* older bridge */ }
+      if (!ready && !warned) { warned = true; toast('لا يوجد صوت إنكليزي. ثبّت «خدمات Google للنطق» من متجر Play.'); }
+      NA.speak(text, rate, id); return id;
+    }
+    if (!synth) { toast('النطق غير متوفر في هذا المتصفح'); setTimeout(() => done(id), 300); return id; }
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US'; if (voice) u.voice = voice; u.rate = rate;
+    u.onboundary = e => { if (!e.name || e.name === 'word') range(id, e.charIndex); };
+    u.onend = () => { if (cbs[id]) done(id); };
+    u.onerror = () => { if (cbs[id]) done(id); };
+    synth.speak(u);
+    return id;
+  }
+  window.__tts = { done: id => { if (cbs[id]) done(id); }, range: (id, s) => range(id, s) };
+
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let blocked = false, pending = null;
+  function canListen() { if (NA) { try { return !!NA.canListen(); } catch (e) { return false; } } return !!SR && !blocked; }
+  function listen() {
+    stop();
+    return new Promise((res, rej) => {
+      if (NA) { pending = { res, rej }; NA.listen(); return; }
+      if (!SR) { rej('unsupported'); return; }
+      const r = new SR(); let got = false;
+      r.lang = 'en-US'; r.maxAlternatives = 5; r.interimResults = false;
+      r.onresult = e => { got = true; res([...e.results[0]].map(a => a.transcript)); };
+      r.onerror = e => { if (['not-allowed', 'service-not-allowed', 'audio-capture'].includes(e.error)) blocked = true; rej(e.error); };
+      r.onend = () => { if (!got) rej('no-speech'); };
+      try { r.start(); } catch (err) { blocked = true; rej('blocked'); }
+    });
+  }
+  window.__stt = {
+    result: json => { if (pending) { let a = []; try { a = JSON.parse(json); } catch (e) { /* ignore */ } pending.res(a); pending = null; } },
+    error: msg => { if (pending) { if (msg === 'denied' || msg === 'unsupported') blocked = true; pending.rej(msg); pending = null; } },
+  };
+  return { speak, stop, canListen, listen, isBlocked: () => blocked };
+})();
+
+const NUMS = { one: '1', two: '2', three: '3', four: '4', five: '5', six: '6', seven: '7', eight: '8', nine: '9', ten: '10', twenty: '20', hundred: '100', thousand: '1000' };
+const norm = s => s.toLowerCase().replace(/[’']/g, "'").replace(/[^a-z0-9' ]+/g, ' ').replace(/\s+/g, ' ').trim();
+function lev(a, b) {
+  const m = a.length, n = b.length, d = Array.from({ length: m + 1 }, (_, i) => [i, ...Array(n).fill(0)]);
+  for (let j = 1; j <= n; j++) d[0][j] = j;
+  for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+  return d[m][n];
+}
+function heardOk(target, alts) {
+  const t = norm(target);
+  const forms = new Set([t, t.replace(/\bi am\b/, "i'm"), t.replace(/'/g, ''), NUMS[t] || t]);
+  return alts.some(a => {
+    const h = norm(a);
+    return [...forms].some(f => h === f || (' ' + h + ' ').includes(' ' + f + ' ') || 1 - lev(h, f) / Math.max(h.length, f.length, 1) >= 0.75);
+  });
+}
+
+/* ================= Sound + touch feedback ================= */
+let actx = null;
+function tone(seq) {
+  if (!S.settings.sound) return;
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const t0 = actx.currentTime;
+    seq.forEach(([f, dt, dur, type = 'sine', vol = 0.12]) => {
+      const o = actx.createOscillator(), g = actx.createGain();
+      o.type = type; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t0 + dt);
+      g.gain.linearRampToValueAtTime(vol, t0 + dt + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + dt + dur);
+      o.connect(g); g.connect(actx.destination);
+      o.start(t0 + dt); o.stop(t0 + dt + dur + 0.05);
+    });
+  } catch (e) { /* audio unavailable */ }
+}
+const SND = {
+  ok: () => tone([[660, 0, 0.18], [880, 0.12, 0.3]]),
+  soft: () => tone([[330, 0, 0.3, 'triangle', 0.08]]),
+  tick: () => tone([[540, 0, 0.09, 'triangle', 0.07]]),
+  win: () => tone([[523, 0, 0.22], [659, 0.15, 0.22], [784, 0.3, 0.4]]),
+};
+function buzz(ms) { try { if (NA && NA.vibrate) NA.vibrate(ms); else if (navigator.vibrate) navigator.vibrate(ms); } catch (e) { /* ignore */ } }
+
+function clap(host, text) {
+  const sys = [...host.querySelectorAll('.chunks .sy')];
+  if (!sys.length) return;
+  Speech.stop();
+  const step = Math.round(560 / Math.max(0.5, S.settings.rate));
+  let i = 0;
+  const tick = () => {
+    sys.forEach(s => s.classList.remove('beat'));
+    if (i < sys.length) { sys[i].classList.add('beat'); SND.tick(); buzz(25); i++; setTimeout(tick, step); }
+    else setTimeout(() => sayWith(host.querySelector('.chunks'), text, Math.max(0.5, S.settings.rate - 0.25)), 150);
+  };
+  tick();
+}
+function sayWith(el, text, rate) {
+  if (el) el.classList.add('speaking');
+  Speech.speak(text, { rate, onEnd: () => el && el.classList.remove('speaking') });
+}
+
+/* ================= Theme ================= */
+function applySettings() {
+  const s = S.settings;
+  root.style.setProperty('--scale', s.size);
+  root.style.setProperty('--track', ['0.03em', '0.1em', '0.17em'][s.track]);
+  root.style.setProperty('--wspace', ['0.3em', '0.45em', '0.65em'][s.track]);
+  if (s.font === 'lexend') delete root.dataset.font; else root.dataset.font = s.font;
+  if (s.bg === 'auto') {
+    delete root.dataset.bg;
+    if (root.dataset.themeOwner === 'app') { root.removeAttribute('data-theme'); delete root.dataset.themeOwner; }
+  } else if (s.bg === 'dark') {
+    delete root.dataset.bg; root.dataset.theme = 'dark'; root.dataset.themeOwner = 'app';
+  } else {
+    root.dataset.bg = s.bg; root.dataset.theme = 'light'; root.dataset.themeOwner = 'app';
+  }
+  root.classList.toggle('no-syl', !s.syl);
+  root.classList.toggle('no-hint', !s.hint);
+  syncBars();
+}
+function syncBars() {
+  requestAnimationFrame(() => {
+    const cs = getComputedStyle(root);
+    const top = cs.getPropertyValue('--bg').trim(), bottom = cs.getPropertyValue('--surface').trim();
+    const meta = D.querySelector('meta[name="theme-color"]'); if (meta) meta.content = top;
+    if (NA && NA.setSystemBars) {
+      const m = top.match(/^#([0-9a-f]{6})$/i); let light = true;
+      if (m) { const v = parseInt(m[1], 16); light = (0.299 * (v >> 16) + 0.587 * ((v >> 8) & 255) + 0.114 * (v & 255)) > 140; }
+      try { NA.setSystemBars(top, bottom, light); } catch (e) { /* ignore */ }
+    }
+  });
+}
+try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncBars); } catch (e) { /* old engines */ }
+
+/* ================= UI state ================= */
+const view = D.getElementById('view'), app = D.getElementById('app');
+let TAB = 'home', SES = null;
+const READER = { editing: false, ruler: false, playing: false, cur: -1 };
+
+function render() {
+  Speech.stop();
+  app.classList.toggle('in-session', !!SES);
+  D.querySelectorAll('.tab').forEach(t => { if (t.dataset.tab === TAB) t.setAttribute('aria-current', 'page'); else t.removeAttribute('aria-current'); });
+  D.getElementById('topR').innerHTML = `<span class="chip" title="أيام متتالية">🔥 <span class="en">${streakDays()}</span></span><span class="chip" title="النجوم">⭐ <span class="en">${S.stars}</span></span>`;
+  if (SES) view.innerHTML = SES.finished ? viewResult() : viewSession();
+  else view.innerHTML = ({ home: viewHome, review: viewReview, reader: viewReader, settings: viewSettings })[TAB]();
+  view.scrollTop = 0;
+  if (SES && !SES.finished) afterStep();
+}
+function go(tab) { TAB = tab; SES = null; READER.playing = false; render(); }
+
+/* ---------- Home ---------- */
+function wordOfDay() {
+  const list = WORDS.filter(w => w.n >= 3);
+  return list[Math.floor(startOfDay() / DAY) % list.length];
+}
+function viewHome() {
+  const learned = seenWords().length, due = dueWords().length, today = S.days[dayKey()] || 0, goal = 10;
+  const w = wordOfDay();
+  const nextCat = CATS.find(c => c.words.some(x => !S.words[x.id]));
+  const hr = new Date().getHours();
+  return `
+  <section class="hello"><p class="label">${hr < 12 ? 'صباح الخير' : 'مساء الخير'}</p><h1>نتعلّم الإنكليزية كلمة كلمة، وبهدوء.</h1></section>
+  <section class="wotd" data-clap-host aria-label="كلمة اليوم">
+    <div class="wotd-head"><span class="label">كلمة اليوم</span><span class="label">${P.syl(w.n)}</span></div>
+    <div data-say="${esc(w.en)}">${chunks(w.sy, 'xl')}</div>
+    ${beats(w.n)}
+    <p class="hint">${esc(w.say)}</p>
+    <p class="mean">${picHTML(w.pic)} ${esc(w.ar)}</p>
+    <div class="row center">
+      <button class="btn btn-soft small" data-act="say" data-text="${esc(w.en)}">🔊 استمع</button>
+      <button class="btn btn-ghost small" data-act="say" data-text="${esc(w.en)}" data-slow="1">🐢 ببطء</button>
+      <button class="btn btn-ghost small" data-act="clap" data-text="${esc(w.en)}">👏 صفّق المقاطع</button>
+    </div>
+  </section>
+  <section class="card today">
+    <div class="top-line"><div><span class="big-num">${today}</span> <span class="muted">من ${goal} إجابات اليوم</span></div><span class="chip">🔥 ${streakDays() ? P.day(streakDays()) + ' متتالية' : 'ابدأ سلسلة أيامك اليوم'}</span></div>
+    <div class="bar"><i style="width:${Math.min(100, today / goal * 100)}%"></i></div>
+    <div class="stats"><div><b>${learned}</b><span>كلمة تعلّمتها</span></div><div><b>${S.stars}</b><span>نجمة</span></div><div><b>${due}</b><span>تنتظر المراجعة</span></div></div>
+    ${nextCat ? `<button class="btn btn-primary btn-block" data-act="lesson" data-cat="${nextCat.id}">ابدأ درس: ${esc(nextCat.ar)}</button>` : `<p>أكملت كل الدروس. واصل المراجعة لتثبيت الكلمات.</p>`}
+    ${due ? `<button class="btn btn-soft btn-block" data-act="review">راجع ${P.word(due)}</button>` : ''}
+  </section>
+  ${S.tip ? `<div class="tip"><p>اضغط على أي كلمة إنكليزية لتسمعها. زر «صفّق المقاطع» يقسم الكلمة الطويلة إلى قطع صغيرة، قطعة بعد قطعة.</p><button class="icon-btn" data-act="tipClose" aria-label="إخفاء النصيحة">✕</button></div>` : ''}
+  <section class="stack"><h2 class="h2">الدروس</h2><div class="cats">${CATS.map(catCard).join('')}</div></section>`;
+}
+function catCard(c) {
+  const seen = c.words.filter(w => S.words[w.id]).length, pct = Math.round(seen / c.words.length * 100);
+  return `<button class="cat${seen === c.words.length ? ' done' : ''}" data-act="lesson" data-cat="${c.id}">
+    <span class="pic">${c.pic}</span><span class="cat-ar">${esc(c.ar)}</span><span class="cat-en en">${esc(c.en)}</span>
+    <span class="cat-foot"><span class="bar thin"><i style="width:${pct}%"></i></span><span class="cat-n">${seen}/${c.words.length}</span></span></button>`;
+}
+
+/* ---------- Sessions ---------- */
+function tokens(w) {
+  const out = [];
+  const words = w.sy.split(' ');
+  if (words.length === 1 && !w.sy.includes('·')) {
+    if (w.en.length <= 6) [...w.en].forEach((ch, i) => out.push({ t: ch, gap: false }));
+    else out.push({ t: w.en, gap: false });
+    return out;
+  }
+  words.forEach((wd, wi) => wd.split('·').forEach((p, pi) => out.push({ t: p, gap: wi > 0 && pi === 0 })));
+  return out;
+}
+function exTypes() { return Speech.canListen() ? ['picture', 'build', 'speak'] : ['picture', 'build', 'picture', 'speak']; }
+const ALT = { listen: 'picture', picture: 'listen', build: 'listen', speak: 'listen' };
+
+function startLesson(catId) {
+  const cat = CAT[catId];
+  let pick = cat.words.filter(w => !S.words[w.id]).slice(0, 5), fresh = true;
+  if (!pick.length) { pick = shuffle(cat.words).sort((a, b) => S.words[a.id].b - S.words[b.id].b).slice(0, 5); fresh = false; }
+  const steps = [];
+  if (fresh) {
+    pick.forEach(w => { steps.push({ t: 'intro', w }); steps.push({ t: 'listen', w }); });
+    shuffle(pick).forEach(w => steps.push({ t: shuffle(exTypes())[0], w }));
+  } else {
+    shuffle(pick).forEach(w => steps.push({ t: 'listen', w }));
+    shuffle(pick).forEach(w => steps.push({ t: shuffle(exTypes())[0], w }));
+  }
+  beginSession({ kind: 'lesson', title: cat.ar, cat: catId, steps, words: pick });
+}
+function startReview(practice) {
+  const pool = practice ? shuffle(seenWords()).slice(0, 8) : shuffle(dueWords()).slice(0, 10);
+  if (!pool.length) { toast('لا توجد كلمات الآن'); return; }
+  const types = ['listen', 'picture', 'build', 'listen', 'picture'];
+  if (Speech.canListen()) types.push('speak');
+  beginSession({ kind: practice ? 'practice' : 'review', title: practice ? 'تدريب سريع' : 'مراجعة', steps: pool.map(w => ({ t: shuffle(types)[0], w })), words: pool });
+}
+function beginSession(o) { SES = { ...o, i: 0, stars: 0, correct: 0, answered: 0, retried: new Set() }; render(); }
+
+function options(w, n) {
+  const sameCat = CAT[w.cat].words.filter(x => x.id !== w.id && x.pic !== w.pic);
+  let pool = shuffle(sameCat).slice(0, n - 1);
+  if (pool.length < n - 1) pool = pool.concat(shuffle(WORDS.filter(x => x.id !== w.id && !pool.includes(x) && x.pic !== w.pic)).slice(0, n - 1 - pool.length));
+  return shuffle([w, ...pool]);
+}
+
+function viewSession() {
+  const st = SES.steps[SES.i];
+  const pct = Math.round(SES.i / SES.steps.length * 100);
+  return `<div class="s-head"><button class="icon-btn" data-act="exit" aria-label="خروج من الدرس">✕</button><div class="bar"><i style="width:${pct}%"></i></div><span class="s-stars" id="sStars">⭐ ${SES.stars}</span></div>
+  <div class="s-body" data-clap-host>${stepHTML(st)}</div>
+  <div class="s-foot" id="foot">${footHTML(st)}</div>`;
+}
+function stepHTML(st) {
+  const w = st.w;
+  if (st.t === 'intro') {
+    touch(w.id); save();
+    return `<p class="label">كلمة جديدة · ${esc(CAT[w.cat].ar)}</p>
+    <div class="pic-xl">${picHTML(w.pic)}</div>
+    <div data-say="${esc(w.en)}">${chunks(w.sy, 'xl')}</div>
+    ${beats(w.n)}
+    <p class="hint">${esc(w.say)}</p>
+    <p class="mean">${esc(w.ar)}</p>
+    <div class="row center">${sayButtons(w)}</div>
+    <div class="card example" data-say="${esc(w.ex)}"><div class="ex en" dir="ltr">${sentenceHTML(w.ex, w.id)}</div><div>${esc(w.exAr)}</div><span class="muted sm">اضغط على الجملة لتسمعها</span></div>`;
+  }
+  if (st.t === 'listen') {
+    st.opts = st.opts || options(w, 4);
+    return `<p class="q">اسمع، ثم اختر الصورة الصحيحة</p>
+    <button class="big-play" data-act="say" data-text="${esc(w.en)}" aria-label="استمع مرة أخرى">🔊</button>
+    <button class="link-btn" data-act="say" data-text="${esc(w.en)}" data-slow="1">🐢 أبطأ</button>
+    <div class="opts-pic">${st.opts.map(o => `<button class="opt-pic" data-act="pick" data-id="${esc(o.id)}" aria-label="${esc(o.ar)}">${picHTML(o.pic)}<span class="reveal" hidden>${chunks(o.sy, 'sm')}</span></button>`).join('')}</div>`;
+  }
+  if (st.t === 'picture') {
+    st.opts = st.opts || options(w, 3);
+    return `<p class="q">أي كلمة تعني هذا؟</p>
+    <div class="pic-lg">${picHTML(w.pic)}</div><p class="mean">${esc(w.ar)}</p>
+    <div class="opts-word">${st.opts.map(o => `<button class="opt-word" data-act="pick" data-id="${esc(o.id)}">${chunks(o.sy, 'md')}</button>`).join('')}</div>
+    <button class="link-btn" data-act="readOpts">🔊 اقرأ لي الخيارات</button>`;
+  }
+  if (st.t === 'build') {
+    if (!st.tok) {
+      st.tok = tokens(w);
+      const idx = st.tok.map((_, i) => i);
+      let order = shuffle(idx), tries = 0;
+      while (idx.length > 1 && order.every((v, i) => st.tok[v].t === st.tok[i].t) && tries++ < 8) order = shuffle(idx);
+      st.order = order; st.placed = [];
+    }
+    return `<p class="q">رتّب القطع لتكوين الكلمة</p>
+    <div class="pic-lg">${picHTML(w.pic)}</div><p class="mean">${esc(w.ar)}</p>
+    <button class="btn btn-soft small" data-act="say" data-text="${esc(w.en)}">🔊 استمع للكلمة</button>
+    <div id="buildArea" class="stack" style="width:100%">${buildHTML(st)}</div>`;
+  }
+  if (st.t === 'speak') {
+    const can = Speech.canListen();
+    return `<p class="q">قل الكلمة بصوت عالٍ</p>
+    <div class="pic-lg">${picHTML(w.pic)}</div>
+    <div data-say="${esc(w.en)}">${chunks(w.sy, 'xl')}</div>
+    <p class="hint">${esc(w.say)}</p><p class="mean">${esc(w.ar)}</p>
+    <div class="row center"><button class="btn btn-ghost small" data-act="say" data-text="${esc(w.en)}">🔊 اسمعها أولاً</button><button class="btn btn-ghost small" data-act="clap" data-text="${esc(w.en)}">👏 صفّق</button></div>
+    ${can ? `<button class="mic" id="mic" data-act="mic" aria-label="اضغط ثم تكلّم">🎤</button><p class="muted" id="micStatus" role="status">اضغط على الميكروفون، ثم قل الكلمة.</p>`
+          : `<p class="muted">قلها بصوت عالٍ ثلاث مرات وأنت تنظر إلى القطع الملونة.</p>`}`;
+  }
+  return '';
+}
+function sayButtons(w) {
+  return `<button class="btn btn-soft small" data-act="say" data-text="${esc(w.en)}">🔊 استمع</button>
+  <button class="btn btn-ghost small" data-act="say" data-text="${esc(w.en)}" data-slow="1">🐢 ببطء</button>
+  <button class="btn btn-ghost small" data-act="clap" data-text="${esc(w.en)}">👏 صفّق</button>`;
+}
+function buildHTML(st) {
+  const placedSet = new Set(st.placed);
+  let slots = '';
+  st.tok.forEach((tk, i) => {
+    if (tk.gap) slots += '<span class="slot-gap"></span>';
+    const k = st.placed[i];
+    slots += k === undefined ? '<span class="slot" aria-hidden="true"></span>'
+      : `<button class="tile placed s${syllIndex(st, i) % 2}" data-act="unplace" data-pos="${i}">${esc(st.tok[k].t)}</button>`;
+  });
+  const tiles = st.order.map(k => `<button class="tile${placedSet.has(k) ? ' used' : ''}" data-act="place" data-k="${k}" ${placedSet.has(k) ? 'tabindex="-1" aria-hidden="true"' : ''}>${esc(st.tok[k].t)}</button>`).join('');
+  return `<div class="slots" dir="ltr">${slots}</div><div class="tiles" dir="ltr">${tiles}</div>`;
+}
+function syllIndex(st, pos) { let n = 0; for (let i = pos; i > 0 && !st.tok[i].gap; i--) n++; return n; }
+function footHTML(st) {
+  if (st.t === 'intro') return `<button class="btn btn-primary btn-block" data-act="next">حفظتها، التالي</button>`;
+  if (st.t === 'speak') return Speech.canListen()
+    ? `<button class="btn btn-ghost btn-block" data-act="skipSpeak">تخطَّ هذه الآن</button>`
+    : `<button class="btn btn-primary btn-block" data-act="selfSpeak">قلتها ✓</button>`;
+  return '';
+}
+function afterStep() {
+  const st = SES.steps[SES.i];
+  if (st.t === 'intro' || st.t === 'listen') setTimeout(() => { if (SES && SES.steps[SES.i] === st) sayWith(view.querySelector('.s-body .chunks'), st.w.en); }, 350);
+}
+
+const PRAISE = ['أحسنت!', 'ممتاز!', 'رائع، استمر!', 'صحيح!', 'عظيم!', 'برافو!'];
+function answer(ok, pickedId) {
+  const st = SES.steps[SES.i];
+  if (st.answered) return;
+  st.answered = true;
+  const w = st.w;
+  if (!st.retry && (st.t !== 'speak' || ok)) grade(w.id, ok);
+  countAnswer(); SES.answered++;
+  if (ok) { SES.correct++; if (!st.retry) { SES.stars++; S.stars++; } SND.ok(); buzz(30); }
+  else {
+    SND.soft(); buzz(70);
+    if (!SES.retried.has(w.id)) { SES.retried.add(w.id); SES.steps.push({ t: ALT[st.t], w, retry: true }); }
+  }
+  save();
+  view.querySelectorAll('[data-act="pick"]').forEach(b => {
+    b.disabled = true;
+    if (b.dataset.id === w.id) b.classList.add('is-right'); else if (b.dataset.id === pickedId) b.classList.add('is-wrong');
+    const rv = b.querySelector('.reveal'); if (rv) rv.hidden = false;
+  });
+  const s = D.getElementById('sStars'); if (s) s.textContent = '⭐ ' + SES.stars;
+  D.getElementById('foot').innerHTML = `<div class="fb ${ok ? 'good' : 'warn'}" role="status">
+    <div class="fb-msg">${ok ? PRAISE[Math.floor(Math.random() * PRAISE.length)] : (st.t === 'speak' ? 'قريب! اسمعها وحاول مرة ثانية لاحقاً.' : 'لا بأس، هذه هي الكلمة:')}</div>
+    ${ok ? '' : `<div class="fb-word" data-say="${esc(w.en)}">${chunks(w.sy, 'lg')}<span>${esc(w.ar)}</span></div>`}
+    <button class="btn btn-primary btn-block" data-act="next">التالي</button></div>`;
+  if (!ok) setTimeout(() => Speech.speak(w.en, { rate: Math.max(0.5, S.settings.rate - 0.15) }), 400);
+}
+function nextStep() {
+  SES.i++;
+  if (SES.i >= SES.steps.length) { SES.finished = true; save(); render(); SND.win(); confetti(); }
+  else render();
+}
+function viewResult() {
+  const pct = SES.answered ? Math.round(SES.correct / SES.answered * 100) : 100;
+  const more = SES.kind === 'lesson' && CAT[SES.cat].words.some(w => !S.words[w.id]);
+  return `<div class="s-body result">
+    <div class="pic-xl" aria-hidden="true">🌟</div>
+    <h1 class="h1">أنهيت ${SES.kind === 'lesson' ? 'الدرس' : 'المراجعة'}!</h1>
+    <p class="lead">حصلت على <b class="en">${SES.stars}</b> ⭐ · إجابات صحيحة <span class="en">${pct}%</span></p>
+    <ul class="wlist">${SES.words.map(wordRow).join('')}</ul>
+  </div>
+  <div class="s-foot">
+    ${more ? `<button class="btn btn-primary btn-block" data-act="lesson" data-cat="${SES.cat}">تابع: ${esc(CAT[SES.cat].ar)}</button>` : ''}
+    <button class="btn ${more ? 'btn-ghost' : 'btn-primary'} btn-block" data-act="tab" data-tab="home">الرئيسية</button>
+  </div>`;
+}
+function wordRow(w) {
+  const r = S.words[w.id], b = r ? Math.max(1, r.b) : 0;
+  return `<li><button class="wrow" data-act="word" data-w="${esc(w.en)}">${picHTML(w.pic)}<span class="wrow-main">${chunks(w.sy, 'md')}<span class="muted">${esc(w.ar)}</span></span>
+  <span class="lvl" aria-label="المستوى ${b} من 5">${[1, 2, 3, 4, 5].map(i => `<i class="${i <= b ? 'on' : ''}"></i>`).join('')}</span></button></li>`;
+}
+
+/* ---------- Review ---------- */
+function viewReview() {
+  const due = dueWords(), seen = seenWords();
+  const counts = [1, 2, 3, 4, 5].map(b => seen.filter(w => Math.max(1, S.words[w.id].b) === b).length);
+  const max = Math.max(1, ...counts);
+  const names = ['جديدة', 'تتعلّمها', 'جيدة', 'قوية', 'ثابتة'];
+  return `<h1 class="h1">المراجعة</h1>
+  <p class="lead">كل كلمة تعود إليك قبل أن تنساها: بعد يوم، ثم يومين، ثم أربعة، ثم ثمانية.</p>
+  <section class="card">
+    <div class="boxes">${counts.map((n, i) => `<div class="box"><div class="box-col"><i style="--h:${n / max * 100}%;--o:${i * 0.16}"></i></div><b>${n}</b><span>${names[i]}</span></div>`).join('')}</div>
+    ${due.length ? `<button class="btn btn-primary btn-block" data-act="review">راجع ${P.word(due.length)} الآن</button>` : `<p class="muted">لا توجد كلمات تنتظر المراجعة الآن. عُد غداً.</p>`}
+    ${seen.length >= 4 ? `<button class="btn btn-soft btn-block" data-act="practice">تدريب سريع على كلماتي</button>` : ''}
+  </section>
+  <section class="stack"><h2 class="h2">كلماتي <span class="muted en">(${seen.length})</span></h2>
+  ${seen.length ? `<ul class="wlist">${seen.sort((a, b) => S.words[a.id].b - S.words[b.id].b).map(wordRow).join('')}</ul>` : `<p class="muted">ابدأ أول درس من الصفحة الرئيسية، وستظهر كلماتك هنا مع مستوى حفظ كل كلمة.</p>`}
+  </section>`;
+}
+
+/* ---------- Reader ---------- */
+function readerText() { return S.readerText == null ? SAMPLE : S.readerText; }
+function viewReader() {
+  const text = readerText();
+  if (READER.editing || !text.trim()) {
+    return `<h1 class="h1">القارئ</h1>
+    <p class="lead">الصق أي نص إنكليزي: رسالة، واجب، أو صفحة من كتاب.</p>
+    <label class="label" for="readerText">النص</label>
+    <textarea id="readerText" class="ta en" dir="ltr" spellcheck="false">${esc(text)}</textarea>
+    <div class="row"><button class="btn btn-primary" data-act="readerDone">اعرض النص مقسّماً</button><button class="btn btn-ghost" data-act="readerSample">نص تجريبي</button><button class="btn btn-ghost" data-act="readerClear">مسح</button></div>`;
+  }
+  let si = 0;
+  const paras = text.split(/\n\s*\n|\n/).filter(p => p.trim()).map(p => {
+    const sents = p.match(/[^.!?]+[.!?]*["')\]]*\s*/g) || [p];
+    return '<p>' + sents.map(s => {
+      let html = '', off = 0;
+      s.split(/([A-Za-z']+)/).forEach((tok, i) => {
+        if (i % 2 === 1) {
+          const parts = tok.includes("'") ? [tok] : syllabify(tok);
+          html += `<span class="w" data-act="rword" data-w="${esc(tok)}" data-o="${off}">${parts.map((pp, j) => `<span class="sy s${j % 2}">${esc(pp)}</span>`).join('<span class="dot" aria-hidden="true">·</span>')}</span>`;
+        } else html += esc(tok);
+        off += tok.length;
+      });
+      return `<span class="sent" data-s="${si++}" data-text="${esc(s.trim())}">${html}</span>`;
+    }).join('') + '</p>';
+  }).join('');
+  return `<h1 class="h1">القارئ</h1>
+  <div class="rtools">
+    <button class="btn btn-primary small" data-act="readerPlay">${READER.playing ? '⏸ إيقاف' : '▶ اقرأ لي'}</button>
+    <button class="chipbtn" data-act="readerRuler" aria-pressed="${READER.ruler}">مسطرة القراءة</button>
+    <button class="chipbtn" data-act="readerEdit">✏️ نص آخر</button>
+  </div>
+  ${S.readerText == null ? '<p class="sample-note">هذا نص تجريبي. اضغط «نص آخر» لتلصق نصك.</p>' : ''}
+  <div class="reading chunks-host${READER.ruler ? ' ruler' : ''}" dir="ltr" lang="en"><div class="chunks" style="display:block;font-weight:400">${paras}</div></div>
+  <p class="muted sm">اضغط على أي كلمة لتسمعها وترى معناها. التقسيم إلى مقاطع تلقائي للكلمات غير الموجودة في الدروس.</p>`;
+}
+function readerPlayFrom(i) {
+  const sents = [...view.querySelectorAll('.reading .sent')];
+  view.querySelectorAll('.reading .on').forEach(e => e.classList.remove('on'));
+  if (!READER.playing || i >= sents.length) { READER.playing = false; READER.cur = -1; const b = view.querySelector('[data-act="readerPlay"]'); if (b) b.textContent = '▶ اقرأ لي'; return; }
+  const el = sents[i]; READER.cur = i; el.classList.add('on');
+  el.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  const raw = el.dataset.text, lead = (el.textContent.length - el.textContent.trimStart().length);
+  const words = [...el.querySelectorAll('.w')];
+  Speech.speak(raw, {
+    onWord: c => { words.forEach(x => x.classList.remove('on')); const hit = words.filter(x => +x.dataset.o - lead <= c).pop(); if (hit) hit.classList.add('on'); },
+    onEnd: cancelled => { if (!cancelled && READER.playing) setTimeout(() => readerPlayFrom(i + 1), 250); },
+  });
+}
+
+/* ---------- Settings ---------- */
+function seg(key, opts) {
+  return `<div class="seg" role="group">${opts.map(([v, label, style]) => `<button data-act="set" data-key="${key}" data-val="${v}" aria-pressed="${String(S.settings[key]) === String(v)}"${style ? ` style="${style}"` : ''}>${label}</button>`).join('')}</div>`;
+}
+function toggle(key, label) { return `<button class="toggle" role="switch" data-act="toggle" data-key="${key}" aria-checked="${!!S.settings[key]}"><span>${label}</span><i></i></button>`; }
+function viewSettings() {
+  const s = S.settings;
+  return `<h1 class="h1">الإعدادات</h1>
+  <section class="card set">
+    <div class="preview" data-say="Wednesday">${chunks('Wed·nes·day', 'xl')}<p class="muted sm">معاينة: هكذا ستظهر الكلمات</p></div>
+    <h3>خط الكلمات الإنكليزية</h3>
+    ${seg('font', [['lexend', 'Lexend', 'font-family:"KK Lexend",Lexend,sans-serif'], ['od', 'OpenDyslexic', 'font-family:"KK OpenDyslexic",sans-serif;font-size:.85rem'], ['ah', 'Atkinson', 'font-family:"KK Atkinson","Atkinson Hyperlegible",sans-serif']])}
+    <h3>حجم الخط</h3>
+    ${seg('size', [[1, 'عادي'], [1.12, 'كبير'], [1.25, 'أكبر'], [1.4, 'كبير جداً']])}
+    <h3>المسافة بين الحروف</h3>
+    ${seg('track', [[0, 'عادية'], [1, 'واسعة'], [2, 'أوسع']])}
+    <h3>لون الخلفية</h3>
+    ${seg('bg', [['auto', '<span class="sw" style="background:linear-gradient(135deg,#F8EEE2 50%,#161A24 50%)"></span>تلقائي'], ['peach', '<span class="sw" style="background:#F8EEE2"></span>خوخي'], ['cream', '<span class="sw" style="background:#FAF4E3"></span>كريمي'], ['blue', '<span class="sw" style="background:#E5EEF6"></span>أزرق'], ['mint', '<span class="sw" style="background:#E4F1E8"></span>نعناعي'], ['dark', '<span class="sw" style="background:#161A24"></span>داكن']])}
+    <h3>سرعة النطق: <span id="rateVal" class="en">${Math.round(s.rate * 100)}%</span></h3>
+    <input type="range" id="rate" min="0.5" max="1.1" step="0.05" value="${s.rate}" aria-label="سرعة النطق">
+    <button class="btn btn-ghost small" data-act="say" data-text="Hello, how are you today?">🔊 جرّب السرعة</button>
+    ${toggle('syl', 'تلوين المقاطع (قطعة زرقاء، قطعة برتقالية)')}
+    ${toggle('hint', 'كتابة النطق بالحروف العربية')}
+    ${toggle('sound', 'أصوات النجاح والتنبيه')}
+  </section>
+  <section class="card about">
+    <h2 class="h2">لماذا صُمّم التطبيق هكذا؟</h2>
+    <ol>
+      <li>تقسيم الكلمات الطويلة إلى مقاطع ملوّنة، وتصفيق المقاطع، والسماع والنطق معاً.<span>منهج أورتن-جيلينغهام والتعليم المنظَّم متعدد الحواس (International Dyslexia Association, Structured Literacy).</span></li>
+      <li>خلفية خوخية دافئة بدل الأبيض الناصع، ونص كحلي غامق بدل الأسود.<span>Rello &amp; Bigham (2017), Good Background Colors for Readers, ASSETS · British Dyslexia Association, Dyslexia Style Guide.</span></li>
+      <li>خط كبير بلا زخارف ولا مائل، ومسافة أوسع بين الحروف والكلمات والأسطر.<span>Zorzi et al. (2012), Extra-large letter spacing improves reading in dyslexia, PNAS · Rello, Pielot &amp; Marcos (2016), Make It Big!, CHI.</span></li>
+      <li>خط Lexend المصمَّم لتسهيل القراءة، مع OpenDyslexic وAtkinson Hyperlegible كبدائل.<span>Rello &amp; Baeza-Yates (2013), Good Fonts for Dyslexia, ASSETS · Lexend Project (Shaver-Troup).</span></li>
+      <li>مراجعة متباعدة بصناديق لايتنر حتى تبقى الكلمة في الذاكرة.<span>Leitner (1972) · منحنى النسيان لإبنغهاوس.</span></li>
+      <li>صورة ومعنى عربي لكل كلمة، وتمارين تعتمد على السمع قبل القراءة.<span>مبدأ الترميز المزدوج: صورة + صوت + كلمة (Paivio, Dual Coding Theory).</span></li>
+    </ol>
+  </section>
+  <section class="card"><h2 class="h2">التقدّم</h2><p class="muted">تقدّمك محفوظ على هذا الجهاز فقط.</p><button class="btn btn-ghost btn-block" data-act="resetAsk">مسح التقدّم والبدء من جديد</button></section>`;
+}
+
+/* ---------- Sheet, toast, confetti ---------- */
+const sheet = D.getElementById('sheet');
+function openSheet(html) { sheet.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" data-clap-host><span class="grab" aria-hidden="true"></span>${html}</div>`; sheet.hidden = false; }
+function closeSheet() { sheet.hidden = true; sheet.innerHTML = ''; }
+sheet.addEventListener('click', e => { if (e.target === sheet) closeSheet(); });
+function wordSheet(raw) {
+  const id = raw.toLowerCase();
+  const w = BY.get(id) || (id.endsWith('es') && BY.get(id.slice(0, -2))) || (id.endsWith('s') && BY.get(id.slice(0, -1))) || null;
+  const exact = w && w.id === id;
+  const sy = exact ? w.sy : syllabify(raw).join('·');
+  const n = sy.split(/[·\s]+/).length;
+  openSheet(`${w ? `<div class="pic-lg">${picHTML(w.pic)}</div>` : ''}
+    <div data-say="${esc(raw)}">${chunks(sy, 'xl')}</div>${beats(n)}<p class="label">${P.syl(n)}</p>
+    ${exact ? `<p class="hint">${esc(w.say)}</p>` : ''}
+    ${w ? `<p class="mean">${exact ? '' : `من كلمة <span class="en">${esc(w.en)}</span>: `}${esc(w.ar)}</p>` : `<p class="muted">هذه الكلمة ليست في الدروس بعد. التقسيم تلقائي وقد يختلف قليلاً عن القاموس.</p>`}
+    <div class="row center">
+      <button class="btn btn-soft small" data-act="say" data-text="${esc(raw)}">🔊 استمع</button>
+      <button class="btn btn-ghost small" data-act="say" data-text="${esc(raw)}" data-slow="1">🐢 ببطء</button>
+      <button class="btn btn-ghost small" data-act="clap" data-text="${esc(raw)}">👏 صفّق</button>
+    </div>
+    ${w && !S.words[w.id] ? `<button class="btn btn-primary btn-block" data-act="addWord" data-id="${esc(w.id)}">أضفها إلى مراجعتي</button>` : ''}
+    <button class="btn btn-ghost btn-block" data-act="closeSheet">إغلاق</button>`);
+  sayWith(sheet.querySelector('.chunks'), raw);
+}
+let toastT = 0;
+function toast(msg) { const t = D.getElementById('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 2600); }
+function confetti() {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const c = D.getElementById('confetti'), ctx = c.getContext('2d');
+  c.hidden = false; c.width = innerWidth; c.height = innerHeight;
+  const cs = getComputedStyle(root), cols = ['--syl1', '--syl2', '--accent', '--hi'].map(v => cs.getPropertyValue(v).trim());
+  const ps = Array.from({ length: 110 }, () => ({ x: c.width / 2, y: c.height * 0.35, vx: (Math.random() - 0.5) * 12, vy: -Math.random() * 11 - 3, r: 4 + Math.random() * 5, c: cols[Math.floor(Math.random() * cols.length)], a: Math.random() * 6 }));
+  const t0 = performance.now();
+  (function frame(t) {
+    ctx.clearRect(0, 0, c.width, c.height);
+    ps.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.32; p.a += 0.1; ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.a); ctx.fillStyle = p.c; ctx.fillRect(-p.r, -p.r / 2, p.r * 2, p.r); ctx.restore(); });
+    if (t - t0 < 1800) requestAnimationFrame(frame); else { ctx.clearRect(0, 0, c.width, c.height); c.hidden = true; }
+  })(t0);
+}
+
+/* ================= Events ================= */
+D.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if (!el) {
+    const s = e.target.closest('[data-say]');
+    if (s) sayWith(s.querySelector('.chunks'), s.dataset.say);
+    return;
+  }
+  const act = el.dataset.act, st = SES && !SES.finished ? SES.steps[SES.i] : null;
+  switch (act) {
+    case 'tab': closeSheet(); go(el.dataset.tab); break;
+    case 'say': {
+      const host = el.closest('[data-clap-host]');
+      sayWith(host && host.querySelector('.chunks'), el.dataset.text, el.dataset.slow ? Math.max(0.45, S.settings.rate - 0.35) : S.settings.rate);
+      break;
+    }
+    case 'clap': { const host = el.closest('[data-clap-host]') || view; clap(host, el.dataset.text); break; }
+    case 'lesson': closeSheet(); startLesson(el.dataset.cat); break;
+    case 'review': startReview(false); break;
+    case 'practice': startReview(true); break;
+    case 'tipClose': S.tip = false; save(); el.closest('.tip').remove(); break;
+    case 'next': nextStep(); break;
+    case 'exit':
+      openSheet(`<h2 class="h2">تريد الخروج؟</h2><p class="muted">الكلمات التي أجبت عنها محفوظة.</p>
+        <button class="btn btn-primary btn-block" data-act="closeSheet">أكمل</button><button class="btn btn-ghost btn-block" data-act="tab" data-tab="home">خروج</button>`);
+      break;
+    case 'closeSheet': closeSheet(); break;
+    case 'pick': if (st) answer(el.dataset.id === st.w.id, el.dataset.id); break;
+    case 'readOpts': {
+      const btns = [...view.querySelectorAll('.opt-word')]; let i = 0;
+      const nxt = () => {
+        btns.forEach(b => b.classList.remove('reading'));
+        if (i >= btns.length) return;
+        const b = btns[i++]; b.classList.add('reading');
+        Speech.speak(BY.get(b.dataset.id).en, { onEnd: c => { if (!c) setTimeout(nxt, 350); else btns.forEach(x => x.classList.remove('reading')); } });
+      };
+      nxt(); break;
+    }
+    case 'place': case 'unplace': {
+      if (!st || st.answered) break;
+      if (act === 'place') { const k = +el.dataset.k; if (!st.placed.includes(k)) st.placed.push(k); SND.tick(); }
+      else st.placed.splice(+el.dataset.pos, 1);
+      D.getElementById('buildArea').innerHTML = buildHTML(st);
+      if (st.placed.length === st.tok.length) {
+        const ok = st.placed.every((k, i) => st.tok[k].t.toLowerCase() === st.tok[i].t.toLowerCase());
+        if (ok) answer(true);
+        else {
+          answer(false);
+          st.placed = st.tok.map((_, i) => i);
+          D.getElementById('buildArea').innerHTML = buildHTML(st);
+        }
+      }
+      break;
+    }
+    case 'mic': {
+      if (!st || st.answered) break;
+      const mic = D.getElementById('mic'), ms = D.getElementById('micStatus');
+      mic.classList.add('listening'); ms.textContent = 'أستمع إليك الآن…';
+      Speech.listen().then(alts => {
+        mic.classList.remove('listening');
+        ms.innerHTML = alts.length ? `سمعتُ: <span class="en">${esc(alts[0])}</span>` : '';
+        answer(heardOk(st.w.en, alts));
+      }).catch(err => {
+        mic.classList.remove('listening');
+        if (Speech.isBlocked()) { ms.textContent = 'الميكروفون غير متاح. قل الكلمة بصوت عالٍ ثم اضغط «قلتها».'; mic.hidden = true; D.getElementById('foot').innerHTML = footHTML(st); }
+        else ms.textContent = 'لم أسمع جيداً. اضغط وحاول مرة أخرى.';
+      });
+      break;
+    }
+    case 'selfSpeak': if (st) { st.retry = true; answer(true); } break;
+    case 'skipSpeak': nextStep(); break;
+    case 'word': wordSheet(el.dataset.w); break;
+    case 'rword': {
+      const sent = el.closest('.sent');
+      if (READER.ruler && !READER.playing) { view.querySelectorAll('.reading .sent.on').forEach(x => x.classList.remove('on')); sent.classList.add('on'); }
+      wordSheet(el.dataset.w); break;
+    }
+    case 'addWord': grade(el.dataset.id, true); save(); closeSheet(); toast('أُضيفت إلى مراجعتك'); if (TAB === 'review') render(); break;
+    case 'readerPlay':
+      READER.playing = !READER.playing;
+      el.textContent = READER.playing ? '⏸ إيقاف' : '▶ اقرأ لي';
+      if (READER.playing) readerPlayFrom(Math.max(0, READER.cur)); else { Speech.stop(); view.querySelectorAll('.reading .w.on').forEach(x => x.classList.remove('on')); }
+      break;
+    case 'readerRuler': READER.ruler = !READER.ruler; el.setAttribute('aria-pressed', READER.ruler); view.querySelector('.reading').classList.toggle('ruler', READER.ruler); if (READER.ruler && !view.querySelector('.reading .sent.on')) { const f = view.querySelector('.reading .sent'); if (f) f.classList.add('on'); } break;
+    case 'readerEdit': READER.editing = true; READER.playing = false; READER.cur = -1; render(); break;
+    case 'readerDone': S.readerText = D.getElementById('readerText').value; save(); READER.editing = false; render(); break;
+    case 'readerSample': S.readerText = null; save(); READER.editing = false; render(); break;
+    case 'readerClear': D.getElementById('readerText').value = ''; D.getElementById('readerText').focus(); break;
+    case 'set': {
+      const k = el.dataset.key, raw = el.dataset.val;
+      S.settings[k] = (k === 'size' || k === 'track') ? Number(raw) : raw;
+      save(); applySettings();
+      el.parentElement.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b === el));
+      break;
+    }
+    case 'toggle': S.settings[el.dataset.key] = !S.settings[el.dataset.key]; save(); applySettings(); el.setAttribute('aria-checked', S.settings[el.dataset.key]); break;
+    case 'resetAsk':
+      openSheet(`<h2 class="h2">مسح كل التقدّم؟</h2><p class="muted">ستُحذف الكلمات والنجوم والأيام المتتالية. الإعدادات تبقى كما هي.</p>
+        <button class="btn btn-primary btn-block" data-act="closeSheet">إلغاء</button><button class="btn btn-ghost btn-block" data-act="reset">نعم، امسح التقدّم</button>`);
+      break;
+    case 'reset': { const keep = S.settings; S = JSON.parse(JSON.stringify(DEFAULT)); S.settings = keep; save(); closeSheet(); toast('تم مسح التقدّم'); go('home'); break; }
+  }
+});
+D.addEventListener('input', e => {
+  if (e.target.id === 'rate') { S.settings.rate = Number(e.target.value); D.getElementById('rateVal').textContent = Math.round(S.settings.rate * 100) + '%'; save(); }
+});
+D.addEventListener('visibilitychange', () => { if (D.hidden) { Speech.stop(); READER.playing = false; } });
+
+/* Android back button: returns true when the app handled it. */
+window.__onBack = () => {
+  if (!sheet.hidden) { closeSheet(); return true; }
+  if (SES && !SES.finished) { D.querySelector('[data-act="exit"]').click(); return true; }
+  if (SES || TAB !== 'home') { go('home'); return true; }
+  return false;
+};
+
+applySettings();
+render();
+})();
+</script>
