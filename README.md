@@ -12,7 +12,7 @@
 
 يُبنى ملف APK تلقائياً عبر GitHub Actions بعد كل تحديث للكود (`.github/workflows/android.yml`).
 
-> النطق: الكلمات والجمل والقصص مسجّلة بصوت طبيعي من Google (Gemini 3.8 Flash TTS) عبر `tools/gen_voice.py`. أي نص غير مسجّل (مثل نصوص القارئ) يُقرأ بمحرك النطق في الهاتف.
+> النطق: الكلمات والجمل والقصص مسجّلة بصوت طبيعي من نموذج **Kokoro** المفتوح المصدر (رخصة Apache 2.0، الصوت af_heart)، يُولَّد تلقائياً على GitHub Actions عبر `tools/gen_voice_kokoro.py` بلا مفتاح ولا تكلفة. أي نص غير مسجّل (مثل نصوص القارئ) يُقرأ بمحرك النطق في الهاتف.
 > للنطق في الهاتف، إذا لم تسمع صوتاً، ثبّت أو حدّث «خدمات Google للنطق» (Speech Services by Google) من متجر Play.
 
 ## ماذا يوجد في التطبيق
@@ -73,8 +73,11 @@ word|syl·la·bles|المعنى|النطق·بالعربي|🖼️|Example sente
 
 ### توليد الأصوات
 
+تعمل مهمة **Record voices** (`.github/workflows/voice.yml`) تلقائياً: تسجّل المقاطع الناقصة بـ Kokoro، وتضيفها إلى `web/app.html`، ثم تعيد بناء ملف APK. لتسجيل كلمات أو قصص جديدة بعد تعديلها، شغّل المهمة يدوياً من تبويب Actions.
+
+بديل اختياري بأصوات Google (يحتاج مفتاح Gemini مع تفعيل الدفع):
+
 ```bash
 export GEMINI_API_KEY=...        # لا تضعه في أي ملف داخل المستودع
-python3 tools/gen_voice.py       # يسجّل المقاطع الناقصة فقط، ثم يتحقق من كل مقطع بتفريغه نصياً
-python3 tools/embed_voice.py     # يضيف فهرس المقاطع إلى web/app.html
+python3 tools/gen_voice.py && python3 tools/embed_voice.py
 ```
