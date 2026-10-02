@@ -21,7 +21,7 @@ from PIL import Image
 API = "https://en.wikipedia.org/w/api.php"
 UA = "KalimaKalimaBot/1.0 (https://github.com/jaafer12/CLAUDE-PLUS; educational app for dyslexic learners)"
 OUT = "web/img"
-ALLOWED = re.compile(r"(cc0|public domain|^pd|cc[ -]by(?![^0-9]*n[cd]))", re.I)
+ALLOWED = re.compile(r"(cc0|public domain|^pd|cc[ -]by(?![^0-9]*n[cd])|^fal$|free art|no restrictions|copyrighted free use|^attribution$)", re.I)
 
 
 def slug(word_id):
