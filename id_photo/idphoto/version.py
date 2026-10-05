@@ -1,6 +1,6 @@
 """رقم إصدار البرنامج. يُحدَّث عبر tools/bump_version.py ولا يُعدَّل يدوياً."""
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 APP_NAME = "صورة رسمية"
 APP_NAME_EN = "IDPhoto"

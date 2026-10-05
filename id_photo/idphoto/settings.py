@@ -2,6 +2,7 @@
 
 import json
 from dataclasses import asdict, dataclass, fields
+from typing import Optional
 
 from . import paths
 
@@ -17,6 +18,7 @@ class Settings:
     even_lighting: bool = True
     straighten: bool = True
     sharpen: bool = True
+    high_quality: Optional[bool] = None  # None: يُقرَّر تلقائياً بحسب ذاكرة الجهاز
     last_dir: str = ""
 
 

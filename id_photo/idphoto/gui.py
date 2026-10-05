@@ -113,9 +113,16 @@ class App(tk.Tk):
         self.var_light = tk.BooleanVar(value=self.cfg.even_lighting)
         self.var_straight = tk.BooleanVar(value=self.cfg.straighten)
         self.var_sharp = tk.BooleanVar(value=self.cfg.sharpen)
+        self.ram_gb = processor.total_ram_gb()
+        hq = self.cfg.high_quality
+        if hq is None:  # أول تشغيل: نفعّله تلقائياً على الأجهزة ذات الذاكرة الكافية
+            hq = self.ram_gb >= processor.HIGH_QUALITY_MIN_RAM_GB
+        self.var_hq = tk.BooleanVar(value=hq)
         for text, var in (("إزالة الصبغة الصفراء", self.var_yellow), ("إضاءة متساوية", self.var_light),
                           ("تعديل ميلان الرأس", self.var_straight), ("شحذ للطباعة", self.var_sharp)):
             ttk.Checkbutton(checks, text=text, variable=var, command=self._options_changed).pack(side="right", padx=8)
+        ttk.Checkbutton(checks, text="قصّ عالي الدقة (أبطأ)", variable=self.var_hq,
+                        command=self._hq_toggled).pack(side="right", padx=8)
 
         # المعاينة
         pv = ttk.Frame(root)
@@ -185,12 +192,28 @@ class App(tk.Tk):
         label = self.var_preset.get()
         key = next(k for k in self.preset_keys if processor.PRESETS[k].label == label)
         return processor.Options(preset=key, remove_yellow=self.var_yellow.get(), even_lighting=self.var_light.get(),
-                                 straighten=self.var_straight.get(), sharpen=self.var_sharp.get())
+                                 straighten=self.var_straight.get(), sharpen=self.var_sharp.get(),
+                                 high_quality=self.var_hq.get())
+
+    def _hq_toggled(self) -> None:
+        if self.var_hq.get():
+            low_ram = 0 < self.ram_gb < processor.HIGH_QUALITY_MIN_RAM_GB
+            first = not processor.model_ready(processor.HIGH_MODEL)
+            msg = []
+            if low_ram:
+                msg.append(f"ذاكرة هذا الجهاز {self.ram_gb:.0f} غيغابايت، والقصّ عالي الدقة يحتاج نحو 7 غيغابايت "
+                           "أثناء المعالجة؛ قد يصبح الجهاز بطيئاً جداً.")
+            if first:
+                msg.append(f"سيُنزَّل نموذج القصّ عالي الدقة مرة واحدة ({processor.HIGH_MODEL.mb} ميغابايت).")
+            if msg and not messagebox.askyesno(APP_NAME, "\n\n".join(msg + ["هل تريد المتابعة؟"]), parent=self):
+                self.var_hq.set(False)
+                return
+        self._options_changed()
 
     def _options_changed(self) -> None:
         o = self._read_options()
         self.cfg.preset, self.cfg.remove_yellow, self.cfg.even_lighting = o.preset, o.remove_yellow, o.even_lighting
-        self.cfg.straighten, self.cfg.sharpen = o.straighten, o.sharpen
+        self.cfg.straighten, self.cfg.sharpen, self.cfg.high_quality = o.straighten, o.sharpen, o.high_quality
         settings.save(self.cfg)
         if self.source is not None and not self.busy:
             self.run()

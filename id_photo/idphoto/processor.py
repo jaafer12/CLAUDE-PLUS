@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import hashlib
 import math
+import os
 import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
@@ -24,9 +25,50 @@ from PIL import Image, ImageOps
 
 from . import paths
 
-SEG_MODEL_NAME = "u2net_human_seg.onnx"
-SEG_MODEL_URL = "https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net_human_seg.onnx"
-SEG_MODEL_MD5 = "c09ddc2e0104f800e3e1bb4652583d1f"
+_RELEASES = "https://github.com/danielgatis/rembg/releases/download/v0.0.0/"
+
+
+@dataclass(frozen=True)
+class SegModel:
+    file: str
+    url: str
+    md5: str
+    size: int  # حجم إدخال النموذج (مربّع)
+    mb: int
+    sigmoid: bool
+
+
+# سريع ومرفق مع البرنامج
+FAST_MODEL = SegModel("u2net_human_seg.onnx", _RELEASES + "u2net_human_seg.onnx",
+                      "c09ddc2e0104f800e3e1bb4652583d1f", 320, 176, False)
+# أدق بكثير في حواف الشماغ والحجاب والكتفين ويحذف المقاعد والأشياء خلف الشخص،
+# يُنزَّل مرة واحدة عند أول استعمال. يحتاج نحو 7 غيغابايت ذاكرة أثناء المعالجة.
+HIGH_MODEL = SegModel("birefnet-general-lite.onnx", _RELEASES + "BiRefNet-general-bb_swin_v1_tiny-epoch_232.onnx",
+                      "4fab47adc4ff364be1713e97b7e66334", 1024, 214, True)
+HIGH_QUALITY_MIN_RAM_GB = 12
+
+
+def total_ram_gb() -> float:
+    """ذاكرة الجهاز الكلية بالغيغابايت (0 إن تعذّر معرفتها)."""
+    try:
+        if os.name == "nt":
+            import ctypes
+
+            class MEMORYSTATUSEX(ctypes.Structure):
+                _fields_ = [("dwLength", ctypes.c_ulong), ("dwMemoryLoad", ctypes.c_ulong),
+                            ("ullTotalPhys", ctypes.c_ulonglong), ("ullAvailPhys", ctypes.c_ulonglong),
+                            ("ullTotalPageFile", ctypes.c_ulonglong), ("ullAvailPageFile", ctypes.c_ulonglong),
+                            ("ullTotalVirtual", ctypes.c_ulonglong), ("ullAvailVirtual", ctypes.c_ulonglong),
+                            ("ullAvailExtendedVirtual", ctypes.c_ulonglong)]
+
+            st = MEMORYSTATUSEX()
+            st.dwLength = ctypes.sizeof(st)
+            ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(st))
+            return st.ullTotalPhys / 2**30
+        return os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES") / 2**30
+    except (OSError, ValueError, AttributeError):
+        return 0.0
+SEG_MODEL_NAME, SEG_MODEL_URL, SEG_MODEL_MD5 = FAST_MODEL.file, FAST_MODEL.url, FAST_MODEL.md5
 FACE_MODEL_NAME = "face_detection_yunet_2023mar.onnx"
 
 WHITE = 255
@@ -41,14 +83,14 @@ class Preset:
     label: str
     width_mm: float
     height_mm: float
-    head_ratio: float  # ارتفاع الرأس (من أعلى الرأس/الحجاب إلى الذقن) ÷ ارتفاع الصورة
+    head_ratio: float  # ارتفاع الرأس (أعلاه المقدَّر من الوجه إلى الذقن) ÷ ارتفاع الصورة
     top_ratio: float  # الفراغ فوق الرأس ÷ ارتفاع الصورة
 
 
 PRESETS: dict[str, Preset] = {
-    "iraq_passport": Preset("جواز سفر عراقي 3.5×4.5 سم", 35, 45, 0.66, 0.09),
-    "iraq_4x6": Preset("مستمسكات رسمية 4×6 سم", 40, 60, 0.56, 0.10),
-    "iraq_3x4": Preset("صورة 3×4 سم", 30, 40, 0.66, 0.10),
+    "iraq_passport": Preset("جواز سفر عراقي 3.5×4.5 سم", 35, 45, 0.60, 0.10),
+    "iraq_4x6": Preset("مستمسكات رسمية 4×6 سم", 40, 60, 0.50, 0.11),
+    "iraq_3x4": Preset("صورة 3×4 سم", 30, 40, 0.58, 0.11),
 }
 
 
@@ -60,6 +102,7 @@ class Options:
     remove_yellow: bool = True
     even_lighting: bool = True
     sharpen: bool = True
+    high_quality: bool = False  # نموذج BiRefNet (أبطأ وأدق، يحتاج ذاكرة كبيرة)
 
 
 @dataclass
@@ -83,18 +126,31 @@ def _md5(path: Path) -> str:
     return h.hexdigest()
 
 
-def _seg_model_path(progress: ProgressFn) -> Path:
-    bundled = paths.models_dir() / SEG_MODEL_NAME
+def model_ready(model: SegModel) -> bool:
+    return (paths.models_dir() / model.file).exists() or (paths.data_dir() / "models" / model.file).exists()
+
+
+def _model_path(model: SegModel, progress: ProgressFn) -> Path:
+    bundled = paths.models_dir() / model.file
     if bundled.exists():
         return bundled
-    cached = paths.data_dir() / "models" / SEG_MODEL_NAME
+    cached = paths.data_dir() / "models" / model.file
     if cached.exists():
         return cached
-    progress("تنزيل نموذج إزالة الخلفية لأول مرة (176 ميغابايت)…")
     cached.parent.mkdir(parents=True, exist_ok=True)
     tmp = cached.with_suffix(".part")
-    urllib.request.urlretrieve(SEG_MODEL_URL, tmp)
-    if _md5(tmp) != SEG_MODEL_MD5:
+    last = [-1]
+
+    def hook(blocks, block_size, total):
+        if total > 0:
+            pct = min(100, blocks * block_size * 100 // total)
+            if pct != last[0]:
+                last[0] = pct
+                progress(f"تنزيل نموذج القصّ عالي الدقة لمرة واحدة فقط ({model.mb} ميغابايت): {pct}%")
+
+    urllib.request.urlretrieve(model.url, tmp, hook)
+    progress("التحقق من النموذج…")
+    if _md5(tmp) != model.md5:
         tmp.unlink(missing_ok=True)
         raise PhotoError("نموذج إزالة الخلفية الذي نُزّل تالف. أعد المحاولة.")
     tmp.replace(cached)
@@ -102,20 +158,24 @@ def _seg_model_path(progress: ProgressFn) -> Path:
 
 
 class _Models:
-    seg = None
+    seg: dict = {}
     face = None
 
     @classmethod
-    def load(cls, progress: ProgressFn) -> None:
-        if cls.seg is None:
+    def load(cls, progress: ProgressFn, model: SegModel = FAST_MODEL) -> None:
+        if model.file not in cls.seg:
             import onnxruntime as ort
 
+            path = _model_path(model, progress)
             progress("تحميل نموذج إزالة الخلفية…")
             opts = ort.SessionOptions()
             opts.log_severity_level = 3
-            cls.seg = ort.InferenceSession(
-                str(_seg_model_path(progress)), opts, providers=["CPUExecutionProvider"]
-            )
+            # بلا ذاكرة احتياطية دائمة: تُعاد الذاكرة للنظام بعد كل صورة
+            opts.enable_cpu_mem_arena = False
+            opts.enable_mem_pattern = False
+            if model is HIGH_MODEL:  # أقل ذروة ذاكرة وأسرع لهذا النموذج على المعالج
+                opts.graph_optimization_level = ort.GraphOptimizationLevel.ORT_DISABLE_ALL
+            cls.seg[model.file] = ort.InferenceSession(str(path), opts, providers=["CPUExecutionProvider"])
         if cls.face is None:
             cls.face = cv2.FaceDetectorYN.create(
                 str(paths.models_dir() / FACE_MODEL_NAME), "", (320, 320), 0.7, 0.3, 5000
@@ -155,26 +215,47 @@ def _detect_face(rgb: np.ndarray) -> Face:
         raise PhotoError("لم يُعثر على وجه في الصورة. استخدم صورة أمامية واضحة للوجه.")
     f = max(faces, key=lambda r: r[2] * r[3]) / scale
     pts = f[4:14].reshape(5, 2)
-    # نقاط العينين في YuNet تميل إلى الأفقي حين يكون الرأس مائلاً، فنصحّحها بموضع القزحية
-    gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
-    bw = float(f[2])
-    return Face(f[0:4].copy(), _iris(gray, pts[0], bw), _iris(gray, pts[1], bw), pts[2], pts[3], pts[4])
+    return Face(f[0:4].copy(), pts[0], pts[1], pts[2], pts[3], pts[4])
 
 
-def _iris(gray: np.ndarray, p: np.ndarray, face_w: float) -> np.ndarray:
-    """مركز أغمق منطقة (القزحية) في نافذة صغيرة حول نقطة العين التقريبية."""
-    hw, hh = int(face_w * 0.13), int(face_w * 0.08)
-    x, y = int(p[0]), int(p[1])
-    x0, y0 = max(0, x - hw), max(0, y - hh)
-    win = gray[y0:y + hh + 1, x0:x + hw + 1].astype(np.float32)
-    if win.size < 9:
-        return p
-    win = cv2.GaussianBlur(win, (0, 0), max(1.0, face_w / 50))
-    wts = np.clip(np.percentile(win, 8) - win, 0, None)
-    if wts.sum() == 0:
-        return p
-    ys, xs = np.mgrid[0:win.shape[0], 0:win.shape[1]]
-    return np.array([x0 + (xs * wts).sum() / wts.sum(), y0 + (ys * wts).sum() / wts.sum()])
+def _estimate_roll(rgb: np.ndarray, face: Face, limit: float = 25) -> float:
+    """ميلان الرأس بالدرجات، من تناظر الوجه.
+
+    نقاط العينين وحدها غير موثوقة (النظارات، الحواجب الكثيفة، العيون شبه المغمضة)،
+    أما الوجه وغطاء الرأس فمتناظران حول محور عمودي. ندوّر قصاصة الوجه بزوايا متعددة
+    ونختار الزاوية التي يتطابق عندها نصفا الوجه أكثر ما يمكن.
+    """
+    x, y, w, h = face.box
+    c = (face.eye_center + face.nose) / 2
+    r = int(max(w, h) * 0.75)
+    gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY).astype(np.float32)
+    gray = cv2.copyMakeBorder(gray, 2 * r, 2 * r, 2 * r, 2 * r, cv2.BORDER_REPLICATE)
+    cx, cy = float(c[0] + 2 * r), float(c[1] + 2 * r)
+    size = 128
+
+    def score(ang: float) -> float:
+        m = cv2.getRotationMatrix2D((cx, cy), ang, size / (2 * r))
+        m[0, 2] += size / 2 - cx
+        m[1, 2] += size / 2 - cy
+        im = cv2.GaussianBlur(cv2.warpAffine(gray, m, (size, size)), (0, 0), 1.5)
+        mag = np.hypot(cv2.Sobel(im, cv2.CV_32F, 1, 0), cv2.Sobel(im, cv2.CV_32F, 0, 1))
+        best = -1.0
+        for dx in range(-6, 7, 2):  # محور التناظر قد لا يمرّ بالضبط بمنتصف القصاصة
+            a = mag[16:112, 24 + dx:104 + dx]
+            a = a - a.mean()
+            b = a[:, ::-1]
+            best = max(best, float((a * b).sum() / ((a * a).sum() + 1e-6)))
+        return best
+
+    angles = np.arange(-limit, limit + 0.5, 1.0)
+    scores = np.array([score(a) for a in angles])
+    i = int(np.argmax(scores))
+    if 0 < i < len(angles) - 1:  # دقة أقل من درجة بملاءمة قطع مكافئ
+        s0, s1, s2 = scores[i - 1:i + 2]
+        den = s0 - 2 * s1 + s2
+        if den < 0:
+            return float(angles[i] + 0.5 * (s0 - s2) / den)
+    return float(angles[i])
 
 
 # ---------------------------------------------------------------- فصل الخلفية
@@ -194,21 +275,25 @@ def _guided_filter(guide: np.ndarray, src: np.ndarray, r: int, eps: float) -> np
     return _box_filter(a, r) * guide + _box_filter(b, r)
 
 
-def _segment(rgb: np.ndarray) -> np.ndarray:
+def _segment(rgb: np.ndarray, model: SegModel = FAST_MODEL) -> np.ndarray:
     """قناع الشخص بقيم 0..1 بحجم الصورة."""
     h, w = rgb.shape[:2]
-    im = cv2.resize(rgb, (320, 320), interpolation=cv2.INTER_AREA).astype(np.float32)
+    n = model.size
+    interp = cv2.INTER_AREA if max(h, w) > n else cv2.INTER_CUBIC
+    im = cv2.resize(rgb, (n, n), interpolation=interp).astype(np.float32)
     im /= max(float(im.max()), 1e-6)
     im = (im - (0.485, 0.456, 0.406)) / (0.229, 0.224, 0.225)
     inp = im.transpose(2, 0, 1)[None].astype(np.float32)
-    seg = _Models.seg
-    pred = seg.run(None, {seg.get_inputs()[0].name: inp})[0][0, 0]
+    seg = _Models.seg[model.file]
+    pred = seg.run(None, {seg.get_inputs()[0].name: inp})[0][0, 0].astype(np.float32)
+    if model.sigmoid:
+        pred = 1 / (1 + np.exp(-pred))
     pred = (pred - pred.min()) / max(float(pred.max() - pred.min()), 1e-6)
-    mask = cv2.resize(pred.astype(np.float32), (w, h), interpolation=cv2.INTER_CUBIC)
+    mask = cv2.resize(pred, (w, h), interpolation=cv2.INTER_CUBIC)
 
     # حافة دقيقة تتبع الصورة الأصلية
     gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY).astype(np.float32) / 255
-    r = max(2, int(round(max(h, w) / 320)))
+    r = max(2, int(round(max(h, w) / n)))
     mask = _guided_filter(gray, mask, r, 1e-3)
     return np.clip(mask, 0, 1)
 
@@ -398,12 +483,25 @@ def _head_top(alpha: np.ndarray, face: Face) -> float:
 
 
 def _crop_box(alpha: np.ndarray, face: Face, preset: Preset, warn: list[str]):
-    top = _head_top(alpha, face)
+    """إطار القصّ مبني على الوجه نفسه لا على غطاء الرأس.
+
+    أعلى الرأس يُقدَّر من موضع العينين والذقن، فيبقى حجم الوجه ثابتاً سواء كان الشخص
+    حاسر الرأس أو يلبس حجاباً أو شماغاً وعقالاً. ثم يُوسَّع الإطار إن لزم حتى يظهر
+    غطاء الرأس كاملاً مع فراغ أبيض فوقه.
+    """
+    eye_y = float(face.eye_center[1])
     chin = float(face.box[1] + face.box[3])
-    head = chin - top
-    out_h = head / preset.head_ratio
+    crown = eye_y - 0.8 * (chin - eye_y)  # العينان أعلى قليلاً من منتصف الرأس
+    out_h = (chin - crown) / preset.head_ratio
+    y0 = crown - preset.top_ratio * out_h
+    chin_frac = (chin - y0) / out_h
+
+    top = _head_top(alpha, face)  # أعلى الشعر أو غطاء الرأس فعلياً
+    margin = 0.04
+    if top - y0 < margin * out_h:
+        out_h = (chin - top) / (chin_frac - margin)
+        y0 = chin - chin_frac * out_h
     out_w = out_h * preset.width_mm / preset.height_mm
-    y0 = top - preset.top_ratio * out_h
     # التوسيط على منتصف الوجه (بين العينين والأنف)
     cx = (face.eye_center[0] + face.nose[0]) / 2
     x0 = cx - out_w / 2
@@ -412,16 +510,17 @@ def _crop_box(alpha: np.ndarray, face: Face, preset: Preset, warn: list[str]):
     return x0, y0, out_w, out_h
 
 
-def _crop(img: np.ndarray, x0, y0, w, h) -> np.ndarray:
-    """قصّ قد يتجاوز حدود الصورة: فوقها وجانبيها أبيض، وأسفلها تمتد الملابس."""
+def _crop(img: np.ndarray, x0, y0, w, h, fill) -> np.ndarray:
+    """قصّ قد يتجاوز حدود الصورة: فوقها وجانبيها بلون fill، وأسفلها تمتد الملابس."""
     H, W = img.shape[:2]
     x0, y0 = int(round(x0)), int(round(y0))
     w, h = int(round(w)), int(round(h))
     pad_l, pad_t = max(0, -x0), max(0, -y0)
     pad_r, pad_b = max(0, x0 + w - W), max(0, y0 + h - H)
-    if pad_l or pad_t or pad_r or pad_b:
-        # الحواف: الخلفية بيضاء أصلاً، فالتكرار يُبقيها بيضاء ويُطيل الكتفين بشكل طبيعي
-        img = cv2.copyMakeBorder(img, pad_t, pad_b, pad_l, pad_r, cv2.BORDER_REPLICATE)
+    if pad_b:
+        img = cv2.copyMakeBorder(img, 0, pad_b, 0, 0, cv2.BORDER_REPLICATE)
+    if pad_l or pad_t or pad_r:
+        img = cv2.copyMakeBorder(img, pad_t, 0, pad_l, pad_r, cv2.BORDER_CONSTANT, value=fill)
         x0 += pad_l
         y0 += pad_t
     return img[y0:y0 + h, x0:x0 + w]
@@ -445,7 +544,14 @@ def load_image(path: str | Path) -> Image.Image:
 def process(img: Image.Image, opts: Options, progress: ProgressFn = lambda s: None) -> Result:
     preset = PRESETS[opts.preset]
     warn: list[str] = []
-    _Models.load(progress)
+    model = FAST_MODEL
+    if opts.high_quality:
+        try:
+            _Models.load(progress, HIGH_MODEL)
+            model = HIGH_MODEL
+        except Exception:  # noqa: BLE001 — بلا إنترنت مثلاً: نكمل بالنموذج السريع
+            warn.append("تعذّر تنزيل نموذج القصّ عالي الدقة؛ استُعمل النموذج السريع. تحقّق من الإنترنت وأعد المحاولة.")
+    _Models.load(progress, model)
 
     rgb = np.asarray(img.convert("RGB"))
     # الصور الضخمة تُصغَّر إلى حدّ يكفي لـ 600 نقطة/إنج ويُسرّع المعالجة
@@ -457,29 +563,38 @@ def process(img: Image.Image, opts: Options, progress: ProgressFn = lambda s: No
     progress("البحث عن الوجه…")
     face = _detect_face(rgb)
 
-    if opts.straighten and abs(face.roll_deg) < 25:
-        progress("تعديل ميلان الرأس…")
-        original, angle = rgb, 0.0
-        for _ in range(3):  # كل دورة تقرّب الميلان من الصفر
-            if abs(face.roll_deg) < 0.4:
-                break
-            angle += face.roll_deg
-            rgb = _rotate(original, angle, face.eye_center, cv2.BORDER_REFLECT)
+    valid = np.ones(rgb.shape[:2], np.float32)  # بكسلات حقيقية (لا حشو من التدوير)
+    if opts.straighten:
+        angle = _estimate_roll(rgb, face)
+        if 0.4 < abs(angle) < 24.5:
+            progress("تعديل ميلان الرأس…")
+            rgb = _rotate(rgb, angle, face.eye_center, cv2.BORDER_REPLICATE)
+            valid = _rotate(valid, angle, face.eye_center, cv2.BORDER_CONSTANT)
             face = _detect_face(rgb)
 
     progress("إزالة الخلفية…")
-    alpha = _keep_person(_segment(rgb), face)
+    # ما فوق الذقن ويقع في حشو التدوير يصبح خلفية؛ ما تحته (الملابس) يبقى ممتداً
+    below = np.arange(rgb.shape[0])[:, None] > face.box[1] + face.box[3]
+    outside = (valid < 0.99) & ~below
+    if model is HIGH_MODEL:
+        progress("إزالة الخلفية بدقة عالية (نحو 20 ثانية)…")
+    alpha = _keep_person(np.where(outside, 0, _segment(rgb, model)), face)
 
     # تمريرة ثانية على منطقة الرأس والكتفين فقط لحواف أدق
     x0, y0, cw, ch = _crop_box(alpha, face, preset, [])
     m = 0.12
     rx0, ry0 = int(max(0, x0 - m * cw)), int(max(0, y0 - m * ch))
     rx1, ry1 = int(min(rgb.shape[1], x0 + cw * (1 + m))), int(min(rgb.shape[0], y0 + ch * (1 + m)))
-    if (rx1 - rx0) * (ry1 - ry0) < 0.7 * rgb.shape[0] * rgb.shape[1]:
-        sub = _segment(rgb[ry0:ry1, rx0:rx1])
+    if model is FAST_MODEL and (rx1 - rx0) * (ry1 - ry0) < 0.7 * rgb.shape[0] * rgb.shape[1]:
+        sub = _segment(rgb[ry0:ry1, rx0:rx1], model)
+        first = alpha[ry0:ry1, rx0:rx1]
+        # التمريرة الثانية تحسّن الحواف فقط: لا تحذف ما كانت الأولى واثقة منه
+        # (مثل أعلى الشماغ الأبيض)، ولا تضيف شيئاً بعيداً عنها
+        core = cv2.erode((first > 0.9).astype(np.uint8), np.ones((5, 5), np.uint8)).astype(np.float32)
+        near = cv2.dilate(first, np.ones((9, 9), np.uint8))
         refined = alpha.copy()
-        refined[ry0:ry1, rx0:rx1] = np.minimum(sub, cv2.dilate(alpha[ry0:ry1, rx0:rx1], np.ones((9, 9), np.uint8)))
-        alpha = _keep_person(refined, face)
+        refined[ry0:ry1, rx0:rx1] = np.minimum(np.maximum(sub, core), near)
+        alpha = _keep_person(np.where(outside, 0, refined), face)
 
     rgb01 = rgb.astype(np.float32) / 255
     if opts.remove_yellow:
@@ -498,7 +613,7 @@ def process(img: Image.Image, opts: Options, progress: ProgressFn = lambda s: No
 
     progress("القصّ بمقاس الصورة الرسمية…")
     x0, y0, cw, ch = _crop_box(alpha, face, preset, warn)
-    crop = _crop(comp, x0, y0, cw, ch)
+    crop = _crop(comp, x0, y0, cw, ch, (WHITE, WHITE, WHITE))
     out_w = int(round(preset.width_mm / 25.4 * opts.dpi))
     out_h = int(round(preset.height_mm / 25.4 * opts.dpi))
     interp = cv2.INTER_AREA if crop.shape[0] > out_h else cv2.INTER_LANCZOS4
@@ -511,7 +626,7 @@ def process(img: Image.Image, opts: Options, progress: ProgressFn = lambda s: No
         out = _sharpen(out, opts.dpi)
 
     # ضمان أن الخلفية بيضاء نقية ‎#FFFFFF‎ تماماً
-    crop_alpha = _crop(alpha, x0, y0, cw, ch)
+    crop_alpha = _crop(alpha, x0, y0, cw, ch, 0)
     crop_alpha = cv2.resize(crop_alpha, (out_w, out_h), interpolation=cv2.INTER_AREA)
     out[crop_alpha < 0.02] = WHITE
 
