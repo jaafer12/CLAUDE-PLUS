@@ -1,0 +1,76 @@
+name: Build ID Photo installer
+
+on:
+  push:
+    branches: ["main", "master", "claude/**"]
+    paths:
+      - "id_photo/**"
+      - ".github/workflows/id-photo.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: idphoto-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: id_photo
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: id_photo/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pyinstaller
+
+      - name: Install Inno Setup
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "C:\Program Files (x86)\Inno Setup 6\ISCC.exe")) {
+            choco install innosetup -y --no-progress
+          }
+
+      - name: Read version
+        id: ver
+        shell: pwsh
+        run: |
+          $v = (Select-String -Path idphoto/version.py -Pattern '__version__ = "(.+)"').Matches[0].Groups[1].Value
+          "version=$v" >> $env:GITHUB_OUTPUT
+
+      - name: Build app and installer
+        run: python tools/build.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: IDPhoto-${{ steps.ver.outputs.version }}-Setup
+          path: id_photo/dist/IDPhoto-${{ steps.ver.outputs.version }}-Setup.exe
+
+      # ينشر إصداراً جديداً فقط عند رفع رقم الإصدار؛ البرنامج المثبّت يكتشفه ويعرض التحديث
+      - name: Publish release (new version only)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = "idphoto-v${{ steps.ver.outputs.version }}"
+          gh release view $tag 2>$null
+          if ($LASTEXITCODE -eq 0) {
+            Write-Host "$tag already published; bump the version with tools/bump_version.py to release."
+            exit 0
+          }
+          gh release create $tag "dist/IDPhoto-${{ steps.ver.outputs.version }}-Setup.exe" `
+            --target ${{ github.sha }} `
+            --title "صورة رسمية ${{ steps.ver.outputs.version }}" `
+            --notes-file dist/release_notes.md `
+            --latest=false

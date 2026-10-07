@@ -5,3 +5,7 @@ android/local.properties
 android/.idea/
 *.iml
 .DS_Store
+__pycache__/
+id_photo/build/
+id_photo/dist/
+id_photo/idphoto/models/u2net_human_seg.onnx
