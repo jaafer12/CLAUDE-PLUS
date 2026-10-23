@@ -1,0 +1,11 @@
+<resources>
+    <color name="bg">#FF0B0B0F</color>
+
+    <!-- A dark window background avoids a white flash before the first frame. -->
+    <style name="Theme.JaaferTV" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@color/bg</item>
+        <item name="android:navigationBarColor">@color/bg</item>
+    </style>
+</resources>
