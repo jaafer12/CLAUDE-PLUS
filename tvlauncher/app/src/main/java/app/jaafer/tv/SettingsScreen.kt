@@ -48,6 +48,7 @@ private val settingItems = listOf(
     SettingItem("التاريخ والوقت", "المنطقة الزمنية وتنسيق الساعة", Icons.Clock, Color(0xFFF29D38), Settings.ACTION_DATE_SETTINGS),
     SettingItem("اللغة", "لغة الواجهة ولوحة المفاتيح", Icons.Globe, Color(0xFF34C759), Settings.ACTION_LOCALE_SETTINGS),
     SettingItem("تسهيلات الاستخدام", "الترجمة النصية، النص الكبير، وقارئ الشاشة", Icons.Person, Color(0xFF0A84FF), Settings.ACTION_ACCESSIBILITY_SETTINGS),
+    SettingItem("شاشة التوقف", "اختر «$USER_NAME TV» شاشة توقف للتلفاز كله", Icons.Moon, Color(0xFF5E5CE6), Settings.ACTION_DREAM_SETTINGS),
     SettingItem("الشاشة الرئيسية", "اجعل «$USER_NAME TV» الشاشة الرئيسية للتلفاز", Icons.Home, Color(0xFFC46A52), Settings.ACTION_HOME_SETTINGS),
     SettingItem("حول الجهاز", "الطراز، الإصدار، والتحديثات", Icons.Info, Color(0xFF636366), Settings.ACTION_DEVICE_INFO_SETTINGS),
 )

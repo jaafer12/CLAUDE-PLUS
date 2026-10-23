@@ -60,6 +60,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
+    implementation("androidx.savedstate:savedstate-ktx:1.2.1")
     // Installs the baseline profiles shipped with Compose, so screens are fast from the first launch.
     implementation("androidx.profileinstaller:profileinstaller:1.4.1")
 }

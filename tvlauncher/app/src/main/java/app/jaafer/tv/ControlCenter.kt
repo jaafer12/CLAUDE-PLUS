@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.sp
 private val PanelShape = RoundedCornerShape(22.dp)
 
 @Composable
-fun ControlCenter(onOpenSettings: () -> Unit) {
+fun ControlCenter(onOpenSettings: () -> Unit, onScreensaver: () -> Unit) {
     val context = LocalContext.current
     val now = rememberNow()
     val first = remember { FocusRequester() }
@@ -82,7 +82,7 @@ fun ControlCenter(onOpenSettings: () -> Unit) {
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                ControlTile(Icons.Power, "شاشة التوقف", Modifier.weight(1f).focusRequester(first)) { Actions.screensaver(context) }
+                ControlTile(Icons.Power, "شاشة التوقف", Modifier.weight(1f).focusRequester(first)) { onScreensaver() }
                 ControlTile(Icons.Wifi, "الشبكة", Modifier.weight(1f)) {
                     Actions.settings(context, android.provider.Settings.ACTION_WIFI_SETTINGS)
                 }

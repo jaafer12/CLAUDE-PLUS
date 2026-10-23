@@ -25,6 +25,9 @@ private const val BANNER_H = 216
 private const val ICON = 112
 private const val KEY_PINNED = "pinned"
 private const val KEY_COUNT = "n_"
+private const val KEY_FOLDER = "folder_"
+
+val FOLDER_NAMES = listOf("أفلام", "مسلسلات", "أطفال", "رياضة", "موسيقى", "ألعاب", "أدوات")
 
 class AppRepository(context: Context) {
     private val context = context.applicationContext
@@ -96,6 +99,15 @@ class AppRepository(context: Context) {
         prefs.edit { putString(KEY_PINNED, (listOf(pkg) + pinned().filter { it != pkg }).joinToString(",")) }
     }
 
+    /** Package name to folder name, for every app that sits in a folder. */
+    fun folders(): Map<String, String> = prefs.all.mapNotNull { (key, value) ->
+        if (key.startsWith(KEY_FOLDER) && value is String) key.removePrefix(KEY_FOLDER) to value else null
+    }.toMap()
+
+    fun setFolder(pkg: String, folder: String?) {
+        prefs.edit { if (folder == null) remove(KEY_FOLDER + pkg) else putString(KEY_FOLDER + pkg, folder) }
+    }
+
     fun launch(from: Context, app: AppEntry): Boolean {
         val intent = pm.getLeanbackLaunchIntentForPackage(app.pkg)
             ?: pm.getLaunchIntentForPackage(app.pkg)
@@ -108,6 +120,32 @@ class AppRepository(context: Context) {
         } catch (e: Exception) {
             Toast.makeText(from, "تعذّر فتح ${app.label}", Toast.LENGTH_SHORT).show()
             false
+        }
+    }
+}
+
+sealed interface HomeItem {
+    val key: String
+}
+
+class AppItem(val app: AppEntry) : HomeItem {
+    override val key get() = app.pkg
+}
+
+class FolderItem(val name: String, val apps: List<AppEntry>) : HomeItem {
+    override val key get() = "folder:$name"
+}
+
+/** Apps in a folder collapse into one folder tile, placed where its highest-ranked app was. */
+fun buildHomeItems(apps: List<AppEntry>, folders: Map<String, String>): List<HomeItem> {
+    val members = apps.filter { it.pkg in folders }.groupBy { folders.getValue(it.pkg) }
+    val placed = HashSet<String>()
+    return apps.mapNotNull { app ->
+        val folder = folders[app.pkg]
+        when {
+            folder == null -> AppItem(app)
+            placed.add(folder) -> FolderItem(folder, members.getValue(folder))
+            else -> null
         }
     }
 }
@@ -137,18 +175,19 @@ object Actions {
 
     fun settings(context: Context, action: String) = start(context, Intent(action), Intent(Settings.ACTION_SETTINGS))
 
-    fun screensaver(context: Context) = start(
-        context,
-        Intent(Intent.ACTION_MAIN).setClassName("com.android.systemui", "com.android.systemui.Somnambulator"),
-        Intent(Settings.ACTION_DREAM_SETTINGS),
-        Intent(Settings.ACTION_SETTINGS),
-    )
-
     fun search(context: Context) = start(
         context,
         Intent(Intent.ACTION_ASSIST),
         Intent("android.search.action.GLOBAL_SEARCH"),
         Intent(Intent.ACTION_WEB_SEARCH),
+    )
+
+    fun voiceSearch(context: Context) = start(
+        context,
+        Intent(Intent.ACTION_VOICE_ASSIST),
+        Intent(Intent.ACTION_ASSIST),
+        Intent("android.speech.action.WEB_SEARCH"),
+        Intent("android.search.action.GLOBAL_SEARCH"),
     )
 
     fun appInfo(context: Context, pkg: String) =
