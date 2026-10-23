@@ -70,6 +70,7 @@ fun HomeScreen(
     val lastTarget = remember { arrayOfNulls<FocusRequester>(1) }
     val handledReset = remember { intArrayOf(0) }
     val now = rememberNow()
+    val weather = rememberWeather()
 
     val loaded = apps != null
     val empty = apps?.isEmpty() == true
@@ -94,14 +95,14 @@ fun HomeScreen(
         Box(Modifier.fillMaxSize().graphicsLayer { alpha = dim }.background(Palette.Bg))
 
         Column(Modifier.fillMaxSize()) {
-            TopBar(now, profileFocus, onOpenControl, onOpenSettings, onFocused = { focusedRow = 0 })
+            TopBar(now, showClock = !heroVisible, profileFocus, onOpenControl, onOpenSettings, onFocused = { focusedRow = 0 })
 
             AnimatedVisibility(
                 visible = heroVisible,
                 enter = fadeIn(tween(180)) + expandVertically(tween(200)),
                 exit = fadeOut(tween(120)) + shrinkVertically(tween(200)),
             ) {
-                Hero(focused, now)
+                Hero(focused, now, weather)
             }
 
             when {
@@ -146,6 +147,7 @@ fun HomeScreen(
 @Composable
 private fun TopBar(
     now: Long,
+    showClock: Boolean,
     profileFocus: FocusRequester,
     onOpenControl: () -> Unit,
     onOpenSettings: () -> Unit,
@@ -172,13 +174,15 @@ private fun TopBar(
         RoundIconButton(Icons.Search, "البحث", onFocused = onFocused) { Actions.search(context) }
         Spacer(Modifier.width(12.dp))
         RoundIconButton(Icons.Gear, "الإعدادات", onFocused = onFocused, onClick = onOpenSettings)
-        Spacer(Modifier.width(18.dp))
-        Txt(formatTime(now), 16.sp, weight = FontWeight.SemiBold)
+        if (showClock) {
+            Spacer(Modifier.width(18.dp))
+            Txt(formatTime(now), 16.sp, weight = FontWeight.SemiBold)
+        }
     }
 }
 
 @Composable
-private fun Hero(app: AppEntry?, now: Long) {
+private fun Hero(app: AppEntry?, now: Long, weather: Weather?) {
     Row(
         Modifier.fillMaxWidth().height(205.dp).padding(horizontal = 48.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -189,14 +193,7 @@ private fun Hero(app: AppEntry?, now: Long) {
             Txt(app?.label ?: "أهلاً بك", 48.sp, weight = FontWeight.Bold)
             Txt("اضغط «موافق» للفتح · اضغط مطوّلاً لمزيد من الخيارات", 13.sp, color = Palette.TextMuted)
         }
-        if (app != null) {
-            Image(
-                bitmap = app.banner,
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.width(290.dp).aspectRatio(16f / 9f).shadow(20.dp, TileShape).clip(TileShape),
-            )
-        }
+        ClockWeather(now, weather)
     }
 }
 
