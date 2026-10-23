@@ -184,7 +184,7 @@ object Actions {
 
     fun voiceSearch(context: Context) = start(
         context,
-        Intent(Intent.ACTION_VOICE_ASSIST),
+        Intent("android.intent.action.VOICE_ASSIST"),
         Intent(Intent.ACTION_ASSIST),
         Intent("android.speech.action.WEB_SEARCH"),
         Intent("android.search.action.GLOBAL_SEARCH"),
