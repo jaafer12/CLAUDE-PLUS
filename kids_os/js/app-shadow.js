@@ -17,7 +17,7 @@
     cv.addEventListener('touchmove', move, false); cv.addEventListener('mousemove', move, false);
     document.addEventListener('touchend', up, false); document.addEventListener('mouseup', up, false);
     return {
-      enter: function () { dirty = true; loop(); OS.say(info.lastChild.innerHTML.replace(/<[^>]+>/g, ' ')); },
+      enter: function () { dirty = true; loop();  },
       leave: function () { cancelAnimationFrame(raf); raf = null; }
     };
   }
@@ -40,10 +40,10 @@
 
   function judge() {
     var len = Math.abs(tip() - OX);
-    if (len > 320) { OS.sfx('ding'); if (!OS.award('sh-long', '🌅', 'الشمس منخفضة فصار الظل طويلاً جداً!')) OS.say('الشمس منخفضة، الظل طويل'); }
-    else if (len < 50) { OS.sfx('ding'); if (!OS.award('sh-short', '☀️', 'الشمس فوق الشجرة فصار الظل قصيراً جداً!')) OS.say('الشمس عالية، الظل قصير'); }
-    info.set(len > 200 ? '🌅 الشمس <b>منخفضة</b> (صباحاً أو مساءً) فالظل <b>طويل</b>.' :
-      len < 80 ? '☀️ الشمس <b>عالية</b> (وقت الظهر) فالظل <b>قصير</b>.' :
+    if (len > 320) { OS.award('sh-long', '🌅', 'الشمس منخفضة فصار الظل طويلاً جداً!'); }
+    else if (len < 50) { OS.award('sh-short', '☀️', 'الشمس فوق الشجرة فصار الظل قصيراً جداً!'); }
+    info.set(len > 200 ? 'الشمس <b>منخفضة</b> (صباحاً أو مساءً) فالظل <b>طويل</b>.' :
+      len < 80 ? 'الشمس <b>عالية</b> (وقت الظهر) فالظل <b>قصير</b>.' :
       'الظل يكون دائماً في <b>الجهة المعاكسة</b> للشمس.');
   }
 
@@ -71,7 +71,7 @@
     c.fillStyle = '#ffd600'; c.beginPath(); c.arc(sun.x, sun.y, 34, 0, Math.PI * 2); c.fill();
     c.fillStyle = 'rgba(255,214,0,.3)'; c.beginPath(); c.arc(sun.x, sun.y, 52, 0, Math.PI * 2); c.fill();
     c.fillStyle = '#5d4037'; c.font = 'bold 22px sans-serif'; c.textAlign = 'center';
-    c.fillText('☝️ اسحب الشمس', Math.max(110, Math.min(W - 110, sun.x)), sun.y + 80 > G ? sun.y - 60 : sun.y + 80);
+    c.fillText('اسحب الشمس', Math.max(110, Math.min(W - 110, sun.x)), sun.y + 80 > G ? sun.y - 60 : sun.y + 80);
   }
 
   function loop() {
@@ -80,7 +80,7 @@
   }
 
   OS.register({
-    id: 'shadow', name: 'الضوء والظل', icon: '🌓', color: '#6a1b9a', build: build, scroll: true,
+    id: 'shadow', name: 'الضوء والظل', icon: 'shadow', color: '#8b5cf6', shade: '#6d28d9', build: build, scroll: true,
     awards: [{ key: 'sh-long', e: '🌅', l: 'ظل طويل' }, { key: 'sh-short', e: '☀️', l: 'ظل قصير' }]
   });
 })();

@@ -8,8 +8,6 @@
     { p: 'anchor', e: '⚓', n: 'المرساة', w: 200 }
   ];
   var PX = 350, PY = 90, ARM = 220;
-  var ICON = '<svg viewBox="0 0 100 100" width="100" height="100"><path d="M50,18 L50,86 M30,86 L70,86 M14,30 L86,30" stroke="#fff" stroke-width="7" stroke-linecap="round" fill="none"/>' +
-    '<path d="M4,62 Q22,76 40,62 Z M60,62 Q78,76 96,62 Z" fill="#fff"/><path d="M14,30 L4,62 M14,30 L40,62 M86,30 L60,62 M86,30 L96,62" stroke="#fff" stroke-width="3"/></svg>';
   var scene, info, left = null, right = null, angle = 0, target = 0, raf = null, busy = false;
 
   function build(body) {
@@ -22,20 +20,19 @@
       OS.tap(n, function () { put(i); });
       tray.appendChild(n);
     });
-    var row = OS.el('<div class="row"><button class="btn btn-white">🔄 أفرغ الكفّتين</button></div>');
+    var row = OS.el('<div class="row"><button class="btn btn-white">أفرغ الكفّتين</button></div>');
     OS.tap(row.firstChild, empty);
     wrap.appendChild(info); wrap.appendChild(scene); wrap.appendChild(row); wrap.appendChild(tray);
     body.appendChild(wrap);
     render();
-    return { enter: function () { OS.say(info.lastChild.innerHTML.replace(/<[^>]+>/g, ' ')); }, leave: function () { cancelAnimationFrame(raf); raf = null; angle = target; render(); } };
+    return { enter: function () {  }, leave: function () { cancelAnimationFrame(raf); raf = null; angle = target; render(); } };
   }
 
   function put(i) {
     if (busy) return;
     if (left !== null && right !== null) empty(true);
-    if (left === i || right === i) { OS.toast('🙂', 'اختر شيئاً مختلفاً للكفّة الأخرى'); return; }
-    OS.sfx('pop');
-    if (left === null) { left = i; render(); OS.say(ITEMS[i].n + '، والآن اختر شيئاً آخر'); return; }
+    if (left === i || right === i) { OS.hint('اختر شيئاً مختلفاً للكفّة الأخرى'); return; }
+        if (left === null) { left = i; render(); return; }
     right = i; render();
     busy = true;
     setTimeout(function () {
@@ -54,19 +51,18 @@
       busy = false;
       var msg = ITEMS[heavy].n + ' أثقل من ' + ITEMS[light].n + '، لذلك نزلت كفّته.';
       if (guess === heavy) {
-        OS.sfx('ding');
-        var mem = OS.data.balance || (OS.data.balance = {}), key = Math.min(left, right) + '-' + Math.max(left, right);
+                var mem = OS.data.balance || (OS.data.balance = {}), key = Math.min(left, right) + '-' + Math.max(left, right);
         if (!mem[key]) { mem[key] = 1; OS.addStars(1); }
         var n = 0; for (var k in mem) n++;
         if (n >= 5 && OS.award('bal-5', '⭐', 'صرت خبيراً في الوزن!')) return;
-        OS.toast('🎉', 'صحيح! ' + msg, 3000);
-      } else { OS.sfx('buzz'); OS.toast('👀', 'انظر! ' + msg, 3200); }
+        OS.ok('صحيح! ' + msg, 3000);
+      } else { OS.hint('انظر! ' + msg, 3200); }
     }, 1100);
   }
 
   function empty(quiet) {
     left = right = null; animateTo(0);
-    if (quiet !== true) OS.sfx('splash');
+    
   }
 
   function animateTo(a) {
@@ -85,7 +81,7 @@
       '<path d="M' + (x - 85) + ',' + (y + 120) + ' Q' + x + ',' + (y + 175) + ' ' + (x + 85) + ',' + (y + 120) + ' Z" fill="#ffb300" stroke="#e65100" stroke-width="3"/>';
     if (idx !== null) {
       var it = ITEMS[idx];
-      if (OS.photos[it.p]) s += '<image x="' + (x - 40) + '" y="' + (y + 40) + '" width="80" height="80" xlink:href="img/' + it.p + '.jpg"/>';
+      if (OS.photos[it.p]) s += '<image x="' + (x - 40) + '" y="' + (y + 40) + '" width="80" height="80" xlink:href="' + OS.photoUrl(it.p) + '"/>';
       else s += '<text x="' + x + '" y="' + (y + 112) + '" font-size="64" text-anchor="middle">' + it.e + '</text>';
     }
     return s;
@@ -103,7 +99,7 @@
   }
 
   OS.register({
-    id: 'balance', name: 'الميزان', icon: ICON, color: '#ad1457', build: build, scroll: true,
+    id: 'balance', name: 'الميزان', icon: 'scale', color: '#14b8a6', shade: '#0f766e', build: build, scroll: true,
     awards: [{ key: 'bal-5', e: '⭐', l: 'خبير الوزن' }]
   });
 })();

@@ -11,9 +11,9 @@
     cv = document.createElement('canvas'); cv.width = W; cv.height = H; cv.className = 'stage-cv'; cv.style.width = '560px';
     ctx = cv.getContext('2d');
     var side = OS.el('<div style="width:300px;text-align:center"></div>');
-    airBtn = OS.el('<button class="btn btn-blue" style="width:260px">🌍 مع الهواء</button>');
-    moonBtn = OS.el('<button class="btn btn-teal" style="width:260px">🌙 بلا هواء (القمر)</button>');
-    var drop = OS.el('<button class="btn btn-orange" style="width:260px;font-size:28px">⬇️ أفلِت!</button>');
+    airBtn = OS.el('<button class="btn btn-blue" style="width:260px">مع الهواء</button>');
+    moonBtn = OS.el('<button class="btn btn-teal" style="width:260px">بلا هواء (القمر)</button>');
+    var drop = OS.el('<button class="btn btn-orange" style="width:260px;font-size:28px">أفلِت!</button>');
     OS.tap(airBtn, function () { setAir(true); }); OS.tap(moonBtn, function () { setAir(false); }); OS.tap(drop, ask);
     side.appendChild(airBtn); side.appendChild(moonBtn); side.appendChild(drop);
     panel.appendChild(cv); panel.appendChild(side);
@@ -21,7 +21,7 @@
     body.appendChild(wrap);
     setAir(true, true);
     return {
-      enter: function () { reset(); loop(); OS.say(info.lastChild.innerHTML.replace(/<[^>]+>/g, ' ')); },
+      enter: function () { reset(); loop();  },
       leave: function () { cancelAnimationFrame(raf); raf = null; run = null; }
     };
   }
@@ -29,7 +29,6 @@
   function setAir(a, quiet) {
     air = a; run = null; reset();
     airBtn.className = 'btn btn-blue' + (a ? ' on' : ''); moonBtn.className = 'btn btn-teal' + (a ? '' : ' on');
-    if (!quiet) { OS.sfx('click'); OS.say(a ? 'هنا على الأرض يوجد هواء' : 'على القمر لا يوجد هواء'); }
   }
   function reset() { ball.y = feather.y = TOP; ball.v = feather.v = 0; feather.x = 400; }
 
@@ -37,13 +36,13 @@
     if (run) return;
     reset();
     OS.ask('أيّهما تصل إلى الأرض أولاً' + (air ? '' : ' على القمر') + '؟', [
-      { label: '🏀 الكرة', cls: 'btn-orange', fn: function () { go('ball'); } },
-      { label: '🍃 الريشة', cls: 'btn-teal', fn: function () { go('feather'); } },
-      { label: '✌️ معاً', cls: 'btn-blue', fn: function () { go('same'); } }
+      { label: 'الكرة', cls: 'btn-orange', fn: function () { go('ball'); } },
+      { label: 'الريشة', cls: 'btn-teal', fn: function () { go('feather'); } },
+      { label: 'معاً', cls: 'btn-blue', fn: function () { go('same'); } }
     ]);
   }
 
-  function go(guess) { run = { guess: guess, t: 0, done: false }; OS.sfx('pop'); }
+  function go(guess) { run = { guess: guess, t: 0, done: false }; }
 
   function step() {
     if (!run || run.done) return;
@@ -65,9 +64,8 @@
       : 'بلا هواء تسقط كل الأشياء بالسرعة نفسها، الثقيلة والخفيفة!';
     setTimeout(function () {
       if (right) {
-        OS.sfx('ding');
-        if (!OS.award(air ? 'fall-air' : 'fall-moon', air ? '🏀' : '🌙', 'صحيح! ' + why)) OS.toast('🎉', 'صحيح! ' + why, 3400);
-      } else { OS.sfx('buzz'); OS.toast('👀', 'انظر! ' + why, 3600); }
+                if (!OS.award(air ? 'fall-air' : 'fall-moon', air ? '🏀' : '🌙', 'صحيح! ' + why)) OS.ok('صحيح! ' + why, 3400);
+      } else { OS.hint('انظر! ' + why, 3600); }
       run = null;
     }, 400);
   }
@@ -116,7 +114,7 @@
   }
 
   OS.register({
-    id: 'fall', name: 'السقوط', icon: '🍂', color: '#4e342e', build: build, scroll: true,
+    id: 'fall', name: 'السقوط', icon: 'fall', color: '#f97316', shade: '#c2410c', build: build, scroll: true,
     awards: [{ key: 'fall-air', e: '🏀', l: 'الكرة والريشة' }, { key: 'fall-moon', e: '🌙', l: 'السقوط على القمر' }]
   });
 })();

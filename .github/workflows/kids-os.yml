@@ -24,12 +24,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Prepare site
+      # يبني النظام في ملف واحد فيه كل الصور والخط والأكواد
+      - name: Build single-file site
         run: |
+          python3 kids_os/tools/build.py
           mkdir -p "$RUNNER_TEMP/site"
-          cp -r kids_os/index.html kids_os/icon.png kids_os/nujoom.appcache kids_os/css kids_os/js kids_os/img "$RUNNER_TEMP/site/"
-          # بصمة جديدة في ملف الذاكرة المؤقتة تجعل الآيباد ينزّل التحديث تلقائياً
-          sed -i "s/^# version: .*/# version: ${GITHUB_SHA::12}/" "$RUNNER_TEMP/site/nujoom.appcache"
+          cp kids_os/dist/index.html kids_os/dist/icon.png kids_os/dist/nujoom.appcache "$RUNNER_TEMP/site/"
           touch "$RUNNER_TEMP/site/.nojekyll"
 
       - name: Push to gh-pages

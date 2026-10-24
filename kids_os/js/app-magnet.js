@@ -15,10 +15,10 @@
 
   function build(body, app) {
     info = OS.info('اسحب <b>المغناطيس</b> فوق الأشياء: أيّها يلتصق به؟');
-    area = OS.el('<div class="table" style="top:100px"><div class="mag-hint">✋ اسحب المغناطيس</div></div>');
+    area = OS.el('<div class="table" style="top:100px"><div class="mag-hint">اسحب المغناطيس</div></div>');
     body.appendChild(info); body.appendChild(area);
-    var reset = OS.el('<button class="btn btn-head">🔄 من جديد</button>');
-    OS.tap(reset, function () { OS.sfx('click'); place(); });
+    var reset = OS.el('<button class="btn btn-head">من جديد</button>');
+    OS.tap(reset, function () { place(); });
     app.extra.appendChild(reset);
     OS.each(ITEMS, function (it) {
       var n = OS.el('<div class="mag-obj">' + OS.pic(it.p, it.e, 'obj') + '<div class="nm">' + it.n + '</div></div>');
@@ -30,7 +30,7 @@
     document.addEventListener('touchmove', move, false); document.addEventListener('mousemove', move, false);
     document.addEventListener('touchend', up, false); document.addEventListener('mouseup', up, false);
     window.addEventListener('resize', function () { if (OS.isOpen('magnet')) setTimeout(place, 300); }, false);
-    return { enter: function () { place(); OS.say(info.lastChild.innerHTML.replace(/<[^>]+>/g, ' ')); } };
+    return { enter: function () { place();  } };
   }
 
   function place() {
@@ -49,7 +49,7 @@
     OS.each(ITEMS, function (it, i) { if (it.st >= 0) pos(nodes[i], mx + SLOTS[it.st][0], my + SLOTS[it.st][1]); });
   }
 
-  function down(e) { e.preventDefault(); var p = OS.point(e); drag = { dx: mx - p.x, dy: my - p.y }; OS.sfx('click'); }
+  function down(e) { e.preventDefault(); var p = OS.point(e); drag = { dx: mx - p.x, dy: my - p.y }; }
   function move(e) {
     if (!drag) return; e.preventDefault();
     var p = OS.point(e);
@@ -66,20 +66,19 @@
       var dx = it.px - mx, dy = it.py - my, d = Math.sqrt(dx * dx + dy * dy);
       if (it.m && d < 110) {
         it.st = stuck++; nodes[i].className = 'mag-obj stuck';
-        OS.sfx('pop'); OS.say('انجذب ' + it.n + '!');
         moveMag();
         var all = true; OS.each(ITEMS, function (t) { if (t.m && t.st < 0) all = false; });
         if (all) setTimeout(function () { OS.award('m-all', '📎', 'وجدت كل أشياء الحديد! المغناطيس يجذب الحديد فقط'); }, 600);
       } else if (!it.m && d < 80 && now - it.warn > 2500) {
         it.warn = now;
         var n = nodes[i]; n.className = 'mag-obj'; void n.offsetWidth; n.className = 'mag-obj wiggle';
-        OS.sfx('buzz'); OS.say(it.n + ' لا ينجذب، ليس من الحديد');
+        OS.hint(it.n + ' لا ينجذب، ليس من الحديد', 1600);
       }
     });
   }
 
   OS.register({
-    id: 'magnet', name: 'المغناطيس', icon: MAG, color: '#5e35b1', build: build,
+    id: 'magnet', name: 'المغناطيس', icon: 'magnet', color: '#f43f5e', shade: '#be123c', build: build,
     awards: [{ key: 'm-all', e: '📎', l: 'صيّاد الحديد' }]
   });
 })();

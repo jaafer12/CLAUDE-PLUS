@@ -5,9 +5,9 @@
   var L = 70, R = 370, T = 40, B = 340, PR = 9; // حدود الإناء داخل اللوحة
 
   var TEXT = {
-    solid: '❄️ <b>ثلج</b>: بارد جداً، جزيئاته ثابتة في مكانها.',
-    liquid: '💧 <b>ماء</b>: جزيئاته تتحرّك وتجري. سخّنه أو برّده!',
-    gas: '☁️ <b>بخار</b>: حارّ جداً، جزيئاته تطير بسرعة.'
+    solid: '<b>ثلج</b>: بارد جداً، جزيئاته ثابتة في مكانها.',
+    liquid: '<b>ماء</b>: جزيئاته تتحرّك وتجري. سخّنه أو برّده!',
+    gas: '<b>بخار</b>: حارّ جداً، جزيئاته تطير بسرعة.'
   };
 
   function state() { return temp < 0 ? 'solid' : temp < 100 ? 'liquid' : 'gas'; }
@@ -20,8 +20,8 @@
     ctx = cv.getContext('2d');
     var side = OS.el('<div style="width:300px;text-align:center"></div>');
     stateEl = OS.el('<div class="title2" style="font-size:34px;min-height:60px"></div>');
-    heatBtn = OS.el('<button class="btn btn-red" style="width:240px">🔥 سخّن</button>');
-    coolBtn = OS.el('<button class="btn btn-blue" style="width:240px">❄️ برّد</button>');
+    heatBtn = OS.el('<button class="btn btn-red" style="width:240px">سخّن</button>');
+    coolBtn = OS.el('<button class="btn btn-blue" style="width:240px">برّد</button>');
     slider = OS.el('<input type="range" dir="ltr" min="-30" max="130" step="1" value="20" style="width:240px;margin:16px 0;direction:ltr">');
     side.appendChild(stateEl); side.appendChild(heatBtn); side.appendChild(coolBtn); side.appendChild(slider);
     side.appendChild(OS.el('<div style="font-size:17px;color:#78909c">أو حرّك المؤشر لتغيير الحرارة</div>'));
@@ -29,8 +29,8 @@
     wrap.appendChild(info); wrap.appendChild(panel);
     body.appendChild(wrap);
 
-    OS.tap(heatBtn, function () { dir = dir === 1 ? 0 : 1; OS.sfx('click'); btns(); });
-    OS.tap(coolBtn, function () { dir = dir === -1 ? 0 : -1; OS.sfx('click'); btns(); });
+    OS.tap(heatBtn, function () { dir = dir === 1 ? 0 : 1; btns(); });
+    OS.tap(coolBtn, function () { dir = dir === -1 ? 0 : -1; btns(); });
     slider.addEventListener('input', function () { temp = +slider.value; dir = 0; btns(); }, false);
     slider.addEventListener('change', function () { temp = +slider.value; dir = 0; btns(); }, false);
     makeParts();
@@ -92,12 +92,11 @@
     var first = last === '', prev = last;
     last = s;
     info.set(TEXT[s]);
-    stateEl.innerHTML = s === 'solid' ? '❄️ ثلج' : s === 'liquid' ? '💧 ماء' : '☁️ بخار';
+    stateEl.innerHTML = s === 'solid' ? 'ثلج' : s === 'liquid' ? 'ماء' : 'بخار';
     if (first) return;
-    OS.sfx(s === 'gas' ? 'splash' : 'pop');
-    var key = 'w-' + s, msg = { solid: 'تجمّد الماء وصار ثلجاً!', liquid: prev === 'gas' ? 'برد البخار وعاد ماءً!' : 'ذاب الثلج وصار ماءً!', gas: 'غلى الماء وصار بخاراً!' }[s];
+        var key = 'w-' + s, msg = { solid: 'تجمّد الماء وصار ثلجاً!', liquid: prev === 'gas' ? 'برد البخار وعاد ماءً!' : 'ذاب الثلج وصار ماءً!', gas: 'غلى الماء وصار بخاراً!' }[s];
     var ems = { solid: '❄️', liquid: '💧', gas: '☁️' };
-    if (!OS.award(key, ems[s], msg)) OS.say(msg);
+    OS.award(key, ems[s], msg);
     if (OS.data.awards['w-solid'] && OS.data.awards['w-liquid'] && OS.data.awards['w-gas'])
       setTimeout(function () { OS.award('w-all', '🏆', 'عرفت حالات الماء الثلاث!'); }, 2800);
   }
@@ -157,7 +156,7 @@
   function tick() { step(); draw(); raf = requestAnimationFrame(tick); }
 
   OS.register({
-    id: 'water', name: 'حالات الماء', icon: '💧', color: '#0277bd', build: build, scroll: true,
+    id: 'water', name: 'حالات الماء', icon: 'drop', color: '#0ea5e9', shade: '#0369a1', build: build, scroll: true,
     awards: [{ key: 'w-solid', e: '❄️', l: 'صنعت ثلجاً' }, { key: 'w-liquid', e: '💧', l: 'أذبت الثلج' },
       { key: 'w-gas', e: '☁️', l: 'غليت الماء' }, { key: 'w-all', e: '🏆', l: 'حالات الماء' }]
   });

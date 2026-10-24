@@ -11,56 +11,51 @@
     scene = OS.el('<div></div>'); panel.appendChild(scene);
     dayEl = OS.el('<div class="title2"></div>');
     var row = OS.el('<div class="row"></div>');
-    var wBtn = OS.el('<button class="btn btn-blue">💧 اسقِ النبتة</button>');
-    sunBtn = OS.el('<button class="btn btn-orange">☀️ الشمس</button>');
-    var dBtn = OS.el('<button class="btn btn-green">🌙 نامي… يوم جديد</button>');
-    var rBtn = OS.el('<button class="btn btn-white">🔄 بذرة جديدة</button>');
+    var wBtn = OS.el('<button class="btn btn-blue">اسقِ النبتة</button>');
+    sunBtn = OS.el('<button class="btn btn-orange">الشمس</button>');
+    var dBtn = OS.el('<button class="btn btn-green">نامي… يوم جديد</button>');
+    var rBtn = OS.el('<button class="btn btn-white">بذرة جديدة</button>');
     OS.tap(wBtn, waterIt); OS.tap(sunBtn, toggleSun); OS.tap(dBtn, nextDay); OS.tap(rBtn, restart);
     row.appendChild(wBtn); row.appendChild(sunBtn); row.appendChild(dBtn); row.appendChild(rBtn);
     wrap.appendChild(info); wrap.appendChild(dayEl); wrap.appendChild(panel); wrap.appendChild(row);
     body.appendChild(wrap);
     restart(true);
-    return { enter: function () { OS.say(info.lastChild.innerHTML.replace(/<[^>]+>/g, ' ')); } };
+    return { enter: function () {  } };
   }
 
   function restart(quiet) {
     stage = 0; day = 1; water = 0; sun = true; thirsty = 0;
-    info.set('اسقِ البذرة 💧 واتركها في الشمس ☀️ ثم اضغط «يوم جديد».');
+    info.set('اسقِ البذرة بالماء واتركها في الشمس، ثم اضغط «يوم جديد».');
     render(false);
-    if (quiet !== true) OS.sfx('pop');
+    
   }
 
   function waterIt() {
     water++;
-    OS.sfx('splash');
-    render(true);
-    if (water === 1) OS.say('شربت النبتة الماء، شكراً!');
-    else if (water === 2) OS.say('هذا يكفي لليوم');
-    else OS.toast('🌊', 'كفى! الماء الكثير جداً يضرّ الجذور');
+        render(true);
+    if (water > 2) OS.hint('كفى! الماء الكثير جداً يضرّ الجذور');
   }
-  function toggleSun() { sun = !sun; OS.sfx('click'); render(false); OS.say(sun ? 'أشرقت الشمس' : 'غطّت الغيوم الشمس'); }
+  function toggleSun() { sun = !sun; render(false); }
 
   function nextDay() {
-    OS.sfx('click');
-    var msg;
-    if (stage >= 4) { OS.toast('🌸', 'النبتة أزهرت! ازرع بذرة جديدة'); return; }
+        var msg;
+    if (stage >= 4) { OS.ok('النبتة أزهرت! ازرع بذرة جديدة'); return; }
     if (water === 0) { thirsty++; msg = ['😟', 'النبتة عطشى! لم تشرب الماء فلم تكبر']; }
     else if (water > 2) { msg = ['🌊', 'الماء كان كثيراً جداً، النبتة لم تكبر اليوم']; }
     else if (!sun) { msg = ['☁️', 'لم ترَ النبتة ضوء الشمس فلم تكبر. النبتة تحتاج الضوء لتصنع غذاءها']; }
     else { stage++; thirsty = 0; msg = null; }
     day++; water = 0;
     render(false);
-    if (msg) { OS.sfx('buzz'); OS.toast(msg[0], msg[1], 3200); return; }
-    OS.sfx('ding');
-    if (stage === 4) {
-      info.set('🌸 رائع! بالماء والشمس صارت البذرة <b>زهرة</b>.');
+    if (msg) { OS.hint(msg[1], 3200); return; }
+        if (stage === 4) {
+      info.set('رائع! بالماء والشمس صارت البذرة <b>زهرة</b>.');
       OS.award('p-flower', '🌸', 'زرعت زهرة بنفسك!');
-    } else OS.toast('🌱', 'كبرت النبتة! صارت ' + STAGES[stage]);
+    } else OS.ok('كبرت النبتة! صارت ' + STAGES[stage]);
   }
 
   function render(rain) {
-    dayEl.innerHTML = 'اليوم ' + day + ' — ' + STAGES[stage] + (water ? ' ' + new Array(Math.min(water, 3) + 1).join('💧') : '');
-    sunBtn.innerHTML = sun ? '☀️ الشمس مشرقة' : '☁️ غائم';
+    dayEl.innerHTML = 'اليوم ' + day + ' — ' + STAGES[stage] + (water ? ' — سُقيت ' + water + (water === 1 ? ' مرة' : ' مرات') : '');
+    sunBtn.innerHTML = sun ? 'الشمس مشرقة' : 'غائم';
     var sky = sun ? '#81d4fa' : '#b0bec5', w = 700, h = 300, cx = 350, ground = 240;
     var leaf = thirsty ? '#c0ca33' : '#43a047';
     var s = '<svg viewBox="0 0 ' + w + ' ' + h + '" width="100%" height="300" style="display:block">';
@@ -89,13 +84,13 @@
     // الإصيص
     s += '<path d="M' + (cx - 70) + ',' + (ground - 6) + ' L' + (cx + 70) + ',' + (ground - 6) + ' L' + (cx + 52) + ',' + (h - 4) + ' L' + (cx - 52) + ',' + (h - 4) + ' Z" fill="#d84315"/>';
     s += '<rect x="' + (cx - 78) + '" y="' + (ground - 16) + '" width="156" height="18" rx="6" fill="#bf360c"/>';
-    if (rain) for (var d = 0; d < 7; d++) s += '<text x="' + (cx - 60 + d * 20) + '" y="' + (top - 40 + (d % 2) * 20) + '" font-size="26">💧</text>';
+    if (rain) for (var d = 0; d < 7; d++) s += '<path d="M' + (cx - 60 + d * 20) + ',' + (top - 60 + (d % 2) * 20) + ' q-7,12 0,16 q7,-4 0,-16z" fill="#38bdf8"/>';
     s += '</svg>';
     scene.innerHTML = s;
   }
 
   OS.register({
-    id: 'plant', name: 'نمو النبتة', icon: '🌱', color: '#2e7d32', build: build, scroll: true,
+    id: 'plant', name: 'نمو النبتة', icon: 'sprout', color: '#22c55e', shade: '#15803d', build: build, scroll: true,
     awards: [{ key: 'p-flower', e: '🌸', l: 'المزارع الصغير' }]
   });
 })();

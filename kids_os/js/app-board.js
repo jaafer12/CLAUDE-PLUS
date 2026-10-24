@@ -42,10 +42,10 @@
 
   function tool(html, on, fn, cls) {
     var n = OS.el('<div class="tool' + (cls ? ' ' + cls : '') + (on ? ' on' : '') + '">' + html + '</div>');
-    OS.tap(n, function () { OS.sfx('click'); fn(); });
+    OS.tap(n, function () { fn(); });
     tools.appendChild(n); return n;
   }
-  function sep() { tools.appendChild(OS.el('<div style="width:2px;height:40px;background:#cfd8dc;margin:0 8px"></div>')); }
+  function sep() { tools.appendChild(OS.el('<div style="width:2px;height:40px;background:#eadbc0;margin:0 8px"></div>')); }
   function br() { tools.appendChild(OS.el('<div style="width:100%;height:0"></div>')); }
 
   function drawTools() {
@@ -53,7 +53,7 @@
     var inks = chalk ? INK_CHALK : INK_WHITE;
     OS.each(inks, function (c, i) {
       var n = OS.el('<div class="sw' + (!erasing && i === color ? ' on' : '') + '" style="background:' + c + '"></div>');
-      OS.tap(n, function () { color = i; erasing = false; OS.sfx('click'); drawTools(); });
+      OS.tap(n, function () { color = i; erasing = false; drawTools(); });
       tools.appendChild(n);
     });
     sep();
@@ -62,33 +62,25 @@
     });
     sep();
     tool('ممحاة', erasing, function () { erasing = !erasing; drawTools(); }, 'txt');
-    tool('↩️', false, function () { strokes.pop(); redraw(); });
-    tool('❌', false, function () { strokes = []; redraw(); });
+    tool('تراجع', false, function () { strokes.pop(); redraw(); }, 'txt');
+    tool('امسح الكل', false, function () { strokes = []; redraw(); }, 'txt');
     tool(chalk ? 'سبورة بيضاء' : 'سبورة خضراء', false, function () { chalk = !chalk; color = 0; drawTools(); paintBg(); redraw(); }, 'txt');
-    tool('📷', false, snapshot);
+    tool('احفظ صورة', false, snapshot, 'txt');
     br();
     var modes = [['free', 'رسم حر'], ['lines', 'أسطر'], ['grid', 'مربعات'], ['letters', 'حروف'], ['numbers', 'أرقام'], ['shapes', 'أشكال']];
     OS.each(modes, function (m) {
-      tool(m[1], mode === m[0], function () { mode = m[0]; idx = 0; strokes = []; drawTools(); resize(); announce(); }, 'txt');
+      tool(m[1], mode === m[0], function () { mode = m[0]; idx = 0; strokes = []; drawTools(); resize(); }, 'txt');
     });
     if (tracing()) {
-      tool('▶', false, function () { go(-1); });
-      tool('◀', false, function () { go(1); });
-      tool('🔈', false, announce);
-      tool('✅ تحقّق', false, check, 'txt');
+      sep();
+      tool('السابق', false, function () { go(-1); }, 'txt');
+      tool('التالي', false, function () { go(1); }, 'txt');
+      tool('تحقّق ✓', false, check, 'txt');
     }
     if (stage) stage.style.top = tools.offsetHeight + 'px';
   }
 
-  function go(d) { var l = list(); idx = (idx + d + l.length) % l.length; strokes = []; paintBg(); redraw(); announce(); }
-
-  function announce() {
-    if (!tracing()) return;
-    var it = list()[idx];
-    if (mode === 'letters') OS.say(it[1] + '. ' + it[2]);
-    else if (mode === 'numbers') OS.say(it[2]);
-    else OS.say(it[1]);
-  }
+  function go(d) { var l = list(); idx = (idx + d + l.length) % l.length; strokes = []; paintBg(); redraw(); }
 
   function resize() {
     stage.style.top = tools.offsetHeight + 'px';
@@ -190,7 +182,7 @@
     } else label.className = 'trace-label hidden';
     root.className = 'win-body' + (chalk ? ' chalk' : '');
   }
-  function dots(n) { var s = ''; for (var i = 0; i < n; i++) s += '🍎'; return s; }
+  function dots(n) { var s = ''; for (var i = 0; i < n; i++) s += '<span class="chip-c" style="width:18px;height:18px;background:#ef4444;margin:0 2px"></span>'; return s; }
 
   // ---------- الرسم ----------
   function local(e) {
@@ -255,19 +247,18 @@
       if (g) { glyph++; if (d) cov++; }
       if (d) { inkN++; if (!n) out++; }
     }
-    if (inkN < 20) { OS.toast('✏️', 'تتبّع الخط المنقّط بإصبعك أولاً'); return; }
+    if (inkN < 20) { OS.hint('تتبّع الخط المنقّط بإصبعك أولاً'); return; }
     var c = cov / glyph, o = out / inkN, it = list()[idx];
     if (c > 0.6 && o < 0.25) {
-      OS.sfx('ding');
-      var key = mode + ':' + idx, t = traced();
+            var key = mode + ':' + idx, t = traced();
       if (!t[key]) { t[key] = 1; OS.addStars(1); }
-      OS.toast('🌟', 'ممتاز! ' + (mode === 'letters' ? 'حرف ' + it[1] : mode === 'numbers' ? 'الرقم ' + it[2] : it[1]) + ' جميل جداً');
+      OS.ok('ممتاز! ' + (mode === 'letters' ? 'حرف ' + it[1] : mode === 'numbers' ? 'الرقم ' + it[2] : it[1]) + ' جميل جداً');
       groupAward();
       setTimeout(function () { if (OS.isOpen('board')) go(1); }, 2200);
     } else if (c > 0.35 && o < 0.45) {
-      OS.sfx('pop'); OS.toast('👍', o >= 0.25 ? 'جيد! حاول أن تبقى على الخط' : 'جيد! أكمل تلوين الشكل كله');
+      OS.ok(o >= 0.25 ? 'جيد! حاول أن تبقى على الخط' : 'جيد! أكمل تلوين الشكل كله');
     } else {
-      OS.sfx('buzz'); OS.toast('🙂', 'حاول مرة أخرى، امشِ فوق النقاط');
+      OS.hint('حاول مرة أخرى، امشِ فوق النقاط');
       strokes = []; setTimeout(redraw, 600);
     }
   }
@@ -287,11 +278,11 @@
     x.drawImage(bg, 0, 0); x.drawImage(dr, 0, 0);
     var url = c.toDataURL('image/png');
     OS.ask('<img src="' + url + '" style="width:100%;border-radius:14px;border:3px solid #cfd8dc;-webkit-touch-callout:default" ><br>اضغط مطوّلاً على الصورة واختر «حفظ الصورة»',
-      [{ label: 'تمّ 👍', cls: 'btn-green' }], false);
+      [{ label: 'تمّ', cls: 'btn-green' }], false);
   }
 
   OS.register({
-    id: 'board', name: 'السبورة الذكية', icon: '✏️', color: '#3949ab', build: build,
+    id: 'board', name: 'السبورة الذكية', icon: 'pencil', color: '#6366f1', shade: '#4338ca', build: build,
     awards: [{ key: 'b-five', e: '✏️', l: 'خمسة رسوم' }, { key: 'b-letters', e: '🔤', l: 'كل الحروف' },
       { key: 'b-numbers', e: '🔢', l: 'كل الأرقام' }, { key: 'b-shapes', e: '🔷', l: 'كل الأشكال' }]
   });

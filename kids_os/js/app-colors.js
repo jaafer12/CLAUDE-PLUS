@@ -12,7 +12,7 @@
 
   function build(body) {
     var wrap = OS.el('<div></div>');
-    info = OS.info('اضغط على <b>لونين</b> واكتشف اللون الجديد! 🎨');
+    info = OS.info('اضغط على <b>لونين</b> واكتشف اللون الجديد!');
     var pots = OS.el('<div class="row"></div>');
     OS.each(POTS, function (p) {
       var n = OS.el('<div class="pot" style="background:' + p[2] + (p[0] === 'white' || p[0] === 'yellow' ? ';color:#555;text-shadow:none' : '') + '">' + p[1] + '</div>');
@@ -22,23 +22,22 @@
     bowl = OS.el('<div class="bowl"></div>');
     eq = OS.el('<div class="eq"></div>');
     found = OS.el('<div class="found"></div>');
-    var again = OS.el('<div class="row"><button class="btn btn-white">🔄 وعاء نظيف</button></div>');
+    var again = OS.el('<div class="row"><button class="btn btn-white">وعاء نظيف</button></div>');
     OS.tap(again.firstChild, clean);
     wrap.appendChild(info); wrap.appendChild(pots); wrap.appendChild(bowl); wrap.appendChild(eq); wrap.appendChild(again); wrap.appendChild(found);
     body.appendChild(wrap);
     showFound();
-    return { enter: function () { OS.say(info.lastChild.innerHTML.replace(/<[^>]+>/g, ' ')); } };
+    return { enter: function () {  } };
   }
 
-  function chip(c) { return '<span class="chip" style="background:' + c + '"></span>'; }
+  function chip(c) { return '<span class="chip-c" style="background:' + c + '"></span>'; }
 
-  function clean() { picks = []; bowl.style.backgroundColor = '#fafafa'; eq.innerHTML = ''; OS.sfx('splash'); }
+  function clean() { picks = []; bowl.style.backgroundColor = '#fafafa'; eq.innerHTML = ''; }
 
   function pour(p, pot) {
     if (picks.length >= 2) clean();
     picks.push(p[0]);
-    OS.sfx('pop');
-    var a = pot.getBoundingClientRect(), b = bowl.getBoundingClientRect();
+        var a = pot.getBoundingClientRect(), b = bowl.getBoundingClientRect();
     var d = OS.el('<div class="drop" style="background:' + p[2] + ';left:' + (a.left + a.width / 2 - 17) + 'px;top:' + (a.top + a.height / 2) + 'px"></div>');
     document.body.appendChild(d);
     void d.offsetWidth;
@@ -51,25 +50,23 @@
       var one = name(picks[0]);
       bowl.style.backgroundColor = one[2];
       eq.innerHTML = chip(one[2]) + ' + ؟';
-      OS.say(one[1] + '، والآن اختر لوناً آخر');
       return;
     }
     var a = name(picks[0]), b = name(picks[1]);
     if (picks[0] === picks[1]) {
       eq.innerHTML = chip(a[2]) + ' + ' + chip(a[2]) + ' = ' + chip(a[2]) + ' ' + a[1];
-      OS.toast('😄', 'ما زال ' + a[1] + '! اللون مع نفسه لا يتغيّر'); return;
+      OS.hint('ما زال ' + a[1] + '! اللون مع نفسه لا يتغيّر'); return;
     }
     var key = [picks[0], picks[1]].sort().join('+'), r = MIX[key];
     bowl.style.backgroundColor = r[1];
     eq.innerHTML = chip(a[2]) + ' + ' + chip(b[2]) + ' = ' + chip(r[1]) + ' ' + r[0];
     var mem = OS.data.colors || (OS.data.colors = {});
-    OS.sfx('ding');
-    if (!mem[key]) {
+        if (!mem[key]) {
       mem[key] = 1; OS.addStars(1);
-      OS.toast('🎨', 'اكتشفت لوناً جديداً!<br>' + a[1] + ' و' + b[1] + ' = ' + r[0]);
+      OS.ok('اكتشفت لوناً جديداً!<br>' + a[1] + ' و' + b[1] + ' = ' + r[0]);
       var n = 0; for (var k in mem) n++;
       if (n >= COUNT) setTimeout(function () { OS.award('col-all', '🎨', 'اكتشفت كل الألوان! أنت فنان'); }, 2000);
-    } else OS.say(a[1] + ' و' + b[1] + ' يصنعان ' + r[0]);
+    }
     showFound();
   }
 
@@ -80,7 +77,7 @@
   }
 
   OS.register({
-    id: 'colors', name: 'خلط الألوان', icon: '🎨', color: '#c2185b', build: build, scroll: true,
+    id: 'colors', name: 'خلط الألوان', icon: 'palette', color: '#ec4899', shade: '#be185d', build: build, scroll: true,
     awards: [{ key: 'col-all', e: '🎨', l: 'فنان الألوان' }]
   });
 })();

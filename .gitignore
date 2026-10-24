@@ -9,3 +9,4 @@ __pycache__/
 id_photo/build/
 id_photo/dist/
 id_photo/idphoto/models/u2net_human_seg.onnx
+kids_os/dist/

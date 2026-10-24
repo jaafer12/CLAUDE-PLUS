@@ -4,10 +4,10 @@
   var cv, ctx, info, raf = null, step = 0, fill = 0, parts = [], t = 0, phaseEnd = 0, label = '';
 
   var TEXT = [
-    'اضغط على <b>الشمس</b> ☀️ لتسخّن ماء البحر.',
+    'اضغط على <b>الشمس</b> لتسخّن ماء البحر.',
     'الغيمة <b>امتلأت</b> بقطرات الماء! اضغط عليها.',
-    '☔ <b>هطول</b>: الماء ينزل مطراً على الجبل.',
-    '🌊 <b>جريان</b>: المطر يجري في النهر عائداً إلى البحر.'
+    '<b>هطول</b>: الماء ينزل مطراً على الجبل.',
+    '<b>جريان</b>: المطر يجري في النهر عائداً إلى البحر.'
   ];
 
   function build(body) {
@@ -21,7 +21,7 @@
     body.appendChild(wrap);
     cv.addEventListener('touchstart', tapped, false); cv.addEventListener('mousedown', tapped, false);
     return {
-      enter: function () { loop(); OS.say(info.lastChild.innerHTML.replace(/<[^>]+>/g, ' ')); },
+      enter: function () { loop();  },
       leave: function () { cancelAnimationFrame(raf); raf = null; }
     };
   }
@@ -32,14 +32,12 @@
     e.preventDefault();
     var p = OS.canvasPoint(cv, e);
     if (step === 0 && fill < 3 && near(p, SUN, 90)) {
-      OS.sfx('pop');
-      for (var i = 0; i < 14; i++) parts.push({ k: 'v', x: 40 + Math.random() * 340, y: 340 + Math.random() * 30, life: 0 });
-      label = 'تبخّر ♨️';
+            for (var i = 0; i < 14; i++) parts.push({ k: 'v', x: 40 + Math.random() * 340, y: 340 + Math.random() * 30, life: 0 });
+      label = 'تبخّر';
       fill++;
-      if (fill === 1) OS.say('تبخّر الماء وصعد إلى السماء');
-      if (fill === 3) setTimeout(function () { step = 1; info.set(TEXT[1]); label = 'تكاثف ☁️'; OS.say('تكاثف البخار وصار غيمة. اضغط على الغيمة'); }, 1600);
+      if (fill === 3) setTimeout(function () { step = 1; info.set(TEXT[1]); label = 'تكاثف';  }, 1600);
     } else if (step === 1 && near(p, CLOUD, 110)) {
-      step = 2; info.set(TEXT[2]); label = 'هطول ☔'; phaseEnd = t + 150; OS.sfx('splash'); OS.say('هطل المطر');
+      step = 2; info.set(TEXT[2]); label = 'هطول'; phaseEnd = t + 150; 
     }
   }
 
@@ -53,12 +51,11 @@
     }
     if (step === 2) {
       for (i = 0; i < 3; i++) parts.push({ k: 'r', x: CLOUD.x - 90 + Math.random() * 180, y: CLOUD.y + 30 });
-      if (t > phaseEnd) { step = 3; info.set(TEXT[3]); label = 'جريان 🌊'; phaseEnd = t + 200; OS.say('جرى الماء في النهر إلى البحر'); }
+      if (t > phaseEnd) { step = 3; info.set(TEXT[3]); label = 'جريان'; phaseEnd = t + 200;  }
     } else if (step === 3 && t > phaseEnd) {
       step = 0; fill = 0; label = '';
-      info.set('🔄 عاد الماء إلى البحر… وتبدأ <b>دورة الماء</b> من جديد! ' + TEXT[0]);
-      OS.sfx('ding');
-      if (!OS.award('cyc-all', '🔄', 'أكملت دورة الماء كلها!')) OS.say('أكملت دورة الماء');
+      info.set('عاد الماء إلى البحر… وتبدأ <b>دورة الماء</b> من جديد! ' + TEXT[0]);
+            OS.award('cyc-all', '🔄', 'أكملت دورة الماء كلها!');
     }
   }
 
@@ -101,8 +98,8 @@
     }
     // الإرشاد والاسم العلمي للمرحلة
     c.font = 'bold 26px sans-serif'; c.textAlign = 'center'; c.fillStyle = '#263238';
-    if (step === 0) c.fillText('☝️ اضغط', SUN.x, SUN.y + 86);
-    if (step === 1) c.fillText('☝️ اضغط', CLOUD.x, CLOUD.y + 100);
+    if (step === 0) c.fillText('اضغط', SUN.x, SUN.y + 86);
+    if (step === 1) c.fillText('اضغط', CLOUD.x, CLOUD.y + 100);
     if (label) {
       c.fillStyle = 'rgba(255,255,255,.85)'; c.fillRect(W / 2 - 120, 12, 240, 46);
       c.fillStyle = '#01579b'; c.font = 'bold 30px sans-serif'; c.fillText(label, W / 2, 46);
@@ -115,7 +112,7 @@
   }
 
   OS.register({
-    id: 'cycle', name: 'دورة الماء', icon: '☔', color: '#01579b', build: build, scroll: true,
+    id: 'cycle', name: 'دورة الماء', icon: 'cloud', color: '#3b82f6', shade: '#1d4ed8', build: build, scroll: true,
     awards: [{ key: 'cyc-all', e: '🔄', l: 'دورة الماء' }]
   });
 })();
