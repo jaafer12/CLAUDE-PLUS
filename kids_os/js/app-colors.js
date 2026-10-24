@@ -12,7 +12,7 @@
 
   function build(body) {
     var wrap = OS.el('<div></div>');
-    info = OS.info('الألوان <b>الأساسية</b> ثلاثة: الأحمر والأصفر والأزرق. عندما نخلط لونين نحصل على لون <b>جديد</b>! اضغط على علبتين من الألوان.');
+    info = OS.info('اضغط على <b>لونين</b> واكتشف اللون الجديد! 🎨');
     var pots = OS.el('<div class="row"></div>');
     OS.each(POTS, function (p) {
       var n = OS.el('<div class="pot" style="background:' + p[2] + (p[0] === 'white' || p[0] === 'yellow' ? ';color:#555;text-shadow:none' : '') + '">' + p[1] + '</div>');

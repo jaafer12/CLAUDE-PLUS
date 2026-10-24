@@ -25,7 +25,7 @@
 
   function restart(quiet) {
     stage = 0; day = 1; water = 0; sun = true; thirsty = 0;
-    info.set('النبتة كائن حيّ تحتاج إلى <b>الماء</b> و<b>ضوء الشمس</b> و<b>الهواء</b> و<b>التربة</b>. زرعنا بذرة! اسقِها، واتركها في الشمس، ثم اضغط «يوم جديد».');
+    info.set('اسقِ البذرة 💧 واتركها في الشمس ☀️ ثم اضغط «يوم جديد».');
     render(false);
     if (quiet !== true) OS.sfx('pop');
   }
@@ -53,7 +53,7 @@
     if (msg) { OS.sfx('buzz'); OS.toast(msg[0], msg[1], 3200); return; }
     OS.sfx('ding');
     if (stage === 4) {
-      info.set('🌸 رائع! بالماء والشمس كبرت البذرة وصارت <b>زهرة</b>. الأزهار تصنع بذوراً جديدة… وهكذا تستمر الحياة!');
+      info.set('🌸 رائع! بالماء والشمس صارت البذرة <b>زهرة</b>.');
       OS.award('p-flower', '🌸', 'زرعت زهرة بنفسك!');
     } else OS.toast('🌱', 'كبرت النبتة! صارت ' + STAGES[stage]);
   }

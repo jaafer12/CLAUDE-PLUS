@@ -78,7 +78,7 @@ button { font-family: inherit; }
 .btn-round { width: 58px; padding: 0; border-radius: 29px; font-size: 28px; }
 .btn-head { background: rgba(255,255,255,.25); box-shadow: none; min-height: 48px; padding: 6px 16px; margin: 0 4px; }
 
-.info { background: #fff8e1; border-radius: 18px; padding: 14px 18px 14px 70px; margin: 10px; font-size: 21px; line-height: 1.6; position: relative; min-height: 70px; border: 2px solid #ffe082; }
+.info { background: #fff8e1; border-radius: 18px; padding: 14px 18px 14px 70px; margin: 10px; font-size: 24px; line-height: 1.6; position: relative; min-height: 70px; border: 2px solid #ffe082; }
 .info .speak { position: absolute; left: 10px; top: 10px; width: 50px; height: 50px; border-radius: 25px; background: #ffca28; text-align: center; line-height: 50px; font-size: 26px; }
 .row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
 .panel { background: #fff; border-radius: 22px; box-shadow: 0 3px 10px rgba(0,0,0,.12); margin: 10px; padding: 10px; }

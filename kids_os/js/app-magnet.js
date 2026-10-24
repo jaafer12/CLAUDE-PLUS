@@ -14,7 +14,7 @@
   var area, mag, info, nodes = [], mx = 0, my = 0, drag = null, stuck = 0, W = 0, H = 0;
 
   function build(body, app) {
-    info = OS.info('<b>المغناطيس</b> يجذب الأشياء المصنوعة من <b>الحديد</b>. اسحب المغناطيس الأحمر بإصبعك فوق الأشياء: أيّها يلتصق به؟');
+    info = OS.info('اسحب <b>المغناطيس</b> فوق الأشياء: أيّها يلتصق به؟');
     area = OS.el('<div class="table" style="top:100px"><div class="mag-hint">✋ اسحب المغناطيس</div></div>');
     body.appendChild(info); body.appendChild(area);
     var reset = OS.el('<button class="btn btn-head">🔄 من جديد</button>');

@@ -16,7 +16,7 @@
 
   function build(body) {
     var wrap = OS.el('<div></div>');
-    info = OS.info('بعض الأشياء <b>تطفو</b> فوق الماء، وبعضها <b>يغرق</b> إلى القاع. اختر شيئاً، وخمّن ماذا سيحدث له!');
+    info = OS.info('اختر شيئاً وخمّن: هل <b>يطفو</b> أم <b>يغرق</b>؟');
     tank = OS.el('<div class="tank"><div class="tank-water"></div></div>');
     tray = OS.el('<div class="tray"></div>');
     var reset = OS.el('<div class="row"><button class="btn btn-white">🔄 أفرغ الحوض</button></div>');

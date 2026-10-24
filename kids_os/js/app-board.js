@@ -121,18 +121,46 @@
   }
 
   // يرسم شكل الدليل على أي سياق؛ s = مقياس، fat = سماحية إضافية بالبكسل
-  function guide(c, s, fill, fat) {
+  // حدود الحرف الفعلية بالبكسل (تختلف من خط لآخر)، تُحسب مرة لكل حرف
+  var boxes = {};
+  function glyphBox(ch) {
+    if (boxes[ch]) return boxes[ch];
+    var cv = layer(600, 600), x = cv.getContext('2d');
+    x.font = glyphFont(400); x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillStyle = '#000';
+    x.fillText(ch, 300, 300);
+    var d = x.getImageData(0, 0, 600, 600).data, x0 = 600, y0 = 600, x1 = 0, y1 = 0;
+    for (var y = 0; y < 600; y++) for (var i = 0; i < 600; i++) {
+      if (d[(y * 600 + i) * 4 + 3] > 40) { if (i < x0) x0 = i; if (i > x1) x1 = i; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+    }
+    if (x1 < x0) { x0 = y0 = 100; x1 = y1 = 500; }
+    return (boxes[ch] = { cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, w: x1 - x0 + 1, h: y1 - y0 + 1 });
+  }
+
+  // يرسم شكل الدليل على أي سياق؛ s = مقياس، fat = سماحية إضافية بالبكسل، outline = لون الحدّ
+  function guide(c, s, fill, fat, outline) {
     var it = list()[idx], cx = W * s / 2, cy = H * s / 2 + 10 * s;
     if (mode === 'shapes') {
       var r = Math.min(W, H) * s * 0.3;
       shapePath(c, it[0], cx, cy, r);
       c.lineWidth = 34 * s + (fat || 0); c.lineJoin = 'round'; c.strokeStyle = fill; c.stroke();
-    } else {
-      var px = Math.min(W * 0.8, H * 0.8) * s;
-      c.font = glyphFont(px); c.textAlign = 'center'; c.textBaseline = 'middle';
-      c.fillStyle = fill; c.fillText(it[0], cx, cy);
-      if (fat) { c.lineWidth = fat; c.lineJoin = 'round'; c.strokeStyle = fill; c.strokeText(it[0], cx, cy); }
+      if (outline) {
+        if (c.setLineDash) c.setLineDash([14, 12]);
+        c.lineWidth = 3; c.strokeStyle = outline; c.stroke();
+        if (c.setLineDash) c.setLineDash([]);
+      }
+      return;
     }
+    // نكبّر الحرف ليملأ المساحة نفسها مهما كان الخط، مع حدّ أعلى للحروف الصغيرة مثل ٠
+    var b = glyphBox(it[0]), base = Math.min(W, H) * s * 0.8 / 400;
+    var k = Math.min(W * s * 0.8 / b.w, H * s * 0.78 / b.h, base * 1.6);
+    c.save();
+    c.translate(cx, cy); c.scale(k, k); c.translate(-b.cx, -b.cy);
+    c.font = glyphFont(400); c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.fillStyle = fill; c.fillText(it[0], 300, 300);
+    c.lineJoin = 'round';
+    if (fat) { c.lineWidth = fat / k; c.strokeStyle = fill; c.strokeText(it[0], 300, 300); }
+    if (outline) { c.lineWidth = 3 / k; c.strokeStyle = outline; c.strokeText(it[0], 300, 300); }
+    c.restore();
   }
 
   function paintBg() {
@@ -152,13 +180,7 @@
       for (i = 40; i < W; i += 40) { c.beginPath(); c.moveTo(i, 0); c.lineTo(i, H); c.stroke(); }
       for (i = 40; i < H; i += 40) { c.beginPath(); c.moveTo(0, i); c.lineTo(W, i); c.stroke(); }
     } else if (tracing()) {
-      guide(c, 1, chalk ? 'rgba(255,255,255,.18)' : 'rgba(120,144,156,.18)');
-      if (c.setLineDash) c.setLineDash([14, 12]);
-      c.lineWidth = 3; c.strokeStyle = chalk ? 'rgba(255,255,255,.6)' : 'rgba(84,110,122,.6)';
-      var it = list()[idx];
-      if (mode === 'shapes') { shapePath(c, it[0], W / 2, H / 2 + 10, Math.min(W, H) * 0.3); c.stroke(); }
-      else c.strokeText(it[0], W / 2, H / 2 + 10);
-      if (c.setLineDash) c.setLineDash([]);
+      guide(c, 1, chalk ? 'rgba(255,255,255,.22)' : 'rgba(120,144,156,.22)', 0, chalk ? 'rgba(255,255,255,.7)' : 'rgba(84,110,122,.7)');
     }
     if (tracing()) {
       var t = list()[idx];
