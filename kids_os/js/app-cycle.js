@@ -31,13 +31,13 @@
   function tapped(e) {
     e.preventDefault();
     var p = OS.canvasPoint(cv, e);
-    if (step === 0 && near(p, SUN, 90)) {
+    if (step === 0 && fill < 3 && near(p, SUN, 90)) {
       OS.sfx('pop');
       for (var i = 0; i < 14; i++) parts.push({ k: 'v', x: 40 + Math.random() * 340, y: 340 + Math.random() * 30, life: 0 });
       label = 'تبخّر ♨️';
       fill++;
       if (fill === 1) OS.say('تبخّر الماء وصعد إلى السماء');
-      if (fill >= 3) setTimeout(function () { step = 1; info.set(TEXT[1]); label = 'تكاثف ☁️'; OS.say('تكاثف البخار وصار غيمة. اضغط على الغيمة'); }, 1600);
+      if (fill === 3) setTimeout(function () { step = 1; info.set(TEXT[1]); label = 'تكاثف ☁️'; OS.say('تكاثف البخار وصار غيمة. اضغط على الغيمة'); }, 1600);
     } else if (step === 1 && near(p, CLOUD, 110)) {
       step = 2; info.set(TEXT[2]); label = 'هطول ☔'; phaseEnd = t + 150; OS.sfx('splash'); OS.say('هطل المطر');
     }

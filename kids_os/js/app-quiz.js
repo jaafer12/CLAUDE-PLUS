@@ -64,7 +64,7 @@
     if (busy) return; busy = true;
     var q = set[at];
     if (right) { score++; OS.sfx('ding'); OS.addStars(1); b.className = 'btn q-opt btn-green'; OS.toast('🎉', 'أحسنت! ' + q[3], 2200); }
-    else { OS.sfx('buzz'); b.className = 'btn q-opt btn-red'; OS.toast('🤔', 'الجواب الصحيح: ' + q[2][0] + '<br>' + q[3], 3200); }
+    else { OS.sfx('buzz'); b.className = 'btn q-opt btn-red'; OS.toast('👀', 'الجواب الصحيح: ' + q[2][0] + '<br>' + q[3], 3200); }
     setTimeout(function () { at++; if (OS.isOpen('quiz')) show(); }, right ? 2300 : 3300);
   }
 

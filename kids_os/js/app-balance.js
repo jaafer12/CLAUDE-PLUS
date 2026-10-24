@@ -60,7 +60,7 @@
         var n = 0; for (var k in mem) n++;
         if (n >= 5 && OS.award('bal-5', '⭐', 'صرت خبيراً في الوزن!')) return;
         OS.toast('🎉', 'صحيح! ' + msg, 3000);
-      } else { OS.sfx('buzz'); OS.toast('🤔', 'انظر! ' + msg, 3200); }
+      } else { OS.sfx('buzz'); OS.toast('👀', 'انظر! ' + msg, 3200); }
     }, 1100);
   }
 

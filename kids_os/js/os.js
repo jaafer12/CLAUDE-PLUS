@@ -31,15 +31,20 @@ var OS = (function () {
 
   // ---------- الأصوات المولّدة ----------
   var actx = null;
-  function unlockAudio() {
-    if (actx) { if (actx.state === 'suspended' && actx.resume) actx.resume(); return; }
+  var audioOpen = false;
+  function unlockAudio(e) {
     var AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
     try {
-      actx = new AC();
-      var b = actx.createBuffer(1, 1, 22050), s = actx.createBufferSource();
-      s.buffer = b; s.connect(actx.destination); (s.start ? s.start(0) : s.noteOn(0));
-    } catch (e) { actx = null; }
+      if (!actx) actx = new AC();
+      if (actx.state === 'suspended' && actx.resume) actx.resume();
+      // iOS 9 يفتح الصوت فقط إذا شُغّل صوت داخل حدث رفع الإصبع، فنشغّل صوتاً صامتاً مرة واحدة
+      if (!audioOpen && e && (e.type === 'touchend' || e.type === 'click')) {
+        var b = actx.createBuffer(1, 1, 22050), s = actx.createBufferSource();
+        s.buffer = b; s.connect(actx.destination); (s.start ? s.start(0) : s.noteOn(0));
+        audioOpen = true;
+      }
+    } catch (err) { actx = null; }
   }
   function tone(freq, start, dur, type, vol) {
     if (!actx || !data.sound) return;
@@ -266,6 +271,7 @@ var OS = (function () {
     blockBounce();
     // iOS 9 لا يفتح الصوت إلا بعد رفع الإصبع
     document.addEventListener('touchend', unlockAudio, false);
+    document.addEventListener('click', unlockAudio, false);
     if (window.speechSynthesis) { findVoice(); speechSynthesis.onvoiceschanged = findVoice; }
     tap($('sbSound'), function () { data.sound = !data.sound; save(); $('sbSound').innerHTML = data.sound ? '🔊' : '🔇'; sfx('click'); });
     $('sbSound').innerHTML = data.sound ? '🔊' : '🔇';

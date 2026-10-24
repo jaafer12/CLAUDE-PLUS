@@ -129,7 +129,7 @@
         OS.toast(it.c ? '💡' : '🌑', 'صحيح! ' + it.why, 3200);
       } else {
         OS.sfx('buzz');
-        OS.toast('🤔', 'ليس تماماً. ' + it.why, 3600);
+        OS.toast('👀', 'ليس تماماً. ' + it.why, 3600);
       }
       var all = true; for (var k = 0; k < ITEMS.length; k++) if (!done[k]) all = false;
       if (all) setTimeout(function () { OS.award('c-all', '🔌', 'عرفت كل الموصلات والعوازل!'); }, 3700);

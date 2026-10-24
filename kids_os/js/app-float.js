@@ -66,7 +66,7 @@
         if (!done[i]) { done[i] = 1; OS.addStars(1); node.className = 'item done'; }
         OS.toast(it.f ? '⬆️' : '⬇️', 'صحيح! ' + it.why, 3200);
       } else {
-        OS.sfx('buzz'); OS.toast('🤔', 'انظر! ' + it.why, 3600);
+        OS.sfx('buzz'); OS.toast('👀', 'انظر! ' + it.why, 3600);
       }
       var all = true; for (var k = 0; k < ITEMS.length; k++) if (!done[k]) all = false;
       if (all) setTimeout(function () { OS.award('f-all', '🚢', 'أصبحت خبيراً في الطفو والغرق!'); }, 3700);

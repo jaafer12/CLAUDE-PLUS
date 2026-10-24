@@ -39,7 +39,7 @@
     OS.ask('أيّهما تصل إلى الأرض أولاً' + (air ? '' : ' على القمر') + '؟', [
       { label: '🏀 الكرة', cls: 'btn-orange', fn: function () { go('ball'); } },
       { label: '🍃 الريشة', cls: 'btn-teal', fn: function () { go('feather'); } },
-      { label: '🤝 معاً', cls: 'btn-blue', fn: function () { go('same'); } }
+      { label: '✌️ معاً', cls: 'btn-blue', fn: function () { go('same'); } }
     ]);
   }
 
@@ -67,7 +67,7 @@
       if (right) {
         OS.sfx('ding');
         if (!OS.award(air ? 'fall-air' : 'fall-moon', air ? '🏀' : '🌙', 'صحيح! ' + why)) OS.toast('🎉', 'صحيح! ' + why, 3400);
-      } else { OS.sfx('buzz'); OS.toast('🤔', 'انظر! ' + why, 3600); }
+      } else { OS.sfx('buzz'); OS.toast('👀', 'انظر! ' + why, 3600); }
       run = null;
     }, 400);
   }
