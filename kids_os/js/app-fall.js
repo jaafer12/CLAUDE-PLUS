@@ -81,6 +81,21 @@
     } else { c.font = '56px sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(emoji, x, y); }
   }
 
+  // ريشة مرسومة: ساق وزغب على الجانبين
+  function drawFeather(x, y, tilt) {
+    var c = ctx;
+    c.save(); c.translate(x, y); c.rotate(-0.5 + tilt);
+    c.fillStyle = '#fafafa'; c.strokeStyle = '#90a4ae'; c.lineWidth = 2;
+    c.beginPath(); c.moveTo(0, -48);
+    c.quadraticCurveTo(26, -20, 10, 40); c.lineTo(-2, 40);
+    c.quadraticCurveTo(-24, -10, 0, -48); c.closePath(); c.fill(); c.stroke();
+    c.strokeStyle = '#b0bec5'; c.lineWidth = 1.5;
+    for (var i = -36; i < 34; i += 8) { c.beginPath(); c.moveTo(3, i); c.lineTo(14 - Math.abs(i) / 6, i - 6); c.moveTo(3, i); c.lineTo(-10 + Math.abs(i) / 8, i - 6); c.stroke(); }
+    c.strokeStyle = '#78909c'; c.lineWidth = 3;
+    c.beginPath(); c.moveTo(0, -46); c.quadraticCurveTo(6, 0, 4, 56); c.stroke();
+    c.restore();
+  }
+
   function draw() {
     var c = ctx;
     c.fillStyle = air ? '#b3e5fc' : '#0d1b4c'; c.fillRect(0, 0, W, H);
@@ -89,7 +104,7 @@
     // الرفّ الذي نُفلت منه
     c.fillStyle = '#795548'; c.fillRect(140, TOP - 44, 320, 10);
     obj('basketball', '🏀', ball.x, ball.y);
-    obj('feather', '🍃', feather.x, feather.y);
+    drawFeather(feather.x, feather.y, run && air ? Math.sin(run.t / 18) * 0.5 : 0);
     c.fillStyle = air ? '#37474f' : '#fff'; c.font = 'bold 20px sans-serif'; c.textAlign = 'center'; c.textBaseline = 'alphabetic';
     c.fillText('الكرة', 200, TOP - 52);
     c.fillText('الريشة', 400, TOP - 52);
