@@ -1,0 +1,20 @@
+CACHE MANIFEST
+# version: dev
+
+index.html
+icon.png
+css/os.css
+js/os.js
+js/app-board.js
+js/app-circuit.js
+js/app-water.js
+js/app-float.js
+js/app-magnet.js
+js/app-colors.js
+js/app-plant.js
+js/app-quiz.js
+js/app-stars.js
+js/app-settings.js
+
+NETWORK:
+*

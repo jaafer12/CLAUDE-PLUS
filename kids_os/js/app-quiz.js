@@ -1,0 +1,82 @@
+/* المسابقة: أسئلة عن كل التجارب، مع شرح بعد كل إجابة. */
+(function () {
+  var Q = [
+    ['🔑', 'أيّ هذه الأشياء يوصل الكهرباء؟', ['مفتاح من المعدن', 'قلم من الخشب', 'بالون'], 'المعدن موصل للكهرباء.'],
+    ['💡', 'متى يضيء المصباح؟', ['عندما تكون الدائرة مغلقة', 'عندما تكون الدائرة مفتوحة', 'عندما نطفئ البطارية'], 'الكهرباء تحتاج طريقاً كاملاً مغلقاً.'],
+    ['⚠️', 'هل نلعب بمقبس الكهرباء في البيت؟', ['لا، أبداً! إنه خطير', 'نعم، إنه ممتع', 'فقط إذا كانت يدي مبلولة'], 'كهرباء البيت قوية وخطيرة جداً.'],
+    ['❄️', 'ماذا يحدث للثلج إذا سخّناه؟', ['يذوب ويصير ماءً', 'يصير أكبر', 'يصير حجراً'], 'الحرارة تذيب الثلج.'],
+    ['♨️', 'ماذا يحدث للماء إذا غلى؟', ['يصير بخاراً', 'يصير ثلجاً', 'يصير عصيراً'], 'عند مئة درجة يتحوّل الماء إلى بخار.'],
+    ['🔢', 'عند أي درجة يتجمّد الماء؟', ['صفر', 'مئة', 'خمسون'], 'الماء يتجمّد عند صفر درجة.'],
+    ['🚢', 'أيّ هذه يطفو على الماء؟', ['🍎 التفاحة', '⚓ المرساة', '🔩 البرغي'], 'التفاحة خفيفة وفيها هواء.'],
+    ['⚓', 'لماذا تغرق المرساة؟', ['لأنها من حديد ثقيل', 'لأنها حمراء', 'لأنها حزينة'], 'الحديد أثقل من الماء.'],
+    ['📎', 'ماذا يجذب المغناطيس؟', ['الأشياء المصنوعة من الحديد', 'الخشب', 'التفاح'], 'المغناطيس يجذب الحديد.'],
+    ['🎨', 'الأحمر + الأصفر = ؟', ['برتقالي', 'أخضر', 'بنفسجي'], 'الأحمر والأصفر يصنعان البرتقالي.'],
+    ['🎨', 'الأزرق + الأصفر = ؟', ['أخضر', 'وردي', 'أسود'], 'الأزرق والأصفر يصنعان الأخضر.'],
+    ['🎨', 'الأحمر + الأزرق = ؟', ['بنفسجي', 'برتقالي', 'أصفر'], 'الأحمر والأزرق يصنعان البنفسجي.'],
+    ['🌱', 'ماذا تحتاج النبتة لتكبر؟', ['الماء وضوء الشمس', 'الحلوى', 'الظلام فقط'], 'النبتة تحتاج الماء والضوء والهواء والتربة.'],
+    ['🌸', 'من أين تأتي النبتة؟', ['من بذرة', 'من حجر', 'من كرة'], 'كل نبتة تبدأ من بذرة صغيرة.']
+  ];
+  var N = 8;
+  var box, set = [], at = 0, score = 0, busy = false;
+
+  function build(body) {
+    box = OS.el('<div></div>'); body.appendChild(box);
+    return { enter: begin };
+  }
+
+  function begin() {
+    set = OS.shuffle(Q).slice(0, N); at = 0; score = 0;
+    show();
+  }
+
+  function show() {
+    busy = false;
+    if (at >= set.length) return finish();
+    var q = set[at], opts = OS.shuffle([0, 1, 2]);
+    box.innerHTML = '<div class="q-progress">سؤال ' + (at + 1) + ' من ' + set.length + ' — ⭐ ' + score + '</div>' +
+      '<div class="q-emoji">' + q[0] + '</div><div class="q-text">' + q[1] + '</div>';
+    var colors = ['btn-blue', 'btn-orange', 'btn-teal'];
+    OS.each(opts, function (o, i) {
+      var b = OS.el('<button class="btn q-opt ' + colors[i] + '">' + q[2][o] + '</button>');
+      OS.tap(b, function () { answer(o === 0, b); });
+      box.appendChild(b);
+    });
+    var sp = OS.el('<div class="row"><button class="btn btn-white">🔈 اقرأ السؤال</button></div>');
+    OS.tap(sp.firstChild, read);
+    box.appendChild(sp);
+    read();
+  }
+  function read() {
+    var q = set[at], t = q[1] + '. ';
+    OS.each(q[2], function (o) { t += o.replace(/[←-⯿️\uD800-\uDFFF]/g, '') + '؟ '; });
+    OS.say(t);
+  }
+
+  function answer(right, b) {
+    if (busy) return; busy = true;
+    var q = set[at];
+    if (right) { score++; OS.sfx('ding'); OS.addStars(1); b.className = 'btn q-opt btn-green'; OS.toast('🎉', 'أحسنت! ' + q[3], 2200); }
+    else { OS.sfx('buzz'); b.className = 'btn q-opt btn-red'; OS.toast('🤔', 'الجواب الصحيح: ' + q[2][0] + '<br>' + q[3], 3200); }
+    setTimeout(function () { at++; if (OS.isOpen('quiz')) show(); }, right ? 2300 : 3300);
+  }
+
+  function finish() {
+    var e = score === N ? '🏆' : score >= N / 2 ? '🌟' : '💪';
+    box.innerHTML = '<div class="trophy">' + e + '</div><div class="big-num">' + score + ' / ' + N + '</div>' +
+      '<div class="q-text">' + (score === N ? 'كل الإجابات صحيحة! أنت عالم صغير' : score >= N / 2 ? 'عمل رائع! استمر في التعلّم' : 'جرّب التجارب مرة أخرى ثم عُد للمسابقة') + '</div>';
+    var again = OS.el('<div class="row"><button class="btn btn-green">🔁 مسابقة جديدة</button></div>');
+    OS.tap(again.firstChild, begin);
+    box.appendChild(again);
+    OS.sfx('win');
+    var first = OS.award('q-done', '❓', 'أنهيت أول مسابقة!');
+    setTimeout(function () {
+      if (score === N && OS.award('q-perfect', '🏆', 'العلامة الكاملة في المسابقة!')) return;
+      OS.say(box.querySelector('.q-text').innerHTML);
+    }, first ? 2800 : 0);
+  }
+
+  OS.register({
+    id: 'quiz', name: 'المسابقة', icon: '❓', color: '#f4511e', build: build, scroll: true,
+    awards: [{ key: 'q-done', e: '❓', l: 'أول مسابقة' }, { key: 'q-perfect', e: '🏆', l: 'العلامة الكاملة' }]
+  });
+})();

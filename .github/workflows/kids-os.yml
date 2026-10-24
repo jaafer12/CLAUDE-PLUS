@@ -1,0 +1,43 @@
+name: Publish Nujoom kids OS
+
+# ينشر مجلد kids_os إلى فرع gh-pages ليُفتح من الآيباد على
+# https://<user>.github.io/<repo>/ (فعّل GitHub Pages من فرع gh-pages مرة واحدة).
+
+on:
+  push:
+    branches: ["main", "master", "claude/**"]
+    paths:
+      - "kids_os/**"
+      - ".github/workflows/kids-os.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kids-os-pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare site
+        run: |
+          mkdir -p "$RUNNER_TEMP/site"
+          cp -r kids_os/index.html kids_os/icon.png kids_os/nujoom.appcache kids_os/css kids_os/js "$RUNNER_TEMP/site/"
+          # بصمة جديدة في ملف الذاكرة المؤقتة تجعل الآيباد ينزّل التحديث تلقائياً
+          sed -i "s/^# version: .*/# version: ${GITHUB_SHA::12}/" "$RUNNER_TEMP/site/nujoom.appcache"
+          touch "$RUNNER_TEMP/site/.nojekyll"
+
+      - name: Push to gh-pages
+        run: |
+          cd "$RUNNER_TEMP/site"
+          git init -q -b gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Publish Nujoom from ${GITHUB_SHA::12}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
