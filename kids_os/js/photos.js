@@ -112,6 +112,13 @@ OS.photos = {
   "src": "w:Envelope",
   "url": "https://commons.wikimedia.org/wiki/File:Envelope_-_Boonville_Address-000.jpg"
  },
+ "feather": {
+  "author": "Adolphe Millot (1857-1921) (ill.); Gothance 14:26, 3 December 2007 (UTC) (scanné par)",
+  "file": "Types_de_plumes._-_Larousse_pour_tous,_-1907-1910-.jpg",
+  "license": "Public domain",
+  "src": "w:Feather",
+  "url": "https://commons.wikimedia.org/wiki/File:Types_de_plumes._-_Larousse_pour_tous,_-1907-1910-.jpg"
+ },
  "fish": {
   "author": "לינה אבוגוש",
   "file": "Gold_fish1.jpg",
