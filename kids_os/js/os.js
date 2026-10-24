@@ -32,7 +32,7 @@ var OS = (function () {
   // ---------- الأصوات المولّدة ----------
   var actx = null;
   function unlockAudio() {
-    if (actx) return;
+    if (actx) { if (actx.state === 'suspended' && actx.resume) actx.resume(); return; }
     var AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
     try {
@@ -62,6 +62,21 @@ var OS = (function () {
     win: function () { var n = [523, 659, 784, 1047]; for (var i = 0; i < n.length; i++) tone(n[i], i * 0.12, 0.25, 'triangle', 0.25); }
   };
   function sfx(name) { unlockAudio(); if (SFX[name]) SFX[name](); }
+  // نغمة موسيقية (للإكسيليفون)
+  function note(freq, dur) { unlockAudio(); tone(freq, 0, dur || 0.8, 'triangle', 0.35); tone(freq * 2, 0, (dur || 0.8) / 2, 'sine', 0.08); }
+
+  // يحوّل لمسة إلى إحداثيات داخل لوحة رسم مهما كان حجمها المعروض
+  function canvasPoint(cv, e) {
+    var r = cv.getBoundingClientRect(), p = point(e);
+    return { x: (p.x - r.left) * cv.width / r.width, y: (p.y - r.top) * cv.height / r.height };
+  }
+  // صورة حقيقية جاهزة للرسم على لوحة، أو null إن لم توجد
+  var imgCache = {};
+  function photo(id) {
+    if (!api.photos[id]) return null;
+    if (!imgCache[id]) { imgCache[id] = new Image(); imgCache[id].src = 'img/' + id + '.jpg'; }
+    return imgCache[id].complete && imgCache[id].naturalWidth ? imgCache[id] : null;
+  }
 
   // ---------- النطق العربي ----------
   var arVoice = null;
@@ -249,6 +264,8 @@ var OS = (function () {
   function start() {
     load();
     blockBounce();
+    // iOS 9 لا يفتح الصوت إلا بعد رفع الإصبع
+    document.addEventListener('touchend', unlockAudio, false);
     if (window.speechSynthesis) { findVoice(); speechSynthesis.onvoiceschanged = findVoice; }
     tap($('sbSound'), function () { data.sound = !data.sound; save(); $('sbSound').innerHTML = data.sound ? '🔊' : '🔇'; sfx('click'); });
     $('sbSound').innerHTML = data.sound ? '🔊' : '🔇';
@@ -272,7 +289,7 @@ var OS = (function () {
   }
 
   var api = {
-    start: start, pic: pic, photos: {}, register: register, open: open, home: home, lock: lock,
+    start: start, pic: pic, photos: {}, note: note, canvasPoint: canvasPoint, photo: photo, register: register, open: open, home: home, lock: lock,
     tap: tap, point: point, el: el, each: each, shuffle: shuffle, $: $,
     sfx: sfx, say: say, hush: hush, toast: toast, ask: ask, info: info,
     award: award, addStars: addStars, refreshStars: refreshStars,
