@@ -1,0 +1,296 @@
+{
+ "airplane": {
+  "src": "w:Airliner",
+  "file": "United_A320_N405UA_at_BOS_(33787222465).jpg",
+  "license": "CC BY-SA 2.0",
+  "url": "https://commons.wikimedia.org/wiki/File:United_A320_N405UA_at_BOS_(33787222465).jpg",
+  "author": "G B_NZ"
+ },
+ "anchor": {
+  "src": "w:Anchor",
+  "file": "Kotwica_SS_Poznań.JPG",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Kotwica_SS_Pozna%C5%84.JPG",
+  "author": "Radomil"
+ },
+ "apple": {
+  "src": "f:Red_Apple.jpg",
+  "file": "Red_Apple.jpg",
+  "license": "CC BY 2.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Red_Apple.jpg",
+  "author": "Abhijit Tembhekar from Mumbai, India"
+ },
+ "balloon": {
+  "src": "w:Balloon",
+  "file": "Congrats_bqt.jpg",
+  "license": "Public domain",
+  "url": "https://commons.wikimedia.org/wiki/File:Congrats_bqt.jpg",
+  "author": "Photographer: Warren Denning. Creative Director: Stan Weir. Marketing Director: Tim Vlamis"
+ },
+ "banana": {
+  "src": "w:Banana",
+  "file": "Bananavarieties.jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Bananavarieties.jpg",
+  "author": "TimothyPilgrim"
+ },
+ "basketball": {
+  "src": "w:Basketball (ball)",
+  "file": "Basketball.png",
+  "license": "Public domain",
+  "url": "https://commons.wikimedia.org/wiki/File:Basketball.png",
+  "author": "Reisio"
+ },
+ "bear": {
+  "src": "w:Brown bear",
+  "file": "2010-kodiak-bear-1.jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:2010-kodiak-bear-1.jpg",
+  "author": "Yathin S Krishnappa"
+ },
+ "bee": {
+  "src": "w:Western honey bee",
+  "file": "Apis_mellifera_Western_honey_bee.jpg",
+  "license": "CC BY-SA 2.5",
+  "url": "https://commons.wikimedia.org/wiki/File:Apis_mellifera_Western_honey_bee.jpg",
+  "author": "Andreas Trepte"
+ },
+ "bolt": {
+  "src": "w:Bolt (fastener)",
+  "file": "Bolt-with-nut.jpg",
+  "license": "CC BY-SA 2.5",
+  "url": "https://commons.wikimedia.org/wiki/File:Bolt-with-nut.jpg",
+  "author": "Pavel Krok"
+ },
+ "book": {
+  "src": "w:Book",
+  "file": "Gutenberg_Bible,_Lenox_Copy,_New_York_Public_Library,_2009._Pic_01.jpg",
+  "license": "CC BY-SA 2.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Gutenberg_Bible,_Lenox_Copy,_New_York_Public_Library,_2009._Pic_01.jpg",
+  "author": "NYC Wanderer (Kevin Eng)"
+ },
+ "camel": {
+  "src": "w:Dromedary",
+  "file": "Camelus_dromedarius_in_Nuweiba.jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Camelus_dromedarius_in_Nuweiba.jpg",
+  "author": "Florian Prischl"
+ },
+ "cloud": {
+  "src": "w:Cumulus cloud",
+  "file": "GoldenMedows.jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:GoldenMedows.jpg",
+  "author": "PiccoloNamek"
+ },
+ "corn": {
+  "src": "w:Corn on the cob",
+  "file": "CookedCornOnTheCob.JPG",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:CookedCornOnTheCob.JPG",
+  "author": "Jonathunder"
+ },
+ "door": {
+  "src": "w:Door",
+  "file": "L-door.png",
+  "license": "Public domain",
+  "url": "https://commons.wikimedia.org/wiki/File:L-door.png",
+  "author": "Unknown"
+ },
+ "elephant": {
+  "src": "w:African bush elephant",
+  "file": "178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg",
+  "license": "CC BY-SA 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File:178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg",
+  "author": "Giles Laurent"
+ },
+ "envelope": {
+  "src": "w:Envelope",
+  "file": "Envelope_-_Boonville_Address-000.jpg",
+  "license": "Public domain",
+  "url": "https://commons.wikimedia.org/wiki/File:Envelope_-_Boonville_Address-000.jpg",
+  "author": "Unknown"
+ },
+ "fish": {
+  "src": "w:Goldfish",
+  "file": "Gold_fish1.jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Gold_fish1.jpg",
+  "author": "לינה אבוגוש"
+ },
+ "flower": {
+  "src": "w:Flower",
+  "file": "Magnolia_grandiflora_-_flower_1.jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Magnolia_grandiflora_-_flower_1.jpg",
+  "author": "Ianaré Sévi"
+ },
+ "frog": {
+  "src": "w:Frog",
+  "file": "Red-eyed_Leaf_Frog_(49661076226).jpg",
+  "license": "CC BY 2.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Red-eyed_Leaf_Frog_(49661076226).jpg",
+  "author": "Charlie Jackson"
+ },
+ "gift": {
+  "src": "w:Gift wrapping",
+  "file": "Traditional_Japanese_wrapping_cloth,huroshiki,katori-city,japan.JPG",
+  "license": "CC BY 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Traditional_Japanese_wrapping_cloth,huroshiki,katori-city,japan.JPG",
+  "author": "katorisi"
+ },
+ "grapes": {
+  "src": "w:Grape",
+  "file": "Grapes,_Rostov-on-Don,_Russia.jpg",
+  "license": "CC BY 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Grapes,_Rostov-on-Don,_Russia.jpg",
+  "author": "Vyacheslav Argenberg"
+ },
+ "hand": {
+  "src": "w:Hand",
+  "file": "Hand,_fingers_-_back.jpg",
+  "license": "CC BY-SA 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Hand,_fingers_-_back.jpg",
+  "author": "Genusfotografen (Tomas Gunnarsson) / Wikimedia"
+ },
+ "horse": {
+  "src": "w:Horse",
+  "file": "Nokota_Horses_cropped.jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Nokota_Horses_cropped.jpg",
+  "author": "Nokota_Horses.jpg: François Marchal derivative work: Dana boomer (talk)"
+ },
+ "ice": {
+  "src": "w:Ice cube",
+  "file": "Ice_cubes_openphoto.jpg",
+  "license": "CC BY-SA 2.5",
+  "url": "https://commons.wikimedia.org/wiki/File:Ice_cubes_openphoto.jpg",
+  "author": "Darren Hester"
+ },
+ "key": {
+  "src": "w:Key (lock)",
+  "file": "Solex_99_30_padlock_with_keys_(DSCF2659).jpg",
+  "license": "CC BY 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Solex_99_30_padlock_with_keys_(DSCF2659).jpg",
+  "author": "Trougnouf"
+ },
+ "leaf": {
+  "src": "w:Leaf",
+  "file": "Lisc_lipy.jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Lisc_lipy.jpg",
+  "author": "Krzysztof P. Jasiutowicz"
+ },
+ "lemon": {
+  "src": "w:Lemon",
+  "file": "P1030323.JPG",
+  "license": "CC BY-SA 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File:P1030323.JPG",
+  "author": "Elena Chochkova"
+ },
+ "moon": {
+  "src": "w:Moon",
+  "file": "FullMoon2010.jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:FullMoon2010.jpg",
+  "author": "Gregory H. Revera"
+ },
+ "paperclip": {
+  "src": "w:Paper clip",
+  "file": "Wanzijia.jpg",
+  "license": "Public domain",
+  "url": "https://commons.wikimedia.org/wiki/File:Wanzijia.jpg",
+  "author": "Hawyih"
+ },
+ "pencil": {
+  "src": "w:Pencil",
+  "file": "Pencils_hb.jpg",
+  "license": "CC BY 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Pencils_hb.jpg",
+  "author": "Original uploader was Dmgerman at en.wikipedia"
+ },
+ "pomegranate": {
+  "src": "w:Pomegranate",
+  "file": "Pomegranate_Juice_(2019).jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Pomegranate_Juice_(2019).jpg",
+  "author": "Augustus Binu : flickr"
+ },
+ "rabbit": {
+  "src": "w:European rabbit",
+  "file": "Oryctolagus_cuniculus_-_euqirneto_-_419737670_(cropped).jpeg",
+  "license": "CC BY 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Oryctolagus_cuniculus_-_euqirneto_-_419737670_(cropped).jpeg",
+  "author": "euqirneto"
+ },
+ "ring": {
+  "src": "w:Ring (jewellery)",
+  "file": "Roman_-_Crouching_Venus_-_Walters_421007_-_Three_Quarter.jpg",
+  "license": "Public domain",
+  "url": "https://commons.wikimedia.org/wiki/File:Roman_-_Crouching_Venus_-_Walters_421007_-_Three_Quarter.jpg",
+  "author": "Anonymous (Category:Roman Empire)Unknown author"
+ },
+ "rocket": {
+  "src": "w:Rocket",
+  "file": "Soyuz_TMA-9_launch.jpg",
+  "license": "Public domain",
+  "url": "https://commons.wikimedia.org/wiki/File:Soyuz_TMA-9_launch.jpg",
+  "author": "Bill Ingalls"
+ },
+ "rose": {
+  "src": "w:Rose",
+  "file": "Rosa_rubiginosa_1.jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Rosa_rubiginosa_1.jpg",
+  "author": "Stan Shebs"
+ },
+ "ruler": {
+  "src": "w:Ruler",
+  "file": "Diverse·Maßstäbe,15.365.jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Diverse%C2%B7Ma%C3%9Fst%C3%A4be,15.365.jpg",
+  "author": "Geof"
+ },
+ "scissors": {
+  "src": "w:Scissors",
+  "file": "Standard_household_scissors.jpg",
+  "license": "CC BY-SA 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Standard_household_scissors.jpg",
+  "author": "Doggerelblogger"
+ },
+ "sheep": {
+  "src": "w:Sheep",
+  "file": "Flock_of_sheep.jpg",
+  "license": "Public domain",
+  "url": "https://commons.wikimedia.org/wiki/File:Flock_of_sheep.jpg",
+  "author": "Keith Weller"
+ },
+ "shirt": {
+  "src": "w:T-shirt",
+  "file": "Woman_in_a_V-Neck_T-Shirt.jpg",
+  "license": "CC BY 2.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Woman_in_a_V-Neck_T-Shirt.jpg",
+  "author": "Spreadshirt"
+ },
+ "sun": {
+  "src": "w:Sun",
+  "file": "The_Sun_in_white_light.jpg",
+  "license": "CC BY-SA 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File:The_Sun_in_white_light.jpg",
+  "author": "Matúš Motlo"
+ },
+ "tennisball": {
+  "src": "w:Tennis ball",
+  "file": "Closeup_of_a_tennis_ball_(2).jpg",
+  "license": "CC0",
+  "url": "https://commons.wikimedia.org/wiki/File:Closeup_of_a_tennis_ball_(2).jpg",
+  "author": "Miscellaneous contributor"
+ },
+ "wrench": {
+  "src": "w:Wrench",
+  "file": "Gedore_No._7_combination_wrenches_6–19_mm.jpg",
+  "license": "CC BY-SA 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Gedore_No._7_combination_wrenches_6%E2%80%9319_mm.jpg",
+  "author": "Lucasbosch"
+ }
+}
