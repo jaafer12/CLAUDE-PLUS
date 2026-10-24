@@ -1,8 +1,8 @@
-/* نمو النبتة: الماء + ضوء الشمس كل يوم = نبتة تكبر حتى تُزهر. */
+/* نمو النبتة: كل سقاية والشمس مشرقة تكبر النبتة خطوة حتى تُزهر. بلا شمس لا تكبر. */
 (function () {
   var STAGES = ['بذرة', 'برعم صغير', 'نبتة صغيرة', 'نبتة كبيرة', 'زهرة'];
   var scene, info, dayEl, sunBtn;
-  var stage = 0, day = 1, water = 0, sun = true, thirsty = 0;
+  var stage = 0, sun = true, busy = false;
 
   function build(body) {
     var wrap = OS.el('<div></div>');
@@ -11,53 +11,42 @@
     scene = OS.el('<div></div>'); panel.appendChild(scene);
     dayEl = OS.el('<div class="title2"></div>');
     var row = OS.el('<div class="row"></div>');
-    var wBtn = OS.el('<button class="btn btn-blue">اسقِ النبتة</button>');
-    sunBtn = OS.el('<button class="btn btn-orange">الشمس</button>');
-    var dBtn = OS.el('<button class="btn btn-green">نامي… يوم جديد</button>');
-    var rBtn = OS.el('<button class="btn btn-white">بذرة جديدة</button>');
-    OS.tap(wBtn, waterIt); OS.tap(sunBtn, toggleSun); OS.tap(dBtn, nextDay); OS.tap(rBtn, restart);
-    row.appendChild(wBtn); row.appendChild(sunBtn); row.appendChild(dBtn); row.appendChild(rBtn);
+    row.appendChild(OS.iconBtn('water', '#3b82f6', 'اسقِ', waterIt));
+    sunBtn = OS.iconBtn('sun', '#f59e0b', 'الشمس', toggleSun);
+    row.appendChild(sunBtn);
+    row.appendChild(OS.iconBtn('reset', '#94a3b8', 'بذرة جديدة', restart));
     wrap.appendChild(info); wrap.appendChild(dayEl); wrap.appendChild(panel); wrap.appendChild(row);
     body.appendChild(wrap);
     restart(true);
     return { enter: function () {  } };
   }
 
-  function restart(quiet) {
-    stage = 0; day = 1; water = 0; sun = true; thirsty = 0;
-    info.set('اسقِ البذرة بالماء واتركها في الشمس، ثم اضغط «يوم جديد».');
+  function restart() {
+    stage = 0; sun = true; busy = false;
+    info.set('النبتة تحتاج <b>الماء</b> و<b>ضوء الشمس</b> لتكبر. كل سقاية والشمس مشرقة تكبر النبتة خطوة. إذا غطّت الغيوم الشمس لا تكبر.');
     render(false);
-    
   }
 
   function waterIt() {
-    water++;
-        render(true);
-    if (water > 2) OS.hint('كفى! الماء الكثير جداً يضرّ الجذور');
+    if (busy) return;
+    if (stage >= 4) { restart(); return; }
+    busy = true;
+    render(true);
+    setTimeout(function () {
+      busy = false;
+      if (!sun) { render(false); OS.hint('النبتة تحتاج الشمس لتكبر', 2200); return; }
+      stage++;
+      render(false);
+      if (stage === 4) OS.award('p-flower', '', 'زرعت زهرة بنفسك!');
+    }, 900);
   }
   function toggleSun() { sun = !sun; render(false); }
 
-  function nextDay() {
-        var msg;
-    if (stage >= 4) { OS.ok('النبتة أزهرت! ازرع بذرة جديدة'); return; }
-    if (water === 0) { thirsty++; msg = ['😟', 'النبتة عطشى! لم تشرب الماء فلم تكبر']; }
-    else if (water > 2) { msg = ['🌊', 'الماء كان كثيراً جداً، النبتة لم تكبر اليوم']; }
-    else if (!sun) { msg = ['☁️', 'لم ترَ النبتة ضوء الشمس فلم تكبر. النبتة تحتاج الضوء لتصنع غذاءها']; }
-    else { stage++; thirsty = 0; msg = null; }
-    day++; water = 0;
-    render(false);
-    if (msg) { OS.hint(msg[1], 3200); return; }
-        if (stage === 4) {
-      info.set('رائع! بالماء والشمس صارت البذرة <b>زهرة</b>.');
-      OS.award('p-flower', '🌸', 'زرعت زهرة بنفسك!');
-    } else OS.ok('كبرت النبتة! صارت ' + STAGES[stage]);
-  }
-
   function render(rain) {
-    dayEl.innerHTML = 'اليوم ' + day + ' — ' + STAGES[stage] + (water ? ' — سُقيت ' + water + (water === 1 ? ' مرة' : ' مرات') : '');
-    sunBtn.innerHTML = sun ? 'الشمس مشرقة' : 'غائم';
+    dayEl.innerHTML = STAGES[stage];
+    sunBtn.on(sun);
     var sky = sun ? '#81d4fa' : '#b0bec5', w = 700, h = 300, cx = 350, ground = 240;
-    var leaf = thirsty ? '#c0ca33' : '#43a047';
+    var leaf = '#43a047';
     var s = '<svg viewBox="0 0 ' + w + ' ' + h + '" width="100%" height="300" style="display:block">';
     s += '<rect width="' + w + '" height="' + h + '" fill="' + sky + '"/>';
     if (sun) s += '<circle cx="90" cy="70" r="44" fill="#ffeb3b"/><circle cx="90" cy="70" r="60" fill="#ffeb3b" opacity=".3"/>';

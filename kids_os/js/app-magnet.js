@@ -17,7 +17,7 @@
     info = OS.info('اسحب <b>المغناطيس</b> فوق الأشياء: أيّها يلتصق به؟');
     area = OS.el('<div class="table" style="top:100px"><div class="mag-hint">اسحب المغناطيس</div></div>');
     body.appendChild(info); body.appendChild(area);
-    var reset = OS.el('<button class="btn btn-head">من جديد</button>');
+    var reset = OS.el('<button class="btn btn-head" style="width:54px;padding:12px">' + OS.icon('reset') + '</button>');
     OS.tap(reset, function () { place(); });
     app.extra.appendChild(reset);
     OS.each(ITEMS, function (it) {

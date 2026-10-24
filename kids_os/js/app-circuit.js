@@ -33,6 +33,7 @@
     '<text x="120" y="245" font-size="30" text-anchor="middle" fill="#fff" font-weight="bold">−</text>' +
     '<text x="190" y="215" font-size="22" text-anchor="middle" fill="#8a7a62">بطارية</text>' +
     // المفتاح
+    '<circle id="cHint" class="pulse" cx="272" cy="330" r="52" fill="none" stroke="#f59e0b" stroke-width="6"/>' +
     '<g id="cSwitch">' +
     '<rect x="200" y="270" width="140" height="110" fill="#fff" opacity="0"/>' +
     '<circle cx="236" cy="330" r="9" fill="#334155"/><circle cx="304" cy="330" r="9" fill="#334155"/>' +
@@ -58,17 +59,15 @@
     wrap.appendChild(info); wrap.appendChild(panel); wrap.appendChild(modeBtns); wrap.appendChild(tray);
     body.appendChild(wrap);
     OS.tap($('cSwitch'), function () { if (mode === 1) { closed = !closed; update(true); } });
-    var b1 = OS.el('<button class="btn btn-orange">شغّل المصباح</button>');
-    var b2 = OS.el('<button class="btn btn-teal">موصل أم عازل؟</button>');
-    OS.tap(b1, function () { setMode(1); }); OS.tap(b2, function () { setMode(2); });
-    modeBtns.appendChild(b1); modeBtns.appendChild(b2);
+    modeBtns.appendChild(OS.iconBtn('bulb', '#f59e0b', 'المصباح', function () { setMode(1); }));
+    modeBtns.appendChild(OS.iconBtn('key', '#14b8a6', 'الأشياء', function () { setMode(2); }));
     setMode(1);
     return { enter: function () { loop();  }, leave: function () { cancelAnimationFrame(raf); raf = null; } };
   }
 
   function setMode(m) {
-    mode = m; item = null;     modeBtns.childNodes[0].className = 'btn btn-orange' + (m === 1 ? ' on' : '');
-    modeBtns.childNodes[1].className = 'btn btn-teal' + (m === 2 ? ' on' : '');
+    mode = m; item = null;
+    modeBtns.childNodes[0].on(m === 1); modeBtns.childNodes[1].on(m === 2);
     $('cGap').style.display = m === 2 ? '' : 'none';
     $('cGapCover').style.display = m === 2 ? '' : 'none';
     tray.innerHTML = '';
@@ -81,7 +80,7 @@
       var done = OS.data.circuit || {};
       OS.each(ITEMS, function (it, i) {
         var n = OS.el('<div class="item' + (done[i] ? ' done' : '') + '"><span class="em">' + OS.pic(it.p, it.e) + '</span>' + it.n + '</div>');
-        OS.tap(n, function () { guess(i, n); });
+        OS.tap(n, function () { place(i, n); });
         tray.appendChild(n);
       });
     }
@@ -92,6 +91,7 @@
 
   function update(feedback) {
     $('cLever').setAttribute('transform', closed ? '' : 'rotate(-35 236 330)');
+    $('cHint').style.display = mode === 1 && !closed ? '' : 'none';
     var photo = item !== null && OS.photos[ITEMS[item].p];
     $('cObj').textContent = item === null ? '?' : photo ? '' : ITEMS[item].e;
     $('cImg').style.display = photo ? '' : 'none';
@@ -107,25 +107,14 @@
     }
   }
 
-  function guess(i, node) {
-    var it = ITEMS[i];
-        OS.ask(OS.pic(it.p, it.e, 'big') + '<br>هل سيضيء المصباح مع ' + it.n + '؟', [
-      { label: 'نعم يضيء', cls: 'btn-orange', fn: function () { place(i, node, true); } },
-      { label: 'لا يضيء', cls: 'btn-blue', fn: function () { place(i, node, false); } }
-    ]);
-  }
-
-  function place(i, node, said) {
+  // يضع الطفل الشيء في الفراغ فيرى فوراً: يضيء المصباح أو لا
+  function place(i, node) {
     item = i; update(false);
-    var it = ITEMS[i], right = said === it.c;
+    var it = ITEMS[i];
     var done = OS.data.circuit || (OS.data.circuit = {});
+    if (!done[i]) { done[i] = 1; OS.addStars(1); node.className = 'item done'; }
     setTimeout(function () {
-      if (right) {
-                if (!done[i]) { done[i] = 1; OS.addStars(1); node.className = 'item done'; }
-        OS.ok('صحيح! ' + it.why, 3200);
-      } else {
-                OS.hint('ليس تماماً. ' + it.why, 3600);
-      }
+      if (it.c) OS.ok(it.why, 2600); else OS.hint(it.why, 2600);
       var all = true; for (var k = 0; k < ITEMS.length; k++) if (!done[k]) all = false;
       if (all) setTimeout(function () { OS.award('c-all', '🔌', 'عرفت كل الموصلات والعوازل!'); }, 3700);
     }, 500);

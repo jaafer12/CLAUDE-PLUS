@@ -1,4 +1,4 @@
-/* يطفو أم يغرق: يتوقّع الطفل ثم يرى الجسم في الماء. */
+/* يطفو أم يغرق: يضغط الطفل على شيء فيسقط في الماء ويرى هل يطفو أم يغرق. */
 (function () {
   var ITEMS = [
     { p: 'apple', e: '🍎', n: 'التفاحة', f: true, why: 'في التفاحة هواء كثير، فهي أخف من الماء وتطفو.' },
@@ -19,8 +19,8 @@
     info = OS.info('اختر شيئاً وخمّن: هل <b>يطفو</b> أم <b>يغرق</b>؟');
     tank = OS.el('<div class="tank"><div class="tank-water"></div></div>');
     tray = OS.el('<div class="tray"></div>');
-    var reset = OS.el('<div class="row"><button class="btn btn-white">أفرغ الحوض</button></div>');
-    OS.tap(reset.firstChild, empty);
+    var reset = OS.el('<div class="row"></div>');
+    reset.appendChild(OS.iconBtn('reset', '#94a3b8', 'أفرغ الحوض', empty));
     wrap.appendChild(info); wrap.appendChild(tank); wrap.appendChild(reset); wrap.appendChild(tray);
     body.appendChild(wrap);
     fillTray();
@@ -32,19 +32,14 @@
     tray.innerHTML = '';
     OS.each(ITEMS, function (it, i) {
       var n = OS.el('<div class="item' + (done[i] ? ' done' : '') + '"><span class="em">' + OS.pic(it.p, it.e) + '</span>' + it.n + '</div>');
-      OS.tap(n, function () {
-                OS.ask(OS.pic(it.p, it.e, 'big') + '<br>ماذا سيحدث لـ' + it.n + ' في الماء؟', [
-          { label: 'تطفو', cls: 'btn-teal', fn: function () { drop(i, n, true); } },
-          { label: 'تغرق', cls: 'btn-blue', fn: function () { drop(i, n, false); } }
-        ]);
-      });
+      OS.tap(n, function () { drop(i, n); });
       tray.appendChild(n);
     });
   }
 
   function empty() { var o = tank.querySelectorAll('.tank-obj'); for (var i = 0; i < o.length; i++) tank.removeChild(o[i]); slots = 0; }
 
-  function drop(i, node, said) {
+  function drop(i, node) {
     var it = ITEMS[i], H = tank.offsetHeight, surface = H * 0.28;
     if (slots >= 8) empty();
     var x = 10 + (slots % 8) * 11.5 + 2;
@@ -54,20 +49,16 @@
     void o.offsetWidth;
     o.style.top = (surface + 10) + 'px';
     setTimeout(function () {
-            o.className = 'tank-obj';
+      o.className = 'tank-obj';
       o.style.top = it.f ? (surface - 40) + 'px' : (H - 70) + 'px';
     }, 520);
     setTimeout(function () {
       var done = OS.data.floatDone || (OS.data.floatDone = {});
-      if (said === it.f) {
-                if (!done[i]) { done[i] = 1; OS.addStars(1); node.className = 'item done'; }
-        OS.ok('صحيح! ' + it.why, 3200);
-      } else {
-        OS.hint('انظر! ' + it.why, 3600);
-      }
+      if (!done[i]) { done[i] = 1; OS.addStars(1); node.className = 'item done'; }
+      OS.ok(it.why, 2600);
       var all = true; for (var k = 0; k < ITEMS.length; k++) if (!done[k]) all = false;
       if (all) setTimeout(function () { OS.award('f-all', '🚢', 'أصبحت خبيراً في الطفو والغرق!'); }, 3700);
-    }, 2200);
+    }, 1900);
   }
 
   OS.register({

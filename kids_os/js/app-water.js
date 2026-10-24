@@ -1,6 +1,6 @@
 /* حالات الماء: ثلج ← ماء ← بخار. جزيئات متحركة تتغير حركتها مع درجة الحرارة. */
 (function () {
-  var cv, ctx, info, slider, stateEl, heatBtn, coolBtn, raf = null;
+  var cv, ctx, info, stateEl, heatBtn, coolBtn, raf = null;
   var temp = 20, dir = 0, parts = [], last = '';
   var L = 70, R = 370, T = 40, B = 340, PR = 9; // حدود الإناء داخل اللوحة
 
@@ -20,19 +20,13 @@
     ctx = cv.getContext('2d');
     var side = OS.el('<div style="width:300px;text-align:center"></div>');
     stateEl = OS.el('<div class="title2" style="font-size:34px;min-height:60px"></div>');
-    heatBtn = OS.el('<button class="btn btn-red" style="width:240px">سخّن</button>');
-    coolBtn = OS.el('<button class="btn btn-blue" style="width:240px">برّد</button>');
-    slider = OS.el('<input type="range" dir="ltr" min="-30" max="130" step="1" value="20" style="width:240px;margin:16px 0;direction:ltr">');
-    side.appendChild(stateEl); side.appendChild(heatBtn); side.appendChild(coolBtn); side.appendChild(slider);
-    side.appendChild(OS.el('<div style="font-size:17px;color:#78909c">أو حرّك المؤشر لتغيير الحرارة</div>'));
+    heatBtn = OS.iconBtn('flame', '#ef4444', 'سخّن', function () { dir = dir === 1 ? 0 : 1; btns(); });
+    coolBtn = OS.iconBtn('snow', '#3b82f6', 'برّد', function () { dir = dir === -1 ? 0 : -1; btns(); });
+    side.appendChild(stateEl); side.appendChild(heatBtn); side.appendChild(coolBtn);
     panel.appendChild(cv); panel.appendChild(side);
     wrap.appendChild(info); wrap.appendChild(panel);
     body.appendChild(wrap);
 
-    OS.tap(heatBtn, function () { dir = dir === 1 ? 0 : 1; btns(); });
-    OS.tap(coolBtn, function () { dir = dir === -1 ? 0 : -1; btns(); });
-    slider.addEventListener('input', function () { temp = +slider.value; dir = 0; btns(); }, false);
-    slider.addEventListener('change', function () { temp = +slider.value; dir = 0; btns(); }, false);
     makeParts();
     return {
       enter: function () { last = ''; if (!raf) tick(); },
@@ -41,8 +35,7 @@
   }
 
   function btns() {
-    heatBtn.className = 'btn btn-red' + (dir === 1 ? ' on' : '');
-    coolBtn.className = 'btn btn-blue' + (dir === -1 ? ' on' : '');
+    heatBtn.on(dir === 1); coolBtn.on(dir === -1);
   }
 
   function makeParts() {
@@ -59,7 +52,6 @@
       temp += dir * 0.35;
       if (temp > 130) { temp = 130; dir = 0; btns(); }
       if (temp < -30) { temp = -30; dir = 0; btns(); }
-      slider.value = Math.round(temp);
     }
     var s = state(), surf = B - 150, i, p;
     for (i = 0; i < parts.length; i++) {

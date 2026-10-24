@@ -70,8 +70,7 @@
     c.beginPath(); c.moveTo(sun.x, sun.y); c.lineTo(OX, OT); c.stroke();
     c.fillStyle = '#ffd600'; c.beginPath(); c.arc(sun.x, sun.y, 34, 0, Math.PI * 2); c.fill();
     c.fillStyle = 'rgba(255,214,0,.3)'; c.beginPath(); c.arc(sun.x, sun.y, 52, 0, Math.PI * 2); c.fill();
-    c.fillStyle = '#5d4037'; c.font = 'bold 22px sans-serif'; c.textAlign = 'center';
-    c.fillText('اسحب الشمس', Math.max(110, Math.min(W - 110, sun.x)), sun.y + 80 > G ? sun.y - 60 : sun.y + 80);
+    c.strokeStyle = 'rgba(255,255,255,.8)'; c.lineWidth = 5; c.beginPath(); c.arc(sun.x, sun.y, 62, 0, Math.PI * 2); c.stroke();
   }
 
   function loop() {

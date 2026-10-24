@@ -33,10 +33,10 @@ svg.ic { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-wid
 .chip.round { width: 56px; padding: 0 14px; background: #fff; box-shadow: 0 4px 0 #eadbc0; color: #8a7a62; }
 .chip.round .ic { margin: 0; }
 #grid { display: flex; flex-wrap: wrap; justify-content: center; padding: 0 16px 30px; }
-.card { width: 178px; height: 156px; margin: 9px; border-radius: 30px; color: #fff; text-align: center; padding-top: 22px; position: relative; }
-.card .tile { width: 70px; height: 70px; margin: 0 auto 10px; }
+.card { width: 226px; height: 196px; margin: 8px; border-radius: 34px; color: #fff; text-align: center; padding-top: 26px; position: relative; }
+.card .tile { width: 100px; height: 100px; margin: 0 auto 8px; }
 .card .ic { stroke-width: 2.2; }
-.card .nm { font-size: 21px; font-weight: 800; line-height: 1.2; padding: 0 6px; }
+.card .nm { font-size: 22px; font-weight: 800; line-height: 1.2; padding: 0 6px; }
 .card:active { -webkit-transform: translateY(4px); transform: translateY(4px); box-shadow: none !important; }
 .badge { position: absolute; top: -6px; left: -6px; background: #fff; color: #3b2f1e; font-size: 16px; font-weight: 900; line-height: 30px; height: 30px; min-width: 30px; padding: 0 8px; border-radius: 15px; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
 
@@ -44,10 +44,12 @@ svg.ic { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-wid
 #windows { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; }
 .win { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: #fff7e8; pointer-events: auto; display: flex; flex-direction: column; -webkit-transition: -webkit-transform .25s, opacity .25s; transition: transform .25s, opacity .25s; }
 .win.closed { -webkit-transform: translateX(-60px); transform: translateX(-60px); opacity: 0; pointer-events: none; }
-.win-head { height: 78px; flex-shrink: 0; display: flex; align-items: center; padding: 0 22px; color: #fff; }
-.back { height: 54px; border-radius: 27px; background: rgba(255,255,255,.25); display: flex; align-items: center; padding: 0 20px 0 14px; font-size: 20px; font-weight: 800; color: #fff; border: 0; }
-.back .ic { width: 24px; height: 24px; margin-left: 6px; stroke-width: 2.6; }
-.win-title { flex: 1; display: flex; align-items: center; font-size: 28px; font-weight: 900; margin-right: 16px; }
+.win-head { height: 86px; flex-shrink: 0; display: flex; align-items: center; padding: 0 22px; color: #fff; }
+.back, .help { width: 62px; height: 62px; border-radius: 31px; background: #fff; border: 0; padding: 14px; flex-shrink: 0; box-shadow: 0 4px 0 rgba(0,0,0,.18); }
+.back { color: #3b2f1e; }
+.help { width: 46px; height: 46px; padding: 9px; background: rgba(255,255,255,.3); color: #fff; box-shadow: none; margin-right: 10px; }
+.back .ic, .help .ic { stroke-width: 2.6; }
+.win-title { flex: 1; font-size: 30px; font-weight: 900; margin-right: 18px; }
 .win-title .t { width: 48px; height: 48px; border-radius: 15px; background: #fff; padding: 10px; margin-left: 12px; }
 .win-extra { display: flex; }
 .win-body { flex: 1; position: relative; overflow: hidden; min-height: 0; }
@@ -66,7 +68,7 @@ svg.ic { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-wid
 .btn-head { background: rgba(255,255,255,.25); color: #fff; box-shadow: none; min-height: 54px; padding: 0 20px; margin: 0 0 0 8px; border-radius: 27px; font-size: 20px; }
 .btn .pic { width: 46px; height: 46px; border-radius: 12px; margin-left: 8px; }
 
-.info { background: #fff; border-radius: 22px; padding: 16px 22px; margin: 14px 22px; font-size: 23px; line-height: 1.55; box-shadow: 0 4px 0 #f1e2c4; }
+.info { display: none; background: #fff; border-radius: 22px; padding: 16px 22px; margin: 14px 22px; font-size: 23px; line-height: 1.55; box-shadow: 0 4px 0 #f1e2c4; }
 .row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
 .panel { background: #fff; border-radius: 26px; box-shadow: 0 6px 0 #f1e2c4; margin: 0 22px 14px; padding: 10px; overflow: hidden; }
 .title2 { font-size: 28px; font-weight: 900; text-align: center; margin: 10px 0; }
@@ -81,11 +83,14 @@ svg.ic { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-wid
 .pic.obj { width: 66px; height: 66px; border-radius: 33px; border: 4px solid #fff; box-shadow: 0 3px 8px rgba(0,0,0,.25); }
 
 /* ---------- الرسائل ---------- */
-#toast { position: fixed; bottom: 22px; left: 50%; width: 700px; margin-left: -350px; border-radius: 26px; padding: 16px 22px; z-index: 60; display: flex; align-items: center; color: #fff; font-size: 23px; font-weight: 800; line-height: 1.45; -webkit-animation: rise .3s; animation: rise .3s; }
+#toast { position: fixed; bottom: 24px; left: 50%; width: 420px; margin-left: -210px; border-radius: 36px; padding: 22px 20px 18px; z-index: 60; text-align: center; color: #fff; font-size: 18px; font-weight: 700; line-height: 1.4; pointer-events: none; -webkit-animation: pop .35s; animation: pop .35s; }
 #toast.ok { background: #22c55e; box-shadow: 0 6px 0 #15803d; }
 #toast.hint { background: #f59e0b; box-shadow: 0 6px 0 #b45309; }
 #toast.star { background: #8b5cf6; box-shadow: 0 6px 0 #6d28d9; }
-.toast-icon { width: 54px; height: 54px; border-radius: 27px; background: #fff; padding: 12px; margin-left: 16px; flex-shrink: 0; }
+.toast-icon { width: 110px; height: 110px; border-radius: 55px; background: #fff; padding: 22px; margin: 0 auto 10px; }
+.toast-icon .ic { stroke-width: 3; }
+@-webkit-keyframes pop { 0% { -webkit-transform: scale(.3); opacity: 0; } 70% { -webkit-transform: scale(1.08); } 100% { -webkit-transform: scale(1); opacity: 1; } }
+@keyframes pop { 0% { transform: scale(.3); opacity: 0; } 70% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; } }
 #toast.ok .toast-icon { color: #16a34a; } #toast.hint .toast-icon { color: #d97706; } #toast.star .toast-icon { color: #f59e0b; }
 .toast-text { flex: 1; }
 @-webkit-keyframes rise { from { -webkit-transform: translateY(140px); opacity: 0; } to { -webkit-transform: translateY(0); opacity: 1; } }
@@ -97,11 +102,12 @@ svg.ic { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-wid
 
 /* ---------- السبورة ---------- */
 .board-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; padding: 8px 8px 4px; flex-shrink: 0; }
-.sw { width: 42px; height: 42px; border-radius: 21px; margin: 3px; border: 4px solid #fff; box-shadow: 0 3px 0 #eadbc0; }
+.sw { width: 58px; height: 58px; border-radius: 29px; margin: 4px; border: 5px solid #fff; box-shadow: 0 3px 0 #eadbc0; }
 .sw.on { border-color: #3b2f1e; }
-.tool { white-space: nowrap; min-width: 52px; height: 50px; border-radius: 16px; margin: 3px; background: #fff; text-align: center; line-height: 50px; font-size: 18px; padding: 0 12px; box-shadow: 0 3px 0 #eadbc0; font-weight: 800; }
+.tool { white-space: nowrap; min-width: 64px; height: 64px; border-radius: 20px; margin: 4px; background: #fff; text-align: center; line-height: 64px; font-size: 20px; padding: 0 14px; box-shadow: 0 3px 0 #eadbc0; font-weight: 800; }
 .tool.on { background: #3b2f1e; color: #fff; box-shadow: none; }
-.tool .ic { width: 26px; height: 26px; margin: 12px auto 0; }
+.tool .ic { width: 32px; height: 32px; margin: 16px auto 0; stroke-width: 2.4; }
+.tool.ok { background: #22c55e; color: #fff; box-shadow: 0 4px 0 #15803d; }
 .dot { display: inline-block; border-radius: 50%; background: currentColor; vertical-align: middle; }
 .board-wrap { position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0 14px 14px; border-radius: 22px; overflow: hidden; box-shadow: 0 5px 0 #f1e2c4; }
 .board-wrap canvas { position: absolute; top: 0; left: 0; }
@@ -173,14 +179,24 @@ svg.ic { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-wid
 .ayah .num { display: inline-block; min-width: 46px; height: 46px; line-height: 46px; text-align: center; border-radius: 23px; border: 2px solid #10b981; color: #047857; font-family: -apple-system, "Geeza Pro", sans-serif; font-size: 20px; font-weight: 900; margin-right: 8px; vertical-align: middle; }
 .w { -webkit-transition: color .2s; transition: color .2s; }
 .w.hid { color: transparent; background: #d1fae5; border-radius: 10px; }
-.order-card { font-family: "Amiri Quran", "Geeza Pro", serif; font-size: 32px; line-height: 1.9; background: #fff; border-radius: 22px; box-shadow: 0 5px 0 #d1fae5; margin: 10px 22px; padding: 10px 20px; text-align: center; }
-.order-card.ok { background: #10b981; color: #fff; box-shadow: 0 5px 0 #047857; }
-.order-card.bad { -webkit-animation: wiggle .4s; animation: wiggle .4s; }
 .meaning { background: #ecfdf5; border-radius: 22px; margin: 0 22px 16px; padding: 14px 22px; font-size: 21px; line-height: 1.6; color: #065f46; font-weight: 600; }
 .qnote { text-align: center; font-size: 15px; color: #8a7a62; padding: 0 22px 24px; }
 
 /* العمودي (الاستخدام الأساسي للآيباد): أربعة تطبيقات في كل صف */
 @media (max-width: 800px) {
-  .card { width: 164px; height: 150px; margin: 8px; }
+  #grid { padding: 0 6px 30px; }
   .topbar { padding: 0 24px; }
 }
+
+/* إشارة نابضة: «اضغط هنا» من دون كلام */
+.pulse { -webkit-animation: pulse 1.2s infinite; animation: pulse 1.2s infinite; }
+@-webkit-keyframes pulse { 0%,100% { opacity: .15; } 50% { opacity: 1; } }
+@keyframes pulse { 0%,100% { opacity: .15; } 50% { opacity: 1; } }
+
+/* ---------- أزرار الأيقونات الكبيرة (للأطفال الصغار) ---------- */
+.ibox { display: inline-block; text-align: center; margin: 8px 12px; vertical-align: top; }
+.ibtn { width: 100px; height: 100px; border-radius: 50px; border: 0; padding: 24px; color: #fff; box-shadow: 0 6px 0 rgba(0,0,0,.22); }
+.ibtn .ic { stroke-width: 2.6; }
+.ibox.on .ibtn { box-shadow: 0 0 0 6px #fff, 0 0 0 10px #3b2f1e; }
+.ibox:active .ibtn { -webkit-transform: translateY(4px); transform: translateY(4px); }
+.ilbl { font-size: 15px; font-weight: 800; color: #8a7a62; margin-top: 8px; }

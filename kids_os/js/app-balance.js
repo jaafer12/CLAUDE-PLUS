@@ -1,4 +1,4 @@
-/* الميزان: ضع شيئين في الكفّتين، وخمّن أيّهما أثقل. */
+/* الميزان: يضع الطفل شيئين في الكفّتين فيميل الميزان نحو الأثقل. */
 (function () {
   var ITEMS = [
     { p: 'leaf', e: '🍃', n: 'ورقة الشجر', w: 1 }, { p: 'balloon', e: '🎈', n: 'البالون', w: 2 },
@@ -20,8 +20,8 @@
       OS.tap(n, function () { put(i); });
       tray.appendChild(n);
     });
-    var row = OS.el('<div class="row"><button class="btn btn-white">أفرغ الكفّتين</button></div>');
-    OS.tap(row.firstChild, empty);
+    var row = OS.el('<div class="row"></div>');
+    row.appendChild(OS.iconBtn('reset', '#94a3b8', 'أفرغ الكفّتين', function () { empty(); }));
     wrap.appendChild(info); wrap.appendChild(scene); wrap.appendChild(row); wrap.appendChild(tray);
     body.appendChild(wrap);
     render();
@@ -31,32 +31,25 @@
   function put(i) {
     if (busy) return;
     if (left !== null && right !== null) empty(true);
-    if (left === i || right === i) { OS.hint('اختر شيئاً مختلفاً للكفّة الأخرى'); return; }
-        if (left === null) { left = i; render(); return; }
+    if (left === i || right === i) return;
+    if (left === null) { left = i; render(); return; }
     right = i; render();
     busy = true;
-    setTimeout(function () {
-      OS.ask('أيّ كفّة ستنزل إلى الأسفل؟', [
-        { label: OS.pic(ITEMS[right].p, ITEMS[right].e) + ' ' + ITEMS[right].n, cls: 'btn-white', fn: function () { judge(right); } },
-        { label: OS.pic(ITEMS[left].p, ITEMS[left].e) + ' ' + ITEMS[left].n, cls: 'btn-white', fn: function () { judge(left); } }
-      ]);
-    }, 300);
+    setTimeout(weigh, 300);
   }
 
-  function judge(guess) {
+  function weigh() {
     var L = ITEMS[left], R = ITEMS[right], heavy = R.w > L.w ? right : left;
     var light = heavy === right ? left : right;
     animateTo(heavy === right ? 0.32 : -0.32);
     setTimeout(function () {
       busy = false;
-      var msg = ITEMS[heavy].n + ' أثقل من ' + ITEMS[light].n + '، لذلك نزلت كفّته.';
-      if (guess === heavy) {
-                var mem = OS.data.balance || (OS.data.balance = {}), key = Math.min(left, right) + '-' + Math.max(left, right);
-        if (!mem[key]) { mem[key] = 1; OS.addStars(1); }
-        var n = 0; for (var k in mem) n++;
-        if (n >= 5 && OS.award('bal-5', '⭐', 'صرت خبيراً في الوزن!')) return;
-        OS.ok('صحيح! ' + msg, 3000);
-      } else { OS.hint('انظر! ' + msg, 3200); }
+      var msg = ITEMS[heavy].n + ' أثقل من ' + ITEMS[light].n;
+      var mem = OS.data.balance || (OS.data.balance = {}), key = Math.min(left, right) + '-' + Math.max(left, right);
+      if (!mem[key]) { mem[key] = 1; OS.addStars(1); }
+      var n = 0; for (var k in mem) n++;
+      if (n >= 5 && OS.award('bal-5', '⭐', 'صرت خبيراً في الوزن!')) return;
+      OS.ok(msg, 2600);
     }, 1100);
   }
 

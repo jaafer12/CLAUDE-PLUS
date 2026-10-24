@@ -22,8 +22,8 @@
     bowl = OS.el('<div class="bowl"></div>');
     eq = OS.el('<div class="eq"></div>');
     found = OS.el('<div class="found"></div>');
-    var again = OS.el('<div class="row"><button class="btn btn-white">وعاء نظيف</button></div>');
-    OS.tap(again.firstChild, clean);
+    var again = OS.el('<div class="row"></div>');
+    again.appendChild(OS.iconBtn('reset', '#94a3b8', 'وعاء نظيف', clean));
     wrap.appendChild(info); wrap.appendChild(pots); wrap.appendChild(bowl); wrap.appendChild(eq); wrap.appendChild(again); wrap.appendChild(found);
     body.appendChild(wrap);
     showFound();

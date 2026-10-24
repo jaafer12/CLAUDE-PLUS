@@ -63,9 +63,10 @@ var OS = (function () {
 
   // ---------- الرسائل ----------
   var toastTimer = null;
+  // علامة كبيرة يفهمها الطفل من دون قراءة، والنص الصغير تحتها للأهل
   function show(kind, icon, text, ms) {
     var t = $('toast');
-    t.innerHTML = '<div class="toast-icon">' + api.icon(icon) + '</div><div class="toast-text">' + text + '</div>';
+    t.innerHTML = '<div class="toast-icon">' + api.icon(icon) + '</div><div class="toast-text">' + (text || '') + '</div>';
     t.className = 'hidden'; void t.offsetWidth; t.className = kind;
     clearTimeout(toastTimer);
     toastTimer = setTimeout(function () { t.className = 'hidden'; }, ms || 2200);
@@ -85,7 +86,7 @@ var OS = (function () {
     $('modal').className = '';
   }
 
-  // صندوق شرح قصير أعلى التجربة
+  // شرح التجربة للأهل: لا يظهر على الشاشة، بل عند الضغط على زر «؟» في الأعلى
   function info(html) {
     var n = el('<div class="info">' + html + '</div>');
     n.set = function (h) { n.innerHTML = h; };
@@ -125,12 +126,16 @@ var OS = (function () {
     if (current) closeWin(true);
     if (!a.win) {
       a.win = el('<div class="win closed"><div class="win-head" style="background:' + a.color + '">' +
-        '<button class="back">' + api.icon('back') + 'الرئيسية</button>' +
-        '<div class="win-title"><div class="t" style="color:' + a.color + '">' + api.icon(a.icon) + '</div>' + a.name + '</div>' +
-        '<div class="win-extra"></div></div>' +
+        '<button class="back">' + api.icon('home') + '</button>' +
+        '<div class="win-title">' + a.name + '</div>' +
+        '<div class="win-extra"></div><button class="help">' + api.icon('help') + '</button></div>' +
         '<div class="win-body' + (a.scroll ? ' scroll' : '') + '"></div></div>');
       $('windows').appendChild(a.win);
       tap(a.win.querySelector('.back'), function () { home(); });
+      tap(a.win.querySelector('.help'), function () {
+        var i = a.body.querySelector('.info');
+        ask('<div style="font-size:20px;color:#8a7a62">للأهل</div>' + (i ? i.innerHTML : a.name), [{ label: 'حسناً', cls: 'btn-green' }]);
+      });
       a.body = a.win.lastChild; a.extra = a.win.querySelector('.win-extra');
       a.ctl = a.build(a.body, a) || {};
     }
@@ -146,11 +151,20 @@ var OS = (function () {
     current = null;
     if (a.ctl.leave) a.ctl.leave();
     $('modal').className = 'hidden';
+    clearTimeout(toastTimer); $('toast').className = 'hidden';
     a.win.className = 'win closed';
     if (instant) a.win.style.display = 'none';
     else setTimeout(function () { if (current !== a) a.win.style.display = 'none'; }, 280);
   }
   function home() { if (!current) return; closeWin(false); drawHome(); }
+
+  // زر كبير بأيقونة (يفهمه الطفل) واسم صغير تحته (للأهل)
+  function iconBtn(icon, color, label, fn) {
+    var n = el('<div class="ibox"><button class="ibtn" style="background:' + color + '">' + api.icon(icon) + '</button><div class="ilbl">' + (label || '') + '</div></div>');
+    tap(n, function () { fn(n); });
+    n.on = function (v) { n.className = 'ibox' + (v ? ' on' : ''); };
+    return n;
+  }
 
   function setWallpaper(w) { data.wallpaper = w; save(); $('desk').className = w; }
 
@@ -197,7 +211,7 @@ var OS = (function () {
     start: start, pic: pic, photo: photo, photoUrl: photoUrl, photos: {}, photoData: null,
     canvasPoint: canvasPoint, register: register, open: open, home: home,
     tap: tap, point: point, el: el, each: each, shuffle: shuffle, strip: strip, $: $,
-    ok: ok, hint: hint, ask: ask, info: info,
+    ok: ok, hint: hint, ask: ask, info: info, iconBtn: iconBtn,
     award: award, addStars: addStars, refreshStars: refreshStars,
     data: data, save: save, apps: apps, setWallpaper: setWallpaper,
     isOpen: function (id) { return current && current.id === id; }

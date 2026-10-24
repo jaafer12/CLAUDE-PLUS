@@ -1,4 +1,4 @@
-/* القرآن الكريم: قصار السور للأطفال — قراءة، حفظ بإخفاء الكلمات، وترتيب الآيات.
+/* القرآن الكريم: قصار السور يقرؤها الأهل مع الطفل — قراءة مع تظليل الآية، وحفظ بإظهار الكلمات واحدة واحدة.
    النص من js/quran.js (يُولَّد من مصدر موثّق، انظر tools/data/QURAN_SOURCE.md)؛ لا تُكتب الآيات هنا. */
 (function () {
   // معنى مبسّط لكل سورة (للتعريف فقط؛ يُستحسن أن يشرحه الأهل)
@@ -19,7 +19,7 @@
   var DIG = '٠١٢٣٤٥٦٧٨٩';
   function ar(n) { return String(n).replace(/[0-9]/g, function (d) { return DIG[+d]; }); }
 
-  var box, sura = 0, mode = 'read', reveal = [], order = [], next = 0;
+  var box, sura = 0, mode = 'read', reveal = [];
 
   function done() { return OS.data.quran || (OS.data.quran = {}); }
 
@@ -28,7 +28,7 @@
   // ---------- قائمة السور ----------
   function list() {
     sura = 0;
-    var h = '<div class="info">اختر سورة لتقرأها وتحفظها. السور التي رتّبت آياتها تصير خضراء.</div><div class="sura-list">';
+    var h = '<div class="info">يقرأ الأهل السورة والطفل يضغط على الآية لتتظلّل. في «احفظ» يقرأ الطفل من حفظه ويضغط ليرى الكلمة التالية.</div><div class="sura-list">';
     OS.each(OS.QURAN_ORDER, function (n) {
       var s = OS.QURAN[n];
       h += '<div class="sura' + (done()[n] ? ' done' : '') + '" data-n="' + n + '"><span class="no">' + ar(n) + '</span>' +
@@ -48,24 +48,19 @@
     var h = '<div class="row" style="margin-top:12px">' +
       '<button class="btn btn-white" data-a="list">كل السور</button>' +
       '<button class="btn ' + (mode === 'read' ? 'btn-green' : 'btn-white') + '" data-a="read">اقرأ</button>' +
-      '<button class="btn ' + (mode === 'hide' ? 'btn-green' : 'btn-white') + '" data-a="hide">احفظ</button>' +
-      '<button class="btn ' + (mode === 'order' ? 'btn-green' : 'btn-white') + '" data-a="order">رتّب الآيات</button></div>';
+      '<button class="btn ' + (mode === 'hide' ? 'btn-green' : 'btn-white') + '" data-a="hide">احفظ</button></div>';
     h += '<div class="title2" style="font-family:\'Amiri Quran\',serif;font-size:40px;font-weight:normal;color:#065f46">سورة ' + s.name + '</div>';
-    if (mode === 'order') h += orderHtml(s);
-    else {
-      if (mode === 'hide') h += '<div class="info">اضغط على الآية لتظهر الكلمة التالية. حاول أن تتذكّرها قبل أن تضغط!</div>';
-      h += '<div class="mushaf">' + (sura !== 1 ? '<div class="basmala">' + OS.QURAN[1].verses[0] + '</div>' : '');
-      OS.each(s.verses, function (v, i) {
-        var ws = words(v), shown = mode === 'hide' ? reveal[i] : ws.length, t = '';
-        OS.each(ws, function (w, k) { t += '<span class="w' + (k >= shown ? ' hid' : '') + '">' + w + '</span> '; });
-        h += '<div class="ayah" data-i="' + i + '">' + t + '<span class="num">' + ar(i + 1) + '</span></div>';
-      });
-      h += '</div><div class="meaning"><b>المعنى المبسّط:</b> ' + MEANING[sura] + '</div>';
-    }
+    if (mode === 'hide') h += '<div class="qnote" style="font-size:18px;padding-bottom:10px">اضغط على الآية لتظهر الكلمة التالية</div>';
+    h += '<div class="mushaf">' + (sura !== 1 ? '<div class="basmala">' + OS.QURAN[1].verses[0] + '</div>' : '');
+    OS.each(s.verses, function (v, i) {
+      var ws = words(v), shown = mode === 'hide' ? reveal[i] : ws.length, t = '';
+      OS.each(ws, function (w, k) { t += '<span class="w' + (k >= shown ? ' hid' : '') + '">' + w + '</span> '; });
+      h += '<div class="ayah" data-i="' + i + '">' + t + '<span class="num">' + ar(i + 1) + '</span></div>';
+    });
+    h += '</div><div class="meaning"><b>المعنى المبسّط:</b> ' + MEANING[sura] + '</div>';
     box.innerHTML = h;
     OS.each(box.querySelectorAll('[data-a]'), function (b) { OS.tap(b, function () { act(b.getAttribute('data-a')); }); });
     OS.each(box.querySelectorAll('.ayah'), function (a) { OS.tap(a, function () { ayahTap(+a.getAttribute('data-i'), a); }); });
-    OS.each(box.querySelectorAll('.order-card'), function (c) { OS.tap(c, function () { pick(+c.getAttribute('data-i'), c); }); });
   }
 
   function act(a) {
@@ -73,7 +68,6 @@
     mode = a;
     var s = OS.QURAN[sura];
     if (a === 'hide') { reveal = []; OS.each(s.verses, function () { reveal.push(1); }); }
-    if (a === 'order') { order = OS.shuffle(s.verses.map(function (v, i) { return i; })); next = 0; }
     draw();
   }
 
@@ -88,39 +82,17 @@
     if (reveal[i] < ws.length) { ws[reveal[i]].className = 'w'; reveal[i]++; }
     var all = true;
     OS.each(OS.QURAN[sura].verses, function (v, k) { if (reveal[k] < words(v).length) all = false; });
-    if (all) OS.ok('ما شاء الله! أكملت السورة، أعدها مرة أخرى من حفظك.', 3000);
+    if (all) finish();
   }
 
-  // ---------- ترتيب الآيات ----------
-  function orderHtml(s) {
-    var h = '<div class="info">اضغط على الآيات <b>بالترتيب</b>: الأولى ثم الثانية…</div>';
-    OS.each(order, function (i) {
-      h += '<div class="order-card' + (i < next ? ' ok' : '') + '" data-i="' + i + '">' + (i < next ? '<b>' + ar(i + 1) + '</b> ' : '') + s.verses[i] + '</div>';
-    });
-    return h;
-  }
-  function pick(i, card) {
-    if (i < next) return;
-    if (i === next) {
-      next++;
-      card.className = 'order-card ok';
-      card.innerHTML = '<b>' + ar(i + 1) + '</b> ' + OS.QURAN[sura].verses[i];
-      if (next === OS.QURAN[sura].verses.length) finish();
-    } else {
-      card.className = 'order-card'; void card.offsetWidth; card.className = 'order-card bad';
-      OS.hint('ليست هذه. ابحث عن الآية رقم ' + ar(next + 1), 1800);
-    }
-  }
   function finish() {
     var d = done(), first = !d[sura];
     d[sura] = 1; OS.save();
     if (first) OS.addStars(1);
-    OS.ok('أحسنت! رتّبت آيات سورة ' + OS.QURAN[sura].name + ' كلها.', 3000);
-    // نعرض الآيات بترتيب المصحف بعد الإكمال
-    setTimeout(function () { if (mode === 'order') { order.sort(function (a, b) { return a - b; }); draw(); } }, 900);
+    OS.ok('ما شاء الله! أكملت سورة ' + OS.QURAN[sura].name, 3000);
     var n = 0; for (var k in d) n++;
-    if (n >= 3) setTimeout(function () { OS.award('qr-3', '', 'رتّبت ثلاث سور!'); }, 3100);
-    if (n >= OS.QURAN_ORDER.length) setTimeout(function () { OS.award('qr-all', '', 'رتّبت كل السور! بارك الله فيك'); }, 6200);
+    if (n >= 3) setTimeout(function () { OS.award('qr-3', '', 'حفظت ثلاث سور!'); }, 3100);
+    if (n >= OS.QURAN_ORDER.length) setTimeout(function () { OS.award('qr-all', '', 'حفظت كل السور! بارك الله فيك'); }, 6200);
   }
 
   OS.register({

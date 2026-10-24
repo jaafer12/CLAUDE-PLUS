@@ -98,8 +98,12 @@
     }
     // الإرشاد والاسم العلمي للمرحلة
     c.font = 'bold 26px sans-serif'; c.textAlign = 'center'; c.fillStyle = '#263238';
-    if (step === 0) c.fillText('اضغط', SUN.x, SUN.y + 86);
-    if (step === 1) c.fillText('اضغط', CLOUD.x, CLOUD.y + 100);
+    // حلقة نابضة حول ما يجب أن يضغط عليه الطفل
+    var target = step === 0 ? SUN : step === 1 ? CLOUD : null;
+    if (target) {
+      c.strokeStyle = 'rgba(245,158,11,' + (0.35 + 0.35 * Math.sin(t / 8)) + ')'; c.lineWidth = 8;
+      c.beginPath(); c.arc(target.x, target.y, step === 0 ? 70 : 105, 0, Math.PI * 2); c.stroke();
+    }
     if (label) {
       c.fillStyle = 'rgba(255,255,255,.85)'; c.fillRect(W / 2 - 120, 12, 240, 46);
       c.fillStyle = '#01579b'; c.font = 'bold 30px sans-serif'; c.fillText(label, W / 2, 46);

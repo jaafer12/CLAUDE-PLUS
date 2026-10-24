@@ -1,4 +1,4 @@
-/* السقوط: الكرة والريشة مع الهواء وبدونه (مثل القمر). */
+/* السقوط: الكرة والريشة مع الهواء وبدونه (مثل القمر). يضغط الطفل «أفلِت» ويشاهد. */
 (function () {
   var W = 600, H = 440, TOP = 70, FLOOR = 400;
   var cv, ctx, info, airBtn, moonBtn, air = true, raf = null, run = null;
@@ -10,11 +10,10 @@
     var panel = OS.el('<div class="panel row" style="padding:6px"></div>');
     cv = document.createElement('canvas'); cv.width = W; cv.height = H; cv.className = 'stage-cv'; cv.style.width = '560px';
     ctx = cv.getContext('2d');
-    var side = OS.el('<div style="width:300px;text-align:center"></div>');
-    airBtn = OS.el('<button class="btn btn-blue" style="width:260px">مع الهواء</button>');
-    moonBtn = OS.el('<button class="btn btn-teal" style="width:260px">بلا هواء (القمر)</button>');
-    var drop = OS.el('<button class="btn btn-orange" style="width:260px;font-size:28px">أفلِت!</button>');
-    OS.tap(airBtn, function () { setAir(true); }); OS.tap(moonBtn, function () { setAir(false); }); OS.tap(drop, ask);
+    var side = OS.el('<div class="row" style="width:100%"></div>');
+    airBtn = OS.iconBtn('earth', '#3b82f6', 'الأرض', function () { setAir(true); });
+    moonBtn = OS.iconBtn('moon', '#334155', 'القمر', function () { setAir(false); });
+    var drop = OS.iconBtn('play', '#f97316', 'أفلِت', go);
     side.appendChild(airBtn); side.appendChild(moonBtn); side.appendChild(drop);
     panel.appendChild(cv); panel.appendChild(side);
     wrap.appendChild(info); wrap.appendChild(panel);
@@ -28,21 +27,11 @@
 
   function setAir(a, quiet) {
     air = a; run = null; reset();
-    airBtn.className = 'btn btn-blue' + (a ? ' on' : ''); moonBtn.className = 'btn btn-teal' + (a ? '' : ' on');
+    airBtn.on(a); moonBtn.on(!a);
   }
   function reset() { ball.y = feather.y = TOP; ball.v = feather.v = 0; feather.x = 400; }
 
-  function ask() {
-    if (run) return;
-    reset();
-    OS.ask('أيّهما تصل إلى الأرض أولاً' + (air ? '' : ' على القمر') + '؟', [
-      { label: 'الكرة', cls: 'btn-orange', fn: function () { go('ball'); } },
-      { label: 'الريشة', cls: 'btn-teal', fn: function () { go('feather'); } },
-      { label: 'معاً', cls: 'btn-blue', fn: function () { go('same'); } }
-    ]);
-  }
-
-  function go(guess) { run = { guess: guess, t: 0, done: false }; }
+  function go() { if (run) return; reset(); run = { t: 0, done: false }; }
 
   function step() {
     if (!run || run.done) return;
@@ -59,13 +48,10 @@
 
   function finish() {
     run.done = true;
-    var answer = air ? 'ball' : 'same', right = run.guess === answer;
-    var why = air ? 'الهواء يدفع الريشة الخفيفة العريضة فتسقط ببطء، والكرة تشقّ الهواء بسرعة.'
-      : 'بلا هواء تسقط كل الأشياء بالسرعة نفسها، الثقيلة والخفيفة!';
+    var why = air ? 'الكرة وصلت أولاً، والهواء أبطأ الريشة.'
+      : 'على القمر بلا هواء: وصلا معاً!';
     setTimeout(function () {
-      if (right) {
-                if (!OS.award(air ? 'fall-air' : 'fall-moon', air ? '🏀' : '🌙', 'صحيح! ' + why)) OS.ok('صحيح! ' + why, 3400);
-      } else { OS.hint('انظر! ' + why, 3600); }
+      if (!OS.award(air ? 'fall-air' : 'fall-moon', '', why)) OS.ok(why, 3000);
       run = null;
     }, 400);
   }
