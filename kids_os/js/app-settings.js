@@ -1,6 +1,6 @@
 /* إعدادات الأهل: محمية بسؤال حساب. الاسم، الخلفية، تصفير التقدّم، مصادر الصور والقرآن. */
 (function () {
-  var VERSION = '2.0.0';
+  var VERSION = '2.1.0';
   var WALLS = ['wp-sky', 'wp-night', 'wp-sea', 'wp-candy', 'wp-grass'];
   var box, answer = 0, typed = '';
 
@@ -58,7 +58,7 @@
     row('تصفير النجوم والملصقات', button('تصفير', 'btn-red', function () {
       OS.ask('هل تريد حذف كل النجوم والملصقات؟', [
         { label: 'نعم، احذف', cls: 'btn-red', fn: function () {
-          var d = OS.data; d.stars = 0; d.awards = {}; d.traced = {}; d.quran = {};
+          var d = OS.data; d.stars = 0; d.awards = {}; d.traced = {}; d.quran = {}; d.colored = {};
           OS.save(); OS.refreshStars(); OS.ok('بدأنا من جديد');
         } },
         { label: 'لا', cls: 'btn-white' }

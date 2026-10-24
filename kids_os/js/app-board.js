@@ -60,15 +60,10 @@
     top.appendChild(tabs);
   }
 
-  // قلم تلوين مرسوم: رأس مدبّب وجسم بلون الحبر
-  function crayon(c) {
-    return '<svg viewBox="0 0 40 100" width="46" height="112"><path d="M8 36 L20 4 L32 36 Z" fill="' + c + '"/>' +
-      '<rect x="6" y="34" width="28" height="64" rx="8" fill="' + c + '"/><rect x="6" y="72" width="28" height="9" fill="#fff" opacity=".45"/></svg>';
-  }
   function drawBottom() {
     bottom.innerHTML = '';
     OS.each(INKS, function (c, i) {
-      bottom.appendChild(button('bd-crayon' + (!erasing && i === color ? ' on' : ''), crayon(c), function () { color = i; erasing = false; drawBottom(); }));
+      bottom.appendChild(button('bd-crayon' + (!erasing && i === color ? ' on' : ''), OS.crayon(c), function () { color = i; erasing = false; drawBottom(); }));
     });
     bottom.appendChild(OS.el('<div class="bd-sep"></div>'));
     var tools = [['eraser', '#f472b6', 'ممحاة', function () { erasing = !erasing; drawBottom(); }],

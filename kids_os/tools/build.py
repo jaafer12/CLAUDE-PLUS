@@ -5,6 +5,7 @@
 1. يولّد js/quran.js من tools/data/quran_short.json (النص كما هو من المصدر، بلا تعديل).
 2. يضع كل شيء داخل index.html نفسه: التنسيق، الخط، الأكواد، وكل الصور (base64)،
    فلا تضيع أي صورة على الآيباد ويعمل النظام بلا إنترنت من ملف واحد.
+   ومعها رسومات دفتر التلوين (coloring/*.png).
 3. يكتب dist/nujoom.appcache ببصمة المحتوى، وينسخ icon.png.
 """
 import base64
@@ -50,6 +51,12 @@ def photo_data():
     return "OS.photoData = " + json.dumps(out) + ";\n", len(out)
 
 
+def color_data():
+    """يرجع سطر JS يضع رسومات التلوين (coloring/cNN.png) داخل الملف بالترتيب."""
+    files = sorted(f for f in os.listdir(os.path.join(ROOT, "coloring")) if re.match(r"c\d+\.png$", f))
+    return "OS.colorData = " + json.dumps([data_uri("coloring/" + f, "image/png") for f in files]) + ";\n", len(files)
+
+
 def bundle():
     html = read("index.html")
     css = read("css/os.css").replace('url("../fonts/amiri-quran.woff")',
@@ -57,12 +64,15 @@ def bundle():
     html = html.replace('<link rel="stylesheet" href="css/os.css">', "<style>\n" + css + "\n</style>")
 
     photos_js, n_photos = photo_data()
+    color_js, n_pages = color_data()
 
     def inline(m):
         src = m.group(1)
         code = read(src)
         if src == "js/photos.js":
             code += photos_js
+        if src == "js/app-color.js":
+            code = color_js + code
         return "<script>\n" + code.replace("</script", "<\\/script") + "\n</script>"
 
     html = re.sub(r'<script src="([^"]+)"></script>', inline, html)
@@ -73,7 +83,7 @@ def bundle():
     digest = hashlib.sha1(html.encode("utf-8") + read("icon.png", "rb")).hexdigest()[:12]
     with open(os.path.join(DIST, "nujoom.appcache"), "w", encoding="utf-8") as f:
         f.write("CACHE MANIFEST\n# version: %s\n\nindex.html\nicon.png\n\nNETWORK:\n*\n" % digest)
-    print("dist/index.html: %d KB, %d photos inside" % (len(html.encode("utf-8")) // 1024, n_photos))
+    print("dist/index.html: %d KB, %d photos and %d coloring pages inside" % (len(html.encode("utf-8")) // 1024, n_photos, n_pages))
 
 
 if __name__ == "__main__":

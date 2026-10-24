@@ -15,10 +15,20 @@ OS.ICONS = {
   eraser: '<path d="M7 20h13"/><path d="M4.5 15.5l9-9a2 2 0 0 1 2.8 0l2.2 2.2a2 2 0 0 1 0 2.8L12 18H7z"/>',
   undo: '<path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/>',
   shapes: '<circle cx="7" cy="7" r="4"/><path d="M17 3l4 7h-8z"/><rect x="4" y="14" width="7" height="7" rx="1"/><path d="M17.5 14.5l1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3z"/>',
+  palette: '<path d="M12 3a9 9 0 1 0 0 18c1.2 0 2-.8 2-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/>',
+  bucket: '<path d="M5 11l6-6 8 8-6 6a2 2 0 0 1-2.8 0L5 13.8a2 2 0 0 1 0-2.8z"/><path d="M5 11h14"/><path d="M8 3l3 2"/><path d="M20 16s1.5 2 1.5 3a1.5 1.5 0 0 1-3 0c0-1 1.5-3 1.5-3z"/>',
+  brush: '<path d="M18.5 3.5l2 2L11 15l-2-2z"/><path d="M9 13c-2 0-3.5 1.5-3.5 3.5 0 1.2-.8 2.2-2 2.5 1 1 2.5 1.5 4 1.5 2.5 0 4-1.8 4-4z"/>',
+  grid: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
   trophy: '<path d="M8 4h8v6a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4"/><path d="M12 14v4M8 21h8M9 18h6"/>'
 };
 
 // يعيد رسم الأيقونة جاهزاً للإدراج
 OS.icon = function (name, cls) {
   return '<svg class="ic' + (cls ? ' ' + cls : '') + '" viewBox="0 0 24 24">' + (OS.ICONS[name] || '') + '</svg>';
+};
+
+// قلم تلوين مرسوم: رأس مدبّب وجسم باللون (يُستخدم في السبورة والتلوين)
+OS.crayon = function (c) {
+  return '<svg viewBox="0 0 40 100" width="46" height="112"><path d="M8 36 L20 4 L32 36 Z" fill="' + c + '"/>' +
+    '<rect x="6" y="34" width="28" height="64" rx="8" fill="' + c + '"/><rect x="6" y="72" width="28" height="9" fill="#fff" opacity=".45"/></svg>';
 };
