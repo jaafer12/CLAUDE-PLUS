@@ -73,6 +73,9 @@
       ], false);
     }));
 
+    var n = 0; for (var k in OS.photos) n++;
+    if (n) row('📷 مصادر الصور (' + n + ')', button('عرض', 'btn-white', credits));
+
     var tip = OS.el('<div class="info" style="padding-left:18px;font-size:19px"><b>🔐 لقفل الآيباد على نظام نجوم (الوصول الموجَّه):</b><br>' +
       '١. الإعدادات ← عام ← تسهيلات الاستخدام ← الوصول الموجَّه: شغّله وضع رمزاً سرياً.<br>' +
       '٢. افتح «نجوم» ثم اضغط زر الشاشة الرئيسية (الزر الدائري) <b>ثلاث مرات</b> بسرعة ← ابدأ.<br>' +
@@ -80,6 +83,21 @@
       'الإصدار ' + VERSION + ' — يعمل بلا إنترنت بعد أول فتح.</div>');
     box.appendChild(tip);
   }
+
+  // الصور من ويكيميديا كومنز برخص حرة؛ نذكر المصوّر والرخصة لكل صورة
+  function credits() {
+    OS.sfx('click');
+    box.innerHTML = '<div class="title2" style="margin-top:14px">📷 مصادر الصور — Wikimedia Commons</div>';
+    var back = button('→ رجوع', 'btn-white', panel);
+    box.appendChild(OS.el('<div class="row"></div>')).appendChild(back);
+    var keys = []; for (var k in OS.photos) keys.push(k);
+    keys.sort();
+    OS.each(keys, function (k) {
+      var c = OS.photos[k];
+      box.appendChild(OS.el('<div class="credit">' + OS.pic(k, '', '') + ' ' + esc(c.file) + ' — ' + esc(c.author) + ' (' + esc(c.license) + ')</div>'));
+    });
+  }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
   OS.register({ id: 'settings', name: 'الأهل', icon: '⚙️', color: '#607d8b', build: build, scroll: true, dock: true });
 })();

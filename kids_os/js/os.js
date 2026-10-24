@@ -121,6 +121,11 @@ var OS = (function () {
     if (speakText !== false) say(speakText || html.replace(/<[^>]+>/g, ' '));
   }
 
+  // صورة حقيقية من ويكيميديا إن وُجدت (تُعرَّف في js/photos.js)، وإلا الرمز التعبيري
+  function pic(id, fallback, cls) {
+    return id && api.photos[id] ? '<img class="pic' + (cls ? ' ' + cls : '') + '" src="img/' + id + '.jpg" alt="">' : fallback;
+  }
+
   // صندوق شرح مع زر «اقرأ لي»
   function info(html) {
     var n = el('<div class="info"><div class="speak">🔈</div><div class="txt">' + html + '</div></div>');
@@ -266,12 +271,13 @@ var OS = (function () {
     }, 120);
   }
 
-  return {
-    start: start, register: register, open: open, home: home, lock: lock,
+  var api = {
+    start: start, pic: pic, photos: {}, register: register, open: open, home: home, lock: lock,
     tap: tap, point: point, el: el, each: each, shuffle: shuffle, $: $,
     sfx: sfx, say: say, hush: hush, toast: toast, ask: ask, info: info,
     award: award, addStars: addStars, refreshStars: refreshStars,
     data: data, save: save, apps: apps, setWallpaper: setWallpaper,
     isOpen: function (id) { return current && current.id === id; }
   };
+  return api;
 })();

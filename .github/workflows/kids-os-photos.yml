@@ -1,0 +1,49 @@
+name: Fetch Nujoom photos
+
+on:
+  push:
+    paths:
+      - "kids_os/tools/photos.json"
+      - "kids_os/tools/fetch_photos.py"
+      - ".github/workflows/kids-os-photos.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: kids-os-photos-${{ github.ref }}
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install pillow
+
+      - name: Download photos from Wikimedia Commons
+        run: python kids_os/tools/fetch_photos.py
+
+      - name: Commit photos
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kids_os/img kids_os/js/photos.js kids_os/nujoom.appcache
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Update Nujoom photos from Wikimedia Commons"
+          git push origin HEAD:${{ github.ref_name }}
+          echo "pushed=1" >> "$GITHUB_OUTPUT"
+
+      # الدفع بـ GITHUB_TOKEN لا يشغّل المهام الأخرى، فنطلب النشر صراحة
+      - name: Republish site
+        if: steps.commit.outputs.pushed == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run kids-os.yml --ref "${{ github.ref_name }}"

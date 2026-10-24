@@ -1,11 +1,11 @@
 /* المغناطيس: اسحب المغناطيس فوق الطاولة واكتشف ما ينجذب إليه. */
 (function () {
   var ITEMS = [
-    { e: '📎', n: 'مشبك', m: true, x: 15, y: 30 }, { e: '🔩', n: 'برغي', m: true, x: 80, y: 75 },
-    { e: '✂️', n: 'مقص', m: true, x: 35, y: 80 }, { e: '🔧', n: 'مفتاح ربط', m: true, x: 88, y: 30 },
-    { e: '✏️', n: 'قلم خشب', m: false, x: 12, y: 70 }, { e: '🍎', n: 'تفاحة', m: false, x: 62, y: 85 },
-    { e: '🎈', n: 'بالون', m: false, x: 70, y: 22 }, { e: '📏', n: 'مسطرة', m: false, x: 30, y: 50 },
-    { e: '🍃', n: 'ورقة', m: false, x: 85, y: 52 }
+    { p: 'paperclip', e: '📎', n: 'مشبك', m: true, x: 15, y: 30 }, { p: 'bolt', e: '🔩', n: 'برغي', m: true, x: 80, y: 75 },
+    { p: 'scissors', e: '✂️', n: 'مقص', m: true, x: 35, y: 80 }, { p: 'wrench', e: '🔧', n: 'مفتاح ربط', m: true, x: 88, y: 30 },
+    { p: 'pencil', e: '✏️', n: 'قلم خشب', m: false, x: 12, y: 70 }, { p: 'apple', e: '🍎', n: 'تفاحة', m: false, x: 62, y: 85 },
+    { p: 'balloon', e: '🎈', n: 'بالون', m: false, x: 70, y: 22 }, { p: 'ruler', e: '📏', n: 'مسطرة', m: false, x: 30, y: 50 },
+    { p: 'leaf', e: '🍃', n: 'ورقة', m: false, x: 85, y: 52 }
   ];
   var SLOTS = [[-38, 18], [38, 18], [0, 34], [-60, 44], [60, 44], [0, 64]];
   var MAG = '<svg viewBox="0 0 120 130" width="120" height="130"><path d="M25,125 L25,58 A35,35 0 0 1 95,58 L95,125" stroke="#e53935" stroke-width="32" fill="none"/>' +
@@ -21,7 +21,7 @@
     OS.tap(reset, function () { OS.sfx('click'); place(); });
     app.extra.appendChild(reset);
     OS.each(ITEMS, function (it) {
-      var n = OS.el('<div class="mag-obj">' + it.e + '<div class="nm">' + it.n + '</div></div>');
+      var n = OS.el('<div class="mag-obj">' + OS.pic(it.p, it.e, 'obj') + '<div class="nm">' + it.n + '</div></div>');
       area.appendChild(n); nodes.push(n);
     });
     mag = OS.el('<div class="magnet">' + MAG + '</div>');

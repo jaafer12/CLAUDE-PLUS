@@ -5,6 +5,7 @@ index.html
 icon.png
 css/os.css
 js/os.js
+js/photos.js
 js/app-board.js
 js/app-circuit.js
 js/app-water.js

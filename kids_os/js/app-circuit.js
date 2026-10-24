@@ -1,15 +1,15 @@
 /* الكهرباء: دائرة كهربائية بسيطة (بطارية، مفتاح، مصباح) وتجربة «موصل أم عازل». */
 (function () {
   var ITEMS = [
-    { e: '🔑', n: 'مفتاح الباب', c: true, why: 'المفتاح من المعدن، والمعدن يوصل الكهرباء.' },
-    { e: '📎', n: 'مشبك الورق', c: true, why: 'المشبك من الحديد، والحديد يوصل الكهرباء.' },
-    { e: '✂️', n: 'المقص', c: true, why: 'شفرة المقص من المعدن، فتمرّ الكهرباء خلالها.' },
-    { e: '🔩', n: 'البرغي', c: true, why: 'البرغي من الحديد، والحديد موصل جيد.' },
-    { e: '✏️', n: 'قلم الخشب', c: false, why: 'الخشب عازل، لا يسمح للكهرباء بالمرور.' },
-    { e: '🎈', n: 'البالون', c: false, why: 'البالون من المطاط، والمطاط عازل.' },
-    { e: '📏', n: 'المسطرة', c: false, why: 'المسطرة من البلاستيك، والبلاستيك عازل.' },
-    { e: '🍃', n: 'ورقة الشجر', c: false, why: 'ورقة الشجر الجافة لا توصل الكهرباء.' },
-    { e: '👕', n: 'القميص', c: false, why: 'القماش عازل، لا تمرّ فيه الكهرباء.' }
+    { p: 'key', e: '🔑', n: 'مفتاح الباب', c: true, why: 'المفتاح من المعدن، والمعدن يوصل الكهرباء.' },
+    { p: 'paperclip', e: '📎', n: 'مشبك الورق', c: true, why: 'المشبك من الحديد، والحديد يوصل الكهرباء.' },
+    { p: 'scissors', e: '✂️', n: 'المقص', c: true, why: 'شفرة المقص من المعدن، فتمرّ الكهرباء خلالها.' },
+    { p: 'bolt', e: '🔩', n: 'البرغي', c: true, why: 'البرغي من الحديد، والحديد موصل جيد.' },
+    { p: 'pencil', e: '✏️', n: 'قلم الخشب', c: false, why: 'الخشب عازل، لا يسمح للكهرباء بالمرور.' },
+    { p: 'balloon', e: '🎈', n: 'البالون', c: false, why: 'البالون من المطاط، والمطاط عازل.' },
+    { p: 'ruler', e: '📏', n: 'المسطرة', c: false, why: 'المسطرة من البلاستيك، والبلاستيك عازل.' },
+    { p: 'leaf', e: '🍃', n: 'ورقة الشجر', c: false, why: 'ورقة الشجر الجافة لا توصل الكهرباء.' },
+    { p: 'shirt', e: '👕', n: 'القميص', c: false, why: 'القماش عازل، لا تمرّ فيه الكهرباء.' }
   ];
   var svg, info, tray, modeBtns, mode = 1, closed = false, item = null, raf = null, off = 0;
 
@@ -42,6 +42,7 @@
     '<g id="cGap"><circle cx="476" cy="330" r="9" fill="#37474f"/><circle cx="564" cy="330" r="9" fill="#37474f"/>' +
     '<rect id="cSlot" x="484" y="296" width="72" height="68" rx="12" fill="none" stroke="#90a4ae" stroke-width="3" stroke-dasharray="8 6"/>' +
     '<text id="cObj" x="520" y="350" font-size="52" text-anchor="middle">?</text>' +
+    '<image id="cImg" x="486" y="298" width="68" height="64" preserveAspectRatio="xMidYMid slice" style="display:none"/>' +
     '<text x="520" y="392" font-size="20" text-anchor="middle" fill="#455a64">ضع شيئاً هنا</text></g>' +
     '</svg>';
 
@@ -80,7 +81,7 @@
       info.set('بعض الأشياء تسمح للكهرباء بالمرور وتسمّى <b>موصلات</b>، وبعضها لا يسمح وتسمّى <b>عوازل</b>. اختر شيئاً وضعه في الفراغ: هل سيضيء المصباح؟');
       var done = OS.data.circuit || {};
       OS.each(ITEMS, function (it, i) {
-        var n = OS.el('<div class="item' + (done[i] ? ' done' : '') + '"><span class="em">' + it.e + '</span>' + it.n + '</div>');
+        var n = OS.el('<div class="item' + (done[i] ? ' done' : '') + '"><span class="em">' + OS.pic(it.p, it.e) + '</span>' + it.n + '</div>');
         OS.tap(n, function () { guess(i, n); });
         tray.appendChild(n);
       });
@@ -92,7 +93,10 @@
 
   function update(feedback) {
     $('cLever').setAttribute('transform', closed ? '' : 'rotate(-35 236 330)');
-    $('cObj').textContent = item === null ? '?' : ITEMS[item].e;
+    var photo = item !== null && OS.photos[ITEMS[item].p];
+    $('cObj').textContent = item === null ? '?' : photo ? '' : ITEMS[item].e;
+    $('cImg').style.display = photo ? '' : 'none';
+    if (photo) $('cImg').setAttributeNS('http://www.w3.org/1999/xlink', 'href', 'img/' + ITEMS[item].p + '.jpg');
     var on = lit();
     $('cBulb').setAttribute('fill', on ? '#fff176' : '#eceff1');
     $('cBulb').setAttribute('stroke', on ? '#fbc02d' : '#90a4ae');
@@ -108,7 +112,7 @@
   function guess(i, node) {
     var it = ITEMS[i];
     OS.sfx('click');
-    OS.ask(it.e + '<br>هل سيضيء المصباح مع ' + it.n + '؟', [
+    OS.ask(OS.pic(it.p, it.e, 'big') + '<br>هل سيضيء المصباح مع ' + it.n + '؟', [
       { label: '💡 نعم يضيء', cls: 'btn-orange', fn: function () { place(i, node, true); } },
       { label: '🌑 لا يضيء', cls: 'btn-blue', fn: function () { place(i, node, false); } }
     ]);

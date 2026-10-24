@@ -1,16 +1,16 @@
 /* يطفو أم يغرق: يتوقّع الطفل ثم يرى الجسم في الماء. */
 (function () {
   var ITEMS = [
-    { e: '🍎', n: 'التفاحة', f: true, why: 'في التفاحة هواء كثير، فهي أخف من الماء وتطفو.' },
-    { e: '🔑', n: 'المفتاح', f: false, why: 'المفتاح من المعدن الثقيل، فهو أثقل من الماء ويغرق.' },
-    { e: '🍃', n: 'ورقة الشجر', f: true, why: 'ورقة الشجر خفيفة جداً فتطفو فوق الماء.' },
-    { e: '⚓', n: 'المرساة', f: false, why: 'المرساة حديد ثقيل، لذلك تغرق وتثبّت السفينة.' },
-    { e: '🏀', n: 'الكرة', f: true, why: 'الكرة مملوءة بالهواء، والهواء يجعلها تطفو.' },
-    { e: '💍', n: 'الخاتم', f: false, why: 'الخاتم صغير لكنه من معدن ثقيل فيغرق.' },
-    { e: '✏️', n: 'قلم الخشب', f: true, why: 'الخشب أخف من الماء، لذلك يطفو.' },
-    { e: '🔩', n: 'البرغي', f: false, why: 'البرغي من الحديد، والحديد أثقل من الماء.' },
-    { e: '🍋', n: 'الليمونة', f: true, why: 'قشرة الليمون فيها فقاعات هواء صغيرة فتطفو.' },
-    { e: '🎾', n: 'كرة التنس', f: true, why: 'كرة التنس فارغة من الداخل ومملوءة بالهواء.' }
+    { p: 'apple', e: '🍎', n: 'التفاحة', f: true, why: 'في التفاحة هواء كثير، فهي أخف من الماء وتطفو.' },
+    { p: 'key', e: '🔑', n: 'المفتاح', f: false, why: 'المفتاح من المعدن الثقيل، فهو أثقل من الماء ويغرق.' },
+    { p: 'leaf', e: '🍃', n: 'ورقة الشجر', f: true, why: 'ورقة الشجر خفيفة جداً فتطفو فوق الماء.' },
+    { p: 'anchor', e: '⚓', n: 'المرساة', f: false, why: 'المرساة حديد ثقيل، لذلك تغرق وتثبّت السفينة.' },
+    { p: 'basketball', e: '🏀', n: 'الكرة', f: true, why: 'الكرة مملوءة بالهواء، والهواء يجعلها تطفو.' },
+    { p: 'ring', e: '💍', n: 'الخاتم', f: false, why: 'الخاتم صغير لكنه من معدن ثقيل فيغرق.' },
+    { p: 'pencil', e: '✏️', n: 'قلم الخشب', f: true, why: 'الخشب أخف من الماء، لذلك يطفو.' },
+    { p: 'bolt', e: '🔩', n: 'البرغي', f: false, why: 'البرغي من الحديد، والحديد أثقل من الماء.' },
+    { p: 'lemon', e: '🍋', n: 'الليمونة', f: true, why: 'قشرة الليمون فيها فقاعات هواء صغيرة فتطفو.' },
+    { p: 'tennisball', e: '🎾', n: 'كرة التنس', f: true, why: 'كرة التنس فارغة من الداخل ومملوءة بالهواء.' }
   ];
   var tank, info, tray, slots = 0;
 
@@ -31,10 +31,10 @@
     var done = OS.data.floatDone || {};
     tray.innerHTML = '';
     OS.each(ITEMS, function (it, i) {
-      var n = OS.el('<div class="item' + (done[i] ? ' done' : '') + '"><span class="em">' + it.e + '</span>' + it.n + '</div>');
+      var n = OS.el('<div class="item' + (done[i] ? ' done' : '') + '"><span class="em">' + OS.pic(it.p, it.e) + '</span>' + it.n + '</div>');
       OS.tap(n, function () {
         OS.sfx('click');
-        OS.ask(it.e + '<br>ماذا سيحدث لـ' + it.n + ' في الماء؟', [
+        OS.ask(OS.pic(it.p, it.e, 'big') + '<br>ماذا سيحدث لـ' + it.n + ' في الماء؟', [
           { label: '⬆️ تطفو', cls: 'btn-teal', fn: function () { drop(i, n, true); } },
           { label: '⬇️ تغرق', cls: 'btn-blue', fn: function () { drop(i, n, false); } }
         ]);
@@ -50,7 +50,7 @@
     if (slots >= 8) empty();
     var x = 10 + (slots % 8) * 11.5 + 2;
     slots++;
-    var o = OS.el('<div class="tank-obj fast" style="left:' + x + '%;top:-70px">' + it.e + '</div>');
+    var o = OS.el('<div class="tank-obj fast" style="left:' + x + '%;top:-70px">' + OS.pic(it.p, it.e, 'obj') + '</div>');
     tank.appendChild(o);
     void o.offsetWidth;
     o.style.top = (surface + 10) + 'px';

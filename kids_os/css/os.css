@@ -85,7 +85,12 @@ button { font-family: inherit; }
 
 .tray { display: flex; flex-wrap: wrap; justify-content: center; padding: 6px; }
 .item { width: 104px; margin: 6px; padding: 8px 4px; text-align: center; background: #fff; border-radius: 18px; box-shadow: 0 3px 8px rgba(0,0,0,.15); font-size: 16px; }
-.item .em { font-size: 48px; line-height: 60px; display: block; }
+.item .em { font-size: 48px; line-height: 64px; min-height: 64px; display: block; }
+.pic { display: inline-block; width: 64px; height: 64px; border-radius: 14px; vertical-align: middle; background: #fff; }
+.pic.big { width: 150px; height: 150px; border-radius: 26px; box-shadow: 0 3px 10px rgba(0,0,0,.25); }
+.pic.obj { width: 64px; height: 64px; border-radius: 32px; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.3); }
+.trace-label .pic { width: 64px; height: 64px; }
+.credit { font-size: 15px; line-height: 1.5; color: #546e7a; padding: 4px 18px; direction: ltr; text-align: left; }
 .item.done { opacity: .45; }
 .item.picked { outline: 4px solid #ffb300; }
 
