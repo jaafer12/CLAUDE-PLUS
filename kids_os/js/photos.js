@@ -112,13 +112,6 @@ OS.photos = {
   "src": "w:Envelope",
   "url": "https://commons.wikimedia.org/wiki/File:Envelope_-_Boonville_Address-000.jpg"
  },
- "feather": {
-  "author": "Thomas Kraft (ThKraft)",
-  "file": "Milvus_milvus_R(ThKraft).jpg",
-  "license": "CC BY-SA 2.5",
-  "src": "w:Flight feather",
-  "url": "https://commons.wikimedia.org/wiki/File:Milvus_milvus_R(ThKraft).jpg"
- },
  "fish": {
   "author": "לינה אבוגוש",
   "file": "Gold_fish1.jpg",
