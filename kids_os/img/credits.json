@@ -56,11 +56,11 @@
   "author": "Andreas Trepte"
  },
  "bolt": {
-  "src": "w:Bolt (fastener)",
-  "file": "Bolt-with-nut.jpg",
-  "license": "CC BY-SA 2.5",
-  "url": "https://commons.wikimedia.org/wiki/File:Bolt-with-nut.jpg",
-  "author": "Pavel Krok"
+  "src": "w:Screw",
+  "file": "Screws.jpg",
+  "license": "Public domain",
+  "url": "https://commons.wikimedia.org/wiki/File:Screws.jpg",
+  "author": "Brianiac"
  },
  "book": {
   "src": "w:Book",
@@ -133,11 +133,11 @@
   "author": "Charlie Jackson"
  },
  "gift": {
-  "src": "w:Gift wrapping",
-  "file": "Traditional_Japanese_wrapping_cloth,huroshiki,katori-city,japan.JPG",
-  "license": "CC BY 3.0",
-  "url": "https://commons.wikimedia.org/wiki/File:Traditional_Japanese_wrapping_cloth,huroshiki,katori-city,japan.JPG",
-  "author": "katorisi"
+  "src": "w:Gift",
+  "file": "Prezenty_EXP_096_(ubt).JPG",
+  "license": "CC BY 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Prezenty_EXP_096_(ubt).JPG",
+  "author": "Tomasz Sienicki [user: tsca, mail: tomasz.sienicki at gmail.com]"
  },
  "grapes": {
   "src": "w:Grape",
@@ -224,11 +224,11 @@
   "author": "euqirneto"
  },
  "ring": {
-  "src": "w:Ring (jewellery)",
-  "file": "Roman_-_Crouching_Venus_-_Walters_421007_-_Three_Quarter.jpg",
-  "license": "Public domain",
-  "url": "https://commons.wikimedia.org/wiki/File:Roman_-_Crouching_Venus_-_Walters_421007_-_Three_Quarter.jpg",
-  "author": "Anonymous (Category:Roman Empire)Unknown author"
+  "src": "w:Wedding ring",
+  "file": "Traditional_Wedding_Ring.jpg",
+  "license": "CC0",
+  "url": "https://commons.wikimedia.org/wiki/File:Traditional_Wedding_Ring.jpg",
+  "author": "A Minty Penguin"
  },
  "rocket": {
   "src": "w:Rocket",
@@ -273,11 +273,11 @@
   "author": "Spreadshirt"
  },
  "sun": {
-  "src": "w:Sun",
-  "file": "The_Sun_in_white_light.jpg",
-  "license": "CC BY-SA 4.0",
-  "url": "https://commons.wikimedia.org/wiki/File:The_Sun_in_white_light.jpg",
-  "author": "Matúš Motlo"
+  "src": "w:Sunrise",
+  "file": "Spring_Lake,_New_Jersey_Beach_at_Sunrise.jpg",
+  "license": "CC BY 2.5",
+  "url": "https://commons.wikimedia.org/wiki/File:Spring_Lake,_New_Jersey_Beach_at_Sunrise.jpg",
+  "author": "Nick Harris"
  },
  "tennisball": {
   "src": "w:Tennis ball",

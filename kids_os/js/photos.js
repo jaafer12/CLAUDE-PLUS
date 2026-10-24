@@ -57,11 +57,11 @@ OS.photos = {
   "url": "https://commons.wikimedia.org/wiki/File:Apis_mellifera_Western_honey_bee.jpg"
  },
  "bolt": {
-  "author": "Pavel Krok",
-  "file": "Bolt-with-nut.jpg",
-  "license": "CC BY-SA 2.5",
-  "src": "w:Bolt (fastener)",
-  "url": "https://commons.wikimedia.org/wiki/File:Bolt-with-nut.jpg"
+  "author": "Brianiac",
+  "file": "Screws.jpg",
+  "license": "Public domain",
+  "src": "w:Screw",
+  "url": "https://commons.wikimedia.org/wiki/File:Screws.jpg"
  },
  "book": {
   "author": "NYC Wanderer (Kevin Eng)",
@@ -134,11 +134,11 @@ OS.photos = {
   "url": "https://commons.wikimedia.org/wiki/File:Red-eyed_Leaf_Frog_(49661076226).jpg"
  },
  "gift": {
-  "author": "katorisi",
-  "file": "Traditional_Japanese_wrapping_cloth,huroshiki,katori-city,japan.JPG",
-  "license": "CC BY 3.0",
-  "src": "w:Gift wrapping",
-  "url": "https://commons.wikimedia.org/wiki/File:Traditional_Japanese_wrapping_cloth,huroshiki,katori-city,japan.JPG"
+  "author": "Tomasz Sienicki [user: tsca, mail: tomasz.sienicki at gmail.com]",
+  "file": "Prezenty_EXP_096_(ubt).JPG",
+  "license": "CC BY 4.0",
+  "src": "w:Gift",
+  "url": "https://commons.wikimedia.org/wiki/File:Prezenty_EXP_096_(ubt).JPG"
  },
  "grapes": {
   "author": "Vyacheslav Argenberg",
@@ -225,11 +225,11 @@ OS.photos = {
   "url": "https://commons.wikimedia.org/wiki/File:Oryctolagus_cuniculus_-_euqirneto_-_419737670_(cropped).jpeg"
  },
  "ring": {
-  "author": "Anonymous (Category:Roman Empire)Unknown author",
-  "file": "Roman_-_Crouching_Venus_-_Walters_421007_-_Three_Quarter.jpg",
-  "license": "Public domain",
-  "src": "w:Ring (jewellery)",
-  "url": "https://commons.wikimedia.org/wiki/File:Roman_-_Crouching_Venus_-_Walters_421007_-_Three_Quarter.jpg"
+  "author": "A Minty Penguin",
+  "file": "Traditional_Wedding_Ring.jpg",
+  "license": "CC0",
+  "src": "w:Wedding ring",
+  "url": "https://commons.wikimedia.org/wiki/File:Traditional_Wedding_Ring.jpg"
  },
  "rocket": {
   "author": "Bill Ingalls",
@@ -274,11 +274,11 @@ OS.photos = {
   "url": "https://commons.wikimedia.org/wiki/File:Woman_in_a_V-Neck_T-Shirt.jpg"
  },
  "sun": {
-  "author": "Matúš Motlo",
-  "file": "The_Sun_in_white_light.jpg",
-  "license": "CC BY-SA 4.0",
-  "src": "w:Sun",
-  "url": "https://commons.wikimedia.org/wiki/File:The_Sun_in_white_light.jpg"
+  "author": "Nick Harris",
+  "file": "Spring_Lake,_New_Jersey_Beach_at_Sunrise.jpg",
+  "license": "CC BY 2.5",
+  "src": "w:Sunrise",
+  "url": "https://commons.wikimedia.org/wiki/File:Spring_Lake,_New_Jersey_Beach_at_Sunrise.jpg"
  },
  "tennisball": {
   "author": "Miscellaneous contributor",
