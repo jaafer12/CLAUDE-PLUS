@@ -58,7 +58,7 @@
     row('تصفير النجوم والملصقات', button('تصفير', 'btn-red', function () {
       OS.ask('هل تريد حذف كل النجوم والملصقات؟', [
         { label: 'نعم، احذف', cls: 'btn-red', fn: function () {
-          var d = OS.data; d.stars = 0; d.awards = {}; d.traced = {}; d.circuit = {}; d.floatDone = {}; d.colors = {}; d.balance = {}; d.quran = {};
+          var d = OS.data; d.stars = 0; d.awards = {}; d.traced = {}; d.quran = {};
           OS.save(); OS.refreshStars(); OS.ok('بدأنا من جديد');
         } },
         { label: 'لا', cls: 'btn-white' }

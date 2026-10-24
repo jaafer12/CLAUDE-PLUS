@@ -7,13 +7,6 @@ OS.photos = {
   "src": "w:Airliner",
   "url": "https://commons.wikimedia.org/wiki/File:United_A320_N405UA_at_BOS_(33787222465).jpg"
  },
- "anchor": {
-  "author": "Radomil",
-  "file": "Kotwica_SS_Poznań.JPG",
-  "license": "CC BY-SA 3.0",
-  "src": "w:Anchor",
-  "url": "https://commons.wikimedia.org/wiki/File:Kotwica_SS_Pozna%C5%84.JPG"
- },
  "apple": {
   "author": "Abhijit Tembhekar from Mumbai, India",
   "file": "Red_Apple.jpg",
@@ -21,26 +14,12 @@ OS.photos = {
   "src": "f:Red_Apple.jpg",
   "url": "https://commons.wikimedia.org/wiki/File:Red_Apple.jpg"
  },
- "balloon": {
-  "author": "Photographer: Warren Denning. Creative Director: Stan Weir. Marketing Director: Tim Vlamis",
-  "file": "Congrats_bqt.jpg",
-  "license": "Public domain",
-  "src": "w:Balloon",
-  "url": "https://commons.wikimedia.org/wiki/File:Congrats_bqt.jpg"
- },
  "banana": {
   "author": "TimothyPilgrim",
   "file": "Bananavarieties.jpg",
   "license": "CC BY-SA 3.0",
   "src": "w:Banana",
   "url": "https://commons.wikimedia.org/wiki/File:Bananavarieties.jpg"
- },
- "basketball": {
-  "author": "Reisio",
-  "file": "Basketball.png",
-  "license": "Public domain",
-  "src": "w:Basketball (ball)",
-  "url": "https://commons.wikimedia.org/wiki/File:Basketball.png"
  },
  "bear": {
   "author": "Yathin S Krishnappa",
@@ -55,13 +34,6 @@ OS.photos = {
   "license": "CC BY-SA 2.5",
   "src": "w:Western honey bee",
   "url": "https://commons.wikimedia.org/wiki/File:Apis_mellifera_Western_honey_bee.jpg"
- },
- "bolt": {
-  "author": "Brianiac",
-  "file": "Screws.jpg",
-  "license": "Public domain",
-  "src": "w:Screw",
-  "url": "https://commons.wikimedia.org/wiki/File:Screws.jpg"
  },
  "book": {
   "author": "NYC Wanderer (Kevin Eng)",
@@ -168,20 +140,6 @@ OS.photos = {
   "src": "w:Ice cube",
   "url": "https://commons.wikimedia.org/wiki/File:Ice_cubes_openphoto.jpg"
  },
- "key": {
-  "author": "Trougnouf",
-  "file": "Solex_99_30_padlock_with_keys_(DSCF2659).jpg",
-  "license": "CC BY 4.0",
-  "src": "w:Key (lock)",
-  "url": "https://commons.wikimedia.org/wiki/File:Solex_99_30_padlock_with_keys_(DSCF2659).jpg"
- },
- "leaf": {
-  "author": "Krzysztof P. Jasiutowicz",
-  "file": "Lisc_lipy.jpg",
-  "license": "CC BY-SA 3.0",
-  "src": "w:Leaf",
-  "url": "https://commons.wikimedia.org/wiki/File:Lisc_lipy.jpg"
- },
  "lemon": {
   "author": "Elena Chochkova",
   "file": "P1030323.JPG",
@@ -195,20 +153,6 @@ OS.photos = {
   "license": "CC BY-SA 3.0",
   "src": "w:Moon",
   "url": "https://commons.wikimedia.org/wiki/File:FullMoon2010.jpg"
- },
- "paperclip": {
-  "author": "Hawyih",
-  "file": "Wanzijia.jpg",
-  "license": "Public domain",
-  "src": "w:Paper clip",
-  "url": "https://commons.wikimedia.org/wiki/File:Wanzijia.jpg"
- },
- "pencil": {
-  "author": "Original uploader was Dmgerman at en.wikipedia",
-  "file": "Pencils_hb.jpg",
-  "license": "CC BY 3.0",
-  "src": "w:Pencil",
-  "url": "https://commons.wikimedia.org/wiki/File:Pencils_hb.jpg"
  },
  "pomegranate": {
   "author": "Augustus Binu : flickr",
@@ -224,13 +168,6 @@ OS.photos = {
   "src": "w:European rabbit",
   "url": "https://commons.wikimedia.org/wiki/File:Oryctolagus_cuniculus_-_euqirneto_-_419737670_(cropped).jpeg"
  },
- "ring": {
-  "author": "A Minty Penguin",
-  "file": "Traditional_Wedding_Ring.jpg",
-  "license": "CC0",
-  "src": "w:Wedding ring",
-  "url": "https://commons.wikimedia.org/wiki/File:Traditional_Wedding_Ring.jpg"
- },
  "rocket": {
   "author": "Bill Ingalls",
   "file": "Soyuz_TMA-9_launch.jpg",
@@ -245,20 +182,6 @@ OS.photos = {
   "src": "w:Rose",
   "url": "https://commons.wikimedia.org/wiki/File:Rosa_rubiginosa_1.jpg"
  },
- "ruler": {
-  "author": "Geof",
-  "file": "Diverse·Maßstäbe,15.365.jpg",
-  "license": "CC BY-SA 3.0",
-  "src": "w:Ruler",
-  "url": "https://commons.wikimedia.org/wiki/File:Diverse%C2%B7Ma%C3%9Fst%C3%A4be,15.365.jpg"
- },
- "scissors": {
-  "author": "Doggerelblogger",
-  "file": "Standard_household_scissors.jpg",
-  "license": "CC BY-SA 4.0",
-  "src": "w:Scissors",
-  "url": "https://commons.wikimedia.org/wiki/File:Standard_household_scissors.jpg"
- },
  "sheep": {
   "author": "Keith Weller",
   "file": "Flock_of_sheep.jpg",
@@ -266,32 +189,11 @@ OS.photos = {
   "src": "w:Sheep",
   "url": "https://commons.wikimedia.org/wiki/File:Flock_of_sheep.jpg"
  },
- "shirt": {
-  "author": "Spreadshirt",
-  "file": "Woman_in_a_V-Neck_T-Shirt.jpg",
-  "license": "CC BY 2.0",
-  "src": "w:T-shirt",
-  "url": "https://commons.wikimedia.org/wiki/File:Woman_in_a_V-Neck_T-Shirt.jpg"
- },
  "sun": {
   "author": "Nick Harris",
   "file": "Spring_Lake,_New_Jersey_Beach_at_Sunrise.jpg",
   "license": "CC BY 2.5",
   "src": "w:Sunrise",
   "url": "https://commons.wikimedia.org/wiki/File:Spring_Lake,_New_Jersey_Beach_at_Sunrise.jpg"
- },
- "tennisball": {
-  "author": "Miscellaneous contributor",
-  "file": "Closeup_of_a_tennis_ball_(2).jpg",
-  "license": "CC0",
-  "src": "w:Tennis ball",
-  "url": "https://commons.wikimedia.org/wiki/File:Closeup_of_a_tennis_ball_(2).jpg"
- },
- "wrench": {
-  "author": "Lucasbosch",
-  "file": "Gedore_No._7_combination_wrenches_6–19_mm.jpg",
-  "license": "CC BY-SA 3.0",
-  "src": "w:Wrench",
-  "url": "https://commons.wikimedia.org/wiki/File:Gedore_No._7_combination_wrenches_6%E2%80%9319_mm.jpg"
  }
 };

@@ -1,102 +1,123 @@
-/* السبورة الذكية: رسم حر، أسطر وشبكة، وتتبّع الحروف والأرقام والأشكال مع تصحيح تلقائي. */
+/* السبورة الذكية: لوحة بحجم الشاشة كلها. الأزرار تطفو فوقها وتختفي ما دام الطفل يرسم،
+   وتعود بعد أن يرفع إصبعه. رسم حر، أو تتبّع الأشكال والأرقام والحروف مع تصحيح تلقائي. */
 (function () {
   var LETTERS = [
-    ['أ', 'ألف', 'أرنب', '🐰', 'rabbit'], ['ب', 'باء', 'باب', '🚪', 'door'], ['ت', 'تاء', 'تفاحة', '🍎', 'apple'], ['ث', 'ثاء', 'ثلج', '❄️', 'ice'],
-    ['ج', 'جيم', 'جمل', '🐫', 'camel'], ['ح', 'حاء', 'حصان', '🐴', 'horse'], ['خ', 'خاء', 'خروف', '🐑', 'sheep'], ['د', 'دال', 'دب', '🐻', 'bear'],
-    ['ذ', 'ذال', 'ذرة', '🌽', 'corn'], ['ر', 'راء', 'رمّان', '🍎', 'pomegranate'], ['ز', 'زاي', 'زهرة', '🌸', 'flower'], ['س', 'سين', 'سمكة', '🐟', 'fish'],
-    ['ش', 'شين', 'شمس', '☀️', 'sun'], ['ص', 'صاد', 'صاروخ', '🚀', 'rocket'], ['ض', 'ضاد', 'ضفدع', '🐸', 'frog'], ['ط', 'طاء', 'طائرة', '✈️', 'airplane'],
-    ['ظ', 'ظاء', 'ظرف', '✉️', 'envelope'], ['ع', 'عين', 'عنب', '🍇', 'grapes'], ['غ', 'غين', 'غيمة', '☁️', 'cloud'], ['ف', 'فاء', 'فيل', '🐘', 'elephant'],
-    ['ق', 'قاف', 'قمر', '🌙', 'moon'], ['ك', 'كاف', 'كتاب', '📖', 'book'], ['ل', 'لام', 'ليمون', '🍋', 'lemon'], ['م', 'ميم', 'موز', '🍌', 'banana'],
-    ['ن', 'نون', 'نحلة', '🐝', 'bee'], ['ه', 'هاء', 'هدية', '🎁', 'gift'], ['و', 'واو', 'وردة', '🌹', 'rose'], ['ي', 'ياء', 'يد', '✋', 'hand']
+    ['أ', 'ألف', 'أرنب', 'rabbit'], ['ب', 'باء', 'باب', 'door'], ['ت', 'تاء', 'تفاحة', 'apple'], ['ث', 'ثاء', 'ثلج', 'ice'],
+    ['ج', 'جيم', 'جمل', 'camel'], ['ح', 'حاء', 'حصان', 'horse'], ['خ', 'خاء', 'خروف', 'sheep'], ['د', 'دال', 'دب', 'bear'],
+    ['ذ', 'ذال', 'ذرة', 'corn'], ['ر', 'راء', 'رمّان', 'pomegranate'], ['ز', 'زاي', 'زهرة', 'flower'], ['س', 'سين', 'سمكة', 'fish'],
+    ['ش', 'شين', 'شمس', 'sun'], ['ص', 'صاد', 'صاروخ', 'rocket'], ['ض', 'ضاد', 'ضفدع', 'frog'], ['ط', 'طاء', 'طائرة', 'airplane'],
+    ['ظ', 'ظاء', 'ظرف', 'envelope'], ['ع', 'عين', 'عنب', 'grapes'], ['غ', 'غين', 'غيمة', 'cloud'], ['ف', 'فاء', 'فيل', 'elephant'],
+    ['ق', 'قاف', 'قمر', 'moon'], ['ك', 'كاف', 'كتاب', 'book'], ['ل', 'لام', 'ليمون', 'lemon'], ['م', 'ميم', 'موز', 'banana'],
+    ['ن', 'نون', 'نحلة', 'bee'], ['ه', 'هاء', 'هدية', 'gift'], ['و', 'واو', 'وردة', 'rose'], ['ي', 'ياء', 'يد', 'hand']
   ];
-  var NUMBERS = [['٠', '0', 'صفر'], ['١', '1', 'واحد'], ['٢', '2', 'اثنان'], ['٣', '3', 'ثلاثة'], ['٤', '4', 'أربعة'],
-    ['٥', '5', 'خمسة'], ['٦', '6', 'ستة'], ['٧', '7', 'سبعة'], ['٨', '8', 'ثمانية'], ['٩', '9', 'تسعة']];
-  var SHAPES = [['circle', 'دائرة'], ['square', 'مربع'], ['triangle', 'مثلث'], ['rect', 'مستطيل'], ['star', 'نجمة'], ['heart', 'قلب']];
-  var INK_WHITE = ['#263238', '#ef4444', '#3b82f6', '#22c55e', '#f59e0b', '#a855f7'];
-  var INK_CHALK = ['#ffffff', '#fff176', '#f48fb1', '#81d4fa', '#a5d6a7', '#ffb74d', '#ce93d8', '#ef9a9a'];
-  var SIZES = [12, 26];
+  var NUMBERS = [['١', 'واحد'], ['٢', 'اثنان'], ['٣', 'ثلاثة'], ['٤', 'أربعة'], ['٥', 'خمسة'],
+    ['٦', 'ستة'], ['٧', 'سبعة'], ['٨', 'ثمانية'], ['٩', 'تسعة'], ['٠', 'صفر']];
+  var SHAPES = [['circle', 'دائرة'], ['square', 'مربع'], ['triangle', 'مثلث'], ['star', 'نجمة'], ['heart', 'قلب'], ['rect', 'مستطيل']];
+  var INKS = ['#1f2937', '#ef4444', '#f59e0b', '#22c55e', '#3b82f6', '#a855f7'];
+  var PEN = 18, ERASER = 56;
+  var TOP_UI = 130, BOTTOM_UI = 170; // المساحة التي تغطيها الأزرار حين تظهر
 
-  var root, tools, stage, bg, dr, bctx, dctx, label, W = 0, H = 0;
-  var chalk = false, color = 0, size = 1, erasing = false;
-  var mode = 'free', idx = 0, strokes = [], cur = null, touchId = null;
+  var root, bg, dr, bctx, dctx, top, bottom, trace, W = 0, H = 0;
+  var color = 0, erasing = false, mode = 'free', idx = 0, strokes = [], cur = null, touchId = null, showTimer = null;
 
   function list() { return mode === 'letters' ? LETTERS : mode === 'numbers' ? NUMBERS : SHAPES; }
-  function tracing() { return mode === 'letters' || mode === 'numbers' || mode === 'shapes'; }
-  function traced() { if (!OS.data.traced) OS.data.traced = {}; return OS.data.traced; }
+  function tracing() { return mode !== 'free'; }
+  function traced() { return OS.data.traced || (OS.data.traced = {}); }
 
   function build(body) {
-    root = body;
-    tools = OS.el('<div class="board-tools"></div>');
-    stage = OS.el('<div class="board-wrap"><canvas></canvas><canvas></canvas><div class="trace-label hidden"></div></div>');
-    body.appendChild(tools); body.appendChild(stage);
-    bg = stage.childNodes[0]; dr = stage.childNodes[1]; label = stage.childNodes[2];
+    root = OS.el('<div class="bd"><canvas></canvas><canvas></canvas>' +
+      '<div class="bd-ui bd-top"></div><div class="bd-ui bd-trace"></div><div class="bd-ui bd-bottom"></div></div>');
+    body.appendChild(root);
+    bg = root.childNodes[0]; dr = root.childNodes[1];
+    top = root.childNodes[2]; trace = root.childNodes[3]; bottom = root.childNodes[4];
     bctx = bg.getContext('2d'); dctx = dr.getContext('2d');
-    drawTools();
+    drawTop(); drawBottom();
     dr.addEventListener('touchstart', down, false); dr.addEventListener('touchmove', move, false);
     dr.addEventListener('touchend', up, false); dr.addEventListener('touchcancel', up, false);
     dr.addEventListener('mousedown', down, false); dr.addEventListener('mousemove', move, false);
     window.addEventListener('mouseup', up, false);
     window.addEventListener('resize', function () { if (OS.isOpen('board')) setTimeout(resize, 300); }, false);
-    return { enter: resize };
+    return { enter: resize, leave: function () { cur = null; showUI(true); } };
   }
 
-  function tool(html, on, fn, cls) {
-    var n = OS.el('<div class="tool' + (cls ? ' ' + cls : '') + (on ? ' on' : '') + '">' + html + '</div>');
-    OS.tap(n, function () { fn(); });
-    tools.appendChild(n); return n;
+  // ---------- الأزرار العائمة ----------
+  function button(cls, html, fn) {
+    var n = OS.el('<div class="' + cls + '">' + html + '</div>');
+    OS.tap(n, fn);
+    return n;
   }
-  function sep() { tools.appendChild(OS.el('<div style="width:2px;height:40px;background:#eadbc0;margin:0 8px"></div>')); }
-  function br() { tools.appendChild(OS.el('<div style="width:100%;height:0"></div>')); }
 
-  function drawTools() {
-    tools.innerHTML = '';
-    // ألوان كبيرة، ثم سُمك القلم، ثم الممحاة والتراجع والمسح — كلها بلا كتابة
-    var inks = chalk ? INK_CHALK : INK_WHITE;
-    OS.each(inks, function (c, i) {
-      var n = OS.el('<div class="sw' + (!erasing && i === color ? ' on' : '') + '" style="background:' + c + '"></div>');
-      OS.tap(n, function () { color = i; erasing = false; drawTools(); });
-      tools.appendChild(n);
-    });
-    sep();
-    OS.each(SIZES, function (s, i) {
-      tool('<span class="dot" style="width:' + (s * 0.9) + 'px;height:' + (s * 0.9) + 'px"></span>', i === size, function () { size = i; drawTools(); });
-    });
-    sep();
-    tool(OS.icon('eraser'), erasing, function () { erasing = !erasing; drawTools(); });
-    tool(OS.icon('undo'), false, function () { strokes.pop(); redraw(); });
-    tool(OS.icon('trash'), false, function () { strokes = []; redraw(); });
-    br();
-    // ارسم بحرية، أو تتبّع الأشكال والأرقام والحروف
-    var modes = [['free', 'pencil', 'ارسم'], ['shapes', 'star', 'أشكال'], ['numbers', 'quiz', 'أرقام'], ['letters', 'quran', 'حروف']];
+  function drawTop() {
+    top.innerHTML = '';
+    top.appendChild(button('bd-home', OS.icon('home'), function () { OS.home(); }));
+    var tabs = OS.el('<div class="bd-tabs"></div>');
+    var modes = [['free', OS.icon('pencil'), 'ارسم'], ['shapes', OS.icon('shapes'), 'أشكال'], ['numbers', '<b>١٢٣</b>', 'أرقام'], ['letters', '<b>أ ب ت</b>', 'حروف']];
     OS.each(modes, function (m) {
-      tool(m[2], mode === m[0], function () { mode = m[0]; idx = 0; strokes = []; drawTools(); resize(); }, 'txt');
+      tabs.appendChild(button('bd-tab' + (mode === m[0] ? ' on' : ''), '<div class="tp">' + m[1] + '</div>' + m[2], function () {
+        mode = m[0]; idx = 0; strokes = []; drawTop(); paintBg(); redraw();
+      }));
     });
-    if (tracing()) {
-      sep();
-      tool(OS.icon('back'), false, function () { go(-1); });
-      tool('<span style="display:block;-webkit-transform:scaleX(-1);transform:scaleX(-1)">' + OS.icon('back') + '</span>', false, function () { go(1); });
-      tool(OS.icon('check'), false, check, 'ok');
-    }
-    if (stage) stage.style.top = tools.offsetHeight + 'px';
+    top.appendChild(tabs);
+  }
+
+  // قلم تلوين مرسوم: رأس مدبّب وجسم بلون الحبر
+  function crayon(c) {
+    return '<svg viewBox="0 0 40 100" width="46" height="112"><path d="M8 36 L20 4 L32 36 Z" fill="' + c + '"/>' +
+      '<rect x="6" y="34" width="28" height="64" rx="8" fill="' + c + '"/><rect x="6" y="72" width="28" height="9" fill="#fff" opacity=".45"/></svg>';
+  }
+  function drawBottom() {
+    bottom.innerHTML = '';
+    OS.each(INKS, function (c, i) {
+      bottom.appendChild(button('bd-crayon' + (!erasing && i === color ? ' on' : ''), crayon(c), function () { color = i; erasing = false; drawBottom(); }));
+    });
+    bottom.appendChild(OS.el('<div class="bd-sep"></div>'));
+    var tools = [['eraser', '#f472b6', 'ممحاة', function () { erasing = !erasing; drawBottom(); }],
+      ['undo', '#94a3b8', 'تراجع', function () { strokes.pop(); redraw(); }],
+      ['trash', '#ef4444', 'امسح', function () { strokes = []; redraw(); }]];
+    OS.each(tools, function (t) {
+      bottom.appendChild(button('bd-tool' + (t[0] === 'eraser' && erasing ? ' on' : ''),
+        '<div class="b" style="background:' + t[1] + '">' + OS.icon(t[0]) + '</div>' + t[2], t[3]));
+    });
+  }
+
+  function drawTrace() {
+    trace.innerHTML = '';
+    if (!tracing()) return;
+    var it = list()[idx], l = list();
+    var card = mode === 'letters' ? OS.pic(it[3], '') + '<div><div class="l">' + it[0] + '</div><div class="w">' + it[2] + '</div></div>'
+      : mode === 'numbers' ? '<div><div class="l">' + it[0] + '</div><div class="w">' + it[1] + '</div></div>'
+      : '<div><div class="w">' + it[1] + '</div></div>';
+    trace.appendChild(OS.el('<div class="bd-card">' + card + '</div>'));
+    var d = '<div class="bd-dots">';
+    for (var i = 0; i < l.length; i++) d += '<span' + (traced()[mode + ':' + i] ? ' class="done"' : '') + (i === idx ? ' style="background:#6366f1"' : '') + '></span>';
+    trace.appendChild(OS.el(d + '</div>'));
+    trace.appendChild(button('bd-arrow bd-prev', OS.icon('back'), function () { go(-1); }));
+    trace.appendChild(button('bd-arrow bd-next', OS.icon('back'), function () { go(1); }));
+    trace.appendChild(button('bd-check', OS.icon('check'), check));
   }
 
   function go(d) { var l = list(); idx = (idx + d + l.length) % l.length; strokes = []; paintBg(); redraw(); }
 
+  // تختفي الأزرار ما دام الإصبع على اللوحة، وتعود بعد لحظة من رفعه
+  function showUI(v) {
+    clearTimeout(showTimer);
+    root.className = 'bd' + (v ? '' : ' drawing');
+  }
+
   function resize() {
-    stage.style.top = tools.offsetHeight + 'px';
-    W = stage.offsetWidth; H = stage.offsetHeight;
+    W = root.offsetWidth; H = root.offsetHeight;
     bg.width = dr.width = W; bg.height = dr.height = H;
     paintBg(); redraw();
   }
 
-  // ---------- الخلفية والدليل ----------
+  // ---------- الدليل ----------
   function glyphFont(px) { return 'bold ' + px + 'px "Geeza Pro", "Arial", sans-serif'; }
 
   function shapePath(c, name, cx, cy, r) {
     c.beginPath();
     if (name === 'circle') c.arc(cx, cy, r, 0, Math.PI * 2);
     else if (name === 'square') c.rect(cx - r, cy - r, 2 * r, 2 * r);
-    else if (name === 'rect') c.rect(cx - r * 1.5, cy - r * 0.8, 3 * r, 1.6 * r);
+    else if (name === 'rect') c.rect(cx - r * 1.4, cy - r * 0.8, 2.8 * r, 1.6 * r);
     else if (name === 'triangle') { c.moveTo(cx, cy - r); c.lineTo(cx + r * 1.1, cy + r * 0.8); c.lineTo(cx - r * 1.1, cy + r * 0.8); c.closePath(); }
     else if (name === 'star') {
       for (var i = 0; i < 10; i++) {
@@ -112,7 +133,6 @@
     }
   }
 
-  // يرسم شكل الدليل على أي سياق؛ s = مقياس، fat = سماحية إضافية بالبكسل
   // حدود الحرف الفعلية بالبكسل (تختلف من خط لآخر)، تُحسب مرة لكل حرف
   var boxes = {};
   function glyphBox(ch) {
@@ -128,48 +148,38 @@
     return (boxes[ch] = { cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, w: x1 - x0 + 1, h: y1 - y0 + 1 });
   }
 
-  // يرسم شكل الدليل على أي سياق؛ s = مقياس، fat = سماحية إضافية بالبكسل، outline = لون الحدّ
+  // يرسم الدليل في المساحة بين الأزرار العلوية والسفلية؛ s = مقياس، fat = سماحية، outline = لون الحدّ
   function guide(c, s, fill, fat, outline) {
-    var it = list()[idx], cx = W * s / 2, cy = H * s / 2 + 10 * s;
+    var it = list()[idx], aw = W * s, ah = (H - TOP_UI - BOTTOM_UI) * s, cx = aw / 2, cy = TOP_UI * s + ah / 2;
     if (mode === 'shapes') {
-      var r = Math.min(W, H) * s * 0.3;
+      var r = Math.min(aw * 0.32, ah * 0.4);
       shapePath(c, it[0], cx, cy, r);
-      c.lineWidth = 34 * s + (fat || 0); c.lineJoin = 'round'; c.strokeStyle = fill; c.stroke();
+      c.lineWidth = 46 * s + (fat || 0); c.lineJoin = 'round'; c.strokeStyle = fill; c.stroke();
       if (outline) {
-        if (c.setLineDash) c.setLineDash([14, 12]);
-        c.lineWidth = 3; c.strokeStyle = outline; c.stroke();
+        if (c.setLineDash) c.setLineDash([16, 14]);
+        c.lineWidth = 4 * s; c.strokeStyle = outline; c.stroke();
         if (c.setLineDash) c.setLineDash([]);
       }
       return;
     }
-    // نكبّر الحرف ليملأ المساحة نفسها مهما كان الخط، مع حدّ أعلى للحروف الصغيرة مثل ٠
-    var b = glyphBox(it[0]), base = Math.min(W, H) * s * 0.8 / 400;
-    var k = Math.min(W * s * 0.8 / b.w, H * s * 0.78 / b.h, base * 1.6);
+    // نكبّر الحرف ليملأ المساحة مهما كان الخط، مع حدّ أعلى للحروف الصغيرة مثل ٠
+    var b = glyphBox(it[0]), base = Math.min(aw, ah) * 0.85 / 400;
+    var k = Math.min(aw * 0.8 / b.w, ah * 0.9 / b.h, base * 1.6);
     c.save();
     c.translate(cx, cy); c.scale(k, k); c.translate(-b.cx, -b.cy);
     c.font = glyphFont(400); c.textAlign = 'center'; c.textBaseline = 'middle';
     c.fillStyle = fill; c.fillText(it[0], 300, 300);
     c.lineJoin = 'round';
     if (fat) { c.lineWidth = fat / k; c.strokeStyle = fill; c.strokeText(it[0], 300, 300); }
-    if (outline) { c.lineWidth = 3 / k; c.strokeStyle = outline; c.strokeText(it[0], 300, 300); }
+    if (outline) { c.lineWidth = 4 / k; c.strokeStyle = outline; c.strokeText(it[0], 300, 300); }
     c.restore();
   }
 
   function paintBg() {
-    var c = bctx;
-    c.fillStyle = chalk ? '#2e5d3a' : '#ffffff'; c.fillRect(0, 0, W, H);
-    if (tracing()) {
-      guide(c, 1, chalk ? 'rgba(255,255,255,.22)' : 'rgba(120,144,156,.22)', 0, chalk ? 'rgba(255,255,255,.7)' : 'rgba(84,110,122,.7)');
-    }
-    if (tracing()) {
-      var t = list()[idx];
-      label.innerHTML = mode === 'letters' ? t[0] + ' ' + t[1] + ' — ' + t[2] + ' ' + OS.pic(t[4], t[3]) :
-        mode === 'numbers' ? t[0] + ' (' + t[1] + ') ' + t[2] + ' ' + dots(+t[1]) : t[1];
-      label.className = 'trace-label';
-    } else label.className = 'trace-label hidden';
-    root.className = 'win-body' + (chalk ? ' chalk' : '');
+    bctx.fillStyle = '#ffffff'; bctx.fillRect(0, 0, W, H);
+    if (tracing()) guide(bctx, 1, '#eef0fb', 0, '#c7cbf2');
+    drawTrace();
   }
-  function dots(n) { var s = ''; for (var i = 0; i < n; i++) s += '<span class="chip-c" style="width:18px;height:18px;background:#ef4444;margin:0 2px"></span>'; return s; }
 
   // ---------- الرسم ----------
   function local(e) {
@@ -187,7 +197,8 @@
     if (e.changedTouches) touchId = e.changedTouches[0].identifier;
     else if (e.button) return;
     var p = local(e); if (!p) return;
-    cur = { c: (chalk ? INK_CHALK : INK_WHITE)[color], w: erasing ? 40 : SIZES[size], e: erasing, p: [p[0], p[1]] };
+    showUI(false);
+    cur = { c: INKS[color], w: erasing ? ERASER : PEN, e: erasing, p: [p[0], p[1]] };
     strokes.push(cur);
     dot(dctx, cur, p[0], p[1], 1);
   }
@@ -198,7 +209,12 @@
     seg(dctx, cur, pts[n - 2], pts[n - 1], p[0], p[1], 1);
     pts.push(p[0], p[1]);
   }
-  function up(e) { if (!cur) return; if (e && e.changedTouches && !local(e)) return; cur = null; touchId = null; }
+  function up(e) {
+    if (!cur) return;
+    if (e && e.changedTouches && !local(e)) return;
+    cur = null; touchId = null;
+    showTimer = setTimeout(function () { showUI(true); }, 900);
+  }
 
   function style(c, s, sc, minW) {
     c.globalCompositeOperation = s.e ? 'destination-out' : 'source-over';
@@ -234,36 +250,35 @@
       if (g) { glyph++; if (d) cov++; }
       if (d) { inkN++; if (!n) out++; }
     }
-    if (inkN < 20) { OS.hint('تتبّع الخط المنقّط بإصبعك أولاً'); return; }
-    var c = cov / glyph, o = out / inkN, it = list()[idx];
-    if (c > 0.6 && o < 0.25) {
-            var key = mode + ':' + idx, t = traced();
-      if (!t[key]) { t[key] = 1; OS.addStars(1); }
-      OS.ok('ممتاز! ' + (mode === 'letters' ? 'حرف ' + it[1] : mode === 'numbers' ? 'الرقم ' + it[2] : it[1]) + ' جميل جداً');
+    if (inkN < 20) { OS.hint('امشِ بإصبعك فوق الشكل'); return; }
+    var c = cov / glyph, o = out / inkN;
+    if (c > 0.55 && o < 0.3) {
+      var key = mode + ':' + idx, t = traced();
+      if (!t[key]) { t[key] = 1; OS.addStars(1); OS.save(); }
+      OS.ok('ممتاز!');
       groupAward();
-      setTimeout(function () { if (OS.isOpen('board')) go(1); }, 2200);
-    } else if (c > 0.35 && o < 0.45) {
-      OS.ok(o >= 0.25 ? 'جيد! حاول أن تبقى على الخط' : 'جيد! أكمل تلوين الشكل كله');
+      setTimeout(function () { if (OS.isOpen('board')) go(1); }, 1800);
+    } else if (c > 0.3 && o < 0.5) {
+      OS.ok('جيد! أكمل الشكل كله');
     } else {
-      OS.hint('حاول مرة أخرى، امشِ فوق النقاط');
+      OS.hint('حاول مرة أخرى');
       strokes = []; setTimeout(redraw, 600);
     }
   }
   function groupAward() {
-    var t = traced(), groups = [['letters', LETTERS, 'b-letters', '🔤', 'كتبت كل الحروف!'], ['numbers', NUMBERS, 'b-numbers', '🔢', 'كتبت كل الأرقام!'], ['shapes', SHAPES, 'b-shapes', '🔷', 'رسمت كل الأشكال!']];
+    var t = traced(), groups = [['letters', LETTERS, 'b-letters', 'كتبت كل الحروف!'], ['numbers', NUMBERS, 'b-numbers', 'كتبت كل الأرقام!'], ['shapes', SHAPES, 'b-shapes', 'رسمت كل الأشكال!']];
     var any = 0;
     for (var k in t) any++;
-    if (any >= 5) OS.award('b-five', '✏️', 'تتبّعت خمسة رسوم!');
+    if (any >= 5) OS.award('b-five', '', 'تتبّعت خمسة رسوم!');
     OS.each(groups, function (g) {
       for (var i = 0; i < g[1].length; i++) if (!t[g[0] + ':' + i]) return;
-      OS.award(g[2], g[3], g[4]);
+      OS.award(g[2], '', g[3]);
     });
   }
 
-
   OS.register({
-    id: 'board', name: 'الرسم', icon: 'pencil', color: '#6366f1', shade: '#4338ca', build: build,
-    awards: [{ key: 'b-five', e: '✏️', l: 'خمسة رسوم' }, { key: 'b-letters', e: '🔤', l: 'كل الحروف' },
-      { key: 'b-numbers', e: '🔢', l: 'كل الأرقام' }, { key: 'b-shapes', e: '🔷', l: 'كل الأشكال' }]
+    id: 'board', name: 'السبورة الذكية', icon: 'pencil', color: '#6366f1', shade: '#4338ca', build: build, full: true,
+    awards: [{ key: 'b-five', e: '', l: 'خمسة رسوم' }, { key: 'b-letters', e: '', l: 'كل الحروف' },
+      { key: 'b-numbers', e: '', l: 'كل الأرقام' }, { key: 'b-shapes', e: '', l: 'كل الأشكال' }]
   });
 })();

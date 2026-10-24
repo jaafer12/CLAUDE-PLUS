@@ -33,12 +33,16 @@ svg.ic { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-wid
 .chip.round { width: 56px; padding: 0 14px; background: #fff; box-shadow: 0 4px 0 #eadbc0; color: #8a7a62; }
 .chip.round .ic { margin: 0; }
 #grid { display: flex; flex-wrap: wrap; justify-content: center; padding: 0 16px 30px; }
-.card { width: 226px; height: 196px; margin: 8px; border-radius: 34px; color: #fff; text-align: center; padding-top: 26px; position: relative; }
-.card .tile { width: 100px; height: 100px; margin: 0 auto 8px; }
+.card { width: 704px; height: 380px; margin: 14px 8px 18px; border-radius: 46px; color: #fff; text-align: center; padding-top: 70px; position: relative; overflow: hidden; }
+.card .tile { width: 160px; height: 160px; margin: 0 auto 22px; }
+.card:before, .card:after { content: ''; position: absolute; border-radius: 50%; background: rgba(255,255,255,.13); }
+.card:before { width: 260px; height: 260px; left: -70px; top: -90px; }
+.card:after { width: 180px; height: 180px; right: -40px; bottom: -70px; }
+@media (min-width: 900px) { .card { width: 460px; height: 520px; padding-top: 130px; } }
 .card .ic { stroke-width: 2.2; }
-.card .nm { font-size: 22px; font-weight: 800; line-height: 1.2; padding: 0 6px; }
+.card .nm { font-size: 44px; font-weight: 800; line-height: 1.2; padding: 0 6px; }
 .card:active { -webkit-transform: translateY(4px); transform: translateY(4px); box-shadow: none !important; }
-.badge { position: absolute; top: -6px; left: -6px; background: #fff; color: #3b2f1e; font-size: 16px; font-weight: 900; line-height: 30px; height: 30px; min-width: 30px; padding: 0 8px; border-radius: 15px; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+.badge { display: none; position: absolute; top: -6px; left: -6px; background: #fff; color: #3b2f1e; font-size: 16px; font-weight: 900; line-height: 30px; height: 30px; min-width: 30px; padding: 0 8px; border-radius: 15px; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
 
 /* ---------- النوافذ (التطبيقات) ---------- */
 #windows { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; }
@@ -100,51 +104,45 @@ svg.ic { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-wid
 .modal-text { font-size: 28px; font-weight: 900; line-height: 1.5; margin-bottom: 14px; }
 .modal-input { font-size: 26px; width: 220px; text-align: center; padding: 10px; border-radius: 16px; border: 3px solid #eadbc0; -webkit-user-select: text; user-select: text; font-family: inherit; }
 
-/* ---------- السبورة ---------- */
-.board-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; padding: 8px 8px 4px; flex-shrink: 0; }
-.sw { width: 58px; height: 58px; border-radius: 29px; margin: 4px; border: 5px solid #fff; box-shadow: 0 3px 0 #eadbc0; }
-.sw.on { border-color: #3b2f1e; }
-.tool { white-space: nowrap; min-width: 64px; height: 64px; border-radius: 20px; margin: 4px; background: #fff; text-align: center; line-height: 64px; font-size: 20px; padding: 0 14px; box-shadow: 0 3px 0 #eadbc0; font-weight: 800; }
-.tool.on { background: #3b2f1e; color: #fff; box-shadow: none; }
-.tool .ic { width: 32px; height: 32px; margin: 16px auto 0; stroke-width: 2.4; }
-.tool.ok { background: #22c55e; color: #fff; box-shadow: 0 4px 0 #15803d; }
-.dot { display: inline-block; border-radius: 50%; background: currentColor; vertical-align: middle; }
-.board-wrap { position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0 14px 14px; border-radius: 22px; overflow: hidden; box-shadow: 0 5px 0 #f1e2c4; }
-.board-wrap canvas { position: absolute; top: 0; left: 0; }
-.trace-label { position: absolute; top: 12px; right: 14px; font-size: 28px; font-weight: 900; color: #3b2f1e; background: #fff7e8; border-radius: 18px; padding: 6px 14px; pointer-events: none; display: flex; align-items: center; }
-.trace-label .pic { width: 56px; height: 56px; margin-right: 10px; }
-.chalk .trace-label { background: rgba(0,0,0,.25); color: #fff; }
+/* ---------- السبورة الذكية (بحجم الشاشة) ---------- */
+.bd { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: #fff; overflow: hidden; }
+.bd canvas { position: absolute; top: 0; left: 0; }
+.bd-ui { -webkit-transition: opacity .25s; transition: opacity .25s; }
+.bd.drawing .bd-ui { opacity: 0; pointer-events: none; }
+.bd-top { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; align-items: center; }
+.bd-home { width: 74px; height: 74px; border-radius: 37px; background: #6366f1; color: #fff; padding: 18px; box-shadow: 0 5px 0 #4338ca; flex-shrink: 0; }
+.bd-tabs { flex: 1; display: flex; justify-content: center; }
+.bd-tab { width: 140px; height: 96px; margin: 0 5px; border-radius: 26px; background: #fff; box-shadow: 0 5px 0 #e0e3f5, 0 0 0 2px #eef0fb; text-align: center; padding-top: 10px; font-size: 17px; font-weight: 800; color: #8a7a62; }
+.bd-tab .tp { height: 46px; color: #6366f1; font-size: 28px; line-height: 46px; white-space: nowrap; }
+.bd-tab .tp .ic { width: 42px; height: 42px; margin: 2px auto 0; stroke-width: 2.4; }
+.bd-tab.on { background: #6366f1; color: #fff; box-shadow: 0 5px 0 #4338ca; }
+.bd-tab.on .tp { color: #fff; }
+.bd-bottom { position: absolute; bottom: 10px; left: 0; right: 0; display: flex; align-items: flex-end; justify-content: center; }
+.bd-crayon { width: 56px; height: 126px; text-align: center; -webkit-transition: -webkit-transform .15s; transition: transform .15s; }
+.bd-crayon svg { display: block; margin: 14px auto 0; }
+.bd-crayon.on { -webkit-transform: translateY(-18px); transform: translateY(-18px); }
+.bd-sep { width: 3px; height: 84px; background: #eef0fb; margin: 0 14px 18px; border-radius: 2px; }
+.bd-tool { width: 92px; text-align: center; font-size: 14px; font-weight: 800; color: #8a7a62; }
+.bd-tool .b { width: 78px; height: 78px; border-radius: 39px; margin: 0 auto 6px; padding: 19px; color: #fff; box-shadow: 0 5px 0 rgba(0,0,0,.2); }
+.bd-tool .b .ic { stroke-width: 2.6; }
+.bd-tool.on .b { box-shadow: 0 0 0 5px #fff, 0 0 0 9px #3b2f1e; }
+.bd-card { position: absolute; top: 122px; right: 14px; background: #fff7e8; border-radius: 26px; padding: 10px 18px 10px 10px; display: flex; align-items: center; box-shadow: 0 4px 0 #f1e2c4; }
+.bd-card .pic { width: 90px; height: 90px; border-radius: 20px; margin-left: 14px; }
+.bd-card .l { font-size: 50px; font-weight: 900; color: #6366f1; line-height: 1; }
+.bd-card .w { font-size: 22px; font-weight: 800; }
+.bd-dots { position: absolute; top: 132px; left: 22px; width: 260px; direction: rtl; }
+.bd-dots span { display: inline-block; width: 16px; height: 16px; border-radius: 8px; background: #e7e0f8; margin: 3px; }
+.bd-dots span.done { background: #a5b4fc; }
+.bd-arrow { position: absolute; top: 50%; margin-top: -46px; width: 92px; height: 92px; border-radius: 46px; background: #fff; box-shadow: 0 5px 0 #e0e3f5, 0 0 0 2px #eef0fb; padding: 24px; color: #6366f1; }
+.bd-arrow .ic { stroke-width: 3; }
+.bd-prev { right: 12px; }
+.bd-next { left: 12px; }
+.bd-next .ic { -webkit-transform: scaleX(-1); transform: scaleX(-1); }
+.bd-check { position: absolute; bottom: 168px; left: 50%; margin-left: -58px; width: 116px; height: 116px; border-radius: 58px; background: #22c55e; box-shadow: 0 7px 0 #15803d; color: #fff; padding: 28px; }
+.bd-check .ic { stroke-width: 3; }
 
-/* ---------- خزان الماء ---------- */
-.tank { position: relative; height: 320px; margin: 0 auto 6px; width: 92%; max-width: 760px; border: 6px solid #fff; border-top: 0; border-radius: 0 0 34px 34px; background: #e0f2fe; overflow: hidden; box-shadow: 0 6px 0 #f1e2c4; }
-.tank-water { position: absolute; left: 0; right: 0; bottom: 0; height: 72%; background: #38bdf8; }
-.tank-obj { position: absolute; width: 66px; text-align: center; margin-left: -33px; font-size: 52px; line-height: 66px; -webkit-transition: top 1.6s ease-in-out; transition: top 1.6s ease-in-out; }
-.tank-obj.fast { -webkit-transition: top .5s ease-in; transition: top .5s ease-in; }
-
-/* ---------- المغناطيس ---------- */
-.table { position: absolute; top: 0; left: 22px; right: 22px; bottom: 16px; background: #fde7c4; border-radius: 26px; box-shadow: 0 6px 0 #f1d3a3; }
-.mag-obj { position: absolute; font-size: 50px; width: 72px; height: 72px; line-height: 72px; text-align: center; margin: -36px 0 0 -36px; -webkit-transition: -webkit-transform .2s; transition: transform .2s; }
-.mag-obj .nm { position: absolute; top: 72px; left: -24px; right: -24px; font-size: 15px; line-height: 18px; color: #7c5a2a; font-weight: 800; }
-.mag-obj.stuck .nm { display: none; }
-.wiggle { -webkit-animation: wiggle .5s; animation: wiggle .5s; }
-@-webkit-keyframes wiggle { 25% { -webkit-transform: rotate(-15deg); } 75% { -webkit-transform: rotate(15deg); } }
-@keyframes wiggle { 25% { transform: rotate(-15deg); } 75% { transform: rotate(15deg); } }
-.magnet { position: absolute; width: 120px; height: 130px; margin: -20px 0 0 -60px; }
-.mag-hint { position: absolute; top: 14px; left: 0; right: 0; text-align: center; font-size: 22px; color: #7c5a2a; font-weight: 800; pointer-events: none; }
-
-/* ---------- الألوان ---------- */
-.pot { width: 112px; height: 112px; border-radius: 56px; margin: 10px 14px; border: 6px solid #fff; box-shadow: 0 5px 0 #eadbc0; text-align: center; line-height: 100px; font-size: 20px; font-weight: 900; color: #fff; }
-.bowl { width: 270px; height: 150px; margin: 16px auto 6px; border-radius: 0 0 135px 135px; border: 8px solid #fff; border-top-width: 4px; background: #fafafa; -webkit-transition: background-color .8s; transition: background-color .8s; box-shadow: 0 6px 0 #eadbc0; }
-.drop { position: fixed; width: 34px; height: 34px; border-radius: 0 50% 50% 50%; -webkit-transform: rotate(45deg); transform: rotate(45deg); z-index: 20; -webkit-transition: top .6s ease-in, left .6s ease-in; transition: top .6s ease-in, left .6s ease-in; }
-.eq { text-align: center; font-size: 30px; font-weight: 900; min-height: 50px; }
-.chip-c { display: inline-block; width: 36px; height: 36px; border-radius: 18px; vertical-align: middle; border: 3px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.3); margin: 0 6px; }
-.found { text-align: center; font-size: 18px; color: #8a7a62; font-weight: 700; }
-
-/* ---------- المسابقة ---------- */
-.q-mark { width: 110px; height: 110px; margin: 18px auto 6px; border-radius: 32px; background: #ef4444; color: #fff; padding: 24px; box-shadow: 0 6px 0 #b91c1c; }
+/* ---------- نص كبير (بوابة الأهل) ---------- */
 .q-text { font-size: 32px; font-weight: 900; text-align: center; margin: 10px 24px 14px; line-height: 1.5; }
-.q-opt { display: block; width: 80%; max-width: 580px; margin: 14px auto; font-size: 27px; min-height: 76px; }
-.q-progress { text-align: center; color: #8a7a62; font-size: 20px; font-weight: 700; padding-top: 14px; }
 
 /* ---------- نجومي ---------- */
 .trophy { width: 130px; height: 130px; margin: 24px auto 6px; border-radius: 38px; background: #ffcf4d; color: #fff; padding: 26px; box-shadow: 0 7px 0 #e0a800; }
@@ -161,9 +159,6 @@ svg.ic { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-wid
 .wp-pick.on { border-color: #3b2f1e; }
 .keypad { max-width: 420px; margin: 0 auto; direction: ltr; }
 .credit { font-size: 15px; line-height: 1.5; color: #8a7a62; padding: 4px 22px; direction: ltr; text-align: left; }
-
-/* ---------- لوحات التجارب ---------- */
-.stage-cv { display: block; width: 100%; max-width: 900px; height: auto; margin: 0 auto; border-radius: 18px; }
 
 /* ---------- القرآن الكريم ---------- */
 .sura-list { display: flex; flex-wrap: wrap; justify-content: center; padding: 6px 14px 30px; }
@@ -187,16 +182,3 @@ svg.ic { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-wid
   #grid { padding: 0 6px 30px; }
   .topbar { padding: 0 24px; }
 }
-
-/* إشارة نابضة: «اضغط هنا» من دون كلام */
-.pulse { -webkit-animation: pulse 1.2s infinite; animation: pulse 1.2s infinite; }
-@-webkit-keyframes pulse { 0%,100% { opacity: .15; } 50% { opacity: 1; } }
-@keyframes pulse { 0%,100% { opacity: .15; } 50% { opacity: 1; } }
-
-/* ---------- أزرار الأيقونات الكبيرة (للأطفال الصغار) ---------- */
-.ibox { display: inline-block; text-align: center; margin: 8px 12px; vertical-align: top; }
-.ibtn { width: 100px; height: 100px; border-radius: 50px; border: 0; padding: 24px; color: #fff; box-shadow: 0 6px 0 rgba(0,0,0,.22); }
-.ibtn .ic { stroke-width: 2.6; }
-.ibox.on .ibtn { box-shadow: 0 0 0 6px #fff, 0 0 0 10px #3b2f1e; }
-.ibox:active .ibtn { -webkit-transform: translateY(4px); transform: translateY(4px); }
-.ilbl { font-size: 15px; font-weight: 800; color: #8a7a62; margin-top: 8px; }
