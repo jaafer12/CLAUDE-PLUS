@@ -44,19 +44,20 @@ button { font-family: inherit; }
 @-webkit-keyframes bump { 0%,100% { -webkit-transform: scale(1); } 40% { -webkit-transform: scale(1.8); } }
 @keyframes bump { 0%,100% { transform: scale(1); } 40% { transform: scale(1.8); } }
 
-#home { position: absolute; top: 40px; left: 0; right: 0; bottom: 0; }
-.greet { text-align: center; color: #fff; font-size: 30px; padding: 22px 0 6px; text-shadow: 0 2px 4px rgba(0,0,0,.35); }
+#home { position: absolute; top: 40px; left: 0; right: 0; bottom: 140px; display: flex; flex-direction: column; justify-content: center; }
+.greet { text-align: center; color: #fff; font-size: 32px; font-weight: bold; padding: 0 0 10px; text-shadow: 0 2px 6px rgba(0,0,0,.45); }
 #grid { display: flex; flex-wrap: wrap; justify-content: center; padding: 10px 30px; }
-.icon { width: 150px; margin: 14px 10px; text-align: center; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.5); font-size: 19px; }
-.icon-img { width: 104px; height: 104px; border-radius: 26px; margin: 0 auto 8px; font-size: 62px; line-height: 104px; box-shadow: 0 4px 10px rgba(0,0,0,.25); text-shadow: none; position: relative; }
+.icon { width: 176px; margin: 16px 12px; text-align: center; font-size: 20px; }
+.icon-img { width: 124px; height: 124px; border-radius: 32px; margin: 0 auto 10px; font-size: 74px; line-height: 124px; box-shadow: 0 6px 0 rgba(0,0,0,.18), 0 8px 16px rgba(0,0,0,.2); position: relative; border: 4px solid rgba(255,255,255,.85); }
+.icon-label { display: inline-block; background: rgba(0,0,0,.45); color: #fff; font-weight: bold; padding: 3px 14px; border-radius: 16px; }
 .icon:active .icon-img { -webkit-transform: scale(.9); transform: scale(.9); }
-.icon-img svg { width: 64px; height: 64px; vertical-align: middle; }
+.icon-img svg { width: 78px; height: 78px; vertical-align: middle; }
 .win-title svg { width: 36px; height: 38px; vertical-align: middle; }
 #dock .icon-img svg { width: 52px; height: 52px; }
 .icon-badge { position: absolute; top: -6px; left: -6px; background: #ff5252; color: #fff; font-size: 15px; line-height: 26px; height: 26px; min-width: 26px; padding: 0 6px; border-radius: 13px; font-weight: bold; }
-#dock { position: absolute; bottom: 18px; left: 50%; -webkit-transform: translateX(-50%); transform: translateX(-50%); display: flex; padding: 10px 20px; border-radius: 34px; background: rgba(255,255,255,.3); }
+#dock { position: absolute; bottom: -122px; left: 50%; -webkit-transform: translateX(-50%); transform: translateX(-50%); display: flex; padding: 10px 20px; border-radius: 34px; background: rgba(255,255,255,.3); }
 #dock .icon { width: 110px; margin: 0 6px; }
-#dock .icon-img { width: 86px; height: 86px; line-height: 86px; font-size: 50px; border-radius: 22px; margin-bottom: 0; }
+#dock .icon-img { width: 90px; height: 90px; line-height: 82px; font-size: 50px; border-radius: 24px; margin-bottom: 0; }
 #dock .icon-label { display: none; }
 
 /* ---------- النوافذ (التطبيقات) ---------- */
@@ -73,7 +74,7 @@ button { font-family: inherit; }
 .btn:active, .btn.on { -webkit-transform: translateY(3px); transform: translateY(3px); box-shadow: 0 1px 0 rgba(0,0,0,.2); }
 .btn.on { outline: 4px solid #ffd54f; }
 .btn-white { background: #fff; color: #37474f; }
-.btn-green { background: #43a047; } .btn-red { background: #e53935; } .btn-orange { background: #fb8c00; } .btn-blue { background: #1e88e5; } .btn-teal { background: #00897b; }
+.btn-green { background: #43a047; } .btn-red { background: #e53935; } .btn-orange { background: #e65100; } .btn-blue { background: #1e88e5; } .btn-teal { background: #00897b; }
 .btn-round { width: 58px; padding: 0; border-radius: 29px; font-size: 28px; }
 .btn-head { background: rgba(255,255,255,.25); box-shadow: none; min-height: 48px; padding: 6px 16px; margin: 0 4px; }
 
@@ -84,8 +85,9 @@ button { font-family: inherit; }
 .title2 { font-size: 26px; font-weight: bold; text-align: center; margin: 8px 0; }
 
 .tray { display: flex; flex-wrap: wrap; justify-content: center; padding: 6px; }
-.item { width: 104px; margin: 6px; padding: 8px 4px; text-align: center; background: #fff; border-radius: 18px; box-shadow: 0 3px 8px rgba(0,0,0,.15); font-size: 16px; }
-.item .em { font-size: 48px; line-height: 64px; min-height: 64px; display: block; }
+.item { width: 116px; margin: 6px; padding: 8px 4px; text-align: center; background: #fff; border-radius: 18px; box-shadow: 0 3px 8px rgba(0,0,0,.15); font-size: 16px; }
+.item .em { font-size: 56px; line-height: 84px; min-height: 84px; display: block; }
+.item .pic { width: 84px; height: 84px; border-radius: 16px; }
 .pic { display: inline-block; width: 64px; height: 64px; border-radius: 14px; vertical-align: middle; background: #fff; }
 .pic.big { width: 150px; height: 150px; border-radius: 26px; box-shadow: 0 3px 10px rgba(0,0,0,.25); }
 .pic.obj { width: 64px; height: 64px; border-radius: 32px; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.3); }
@@ -95,9 +97,11 @@ button { font-family: inherit; }
 .item.picked { outline: 4px solid #ffb300; }
 
 /* ---------- الرسائل ---------- */
-#toast { position: fixed; top: 50%; left: 50%; width: 520px; margin-left: -260px; margin-top: -150px; background: #fff; border-radius: 30px; text-align: center; padding: 24px; z-index: 60; box-shadow: 0 10px 40px rgba(0,0,0,.4); -webkit-animation: pop .35s; animation: pop .35s; }
-.toast-emoji { font-size: 100px; line-height: 120px; }
-.toast-text { font-size: 28px; font-weight: bold; line-height: 1.5; }
+#toast { position: fixed; bottom: 22px; left: 50%; width: 680px; margin-left: -340px; background: #fff; border-radius: 28px; padding: 14px 22px; z-index: 60; box-shadow: 0 8px 30px rgba(0,0,0,.35); border: 4px solid #ffd54f; display: flex; align-items: center; -webkit-animation: rise .35s; animation: rise .35s; }
+.toast-emoji { font-size: 64px; line-height: 80px; width: 90px; flex-shrink: 0; text-align: center; }
+.toast-text { flex: 1; font-size: 25px; font-weight: bold; line-height: 1.45; padding-right: 8px; }
+@-webkit-keyframes rise { from { -webkit-transform: translateY(140px); opacity: 0; } to { -webkit-transform: translateY(0); opacity: 1; } }
+@keyframes rise { from { transform: translateY(140px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 @-webkit-keyframes pop { from { -webkit-transform: scale(.3); opacity: 0; } to { -webkit-transform: scale(1); opacity: 1; } }
 @keyframes pop { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 #modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.45); z-index: 55; }
@@ -107,7 +111,7 @@ button { font-family: inherit; }
 
 /* ---------- السبورة ---------- */
 .board-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; padding: 4px 6px; background: #eceff1; flex-shrink: 0; }
-.sw { width: 46px; height: 46px; border-radius: 23px; margin: 4px; border: 4px solid #fff; box-shadow: 0 2px 4px rgba(0,0,0,.25); }
+.sw { width: 42px; height: 42px; border-radius: 21px; margin: 3px; border: 4px solid #fff; box-shadow: 0 2px 4px rgba(0,0,0,.25); }
 .sw.on { border-color: #263238; -webkit-transform: scale(1.15); transform: scale(1.15); }
 .tool { min-width: 52px; height: 50px; border-radius: 14px; margin: 3px; background: #fff; text-align: center; line-height: 50px; font-size: 26px; padding: 0 8px; box-shadow: 0 2px 4px rgba(0,0,0,.2); font-weight: bold; }
 .tool.txt { font-size: 18px; }

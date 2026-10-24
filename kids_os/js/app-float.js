@@ -74,7 +74,7 @@
   }
 
   OS.register({
-    id: 'float', name: 'يطفو أم يغرق', icon: '🚢', color: '#00acc1', build: build, scroll: true,
+    id: 'float', name: 'يطفو أم يغرق', icon: '🚢', color: '#00838f', build: build, scroll: true,
     awards: [{ key: 'f-all', e: '🚢', l: 'يطفو أم يغرق' }]
   });
 })();

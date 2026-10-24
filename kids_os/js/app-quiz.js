@@ -76,7 +76,7 @@
   }
 
   OS.register({
-    id: 'quiz', name: 'المسابقة', icon: '❓', color: '#f4511e', build: build, scroll: true,
+    id: 'quiz', name: 'المسابقة', icon: '❓', color: '#d84315', build: build, scroll: true,
     awards: [{ key: 'q-done', e: '❓', l: 'أول مسابقة' }, { key: 'q-perfect', e: '🏆', l: 'العلامة الكاملة' }]
   });
 })();

@@ -16,5 +16,5 @@
     OS.say('عندك ' + OS.data.stars + ' نجمة، و ' + got + ' ملصقات');
   }
 
-  OS.register({ id: 'stars', name: 'نجومي', icon: '⭐', color: '#fbc02d', build: build, scroll: true, dock: true });
+  OS.register({ id: 'stars', name: 'نجومي', icon: '⭐', color: '#b26a00', build: build, scroll: true, dock: true });
 })();

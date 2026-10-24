@@ -95,7 +95,7 @@
   }
 
   OS.register({
-    id: 'plant', name: 'نمو النبتة', icon: '🌱', color: '#43a047', build: build, scroll: true,
+    id: 'plant', name: 'نمو النبتة', icon: '🌱', color: '#2e7d32', build: build, scroll: true,
     awards: [{ key: 'p-flower', e: '🌸', l: 'المزارع الصغير' }]
   });
 })();

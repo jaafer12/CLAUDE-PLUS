@@ -157,7 +157,7 @@
   function tick() { step(); draw(); raf = requestAnimationFrame(tick); }
 
   OS.register({
-    id: 'water', name: 'حالات الماء', icon: '💧', color: '#039be5', build: build, scroll: true,
+    id: 'water', name: 'حالات الماء', icon: '💧', color: '#0277bd', build: build, scroll: true,
     awards: [{ key: 'w-solid', e: '❄️', l: 'صنعت ثلجاً' }, { key: 'w-liquid', e: '💧', l: 'أذبت الثلج' },
       { key: 'w-gas', e: '☁️', l: 'غليت الماء' }, { key: 'w-all', e: '🏆', l: 'حالات الماء' }]
   });

@@ -147,7 +147,7 @@
   }
 
   OS.register({
-    id: 'circuit', name: 'الكهرباء', icon: '💡', color: '#fb8c00', build: build, scroll: true,
+    id: 'circuit', name: 'الكهرباء', icon: '💡', color: '#e65100', build: build, scroll: true,
     awards: [{ key: 'c-first', e: '💡', l: 'أضأت المصباح' }, { key: 'c-all', e: '🔌', l: 'موصل أم عازل' }]
   });
 })();

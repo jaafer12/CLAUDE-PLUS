@@ -45,6 +45,7 @@
     OS.tap(n, function () { OS.sfx('click'); fn(); });
     tools.appendChild(n); return n;
   }
+  function sep() { tools.appendChild(OS.el('<div style="width:2px;height:40px;background:#cfd8dc;margin:0 8px"></div>')); }
   function br() { tools.appendChild(OS.el('<div style="width:100%;height:0"></div>')); }
 
   function drawTools() {
@@ -55,9 +56,11 @@
       OS.tap(n, function () { color = i; erasing = false; OS.sfx('click'); drawTools(); });
       tools.appendChild(n);
     });
+    sep();
     OS.each(SIZES, function (s, i) {
       tool('<span class="dot" style="width:' + (s / 1.4 + 4) + 'px;height:' + (s / 1.4 + 4) + 'px"></span>', i === size, function () { size = i; drawTools(); });
     });
+    sep();
     tool('ممحاة', erasing, function () { erasing = !erasing; drawTools(); }, 'txt');
     tool('↩️', false, function () { strokes.pop(); redraw(); });
     tool('❌', false, function () { strokes = []; redraw(); });
@@ -266,7 +269,7 @@
   }
 
   OS.register({
-    id: 'board', name: 'السبورة الذكية', icon: '✏️', color: '#5c6bc0', build: build,
+    id: 'board', name: 'السبورة الذكية', icon: '✏️', color: '#3949ab', build: build,
     awards: [{ key: 'b-five', e: '✏️', l: 'خمسة رسوم' }, { key: 'b-letters', e: '🔤', l: 'كل الحروف' },
       { key: 'b-numbers', e: '🔢', l: 'كل الأرقام' }, { key: 'b-shapes', e: '🔷', l: 'كل الأشكال' }]
   });

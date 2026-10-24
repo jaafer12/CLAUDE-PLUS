@@ -80,7 +80,7 @@
   }
 
   OS.register({
-    id: 'colors', name: 'خلط الألوان', icon: '🎨', color: '#ec407a', build: build, scroll: true,
+    id: 'colors', name: 'خلط الألوان', icon: '🎨', color: '#c2185b', build: build, scroll: true,
     awards: [{ key: 'col-all', e: '🎨', l: 'فنان الألوان' }]
   });
 })();

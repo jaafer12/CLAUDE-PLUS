@@ -79,7 +79,7 @@
   }
 
   OS.register({
-    id: 'magnet', name: 'المغناطيس', icon: MAG, color: '#7e57c2', build: build,
+    id: 'magnet', name: 'المغناطيس', icon: MAG, color: '#5e35b1', build: build,
     awards: [{ key: 'm-all', e: '📎', l: 'صيّاد الحديد' }]
   });
 })();
